@@ -1,0 +1,234 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Nguyen (generated)" id="1491341979805-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="auction">
+            <column name="idauction" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="starttime" type="datetime(6)"/>
+            <column name="endtime" type="datetime(6)"/>
+            <column name="status" type="VARCHAR(45)"/>
+            <column name="idproduct" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="category">
+            <column name="idcategory" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="parentid" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="comment">
+            <column name="idcomment" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title_comment" type="VARCHAR(45)"/>
+            <column name="content_comment" type="TEXT"/>
+            <column name="createdate" type="datetime(6)"/>
+            <column name="lastupdate_date" type="datetime(6)"/>
+            <column name="idproduct" type="VARCHAR(45)"/>
+            <column name="username" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="detailproduct">
+            <column name="iddetailproduct" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(45)"/>
+            <column name="color" type="VARCHAR(45)"/>
+            <column name="kind" type="VARCHAR(45)"/>
+            <column name="production_date" type="datetime(6)"/>
+            <column name="idproduct" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="image">
+            <column name="idimage" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(45)"/>
+            <column name="link_image" type="VARCHAR(45)"/>
+            <column name="idproduct" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-6" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="invoice">
+            <column name="idinvoice" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdate" type="date"/>
+            <column name="shipdate" type="date"/>
+            <column name="idshippinginfor" type="VARCHAR(45)"/>
+            <column name="username" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="invoice_detail">
+            <column name="idinvoicedetail" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INT"/>
+            <column name="totalprice" type="DOUBLE"/>
+            <column name="createdate" type="date"/>
+            <column name="lastupdate" type="date"/>
+            <column name="status" type="VARCHAR(45)"/>
+            <column name="username" type="VARCHAR(45)"/>
+            <column name="idproduct" type="VARCHAR(45)"/>
+            <column name="idinvoice" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="product">
+            <column name="idproduct" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="view" type="INT"/>
+            <column name="price" type="FLOAT(12)"/>
+            <column name="description" type="TEXT"/>
+            <column name="quantity" type="INT"/>
+            <column name="type" type="BIT(1)"/>
+            <column name="quantity_sold" type="INT"/>
+            <column name="username" type="VARCHAR(45)"/>
+            <column name="idcategory" type="VARCHAR(45)"/>
+            <column name="idsupplier" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="rating">
+            <column name="idrating" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="INT"/>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="idproduct" type="VARCHAR(45)"/>
+            <column name="username" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="role">
+            <column name="idrole" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-11" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="role_user">
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="saleoff">
+            <column name="idsaleoff" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="TEXT"/>
+            <column name="percent" type="INT"/>
+            <column name="startdate" type="datetime(6)"/>
+            <column name="enddate" type="datetime(6)"/>
+            <column name="idproduct" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="shippinginfor">
+            <column name="idshippinginfor" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="streetname" type="VARCHAR(45)"/>
+            <column name="housenumber" type="VARCHAR(45)"/>
+            <column name="city" type="VARCHAR(45)"/>
+            <column name="district" type="VARCHAR(45)"/>
+            <column name="username" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="supplier">
+            <column name="idsupplier" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="user">
+            <column name="username" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(45)"/>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="phone" type="VARCHAR(45)"/>
+            <column name="address" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-16" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="user_auction">
+            <column name="iduserauction" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bidtime" type="datetime(6)"/>
+            <column name="price_bought" type="DOUBLE"/>
+            <column name="username" type="VARCHAR(45)"/>
+            <column name="idauction" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idauction" constraintName="PRIMARY" tableName="auction"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idcategory" constraintName="PRIMARY" tableName="category"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idcomment" constraintName="PRIMARY" tableName="comment"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="iddetailproduct" constraintName="PRIMARY" tableName="detailproduct"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-21" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idimage" constraintName="PRIMARY" tableName="image"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-22" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idinvoice" constraintName="PRIMARY" tableName="invoice"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-23" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idinvoicedetail" constraintName="PRIMARY" tableName="invoice_detail"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idproduct" constraintName="PRIMARY" tableName="product"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idrating" constraintName="PRIMARY" tableName="rating"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idrole" constraintName="PRIMARY" tableName="role"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="role_id, username" constraintName="PRIMARY" tableName="role_user"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-28" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idsaleoff" constraintName="PRIMARY" tableName="saleoff"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-29" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idshippinginfor" constraintName="PRIMARY" tableName="shippinginfor"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-30" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="idsupplier" constraintName="PRIMARY" tableName="supplier"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-31" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="username" constraintName="PRIMARY" tableName="user"/>
+    </changeSet>
+    <changeSet author="Nguyen (generated)" id="1491341979805-32" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="iduserauction" constraintName="PRIMARY" tableName="user_auction"/>
+    </changeSet>
+</databaseChangeLog>

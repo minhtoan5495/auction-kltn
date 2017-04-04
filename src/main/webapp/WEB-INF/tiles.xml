@@ -1,0 +1,92 @@
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="definition" template="/view/template/homepage/maintemplate.jsp">
+		<put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
+<!-- 		<put-attribute name="slide" value="/view/template/homepage/slide.jsp"></put-attribute> -->
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="account" template="/view/template/account/MainAcount.jsp">
+		<put-attribute name="body" value=""></put-attribute>
+	</definition>
+	<definition name="registration" template="/view/template/account/MainRegister.jsp">
+		<put-attribute name="body" value=""></put-attribute>
+	</definition>
+	<definition name="searchajax" template="/view/template/searchdemo/maintemplate.jsp">
+		<put-attribute name="body" value=""></put-attribute>
+	</definition>
+	<definition name="home" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/home/home.jsp"></put-attribute>
+	</definition>
+	<definition name="listProduct" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/searchby/listProduct.jsp"></put-attribute>
+	</definition>
+	<definition name="profile" extends="definition">
+		<put-attribute name="title" value="Profile"></put-attribute>
+		<put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
+	</definition>
+	<definition name="cart" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/cart/cart.jsp"></put-attribute>
+	</definition>
+	<definition name="checkout" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/checkout/checkout.jsp"></put-attribute>
+	</definition>
+	<definition name="login" extends="account">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/login--register/login.jsp"></put-attribute>
+	</definition>
+	<definition name="contact" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/contact/contact.jsp"></put-attribute>
+	</definition>
+	<definition name="contactsuccess" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/contact/contactsuccess.jsp"></put-attribute>
+	</definition>
+	<definition name="forgetPassword" extends="definition">
+		<put-attribute name="title" value="Forget Password"></put-attribute>
+		<put-attribute name="body" value="/view/login--register/forgetPassword.jsp"></put-attribute>
+	</definition>
+	<definition name="register" extends="registration">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
+	</definition>
+	<definition name="information_form" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
+	</definition>
+	<definition name="upload" extends="definition">
+		<put-attribute name="title" value="Profile"></put-attribute>
+		<put-attribute name="body" value="/view/upload/upload.jsp"></put-attribute>
+	</definition>
+	<definition name="Success" extends="definition">
+		<put-attribute name="title" value="Profile"></put-attribute>
+		<put-attribute name="body" value="/view/upload/Success.jsp"></put-attribute>
+	</definition>
+		<definition name="detailpage" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/detail/detailpage.jsp"></put-attribute>
+	</definition>
+		<definition name="ajax" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/ajax/ajax.jsp"></put-attribute>
+	</definition>
+	<definition name="ajaxsave" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/ajax/ajaxsave.jsp"></put-attribute>
+	</definition>
+	<definition name="table" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/loadsearch/table.jsp"></put-attribute>
+	</definition>
+	<definition name="search" extends="searchajax">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/loadsearch/search.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>
