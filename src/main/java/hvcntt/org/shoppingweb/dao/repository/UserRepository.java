@@ -11,8 +11,14 @@ public interface UserRepository extends JpaRepository<User, String> {
 
 	User findByUsername(String username);
 
+	User findByEmail(String email);
+
+	User findByPhone(String phone);
+
+	User findByUsernameAndPassword(String username, String password);
+
 	@Modifying
 	@Transactional
 	@Query("UPDATE User u SET u.accountNonLocked = :accountNonLocked WHERE u.username = :username")
-	public void updateLocked(@Param("username")String username, @Param("accountNonLocked")boolean accountNonLocked);
+	void updateLocked(@Param("username")String username, @Param("accountNonLocked")boolean accountNonLocked);
 }

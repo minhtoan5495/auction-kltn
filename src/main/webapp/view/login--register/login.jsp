@@ -13,8 +13,8 @@
 		</div>
 	</c:if>
 	<section class="form_login">
-		<form action="${pageContext.request.contextPath }/login" method="post"
-			id="saveLogin">
+		<c:url value="/j_spring_security_check" var="loginUrl" />
+		<form class="form-signin" id="login" action="${loginUrl }" method="post">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 			<div class="form_input">

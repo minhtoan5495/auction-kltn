@@ -18,7 +18,7 @@ import hvcntt.org.shoppingweb.service.ProductService;
 @Controller
 public class HomePageController {
 
-	private static Logger logger = LoggerFactory.getLogger(CheckoutController.class);
+	private static Logger logger = LoggerFactory.getLogger(HomePageController.class);
 
 	@Autowired
 	private CategoryService categoryservice;
@@ -28,6 +28,7 @@ public class HomePageController {
 
 	@RequestMapping(value="/home")
 	public String homePage(Model model){
+		logger.info("Home page");
 		List<Category> listMenu = categoryservice.getCategoryParent();
 		model.addAttribute("listMenu",listMenu);
 		model.addAttribute("listProduct", productservice.getAll());

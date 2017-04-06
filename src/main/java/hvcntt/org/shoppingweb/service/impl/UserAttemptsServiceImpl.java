@@ -24,7 +24,8 @@ public class UserAttemptsServiceImpl implements UserAttemptsService {
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
 	public void insertAttempts(String username) {
-		userAttemptsRepository.save(new UserAttempt(username, 1, new Date()));
+		UserAttempt userAttempt = new UserAttempt(username, 1, new Date());
+		userAttemptsRepository.save(userAttempt);
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public class UserAttemptsServiceImpl implements UserAttemptsService {
 
 	@Override
 	public boolean checkAttempts(String username) {
-		if(this.getCountAttempts(username) == 1){
+		if(this.getAttemptsEntity(username) == null){
 			return true;
 		}else{
 			return false;

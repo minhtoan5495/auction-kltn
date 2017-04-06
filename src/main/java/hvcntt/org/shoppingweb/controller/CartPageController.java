@@ -27,8 +27,8 @@ public class CartPageController {
 
 	@RequestMapping(value="/cart")
 	public String cartPage(@RequestParam("idproduct")String idproduct,Model model,HttpSession session){
-		Product product=productservice.findOne(idproduct);
-		if(session.getAttribute("cart")==null){
+		Product product = productservice.findOne(idproduct);
+		if(session.getAttribute("cart") == null){
 			List<CartItem> cartItem= new ArrayList<>();
 			cartItem.add(new CartItem(1,product));
 			session.setAttribute("cart", cartItem);

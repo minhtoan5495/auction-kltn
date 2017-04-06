@@ -1,11 +1,17 @@
 package hvcntt.org.shoppingweb.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import hvcntt.org.shoppingweb.dao.model.UserModel;
+import hvcntt.org.shoppingweb.exception.user.RoleNotFoundException;
+import hvcntt.org.shoppingweb.exception.user.UserAlreadyExistsException;
+import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
+import hvcntt.org.shoppingweb.service.SecurityService;
 import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,47 +25,70 @@ import hvcntt.org.shoppingweb.dao.repository.UserRepository;
 @Service
 public class UserServiceImp implements UserService {
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private RoleRepository roleRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private SecurityService securityService;
 
-	@Override
-	@Transactional
-	public void save(User user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		Set<Role> roles = new HashSet<Role>(roleRepository.findAll());
-		Set<Role> roleUser=new HashSet<Role>();
-		for (Role role:roles){
-			if("1"==role.getIdrole()){
-				roleUser.add(role);
-				break;
-			}
-		}
-		user.setRoles(roleUser);
-		userRepository.save(user);
-	}
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@Override
-	public User findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return userRepository.findByUsername(username);
-	}
+    @Override
+    @Transactional
+    public void save(UserModel userModel) throws RoleNotFoundException, UserAlreadyExistsException {
+        if (userRepository.findByEmail(userModel.getUsername()) != null) {
+            throw new UserAlreadyExistsException("USER IS EXITS : " + userModel.getUsername());
+        }
 
-	@Override
-	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return userRepository.findAll();
-	}
+        if (userRepository.findByUsername(userModel.getEmail()) != null) {
+            throw new UserAlreadyExistsException("USER IS EXITS : " + userModel.getEmail());
+        }
 
-	@Override
-	public User findOne(String id) {
-		// TODO Auto-generated method stub
-		return userRepository.findOne(id);
-	}
+        if (userRepository.findByPhone(userModel.getPhone()) != null) {
+            throw new UserAlreadyExistsException("USER IS EXITS : " + userModel.getPhone());
+        }
+        User user = convertUserModelToUser(userModel);
+        userRepository.save(user);
+//        securityService.autologin(user.getUsername(), user.getPassword());
+    }
+
+    private User convertUserModelToUser(UserModel userModel) throws RoleNotFoundException {
+        Role role = roleRepository.findByName("ROLE_USER");
+        if (role == null) {
+            throw new RoleNotFoundException("ROLE NOT FOUND");
+        }
+        Set<Role> roles = new HashSet<>();
+        User user = new User();
+        user.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
+        user.setUsername(userModel.getUsername());
+        user.setAddress(userModel.getAddress());
+        user.setPhone(userModel.getPhone());
+        user.setEmail(userModel.getEmail());
+        user.setBirthday(userModel.getBirthday());
+        user.setAccountNonLocked(true);
+        roles.add(role);
+        user.setRoles(roles);
+        return user;
+    }
+
+    @Override
+    public User findByUsername(String username) throws UserNotFoundException {
+        return userRepository.findByUsername(username);
+
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User findByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
+    }
 
 }

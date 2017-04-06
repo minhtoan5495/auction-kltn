@@ -1,6 +1,11 @@
 package hvcntt.org.shoppingweb.dao.model;
 
 
+import hvcntt.org.shoppingweb.validator.Email;
+import hvcntt.org.shoppingweb.validator.Phone;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,9 +13,22 @@ public class UserModel implements Serializable {
 
     private static final long serialVersionUID = 7907931692605937196L;
 
+    @NotBlank
     private String address;
 
+    private String passwordConfirm;
+
+    @Email
+    private String email;
+
+    @NotBlank
     private Date birthday;
+
+    @NotBlank
+    private String password;
+
+    @Phone
+    private String phone;
 
     public Date getBirthday() {
         return birthday;
@@ -20,14 +38,17 @@ public class UserModel implements Serializable {
         this.birthday = birthday;
     }
 
-    private String email;
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
     public UserModel() {
     }
-
-    private String password;
-
-    private String phone;
 
     public String getAddress() {
         return address;

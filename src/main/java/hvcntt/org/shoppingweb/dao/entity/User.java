@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,7 +21,7 @@ import javax.persistence.Transient;
 public class User {
 	private String username;
 	private String password;
-	private String passwordConfirm;
+	private Date birthday;
 	private String email;
 	private String name;
 	private String phone;
@@ -29,11 +30,9 @@ public class User {
 	private Set<Comment> comments;
 	private Set<InvoiceDetail> payments;
 	private ShippingInfor addresship;
-	@Column(name = "account_non_locked")
 	private boolean accountNonLocked;
 	//private Information information;
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public User(String name, String phone, String address) {
@@ -88,50 +87,50 @@ public class User {
 		this.name = name;
 	}
 
-	@Transient
-	public String getPasswordConfirm() {
-		return passwordConfirm;
+	public Date getBirthday() {
+		return birthday;
 	}
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
-	@ManyToMany
+
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinTable(name="role_user",joinColumns = @JoinColumn(name="username"),inverseJoinColumns=@JoinColumn(name="role_id"))
 	public Set<Role> getRoles() {
 		return roles;
 	}
+
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
 	public Set<Comment> getComments() {
 		return comments;
 	}
+
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
+
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
 	public Set<InvoiceDetail> getPayments() {
 		return payments;
 	}
+
 	public void setPayments(Set<InvoiceDetail> payments) {
 		this.payments = payments;
 	}
+
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
 	public ShippingInfor getAddresship() {
 		return addresship;
 	}
+
 	public void setAddresship(ShippingInfor addresship) {
 		this.addresship = addresship;
 	}
-//	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
-//	public Information getInformation() {
-//		return information;
-//	}
-//	public void setInformation(Information information) {
-//		this.information = information;
-//	}
-
 
 	public boolean isAccountNonLocked() {
 		return accountNonLocked;

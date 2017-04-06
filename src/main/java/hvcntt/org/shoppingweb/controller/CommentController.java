@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,7 @@ public class CommentController {
 //	}
 	@RequestMapping(value="/comment/{idproduct}",produces={"application/x-www-form-urlencoded; charset=UTF-8"})
 	public String createComment(Model model, @PathVariable("idproduct")String idproduct,
-			@ModelAttribute CommentDto cm, Principal principal, HttpServletRequest request){
+			@ModelAttribute CommentDto cm, Principal principal, HttpServletRequest request) throws UserNotFoundException {
 		Product product= productService.findOne(idproduct);
 		String username=principal.getName();
 		User user=userService.findByUsername(username);
