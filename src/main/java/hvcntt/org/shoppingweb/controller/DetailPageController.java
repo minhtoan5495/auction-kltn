@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hvcntt.org.shoppingweb.dto.CommentDto;
+import hvcntt.org.shoppingweb.dao.dto.CommentDto;
 //import hvcntt.org.shoppingweb.model.Comment;
-import hvcntt.org.shoppingweb.model.Image;
-import hvcntt.org.shoppingweb.model.Product;
+import hvcntt.org.shoppingweb.dao.entity.Image;
+import hvcntt.org.shoppingweb.dao.entity.Product;
 //import hvcntt.org.shoppingweb.model.User;
 import hvcntt.org.shoppingweb.service.CommentService;
 import hvcntt.org.shoppingweb.service.ImageService;
@@ -25,16 +25,21 @@ import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class DetailPageController {
+
 	@Autowired
-	ProductService productservice;
+	private ProductService productservice;
+
 	@Autowired
-	ImageService imageservice;
+	private ImageService imageservice;
+
 	@Autowired
-	CommentService commentService;
+	private CommentService commentService;
+
 	@Autowired
-	UserService userService;
+	private UserService userService;
+
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
 	
 	@RequestMapping(value="/detail",method=RequestMethod.GET)
 	public String detailPage(Model model,@RequestParam("idproduct") String idproduct,Principal principal){

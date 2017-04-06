@@ -17,21 +17,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import hvcntt.org.shoppingweb.dto.EmailInfor;
+import hvcntt.org.shoppingweb.dao.dto.EmailInfor;
 
 @Controller
 public class SendMailController {
+
 	@Autowired
-	ServletContext context;
+	private ServletContext context;
+
 	@Autowired
-	JavaMailSender javaMailSender;
+	private JavaMailSender javaMailSender;
 	@RequestMapping(value="/sendMail",method=RequestMethod.GET)
 	public String showForm(Model model){
 		model.addAttribute("mail", new EmailInfor());
 		return "contact";
 	}
+
 	@RequestMapping(value="/sendMail",method=RequestMethod.POST)
-	public String sendMail(Model model,@RequestParam("attachment")MultipartFile file,HttpServletRequest request ){
+	public String sendMail(Model model,@RequestParam("attachment") MultipartFile file,HttpServletRequest request ){
 		String from=request.getParameter("from");
 		String to=request.getParameter("to");
 		String subject=request.getParameter("subject");

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import hvcntt.org.shoppingweb.model.User;
+import hvcntt.org.shoppingweb.dao.entity.User;
 //import hvcntt.org.shoppingweb.service.InformationService;
 import hvcntt.org.shoppingweb.service.SecurityService;
 import hvcntt.org.shoppingweb.service.UserService;
@@ -19,11 +19,14 @@ public class UserController {
 //	@Autowired
 //	InformationService customerservice;
 	@Autowired
-	UserService userService;
+	private UserService userService;
+
 	@Autowired
-	SecurityService securityService;
+	private SecurityService securityService;
+
 	@Autowired
 	private UserValidator userValidator;
+
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String loginPage(Model model,String error,String logout){
 		if(error!=null){
@@ -34,13 +37,15 @@ public class UserController {
 		}
 		return "login";
 	}
+
 	@RequestMapping(value="/register",method=RequestMethod.GET)
 	public String register(Model model){
 		model.addAttribute("user", new User());
 		return "register";
 	}
+
 	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public String register(@ModelAttribute("user")User user,BindingResult binding){
+	public String register(@ModelAttribute("user") User user, BindingResult binding){
 		userValidator.validate(user, binding);
 		if(binding.hasErrors()){
 			return "register";
@@ -49,6 +54,7 @@ public class UserController {
 		securityService.autologin(user.getUsername(), user.getPasswordConfirm());
 		return "redirect:/home";
 	}
+
 	@RequestMapping(value={"/forgetPassword"})
 	public String forgetPassword(){
 		return "forgetPassword";

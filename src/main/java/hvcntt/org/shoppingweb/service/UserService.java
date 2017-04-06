@@ -2,9 +2,10 @@ package hvcntt.org.shoppingweb.service;
 
 import java.util.List;
 
-import hvcntt.org.shoppingweb.model.User;
+import hvcntt.org.shoppingweb.dao.entity.User;
 
 public interface UserService {
+
 	void save(User user);
 	User findByUsername(String username);
 	List<User> getAll();

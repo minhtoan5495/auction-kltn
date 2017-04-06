@@ -11,8 +11,16 @@
         <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN,ROLE_EMPLOYEE')" />
         <intercept-url pattern="/checkout" access="hasAnyRole('ROLE_ADMIN,ROLE_USER')" />
-        <form-login login-page="/login" default-target-url="/home" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
-        <logout logout-success-url="/login?logout" />
+        <form-login login-page="/login" username-parameter="username" password-parameter="password"
+                    login-processing-url="/j_spring_security_check"
+                    authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler"
+                    authentication-failure-handler-ref="loginFailureHandler"
+                    authentication-failure-url="/login?error"
+                    default-target-url="/"
+        />
+        <remember-me key="uniqueAndSecret" token-validity-seconds="86400"/>
+        <logout logout-success-url="/login?logout"/>
+        <access-denied-handler error-page="/403"/>
     </http>
 
     <authentication-manager alias="authenticationManager">
@@ -21,10 +29,15 @@
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="userDetailsServiceImpl" class="hvcntt.org.shoppingweb.service.UserDetailsServiceImpl"></beans:bean>
+    <beans:bean id="userDetailsServiceImpl" class="hvcntt.org.shoppingweb.service.impl.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"
           class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <beans:constructor-arg name="strength" value="11"/>
     </beans:bean>
+
+    <beans:bean id="loginFailureHandler" class="hvcntt.org.shoppingweb.security.LoginFailureHandler">
+        <beans:property name="defaultFailureUrl" value="/login?error" />
+    </beans:bean>
+
 </beans:beans>

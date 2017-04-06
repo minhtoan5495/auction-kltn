@@ -11,8 +11,9 @@ import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class ProfileController {
+
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	/*@RequestMapping(value="/profile")
 	public String profile(Model model){
 		model.addAttribute("profile", userService.getAll());

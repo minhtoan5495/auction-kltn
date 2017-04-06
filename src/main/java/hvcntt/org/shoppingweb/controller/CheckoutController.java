@@ -13,11 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import hvcntt.org.shoppingweb.model.ShippingInfor;
-import hvcntt.org.shoppingweb.model.CartItem;
+import hvcntt.org.shoppingweb.dao.entity.ShippingInfor;
+import hvcntt.org.shoppingweb.dao.entity.CartItem;
 //import hvcntt.org.shoppingweb.model.Information;
-import hvcntt.org.shoppingweb.model.Invoice_Detail;
-import hvcntt.org.shoppingweb.model.User;
+import hvcntt.org.shoppingweb.dao.entity.InvoiceDetail;
+import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.service.AddressShipService;
 //import hvcntt.org.shoppingweb.service.InformationService;
 import hvcntt.org.shoppingweb.service.PayMentService;
@@ -25,18 +25,24 @@ import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class CheckoutController {
+
 	@Autowired
-	UserService userService;
+	private UserService userService;
+
 	@Autowired
-	PayMentService payMentService;
+	private PayMentService payMentService;
+
 	@Autowired
-	AddressShipService addressService;
+	private AddressShipService addressService;
+
 //	@Autowired
 //	InformationService informationService;
+
 	@RequestMapping(value="/checkout",method=RequestMethod.GET)
 	public String checkoutPage(Model model){
 		return "checkout";
 	}
+
 	@RequestMapping(value="/checkout",method=RequestMethod.POST)
 	public String checkouted(HttpSession session,Principal principal,HttpServletRequest request){
 		String username=principal.getName();
@@ -45,13 +51,14 @@ public class CheckoutController {
 		String lastname=request.getParameter("lastname");
 //		String email=request.getParameter("email");
 //		String age=request.getParameter("age");
+		String name = firstname.concat(" " + lastname);
 		String phone=request.getParameter("phone");
 		String address=request.getParameter("address");
 		String streetname=request.getParameter("streetname");
 		String housenumber=request.getParameter("housenumber");
 		String city=request.getParameter("city");
 		String district=request.getParameter("district");
-		User userShip = new User(firstname, lastname, phone, address);
+		User userShip = new User(name, phone, address);
 		ShippingInfor addresShipping= new ShippingInfor(streetname, housenumber, city, district, user);
 		addressService.create(addresShipping);
 		userService.save(userShip);
@@ -59,7 +66,7 @@ public class CheckoutController {
 		@SuppressWarnings("unchecked")
 		List<CartItem> cartItems= (List<CartItem>) session.getAttribute("cart");
 		for(int i=0;i<cartItems.size();i++){
-			Invoice_Detail payMents= new Invoice_Detail(cartItems.get(i).getQuantity()*cartItems.get(i).getProduct().getPrice(), cartItems.get(i).getQuantity(), new Date(), null, user, cartItems.get(i).getProduct());
+			InvoiceDetail payMents= new InvoiceDetail(cartItems.get(i).getQuantity()*cartItems.get(i).getProduct().getPrice(), cartItems.get(i).getQuantity(), new Date(), null, user, cartItems.get(i).getProduct());
 			payMentService.create(payMents);
 		}
 		return "redirect:/home";

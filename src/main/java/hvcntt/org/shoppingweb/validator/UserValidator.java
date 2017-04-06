@@ -6,13 +6,15 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import hvcntt.org.shoppingweb.model.User;
+import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.service.UserService;
 
 @Component
 public class UserValidator implements Validator {
+
 	@Autowired
-	UserService userService;
+	private UserService userService;
+
 	public boolean supports(Class<?> aClass) {
         return User.class.equals(aClass);
     }

@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
-import hvcntt.org.shoppingweb.dto.CommentDto;
-import hvcntt.org.shoppingweb.model.Comment;
-import hvcntt.org.shoppingweb.model.Image;
-import hvcntt.org.shoppingweb.model.Product;
-import hvcntt.org.shoppingweb.model.User;
+import hvcntt.org.shoppingweb.dao.dto.CommentDto;
+import hvcntt.org.shoppingweb.dao.entity.Comment;
+import hvcntt.org.shoppingweb.dao.entity.Image;
+import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.service.CommentService;
 import hvcntt.org.shoppingweb.service.ImageService;
 import hvcntt.org.shoppingweb.service.ProductService;
@@ -26,14 +26,19 @@ import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class CommentController {
+
 	@Autowired
 	private CommentService commentService;
+
 	@Autowired
 	private ProductService productService;
+
 	@Autowired
 	private UserService userService;
+
 	@Autowired
 	private ImageService imageservice;
+
 //	@RequestMapping(value="/comments")
 //	public String comment(Model model){
 //		model.addAttribute("comments",commentService.getAll() );

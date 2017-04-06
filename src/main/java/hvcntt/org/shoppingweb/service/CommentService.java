@@ -2,9 +2,10 @@ package hvcntt.org.shoppingweb.service;
 
 import java.util.List;
 
-import hvcntt.org.shoppingweb.model.Comment;
+import hvcntt.org.shoppingweb.dao.entity.Comment;
 
 public interface CommentService {
-	public List<Comment> getAll();
+
+	List<Comment> getAll();
 	Comment create(Comment comment);
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hvcntt.org.shoppingweb.model.CartItem;
-import hvcntt.org.shoppingweb.model.Product;
-import hvcntt.org.shoppingweb.service.CartItemService;
+import hvcntt.org.shoppingweb.dao.entity.CartItem;
+import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.service.ProductService;
 
 @Controller
 public class CartPageController {
+
 	@Autowired
-	ProductService productservice;
-	@Autowired
-	CartItemService cartItemService;
+	private ProductService productservice;
+
 	@RequestMapping(value="/cart")
 	public String cartPage(@RequestParam("idproduct")String idproduct,Model model,HttpSession session){
 		Product product=productservice.findOne(idproduct);
@@ -44,10 +45,9 @@ public class CartPageController {
 				items.get(index).setQuantity(quantity);
 			}
 		}
-		
 		return "cart";
 	}
-	
+
 	private int isExist(String idproduct,HttpSession session){
 		@SuppressWarnings("unchecked")
 		List<CartItem> items= (List<CartItem>) session.getAttribute("cart");
