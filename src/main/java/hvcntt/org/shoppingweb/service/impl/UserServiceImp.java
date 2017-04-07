@@ -40,17 +40,17 @@ public class UserServiceImp implements UserService {
     @Override
     @Transactional
     public void save(UserModel userModel) throws RoleNotFoundException, UserAlreadyExistsException {
-        if (userRepository.findByEmail(userModel.getUsername()) != null) {
+        if (userRepository.findByEmail(userModel.getEmail()) != null) {
             throw new UserAlreadyExistsException("USER IS EXITS : " + userModel.getUsername());
         }
 
-        if (userRepository.findByUsername(userModel.getEmail()) != null) {
+        if (userRepository.findByUsername(userModel.getUsername()) != null) {
             throw new UserAlreadyExistsException("USER IS EXITS : " + userModel.getEmail());
         }
 
-        if (userRepository.findByPhone(userModel.getPhone()) != null) {
-            throw new UserAlreadyExistsException("USER IS EXITS : " + userModel.getPhone());
-        }
+//        if (userRepository.findByPhone(userModel.getPhone()) != null) {
+//            throw new UserAlreadyExistsException("USER IS EXITS : " + userModel.getPhone());
+//        }
         User user = convertUserModelToUser(userModel);
         userRepository.save(user);
 //        securityService.autologin(user.getUsername(), user.getPassword());
