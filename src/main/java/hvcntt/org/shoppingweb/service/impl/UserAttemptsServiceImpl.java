@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class UserAttemptsServiceImpl implements UserAttemptsService {
@@ -25,6 +26,7 @@ public class UserAttemptsServiceImpl implements UserAttemptsService {
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
 	public void insertAttempts(String username) {
 		UserAttempt userAttempt = new UserAttempt(username, 1, new Date());
+		userAttempt.setId(UUID.randomUUID().toString());
 		userAttemptsRepository.save(userAttempt);
 	}
 

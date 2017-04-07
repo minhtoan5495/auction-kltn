@@ -10,37 +10,40 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="role")
+@Table(name = "role")
 public class Role {
-	private String idrole=UUID.randomUUID().toString();
-	private String name;
-	private Set<User> users;
-	
-	@Id
-	@GeneratedValue()
-	
-	public String getName() {
-		return name;
-	}
-	
-	public String getIdrole() {
-		return idrole;
-	}
+    private String idrole = UUID.randomUUID().toString();
 
-	public void setIdrole(String idrole) {
-		this.idrole = idrole;
-	}
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	@ManyToMany(mappedBy="roles")
-	public Set<User> getUsers() {
-		return users;
-	}
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
-	
-	
+    private Set<User> users;
+
+    public String getName() {
+        return name;
+    }
+
+    @Id
+    @GeneratedValue
+    public String getIdrole() {
+        return idrole;
+    }
+
+    public void setIdrole(String idrole) {
+        this.idrole = idrole;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @ManyToMany(mappedBy = "roles")
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+
 }
