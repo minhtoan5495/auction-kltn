@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import hvcntt.org.shoppingweb.dao.entity.Role;
-import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.dao.repository.RoleRepository;
 import hvcntt.org.shoppingweb.dao.repository.UserRepository;
 

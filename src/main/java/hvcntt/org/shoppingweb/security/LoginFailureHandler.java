@@ -1,6 +1,5 @@
 package hvcntt.org.shoppingweb.security;
 
-import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.dao.entity.UserAttempt;
 import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.UserAttemptsService;

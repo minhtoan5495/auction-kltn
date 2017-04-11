@@ -4,7 +4,6 @@ import hvcntt.org.shoppingweb.service.PayMentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hvcntt.org.shoppingweb.dao.entity.InvoiceDetail;
 import hvcntt.org.shoppingweb.dao.repository.PayMentRepository;
 @Service
 public class PayMentServiceImp implements PayMentService {

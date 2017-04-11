@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.dao.dto.CommentDto;
 //import hvcntt.org.shoppingweb.model.Comment;
-import hvcntt.org.shoppingweb.dao.entity.Image;
-import hvcntt.org.shoppingweb.dao.entity.Product;
 //import hvcntt.org.shoppingweb.model.User;
 import hvcntt.org.shoppingweb.service.CommentService;
 import hvcntt.org.shoppingweb.service.ImageService;

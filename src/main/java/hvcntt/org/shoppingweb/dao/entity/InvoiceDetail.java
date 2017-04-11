@@ -1,89 +1,75 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "invoicedetail")
+@Table(name="invoice_detail")
+@NamedQuery(name="InvoiceDetail.findAll", query="SELECT i FROM InvoiceDetail i")
 public class InvoiceDetail implements Serializable {
+	private static final long serialVersionUID = -4137213387456601660L;
 
-    private static final long serialVersionUID = 8654582957770021307L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="invoice_detail_id")
+	private String invoiceDetailId;
 
-    @Id
-    @GeneratedValue
-    @Column(name = "invoice_detail_id")
-    private String idInvoiceDetail = UUID.randomUUID().toString();
+	private float price;
 
-    @Column(name = "product_price")
-    private double productPrice;
+	private int quantity;
 
-    @Column(name = "product_quantity")
-    private int productQuantity;
+	//bi-directional many-to-one association to Invoice
+	@ManyToOne
+	@JoinColumn(name="invoice_id")
+	private Invoice invoice;
 
-    @ManyToOne
-    @JoinColumn(name = "idproduct")
-    private Product product;
+	//bi-directional many-to-one association to Product
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
+	public InvoiceDetail() {
+	}
 
-    public InvoiceDetail() {
-    }
+	public String getInvoiceDetailId() {
+		return this.invoiceDetailId;
+	}
 
-    public InvoiceDetail(double productPrice, int productQuantity, Product product, Invoice invoice) {
-        this.productPrice = productPrice;
-        this.productQuantity = productQuantity;
-        this.product = product;
-        this.invoice = invoice;
-    }
+	public void setInvoiceDetailId(String invoiceDetailId) {
+		this.invoiceDetailId = invoiceDetailId;
+	}
 
-    public String getIdInvoiceDetail() {
-        return idInvoiceDetail;
-    }
+	public float getPrice() {
+		return this.price;
+	}
 
-    public void setIdInvoiceDetail(String idInvoiceDetail) {
-        this.idInvoiceDetail = idInvoiceDetail;
-    }
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
-    public double getProductPrice() {
-        return productPrice;
-    }
+	public int getQuantity() {
+		return this.quantity;
+	}
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
-    }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-    public int getProductQuantity() {
-        return productQuantity;
-    }
+	public Invoice getInvoice() {
+		return this.invoice;
+	}
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
-    }
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
 
-    public Product getProduct() {
-        return product;
-    }
+	public Product getProduct() {
+		return this.product;
+	}
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
 }

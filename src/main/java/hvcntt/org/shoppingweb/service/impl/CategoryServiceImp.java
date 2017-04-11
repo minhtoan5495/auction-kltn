@@ -6,7 +6,6 @@ import hvcntt.org.shoppingweb.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.repository.CategoryRepository;
 
 @Service

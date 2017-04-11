@@ -2,7 +2,6 @@ package hvcntt.org.shoppingweb.service;
 
 import java.util.List;
 
-import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.exception.user.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.user.UserAlreadyExistsException;

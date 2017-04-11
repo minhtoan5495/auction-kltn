@@ -1,54 +1,51 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
-import java.util.Set;
-import java.util.UUID;
-
+import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "role")
-public class Role {
+@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+public class Role implements Serializable {
+	private static final long serialVersionUID = -6709780121872199840L;
 
-    @Id
-    @GeneratedValue
-    @Column(name = "role_id")
-    private String roleId = UUID.randomUUID().toString();
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="role_id")
+	private String roleId;
 
-    @Column(name = "role_name")
-    private String roleName;
+	@Column(name="role_name")
+	private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+	//bi-directional many-to-many association to User
+	@ManyToMany(mappedBy="roles")
+	private List<User> users;
 
-    public Set<User> getUsers() {
-        return users;
-    }
+	public Role() {
+	}
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+	public String getRoleId() {
+		return this.roleId;
+	}
 
-    public Role() {
-    }
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
 
-    public Role(String roleName, Set<User> users) {
-        this.roleName = roleName;
-        this.users = users;
-    }
+	public String getRoleName() {
+		return this.roleName;
+	}
 
-    public String getRoleId() {
-        return roleId;
-    }
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
-    }
+	public List<User> getUsers() {
+		return this.users;
+	}
 
-    public String getRoleName() {
-        return roleName;
-    }
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
 }

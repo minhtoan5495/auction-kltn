@@ -1,24 +1,12 @@
 package hvcntt.org.shoppingweb.controller;
 
-import java.security.Principal;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;
-import hvcntt.org.shoppingweb.dao.dto.CartItem;
 //import hvcntt.org.shoppingweb.model.Information;
-import hvcntt.org.shoppingweb.dao.entity.InvoiceDetail;
-import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.service.AddressShipService;
 //import hvcntt.org.shoppingweb.service.InformationService;
 import hvcntt.org.shoppingweb.service.PayMentService;

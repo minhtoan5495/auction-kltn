@@ -1,79 +1,76 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "category")
+@NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
 public class Category implements Serializable {
+	private static final long serialVersionUID = -2196480188211956616L;
 
-    private static final long serialVersionUID = -5588921916670180621L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="category_id")
+	private String categoryId;
 
-    @Id
-    @GeneratedValue
-    @Column(name = "category_id")
-    private String categoryId = UUID.randomUUID().toString();
+	@Column(name="category_name")
+	private String categoryName;
 
-    @Column(name = "category_name")
-    private String nameCategory;
+	@Column(name="parent_id")
+	private String parentId;
 
-    @Column(name = "parentid")
-    private String parentId;
+	//bi-directional many-to-one association to Product
+	@OneToMany(mappedBy="category")
+	private List<Product> products;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "category")
-    private Set<Product> products;
+	public Category() {
+	}
 
-    public Category() {
-    }
+	public String getCategoryId() {
+		return this.categoryId;
+	}
 
-    public Category(String nameCategory, String parentId, Set<Product> products) {
-        this.nameCategory = nameCategory;
-        this.parentId = parentId;
-        this.products = products;
-    }
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
+	}
 
-    public String getCategoryId() {
-        return categoryId;
-    }
+	public String getCategoryName() {
+		return this.categoryName;
+	}
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
-    }
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 
-    public String getNameCategory() {
-        return nameCategory;
-    }
+	public String getParentId() {
+		return this.parentId;
+	}
 
-    public void setNameCategory(String nameCategory) {
-        this.nameCategory = nameCategory;
-    }
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
 
-    public String getParentId() {
-        return parentId;
-    }
+	public List<Product> getProducts() {
+		return this.products;
+	}
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
-    public Set<Product> getProducts() {
-        return products;
-    }
+	public Product addProduct(Product product) {
+		getProducts().add(product);
+		product.setCategory(this);
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
+		return product;
+	}
+
+	public Product removeProduct(Product product) {
+		getProducts().remove(product);
+		product.setCategory(null);
+
+		return product;
+	}
+
 }

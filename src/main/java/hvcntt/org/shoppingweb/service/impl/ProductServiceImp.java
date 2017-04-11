@@ -6,7 +6,6 @@ import hvcntt.org.shoppingweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.repository.ProductRepository;
 
 @Service

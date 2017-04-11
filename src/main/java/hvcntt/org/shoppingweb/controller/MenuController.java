@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.service.CategoryService;
 
 @Controller

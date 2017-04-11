@@ -1,1 +1,75 @@
-package hvcntt.org.shoppingweb.dao.entity;import javax.persistence.*;import java.io.Serializable;/** * Created by Nguyen on 09/04/2017. */@Entity@Table(name = "rating")public class Rating implements Serializable {    private static final long serialVersionUID = -135967398447883239L;    @Id    @GeneratedValue    @Column(name = "rating_id")    private String ratingId;    @Column(name = "rating_number")    private int ratingNumber;    @ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)    @JoinColumn(name = "product_id")    private Product product;    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)    @JoinColumn(name = "username")    private User user;    public Rating() {    }    public Rating(int ratingNumber, Product product, User user) {        this.ratingNumber = ratingNumber;        this.product = product;        this.user = user;    }    public String getRatingId() {        return ratingId;    }    public void setRatingId(String ratingId) {        this.ratingId = ratingId;    }    public int getRatingNumber() {        return ratingNumber;    }    public void setRatingNumber(int ratingNumber) {        this.ratingNumber = ratingNumber;    }    public Product getProduct() {        return product;    }    public void setProduct(Product product) {        this.product = product;    }    public User getUser() {        return user;    }    public void setUser(User user) {        this.user = user;    }}
+package hvcntt.org.shoppingweb.dao.entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+@Entity
+@NamedQuery(name="Rating.findAll", query="SELECT r FROM Rating r")
+public class Rating implements Serializable {
+	private static final long serialVersionUID = 269554955445124013L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="rating_id")
+	private String ratingId;
+
+	private int rating;
+
+	@Column(name="rating_content")
+	private String ratingContent;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="username")
+	private User user;
+
+	//bi-directional many-to-one association to Product
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Product product;
+
+	public Rating() {
+	}
+
+	public String getRatingId() {
+		return this.ratingId;
+	}
+
+	public void setRatingId(String ratingId) {
+		this.ratingId = ratingId;
+	}
+
+	public int getRating() {
+		return this.rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public String getRatingContent() {
+		return this.ratingContent;
+	}
+
+	public void setRatingContent(String ratingContent) {
+		this.ratingContent = ratingContent;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+}

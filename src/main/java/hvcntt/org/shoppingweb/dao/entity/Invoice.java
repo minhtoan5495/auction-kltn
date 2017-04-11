@@ -1,1 +1,128 @@
-package hvcntt.org.shoppingweb.dao.entity;import hvcntt.org.shoppingweb.dao.dto.InvoiceStatus;import javax.persistence.*;import java.io.Serializable;import java.util.Date;/** * Created by Nguyen on 09/04/2017. */@Entity@Table(name = "invoice")public class Invoice implements Serializable {    private static final long serialVersionUID = 5767709691694668383L;    @Id    @GeneratedValue    @Column(name = "invoice_id")    private String invoiceId;    @Column(name = "create_date")    private Date createDate;    @Column(name = "ship_date")    private Date shipDate;    @Column(name = "status_of_invoice_detail")    private InvoiceStatus invoiceStatus;    @ManyToOne    @JoinColumn(name = "username")    private User user;    @OneToOne(mappedBy = "invoice")    private ShippingInfo shippingInfo;    public Invoice() {    }    public Invoice(Date createDate, Date shipDate, InvoiceStatus invoiceStatus, User user, ShippingInfo shippingInfo) {        this.createDate = createDate;        this.shipDate = shipDate;        this.invoiceStatus = invoiceStatus;        this.user = user;        this.shippingInfo = shippingInfo;    }    public String getInvoiceId() {        return invoiceId;    }    public void setInvoiceId(String invoiceId) {        this.invoiceId = invoiceId;    }    public Date getCreateDate() {        return createDate;    }    public void setCreateDate(Date createDate) {        this.createDate = createDate;    }    public Date getShipDate() {        return shipDate;    }    public void setShipDate(Date shipDate) {        this.shipDate = shipDate;    }    public InvoiceStatus getInvoiceStatus() {        return invoiceStatus;    }    public void setInvoiceStatus(InvoiceStatus invoiceStatus) {        this.invoiceStatus = invoiceStatus;    }    public User getUser() {        return user;    }    public void setUser(User user) {        this.user = user;    }    public ShippingInfo getShippingInfo() {        return shippingInfo;    }    public void setShippingInfo(ShippingInfo shippingInfo) {        this.shippingInfo = shippingInfo;    }}
+package hvcntt.org.shoppingweb.dao.entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@NamedQuery(name="Invoice.findAll", query="SELECT i FROM Invoice i")
+public class Invoice implements Serializable {
+	private static final long serialVersionUID = -183157478453777407L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="invoice_id")
+	private String invoiceId;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="create_date")
+	private Date createDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="ship_date")
+	private Date shipDate;
+
+	private String username;
+
+	//bi-directional many-to-one association to InvoiceStatus
+	@ManyToOne
+	@JoinColumn(name="invoice_status_id")
+	private InvoiceStatus invoiceStatus;
+
+	//bi-directional many-to-one association to InvoiceDetail
+	@OneToMany(mappedBy="invoice")
+	private List<InvoiceDetail> invoiceDetails;
+
+	//bi-directional many-to-one association to ShippingInfo
+	@OneToMany(mappedBy="invoice")
+	private List<ShippingInfo> shippingInfos;
+
+	public Invoice() {
+	}
+
+	public String getInvoiceId() {
+		return this.invoiceId;
+	}
+
+	public void setInvoiceId(String invoiceId) {
+		this.invoiceId = invoiceId;
+	}
+
+	public Date getCreateDate() {
+		return this.createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getShipDate() {
+		return this.shipDate;
+	}
+
+	public void setShipDate(Date shipDate) {
+		this.shipDate = shipDate;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public InvoiceStatus getInvoiceStatus() {
+		return this.invoiceStatus;
+	}
+
+	public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
+		this.invoiceStatus = invoiceStatus;
+	}
+
+	public List<InvoiceDetail> getInvoiceDetails() {
+		return this.invoiceDetails;
+	}
+
+	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
+		this.invoiceDetails = invoiceDetails;
+	}
+
+	public InvoiceDetail addInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().add(invoiceDetail);
+		invoiceDetail.setInvoice(this);
+
+		return invoiceDetail;
+	}
+
+	public InvoiceDetail removeInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().remove(invoiceDetail);
+		invoiceDetail.setInvoice(null);
+
+		return invoiceDetail;
+	}
+
+	public List<ShippingInfo> getShippingInfos() {
+		return this.shippingInfos;
+	}
+
+	public void setShippingInfos(List<ShippingInfo> shippingInfos) {
+		this.shippingInfos = shippingInfos;
+	}
+
+	public ShippingInfo addShippingInfo(ShippingInfo shippingInfo) {
+		getShippingInfos().add(shippingInfo);
+		shippingInfo.setInvoice(this);
+
+		return shippingInfo;
+	}
+
+	public ShippingInfo removeShippingInfo(ShippingInfo shippingInfo) {
+		getShippingInfos().remove(shippingInfo);
+		shippingInfo.setInvoice(null);
+
+		return shippingInfo;
+	}
+
+}

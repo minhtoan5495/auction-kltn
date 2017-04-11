@@ -1,82 +1,90 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="user")
-@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
-
-	private static final long serialVersionUID = 6627005919412675987L;
+	private static final long serialVersionUID = -3939291008303869200L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String username;
 
-	private String password;
+	private int accountNonLocked;
 
+	private String address;
+
+	@Temporal(TemporalType.DATE)
 	private Date birthday;
 
 	private String email;
 
 	private String name;
 
+	private String password;
+
 	private String phone;
 
-	private String address;
+	//bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments;
 
-	private String district;
+	//bi-directional many-to-one association to Rating
+	@OneToMany(mappedBy="user")
+	private List<Rating> ratings;
 
-	private String city;
+	//bi-directional many-to-one association to City
+	@ManyToOne
+	@JoinColumn(name="city_id")
+	private City city;
 
-	@ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
-	@JoinTable(
-			name = "user_role"
-			, joinColumns = {
-			@JoinColumn(name = "username", referencedColumnName = "username")
-	}
+	//bi-directional many-to-one association to District
+	@ManyToOne
+	@JoinColumn(name="district_id")
+	private District district;
 
-			, inverseJoinColumns = {
-			@JoinColumn(name = "role_id", referencedColumnName = "role_id")
-	}
-	)
-	private Set<Role> roles;
+	//bi-directional many-to-one association to UserAuction
+	@OneToMany(mappedBy="user")
+	private List<UserAuction> userAuctions;
 
-	@OneToMany(mappedBy = "user")
-	private Set<Comment> comments;
+	//bi-directional many-to-many association to Role
+	@ManyToMany
+	@JoinColumn(name="username")
+	private List<Role> roles;
 
-	@OneToMany(mappedBy = "user")
-	private Set<Invoice> invoices;
-
-	@Column(name = "accountNonLocked")
-	private boolean accountNonLocked;
-
-	//private Information information;
 	public User() {
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public int getAccountNonLocked() {
+		return this.accountNonLocked;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAccountNonLocked(int accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Date getBirthday() {
-		return birthday;
+		return this.birthday;
 	}
 
 	public void setBirthday(Date birthday) {
@@ -84,7 +92,7 @@ public class User implements Serializable {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -92,74 +100,117 @@ public class User implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getPhone() {
-		return phone;
+		return this.phone;
 	}
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public String getAddress() {
-		return address;
+	public List<Comment> getComments() {
+		return this.comments;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	public Set<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 
-	public Set<Invoice> getInvoices() {
-		return invoices;
+	public Comment addComment(Comment comment) {
+		getComments().add(comment);
+		comment.setUser(this);
+
+		return comment;
 	}
 
-	public void setInvoices(Set<Invoice> invoices) {
-		this.invoices = invoices;
+	public Comment removeComment(Comment comment) {
+		getComments().remove(comment);
+		comment.setUser(null);
+
+		return comment;
 	}
 
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
+	public List<Rating> getRatings() {
+		return this.ratings;
 	}
 
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
 	}
+
+	public Rating addRating(Rating rating) {
+		getRatings().add(rating);
+		rating.setUser(this);
+
+		return rating;
+	}
+
+	public Rating removeRating(Rating rating) {
+		getRatings().remove(rating);
+		rating.setUser(null);
+
+		return rating;
+	}
+
+	public City getCity() {
+		return this.city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public District getDistrict() {
+		return this.district;
+	}
+
+	public void setDistrict(District district) {
+		this.district = district;
+	}
+
+	public List<UserAuction> getUserAuctions() {
+		return this.userAuctions;
+	}
+
+	public void setUserAuctions(List<UserAuction> userAuctions) {
+		this.userAuctions = userAuctions;
+	}
+
+	public UserAuction addUserAuction(UserAuction userAuction) {
+		getUserAuctions().add(userAuction);
+		userAuction.setUser(this);
+
+		return userAuction;
+	}
+
+	public UserAuction removeUserAuction(UserAuction userAuction) {
+		getUserAuctions().remove(userAuction);
+		userAuction.setUser(null);
+
+		return userAuction;
+	}
+
+	public List<Role> getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 }

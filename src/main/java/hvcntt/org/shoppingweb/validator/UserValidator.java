@@ -8,7 +8,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.service.UserService;
 
 @Component

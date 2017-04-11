@@ -6,7 +6,6 @@ import hvcntt.org.shoppingweb.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hvcntt.org.shoppingweb.dao.entity.Comment;
 import hvcntt.org.shoppingweb.dao.repository.CommentRepository;
 
 @Service

@@ -1,152 +1,245 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.List;
 
 @Entity
-@Table(name="product")
+@NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
 public class Product implements Serializable {
-
-	private static final long serialVersionUID = 7491733505415349367L;
+	private static final long serialVersionUID = -565138532603166915L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="product_id")
-	private String productId = UUID.randomUUID().toString();
+	private String productId;
 
-	@Column(name="product_name")
-	private String productName;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="create_date")
+	private Date createDate;
 
-	@Column(name="views")
-	private int views;
+	private String description;
 
-	@Column(name="product_price")
-	private float productPrice;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="manufacture_date")
+	private Date manufactureDate;
 
-	@Column(name="product_description")
-	private String productDescription;
+	private String name;
+
+	private float price;
 
 	@Column(name="stock_quantity")
 	private int stockQuantity;
 
-	@Column(name = "manufacture_date")
-	private Date manufactureDate;
+	@Column(name="view_number")
+	private int viewNumber;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
-	private Set<Image> images;
+	//bi-directional many-to-one association to Auction
+	@OneToMany(mappedBy="product")
+	private List<Auction> auctions;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
-	private Set<Comment> comments;
+	//bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy="product")
+	private List<Comment> comments;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
-	private Set<InvoiceDetail> invoiceDetails;
+	//bi-directional many-to-one association to Discount
+	@ManyToOne
+	private Discount discount;
 
+	//bi-directional many-to-one association to Image
+	@OneToMany(mappedBy="product")
+	private List<Image> images;
+
+	//bi-directional many-to-one association to InvoiceDetail
+	@OneToMany(mappedBy="product")
+	private List<InvoiceDetail> invoiceDetails;
+
+	//bi-directional many-to-one association to Category
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
 
+	//bi-directional many-to-one association to Supplier
 	@ManyToOne
-	@JoinColumn(name = "supplier_id")
+	@JoinColumn(name="supplier_id")
 	private Supplier supplier;
+
+	//bi-directional many-to-one association to TransactionType
+	@ManyToOne
+	@JoinColumn(name="transaction_type_id")
+	private TransactionType transactionType;
+
+	//bi-directional many-to-one association to Rating
+	@OneToMany(mappedBy="product",fetch = FetchType.EAGER)
+	private List<Rating> ratings;
 
 	public Product() {
 	}
 
 	public String getProductId() {
-		return productId;
+		return this.productId;
 	}
 
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 
-	public String getProductName() {
-		return productName;
+	public Date getCreateDate() {
+		return this.createDate;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
-	public int getViews() {
-		return views;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setViews(int views) {
-		this.views = views;
-	}
-
-	public float getProductPrice() {
-		return productPrice;
-	}
-
-	public void setProductPrice(float productPrice) {
-		this.productPrice = productPrice;
-	}
-
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
-
-	public int getStockQuantity() {
-		return stockQuantity;
-	}
-
-	public void setStockQuantity(int stockQuantity) {
-		this.stockQuantity = stockQuantity;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getManufactureDate() {
-		return manufactureDate;
+		return this.manufactureDate;
 	}
 
 	public void setManufactureDate(Date manufactureDate) {
 		this.manufactureDate = manufactureDate;
 	}
 
-	public Set<Image> getImages() {
-		return images;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setImages(Set<Image> images) {
-		this.images = images;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Set<Comment> getComments() {
-		return comments;
+	public float getPrice() {
+		return this.price;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public int getStockQuantity() {
+		return this.stockQuantity;
+	}
+
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+
+	public int getViewNumber() {
+		return this.viewNumber;
+	}
+
+	public void setViewNumber(int viewNumber) {
+		this.viewNumber = viewNumber;
+	}
+
+	public List<Auction> getAuctions() {
+		return this.auctions;
+	}
+
+	public void setAuctions(List<Auction> auctions) {
+		this.auctions = auctions;
+	}
+
+	public Auction addAuction(Auction auction) {
+		getAuctions().add(auction);
+		auction.setProduct(this);
+
+		return auction;
+	}
+
+	public Auction removeAuction(Auction auction) {
+		getAuctions().remove(auction);
+		auction.setProduct(null);
+
+		return auction;
+	}
+
+	public List<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 
-	public Set<InvoiceDetail> getInvoiceDetails() {
-		return invoiceDetails;
+	public Comment addComment(Comment comment) {
+		getComments().add(comment);
+		comment.setProduct(this);
+
+		return comment;
 	}
 
-	public void setInvoiceDetails(Set<InvoiceDetail> invoiceDetails) {
+	public Comment removeComment(Comment comment) {
+		getComments().remove(comment);
+		comment.setProduct(null);
+
+		return comment;
+	}
+
+	public Discount getDiscount() {
+		return this.discount;
+	}
+
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
+	}
+
+
+	public List<Image> getImages() {
+		return this.images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
+	public Image addImage(Image image) {
+		getImages().add(image);
+		image.setProduct(this);
+
+		return image;
+	}
+
+	public Image removeImage(Image image) {
+		getImages().remove(image);
+		image.setProduct(null);
+
+		return image;
+	}
+
+	public List<InvoiceDetail> getInvoiceDetails() {
+		return this.invoiceDetails;
+	}
+
+	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
 		this.invoiceDetails = invoiceDetails;
 	}
 
+	public InvoiceDetail addInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().add(invoiceDetail);
+		invoiceDetail.setProduct(this);
+
+		return invoiceDetail;
+	}
+
+	public InvoiceDetail removeInvoiceDetail(InvoiceDetail invoiceDetail) {
+		getInvoiceDetails().remove(invoiceDetail);
+		invoiceDetail.setProduct(null);
+
+		return invoiceDetail;
+	}
+
 	public Category getCategory() {
-		return category;
+		return this.category;
 	}
 
 	public void setCategory(Category category) {
@@ -154,10 +247,41 @@ public class Product implements Serializable {
 	}
 
 	public Supplier getSupplier() {
-		return supplier;
+		return this.supplier;
 	}
 
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
+
+	public TransactionType getTransactionType() {
+		return this.transactionType;
+	}
+
+	public void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	public List<Rating> getRatings() {
+		return this.ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public Rating addRating(Rating rating) {
+		getRatings().add(rating);
+		rating.setProduct(this);
+
+		return rating;
+	}
+
+	public Rating removeRating(Rating rating) {
+		getRatings().remove(rating);
+		rating.setProduct(null);
+
+		return rating;
+	}
+
 }

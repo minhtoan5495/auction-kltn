@@ -1,113 +1,100 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "comment")
+@NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c")
 public class Comment implements Serializable {
+	private static final long serialVersionUID = -6027216445421146486L;
 
-    private static final long serialVersionUID = -2218162932010052013L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="comment_id")
+	private String commentId;
 
-    @Id
-    @Column(name = "comment_id")
-    private String commentId = UUID.randomUUID().toString();
+	@Column(name="comment_content")
+	private String commentContent;
 
-    @Column(name = "comment_content")
-    private String contentComment;
+	@Column(name="comment_title")
+	private String commentTitle;
 
-    @Column(name = "comment_title")
-    private String titleComment;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="create_date")
+	private Date createDate;
 
-    @Column(name = "create_date")
-    private Date createDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="last_update_date")
+	private Date lastUpdateDate;
 
-    @Column(name = "last_update_date")
-    private Date lastUpdateDate;
+	//bi-directional many-to-one association to Product
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="username")
+	private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "username")
-    private User user;
+	public Comment() {
+	}
 
-    public Comment() {
-    }
+	public String getCommentId() {
+		return this.commentId;
+	}
 
-    public Comment(String commentId, String contentComment, String titleComment, Date createDate, Date lastUpdateDate, Product product, User user) {
-        this.commentId = commentId;
-        this.contentComment = contentComment;
-        this.titleComment = titleComment;
-        this.createDate = createDate;
-        this.lastUpdateDate = lastUpdateDate;
-        this.product = product;
-        this.user = user;
-    }
+	public void setCommentId(String commentId) {
+		this.commentId = commentId;
+	}
 
-    public String getCommentId() {
-        return commentId;
-    }
+	public String getCommentContent() {
+		return this.commentContent;
+	}
 
-    public void setCommentId(String commentId) {
-        this.commentId = commentId;
-    }
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
+	}
 
-    public String getContentComment() {
-        return contentComment;
-    }
+	public String getCommentTitle() {
+		return this.commentTitle;
+	}
 
-    public void setContentComment(String contentComment) {
-        this.contentComment = contentComment;
-    }
+	public void setCommentTitle(String commentTitle) {
+		this.commentTitle = commentTitle;
+	}
 
-    public String getTitleComment() {
-        return titleComment;
-    }
+	public Date getCreateDate() {
+		return this.createDate;
+	}
 
-    public void setTitleComment(String titleComment) {
-        this.titleComment = titleComment;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	public Date getLastUpdateDate() {
+		return this.lastUpdateDate;
+	}
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	public void setLastUpdateDate(Date lastUpdateDate) {
+		this.lastUpdateDate = lastUpdateDate;
+	}
 
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
-    }
+	public Product getProduct() {
+		return this.product;
+	}
 
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
-    public Product getProduct() {
-        return product;
-    }
+	public User getUser() {
+		return this.user;
+	}
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

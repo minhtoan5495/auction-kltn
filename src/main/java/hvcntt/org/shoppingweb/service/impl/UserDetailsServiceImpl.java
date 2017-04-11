@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.dao.repository.UserRepository;
 
 import java.util.Calendar;

@@ -1,7 +1,5 @@
 package hvcntt.org.shoppingweb.dao.dto;
 
-import hvcntt.org.shoppingweb.dao.entity.Product;
-
 public class CartItem {
 
 	private int idcartitem;
