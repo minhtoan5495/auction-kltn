@@ -1,4 +1,6 @@
-package hvcntt.org.shoppingweb.dao.entity;
+package hvcntt.org.shoppingweb.dao.dto;
+
+import hvcntt.org.shoppingweb.dao.entity.Product;
 
 public class CartItem {
 
@@ -10,7 +12,6 @@ public class CartItem {
 
 	private Product product;
 	public CartItem() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public CartItem(int quantity, Product product) {

@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -12,80 +13,77 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="invoice_detail")
-public class InvoiceDetail {
-	@Id
-	@GeneratedValue
-	private String idinvoicedetail=UUID.randomUUID().toString();
-	@Column(name="totalprice")
-	private double totalprice;
-	@Column(name="quantity")
-	private int quantity;
-	@Column(name="createdate")
-	private Date createdate;
-	@Column(name="lastupdate")
-	private Date lastupdate;
-	@ManyToOne
-	@JoinColumn(name="username")
-	private User user;
-	@ManyToOne
-	@JoinColumn(name="idproduct")
-	private Product product;
-	public InvoiceDetail() {
-		// TODO Auto-generated constructor stub
-	}
-	public InvoiceDetail(double totalprice, int quantity, Date createdate, Date lastupdate, User user, Product product) {
-		super();
-		this.totalprice = totalprice;
-		this.quantity = quantity;
-		this.createdate = createdate;
-		this.lastupdate = lastupdate;
-		this.user = user;
-		this.product = product;
-	}
+@Table(name = "invoicedetail")
+public class InvoiceDetail implements Serializable {
 
+    private static final long serialVersionUID = 8654582957770021307L;
 
-	public String getIdinvoicedetail() {
-		return idinvoicedetail;
-	}
-	public void setIdinvoicedetail(String idinvoicedetail) {
-		this.idinvoicedetail = idinvoicedetail;
-	}
-	public double getTotalprice() {
-		return totalprice;
-	}
-	public void setTotalprice(double totalprice) {
-		this.totalprice = totalprice;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public Date getCreatedate() {
-		return createdate;
-	}
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
-	}
-	public Date getLastupdate() {
-		return lastupdate;
-	}
-	public void setLastupdate(Date lastupdate) {
-		this.lastupdate = lastupdate;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	
+    @Id
+    @GeneratedValue
+    @Column(name = "invoice_detail_id")
+    private String idInvoiceDetail = UUID.randomUUID().toString();
+
+    @Column(name = "product_price")
+    private double productPrice;
+
+    @Column(name = "product_quantity")
+    private int productQuantity;
+
+    @ManyToOne
+    @JoinColumn(name = "idproduct")
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "invoice_id")
+    private Invoice invoice;
+
+    public InvoiceDetail() {
+    }
+
+    public InvoiceDetail(double productPrice, int productQuantity, Product product, Invoice invoice) {
+        this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
+        this.product = product;
+        this.invoice = invoice;
+    }
+
+    public String getIdInvoiceDetail() {
+        return idInvoiceDetail;
+    }
+
+    public void setIdInvoiceDetail(String idInvoiceDetail) {
+        this.idInvoiceDetail = idInvoiceDetail;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
 }

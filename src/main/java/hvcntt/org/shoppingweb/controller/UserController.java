@@ -1,6 +1,6 @@
 package hvcntt.org.shoppingweb.controller;
 
-import hvcntt.org.shoppingweb.dao.model.UserModel;
+import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.exception.user.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.user.UserAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +34,8 @@ public class UserController {
                                   @RequestParam(value = "logout", required = false) String logout,
                                   HttpServletRequest request,
                                   Model model) {
-        UserModel userModel = new UserModel();
-        model.addAttribute("userModel", userModel);
+        UserDto userDto = new UserDto();
+        model.addAttribute("userModel", userDto);
         ModelAndView modelAndView = new ModelAndView();
         if (error != null) {
             model.addAttribute("error", "User or password invalid");
@@ -55,12 +55,12 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
-        model.addAttribute("user", new UserModel());
+        model.addAttribute("user", new UserDto());
         return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute("user") UserModel user, BindingResult binding) throws RoleNotFoundException, UserAlreadyExistsException {
+    public String register(@ModelAttribute("user") UserDto user, BindingResult binding) throws RoleNotFoundException, UserAlreadyExistsException {
 //        userValidator.validate(user, binding);
         if (binding.hasErrors()) {
             return "register";

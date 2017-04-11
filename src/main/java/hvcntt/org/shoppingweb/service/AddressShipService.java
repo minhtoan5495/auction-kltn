@@ -1,8 +1,8 @@
 package hvcntt.org.shoppingweb.service;
 
-import hvcntt.org.shoppingweb.dao.entity.ShippingInfor;
+import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;
 
 public interface AddressShipService {
 
-	ShippingInfor create(ShippingInfor address);
+	ShippingInfo create(ShippingInfo address);
 }

@@ -1,4 +1,4 @@
-package hvcntt.org.shoppingweb.dao.entity;
+package hvcntt.org.shoppingweb.dao.dto;
 
 public class UploadFile {
 

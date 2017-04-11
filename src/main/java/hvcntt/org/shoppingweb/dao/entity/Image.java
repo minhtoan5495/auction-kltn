@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -12,51 +13,63 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="image")
-public class Image {
+public class Image implements Serializable {
+
+	private static final long serialVersionUID = 5754786025815835882L;
+
 	@Id
 	@GeneratedValue
-	private String idimage=UUID.randomUUID().toString();
-	@Column(name="title")
-	private String title;
-	@Column(name="link_image")
-	private String link_image;
+	@Column(name="image_id")
+	private String imageId=UUID.randomUUID().toString();
+
+	@Column(name="image_title")
+	private String imageTitle;
+
+	@Column(name="image_url")
+	private String imageUrl;
 	
 	@ManyToOne
-	@JoinColumn(name="idproduct")
-	Product product;
+	@JoinColumn(name="product_id")
+	private Product product;
+
 	public Image() {
-		// TODO Auto-generated constructor stub
 	}
-	public Image(String title, String link_image, Product product) {
-		super();
-		this.title = title;
-		this.link_image = link_image;
+
+	public Image(String imageTitle, String imageUrl, Product product) {
+		this.imageTitle = imageTitle;
+		this.imageUrl = imageUrl;
 		this.product = product;
 	}
 
-	public String getIdimage() {
-		return idimage;
+	public String getImageId() {
+		return imageId;
 	}
-	public void setIdimage(String idimage) {
-		this.idimage = idimage;
+
+	public void setImageId(String imageId) {
+		this.imageId = imageId;
 	}
-	public String getTitle() {
-		return title;
+
+	public String getImageTitle() {
+		return imageTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+	public void setImageTitle(String imageTitle) {
+		this.imageTitle = imageTitle;
 	}
-	public String getLink_image() {
-		return link_image;
+
+	public String getImageUrl() {
+		return imageUrl;
 	}
-	public void setLink_image(String link_image) {
-		this.link_image = link_image;
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
+
 	public Product getProduct() {
 		return product;
 	}
+
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
 }

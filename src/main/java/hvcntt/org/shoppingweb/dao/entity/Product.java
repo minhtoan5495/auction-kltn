@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,145 +18,146 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="product")
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = 7491733505415349367L;
 
 	@Id
 	@GeneratedValue
-	private String idproduct = UUID.randomUUID().toString();
+	@Column(name="product_id")
+	private String productId = UUID.randomUUID().toString();
 
-	@Column(name="image")
-	private String image;
+	@Column(name="product_name")
+	private String productName;
 
-	@Column(name="name")
-	private String name;
+	@Column(name="views")
+	private int views;
 
-	@Column(name="view")
-	private int view;
+	@Column(name="product_price")
+	private float productPrice;
 
-	@Column(name="price")
-	private float price;
+	@Column(name="product_description")
+	private String productDescription;
 
-	@Column(name="description")
-	private String description;
+	@Column(name="stock_quantity")
+	private int stockQuantity;
 
-	@Column(name="quantity")
-	private int quantity;
-
-	@Column(name="quantity_sold")
-	private int quantity_sold;
-	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
-	private Set<Image> imageItem;
+	@Column(name = "manufacture_date")
+	private Date manufactureDate;
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
-	private Set<Comment> commentItems;
+	private Set<Image> images;
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
-	private Set<InvoiceDetail> payments;
+	private Set<Comment> comments;
+
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
+	private Set<InvoiceDetail> invoiceDetails;
 
 	@ManyToOne
-	@JoinColumn(name="idcategory")
+	@JoinColumn(name="category_id")
 	private Category category;
 
+	@ManyToOne
+	@JoinColumn(name = "supplier_id")
+	private Supplier supplier;
+
 	public Product() {
-		// TODO Auto-generated constructor stub
 	}
-	public Product(String image, String name, int view, float price, String description, int quantity,
-			int quantity_sold,Set<Image> imageItem,Set<Comment> commentItems,Set<InvoiceDetail> payments) {
-		super();
-		this.image = image;
-		this.name = name;
-		this.view = view;
-		this.price = price;
-		this.description = description;
-		this.quantity = quantity;
-		this.quantity_sold = quantity_sold;
-		this.imageItem=imageItem;
-		this.commentItems=commentItems;
-		this.payments=payments;
+
+	public String getProductId() {
+		return productId;
 	}
-	
-	public String getIdproduct() {
-		return idproduct;
+
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
-	public void setIdproduct(String idproduct) {
-		this.idproduct = idproduct;
+
+	public String getProductName() {
+		return productName;
 	}
-	public String getImage() {
-		return image;
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	public void setImage(String image) {
-		this.image = image;
+
+	public int getViews() {
+		return views;
 	}
-	public String getName() {
-		return name;
+
+	public void setViews(int views) {
+		this.views = views;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public float getProductPrice() {
+		return productPrice;
 	}
-	public int getView() {
-		return view;
+
+	public void setProductPrice(float productPrice) {
+		this.productPrice = productPrice;
 	}
-	public void setView(int view) {
-		this.view = view;
+
+	public String getProductDescription() {
+		return productDescription;
 	}
-	public float getPrice() {
-		return price;
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
 	}
-	public void setPrice(float price) {
-		this.price = price;
+
+	public int getStockQuantity() {
+		return stockQuantity;
 	}
-	public String getDescription() {
-		return description;
+
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public Date getManufactureDate() {
+		return manufactureDate;
 	}
-	public int getQuantity() {
-		return quantity;
+
+	public void setManufactureDate(Date manufactureDate) {
+		this.manufactureDate = manufactureDate;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+
+	public Set<Image> getImages() {
+		return images;
 	}
-	public int getQuantity_sold() {
-		return quantity_sold;
+
+	public void setImages(Set<Image> images) {
+		this.images = images;
 	}
-	public void setQuantity_sold(int quantity_sold) {
-		this.quantity_sold = quantity_sold;
+
+	public Set<Comment> getComments() {
+		return comments;
 	}
-	
-	public Set<Image> getImageItem() {
-		return imageItem;
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
-	public void setImageItem(Set<Image> imageItem) {
-		this.imageItem = imageItem;
+
+	public Set<InvoiceDetail> getInvoiceDetails() {
+		return invoiceDetails;
 	}
-	
-	public Set<Comment> getCommentItems() {
-		return commentItems;
+
+	public void setInvoiceDetails(Set<InvoiceDetail> invoiceDetails) {
+		this.invoiceDetails = invoiceDetails;
 	}
-	public void setCommentItems(Set<Comment> commentItems) {
-		this.commentItems = commentItems;
-	}
-	
-	public Set<InvoiceDetail> getPayments() {
-		return payments;
-	}
-	public void setPayments(Set<InvoiceDetail> payments) {
-		this.payments = payments;
-	}
+
 	public Category getCategory() {
 		return category;
 	}
+
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	@Override
-	public String toString() {
-		return "Product [idproduct=" + idproduct + ", image=" + image + ", name=" + name + ", view=" + view + ", price="
-				+ price + ", description=" + description + ", quantity=" + quantity + ", quantity_sold=" + quantity_sold
-				+ ", imageItem=" + imageItem + ", commentItems=" + commentItems + "]";
+
+	public Supplier getSupplier() {
+		return supplier;
 	}
-	
-	
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
 }

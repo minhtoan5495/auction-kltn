@@ -20,7 +20,7 @@ public class MenuController {
 	public String findByCategory(@RequestParam("idcategory")String idcategory, Model model){
 		Category category = categoryservice.findOne(idcategory);
 		model.addAttribute("listProduct", category);
-		model.addAttribute("message","có "+ category.getListProduct().size()+" sản phẩm được tìm thấy");
+		model.addAttribute("message","có "+ category.getProducts().size()+" sản phẩm được tìm thấy");
 		return "listProduct";
 	}
 }

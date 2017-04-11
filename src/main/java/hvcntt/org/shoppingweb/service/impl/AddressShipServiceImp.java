@@ -4,7 +4,7 @@ import hvcntt.org.shoppingweb.service.AddressShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hvcntt.org.shoppingweb.dao.entity.ShippingInfor;
+import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;
 import hvcntt.org.shoppingweb.dao.repository.AddressShippingRepository;
 
 @Service
@@ -14,7 +14,7 @@ public class AddressShipServiceImp implements AddressShipService {
 	private AddressShippingRepository addressRepo;
 
 	@Override
-	public ShippingInfor create(ShippingInfor address) {
+	public ShippingInfo create(ShippingInfo address) {
 		// TODO Auto-generated method stub
 		return addressRepo.save(address);
 	}

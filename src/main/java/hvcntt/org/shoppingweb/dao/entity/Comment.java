@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -12,85 +13,101 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="comment")
-public class Comment {
-	@Id
-	@Column(name="idcomment")
-	private String idcomment=UUID.randomUUID().toString();
-	@Column(name="content_comment")
-	private String content;
-	@Column(name="title_comment")
-	private String title;
-	@Column(name="createdate")
-	private Date createdate;
-	@Column(name="lastupdate_date")
-	private Date lastupdate;
-	
-	@ManyToOne
-	@JoinColumn(name="idproduct")
-	Product product;
-	@ManyToOne
-	@JoinColumn(name="username")
-	User user;
-	public Comment() {
-		// TODO Auto-generated constructor stub
-	}
-	public Comment(String content, String title, Date createdate, Date lastupdate, Product product, User user) {
-		super();
-		this.content = content;
-		this.title = title;
-		this.createdate = createdate;
-		this.lastupdate = lastupdate;
-		this.product = product;
-		this.user = user;
-	}
-	
-	public String getIdcomment() {
-		return idcomment;
-	}
-	public void setIdcomment(String idcomment) {
-		this.idcomment = idcomment;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public Date getCreatedate() {
-		return createdate;
-	}
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
-	}
-	public Date getLastupdate() {
-		return lastupdate;
-	}
-	public void setLastupdate(Date lastupdate) {
-		this.lastupdate = lastupdate;
-	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	@Override
-	public String toString() {
-		return "Comment [idcomment=" + idcomment + ", content=" + content + ", title=" + title + ", createdate="
-				+ createdate + ", lastupdate=" + lastupdate + ", product=" + product + ", user=" + user + "]";
-	}
-	
+@Table(name = "comment")
+public class Comment implements Serializable {
+
+    private static final long serialVersionUID = -2218162932010052013L;
+
+    @Id
+    @Column(name = "comment_id")
+    private String commentId = UUID.randomUUID().toString();
+
+    @Column(name = "comment_content")
+    private String contentComment;
+
+    @Column(name = "comment_title")
+    private String titleComment;
+
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @Column(name = "last_update_date")
+    private Date lastUpdateDate;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "username")
+    private User user;
+
+    public Comment() {
+    }
+
+    public Comment(String commentId, String contentComment, String titleComment, Date createDate, Date lastUpdateDate, Product product, User user) {
+        this.commentId = commentId;
+        this.contentComment = contentComment;
+        this.titleComment = titleComment;
+        this.createDate = createDate;
+        this.lastUpdateDate = lastUpdateDate;
+        this.product = product;
+        this.user = user;
+    }
+
+    public String getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getContentComment() {
+        return contentComment;
+    }
+
+    public void setContentComment(String contentComment) {
+        this.contentComment = contentComment;
+    }
+
+    public String getTitleComment() {
+        return titleComment;
+    }
+
+    public void setTitleComment(String titleComment) {
+        this.titleComment = titleComment;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Date lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

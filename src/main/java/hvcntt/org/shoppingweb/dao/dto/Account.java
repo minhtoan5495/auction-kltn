@@ -13,7 +13,7 @@ import java.util.Set;
 @SuppressWarnings({ "serial" })
 public class Account implements UserDetails {
 	
-	User user;
+	private User user;
 	
 	public Account(User user) {
 		super();
@@ -24,7 +24,7 @@ public class Account implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 	    for (Role r :user.getRoles()) {
-	        authorities.add(new SimpleGrantedAuthority(r.getName()));
+	        authorities.add(new SimpleGrantedAuthority(r.getRoleName()));
 	    }
 	    return authorities;
 	}

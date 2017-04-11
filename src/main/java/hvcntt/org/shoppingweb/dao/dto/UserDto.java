@@ -1,4 +1,4 @@
-package hvcntt.org.shoppingweb.dao.model;
+package hvcntt.org.shoppingweb.dao.dto;
 
 
 import hvcntt.org.shoppingweb.validator.Email;
@@ -9,7 +9,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
-public class UserModel implements Serializable {
+public class UserDto implements Serializable {
 
     private static final long serialVersionUID = 7907931692605937196L;
 
@@ -47,7 +47,7 @@ public class UserModel implements Serializable {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public UserModel() {
+    public UserDto() {
     }
 
     public String getAddress() {
@@ -58,7 +58,7 @@ public class UserModel implements Serializable {
         this.address = address;
     }
 
-    public UserModel(String address, Date birthday, String email, String password, String phone, String username, String confirmPassword) {
+    public UserDto(String address, Date birthday, String email, String password, String phone, String username, String confirmPassword) {
         this.address = address;
         this.birthday = birthday;
         this.email = email;

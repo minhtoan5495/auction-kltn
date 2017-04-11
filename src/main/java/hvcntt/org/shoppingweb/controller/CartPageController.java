@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hvcntt.org.shoppingweb.dao.entity.CartItem;
+import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.service.ProductService;
 
@@ -48,7 +48,7 @@ public class CartPageController {
         @SuppressWarnings("unchecked")
         List<CartItem> items = (List<CartItem>) session.getAttribute("cart");
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getProduct().getIdproduct().equals(idproduct)) {
+            if (items.get(i).getProduct().getProductId().equals(idproduct)) {
                 return i;
             }
         }

@@ -54,10 +54,10 @@ public class CommentController {
 		Comment comment= new Comment();
 		comment.setUser(user);
 		comment.setProduct(product);
-		comment.setTitle(cm.getTitle());
-		comment.setContent(cm.getContent());
-		comment.setCreatedate(new Date());
-		comment.setLastupdate(new Date());
+		comment.setTitleComment(cm.getTitle());
+		comment.setContentComment(cm.getContent());
+		comment.setCreateDate(new Date());
+		comment.setLastUpdateDate(new Date());
 		commentService.create(comment);
 		List<Image> imgs= imageservice.findByProduct(product);
 		model.addAttribute("image", imgs);

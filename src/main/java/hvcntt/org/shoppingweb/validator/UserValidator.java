@@ -1,6 +1,6 @@
 package hvcntt.org.shoppingweb.validator;
 
-import hvcntt.org.shoppingweb.dao.model.UserModel;
+import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class UserValidator implements Validator {
     }
 
 	public void validate(Object o, Errors errors) {
-        UserModel user = (UserModel) o;
+        UserDto user = (UserDto) o;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmptyUsername");
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");

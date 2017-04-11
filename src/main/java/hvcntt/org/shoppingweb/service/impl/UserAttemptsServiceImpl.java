@@ -26,7 +26,7 @@ public class UserAttemptsServiceImpl implements UserAttemptsService {
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
 	public void insertAttempts(String username) {
 		UserAttempt userAttempt = new UserAttempt(username, 1, new Date());
-		userAttempt.setId(UUID.randomUUID().toString());
+		userAttempt.setUserAttemptsId(UUID.randomUUID().toString());
 		userAttemptsRepository.save(userAttempt);
 	}
 

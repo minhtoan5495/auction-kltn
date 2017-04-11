@@ -1,68 +1,104 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Table(name="user")
-public class User {
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 6627005919412675987L;
+
+	@Id
+	@GeneratedValue
 	private String username;
+
 	private String password;
+
 	private Date birthday;
+
 	private String email;
+
 	private String name;
+
 	private String phone;
+
 	private String address;
+
+	private String district;
+
+	private String city;
+
+	@ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
+	@JoinTable(
+			name = "user_role"
+			, joinColumns = {
+			@JoinColumn(name = "username", referencedColumnName = "username")
+	}
+
+			, inverseJoinColumns = {
+			@JoinColumn(name = "role_id", referencedColumnName = "role_id")
+	}
+	)
 	private Set<Role> roles;
+
+	@OneToMany(mappedBy = "user")
 	private Set<Comment> comments;
-	private Set<InvoiceDetail> payments;
-	private ShippingInfor addresship;
+
+	@OneToMany(mappedBy = "user")
+	private Set<Invoice> invoices;
+
+	@Column(name = "accountNonLocked")
 	private boolean accountNonLocked;
+
 	//private Information information;
 	public User() {
 	}
-	
-	public User(String name, String phone, String address) {
-		super();
-		this.name = name;
-		this.phone = phone;
-		this.address = address;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Id
-	@Column(name="username")
-	public String getUsername() {
-		return username;
+
+	public String getName() {
+		return name;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
+
 	public String getPhone() {
 		return phone;
 	}
@@ -79,24 +115,22 @@ public class User {
 		this.address = address;
 	}
 
-	public String getName() {
-		return name;
+	public String getDistrict() {
+		return district;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDistrict(String district) {
+		this.district = district;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public String getCity() {
+		return city;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@JoinTable(name="role_user",joinColumns = @JoinColumn(name="username"),inverseJoinColumns=@JoinColumn(name="role_id"))
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -105,7 +139,6 @@ public class User {
 		this.roles = roles;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
 	public Set<Comment> getComments() {
 		return comments;
 	}
@@ -114,22 +147,12 @@ public class User {
 		this.comments = comments;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
-	public Set<InvoiceDetail> getPayments() {
-		return payments;
+	public Set<Invoice> getInvoices() {
+		return invoices;
 	}
 
-	public void setPayments(Set<InvoiceDetail> payments) {
-		this.payments = payments;
-	}
-
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
-	public ShippingInfor getAddresship() {
-		return addresship;
-	}
-
-	public void setAddresship(ShippingInfor addresship) {
-		this.addresship = addresship;
+	public void setInvoices(Set<Invoice> invoices) {
+		this.invoices = invoices;
 	}
 
 	public boolean isAccountNonLocked() {
