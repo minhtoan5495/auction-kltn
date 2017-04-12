@@ -1,7 +1,8 @@
 package hvcntt.org.shoppingweb.security;
 
+import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.dao.entity.UserAttempt;
-import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
+import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.UserAttemptsService;
 import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

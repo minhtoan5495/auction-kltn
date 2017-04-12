@@ -1,15 +1,12 @@
 package hvcntt.org.shoppingweb.controller;
 
+import hvcntt.org.shoppingweb.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-//import hvcntt.org.shoppingweb.model.Information;
-import hvcntt.org.shoppingweb.service.AddressShipService;
-//import hvcntt.org.shoppingweb.service.InformationService;
-import hvcntt.org.shoppingweb.service.PayMentService;
 import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
@@ -17,12 +14,6 @@ public class CheckoutController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private PayMentService payMentService;
-
-    @Autowired
-    private AddressShipService addressService;
 
 //	@Autowired
 //	InformationService informationService;

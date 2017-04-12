@@ -1,0 +1,1 @@
+package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Rating;import org.springframework.data.jpa.repository.JpaRepository;public interface RatingRepository extends JpaRepository<Rating, String> {}

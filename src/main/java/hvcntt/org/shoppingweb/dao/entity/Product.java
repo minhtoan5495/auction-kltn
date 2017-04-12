@@ -39,10 +39,6 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy="product")
 	private List<Auction> auctions;
 
-	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="product")
-	private List<Comment> comments;
-
 	//bi-directional many-to-one association to Discount
 	@ManyToOne
 	private Discount discount;
@@ -161,28 +157,6 @@ public class Product implements Serializable {
 		auction.setProduct(null);
 
 		return auction;
-	}
-
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Comment addComment(Comment comment) {
-		getComments().add(comment);
-		comment.setProduct(this);
-
-		return comment;
-	}
-
-	public Comment removeComment(Comment comment) {
-		getComments().remove(comment);
-		comment.setProduct(null);
-
-		return comment;
 	}
 
 	public Discount getDiscount() {

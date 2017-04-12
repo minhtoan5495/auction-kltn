@@ -2,6 +2,7 @@ package hvcntt.org.shoppingweb.service.impl;
 
 import java.util.List;
 
+import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import hvcntt.org.shoppingweb.dao.repository.ProductRepository;
 
 @Service
-public class ProductServiceImp implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository productrepo;

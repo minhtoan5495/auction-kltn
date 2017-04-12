@@ -8,13 +8,14 @@ import java.util.List;
 @Entity
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
+
 	private static final long serialVersionUID = -3939291008303869200L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String username;
 
-	private int accountNonLocked;
+	private boolean accountNonLocked;
 
 	private String address;
 
@@ -28,10 +29,6 @@ public class User implements Serializable {
 	private String password;
 
 	private String phone;
-
-	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="user")
-	private List<Comment> comments;
 
 	//bi-directional many-to-one association to Rating
 	@OneToMany(mappedBy="user")
@@ -67,11 +64,11 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
-	public int getAccountNonLocked() {
-		return this.accountNonLocked;
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
 	}
 
-	public void setAccountNonLocked(int accountNonLocked) {
+	public void setAccountNonLocked(boolean accountNonLocked) {
 		this.accountNonLocked = accountNonLocked;
 	}
 
@@ -121,28 +118,6 @@ public class User implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Comment addComment(Comment comment) {
-		getComments().add(comment);
-		comment.setUser(this);
-
-		return comment;
-	}
-
-	public Comment removeComment(Comment comment) {
-		getComments().remove(comment);
-		comment.setUser(null);
-
-		return comment;
 	}
 
 	public List<Rating> getRatings() {

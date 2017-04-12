@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.dto;
 
+import hvcntt.org.shoppingweb.dao.entity.Role;
+import hvcntt.org.shoppingweb.dao.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

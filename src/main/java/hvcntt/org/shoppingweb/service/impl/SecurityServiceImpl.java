@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SecurityServiceImp implements SecurityService {
+public class SecurityServiceImpl implements SecurityService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -20,7 +20,7 @@ public class SecurityServiceImp implements SecurityService {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImp.class);
+    private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
     @Override
     public String findLoggedInUsername() {

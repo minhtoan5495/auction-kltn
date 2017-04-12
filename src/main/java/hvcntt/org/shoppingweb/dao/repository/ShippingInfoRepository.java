@@ -1,0 +1,1 @@
+package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;import org.springframework.data.jpa.repository.JpaRepository;public interface ShippingInfoRepository extends JpaRepository<ShippingInfo, String> {}

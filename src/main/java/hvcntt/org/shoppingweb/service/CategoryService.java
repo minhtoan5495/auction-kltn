@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.service;
 
+import hvcntt.org.shoppingweb.dao.entity.Category;
+
 import java.util.List;
 
 public interface CategoryService {

@@ -1,0 +1,1 @@
+package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.Invoice;/** * Created by Nguyen on 12/04/2017. */public interface InvoiceService {    Invoice create(Invoice invoice);}

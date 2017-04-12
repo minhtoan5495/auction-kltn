@@ -1,0 +1,1 @@
+package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Invoice;import org.springframework.data.jpa.repository.JpaRepository;public interface InvoiceRepository extends JpaRepository<Invoice, String> {}

@@ -5,6 +5,8 @@ import java.util.List;
 
 //import javax.servlet.http.HttpServletRequest;
 
+import hvcntt.org.shoppingweb.dao.entity.Image;
+import hvcntt.org.shoppingweb.dao.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import hvcntt.org.shoppingweb.dao.dto.CommentDto;
 //import hvcntt.org.shoppingweb.model.Comment;
 //import hvcntt.org.shoppingweb.model.User;
-import hvcntt.org.shoppingweb.service.CommentService;
 import hvcntt.org.shoppingweb.service.ImageService;
 import hvcntt.org.shoppingweb.service.ProductService;
 import hvcntt.org.shoppingweb.service.UserService;
@@ -29,9 +30,6 @@ public class DetailPageController {
 
     @Autowired
     private ImageService imageservice;
-
-    @Autowired
-    private CommentService commentService;
 
     @Autowired
     private UserService userService;

@@ -3,7 +3,7 @@ package hvcntt.org.shoppingweb.controller;
 import java.security.Principal;
 //import java.util.List;
 
-import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
+import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

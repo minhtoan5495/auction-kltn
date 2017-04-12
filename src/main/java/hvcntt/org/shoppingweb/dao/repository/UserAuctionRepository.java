@@ -1,0 +1,1 @@
+package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.UserAuction;import org.springframework.data.jpa.repository.JpaRepository;public interface UserAuctionRepository extends JpaRepository<UserAuction, String> {}

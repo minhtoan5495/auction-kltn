@@ -1,15 +1,16 @@
 package hvcntt.org.shoppingweb.service.impl;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
-import hvcntt.org.shoppingweb.exception.user.RoleNotFoundException;
-import hvcntt.org.shoppingweb.exception.user.UserAlreadyExistsException;
-import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
+import hvcntt.org.shoppingweb.dao.entity.Role;
+import hvcntt.org.shoppingweb.dao.entity.User;
+import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
+import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
+import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.SecurityService;
 import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import hvcntt.org.shoppingweb.dao.repository.RoleRepository;
 import hvcntt.org.shoppingweb.dao.repository.UserRepository;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -36,18 +37,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional
-    public void save(UserDto userDto) throws RoleNotFoundException, UserAlreadyExistsException {
-        if (userRepository.findByUsername(userDto.getUsername()) != null) {
-            throw new UserAlreadyExistsException("USER IS EXITS : " + userDto.getUsername());
-        }
-
-        if (userRepository.findByEmail(userDto.getEmail()) != null) {
-            throw new UserAlreadyExistsException("USER IS EXITS : " + userDto.getEmail());
-        }
-
-        if (userRepository.findByPhone(userDto.getPhone()) != null) {
-            throw new UserAlreadyExistsException("USER IS EXITS : " + userDto.getPhone());
-        }
+    public void save(UserDto userDto) throws RoleNotFoundException {
         User user = convertUserModelToUser(userDto);
         userRepository.save(user);
         securityService.autologin(user.getUsername(), user.getPassword());
@@ -58,7 +48,7 @@ public class UserServiceImp implements UserService {
         if (role == null) {
             throw new RoleNotFoundException("ROLE NOT FOUND");
         }
-        Set<Role> roles = new HashSet<>();
+        List<Role> roles = new ArrayList<>();
         User user = new User();
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setUsername(userDto.getUsername());
@@ -86,6 +76,16 @@ public class UserServiceImp implements UserService {
     @Override
     public User findByUsernameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findByPhone(String phone) {
+        return userRepository.findByPhone(phone);
     }
 
 }

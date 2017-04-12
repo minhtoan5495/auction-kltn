@@ -1,7 +1,8 @@
 package hvcntt.org.shoppingweb.validator;
 
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
-import hvcntt.org.shoppingweb.exception.user.UserNotFoundException;
+import hvcntt.org.shoppingweb.dao.entity.User;
+import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -21,25 +22,33 @@ public class UserValidator implements Validator {
     }
 
 	public void validate(Object o, Errors errors) {
-        UserDto user = (UserDto) o;
+        UserDto userDto = (UserDto) o;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmptyUsername");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+        if (userDto.getUsername().length() < 6 || userDto.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         }
         try {
-            if (userService.findByUsername(user.getUsername()) != null) {
+            if (userService.findByUsername(userDto.getUsername()) != null) {
                 errors.rejectValue("username", "Duplicate.userForm.username");
             }
         } catch (UserNotFoundException e) {
             e.getMessage();
         }
 
+        if(userService.findByEmail(userDto.getEmail()) != null){
+            errors.rejectValue("username", "Duplicate.userForm.email");
+        }
+
+        if(userService.findByPhone(userDto.getPhone()) != null){
+            errors.rejectValue("username", "Duplicate.userForm.phone");
+        }
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmptyPassword");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+        if (userDto.getPassword().length() < 8 || userDto.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 
-        if (!user.getPasswordConfirm().equals(user.getPassword())) {
+        if (!userDto.getPasswordConfirm().equals(userDto.getPassword())) {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
         }
 	}

@@ -1,6 +1,7 @@
 package hvcntt.org.shoppingweb.service.impl;
 
 import hvcntt.org.shoppingweb.dao.dto.Account;
+import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.service.UserAttemptsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

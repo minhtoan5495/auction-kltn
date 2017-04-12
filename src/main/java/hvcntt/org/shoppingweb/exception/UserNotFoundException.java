@@ -1,4 +1,4 @@
-package hvcntt.org.shoppingweb.exception.user;
+package hvcntt.org.shoppingweb.exception;
 
 public class UserNotFoundException extends Exception {
 
