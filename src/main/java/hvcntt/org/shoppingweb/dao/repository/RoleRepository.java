@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Role;import org.springframework.data.jpa.repository.JpaRepository;public interface RoleRepository extends JpaRepository<Role, String> {    Role findByName(String rolename);}
+package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Role;import org.springframework.data.jpa.repository.JpaRepository;public interface RoleRepository extends JpaRepository<Role, String> {    Role findByRoleName(String rolename);}

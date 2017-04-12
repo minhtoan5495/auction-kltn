@@ -29,9 +29,9 @@ public class HomePageController {
 	@RequestMapping(value="/home")
 	public String homePage(Model model){
 		logger.info("Home page");
-		List<Category> listMenu = categoryservice.getCategoryParent();
-		model.addAttribute("listMenu",listMenu);
-		model.addAttribute("listProduct", productservice.getAll());
+//		List<Category> listMenu = categoryservice.getCategoryParent();
+//		model.addAttribute("listMenu",listMenu);
+//		model.addAttribute("listProduct", productservice.getAll());
 //		for (Category category : listMenu){
 //			logger.debug(category..getName());
 //		}

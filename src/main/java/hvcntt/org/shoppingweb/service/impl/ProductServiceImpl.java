@@ -30,10 +30,10 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productrepo.findByNameContaining(name);
 	}
-	@Override
-	public void updateView(String idproduct) {
-		// TODO Auto-generated method stub
-		 productrepo.updateView(idproduct);
-	}
+//	@Override
+//	public void updateView(String idproduct) {
+//		// TODO Auto-generated method stub
+//		 productrepo.updateView(idproduct);
+//	}
 
 }

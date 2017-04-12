@@ -16,6 +16,9 @@ public class Rating implements Serializable {
 
 	private int rating;
 
+	@Column(name="rating_title")
+	private String ratingTitle;
+
 	@Column(name="rating_content")
 	private String ratingContent;
 
@@ -72,4 +75,11 @@ public class Rating implements Serializable {
 		this.product = product;
 	}
 
+	public String getRatingTitle() {
+		return ratingTitle;
+	}
+
+	public void setRatingTitle(String ratingTitle) {
+		this.ratingTitle = ratingTitle;
+	}
 }

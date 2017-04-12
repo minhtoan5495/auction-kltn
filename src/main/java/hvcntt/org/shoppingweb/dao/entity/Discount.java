@@ -33,7 +33,7 @@ public class Discount implements Serializable {
 	private Date startDate;
 
 	//bi-directional many-to-one association to Product
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name="product_id")
 	private List<Product> products;
 

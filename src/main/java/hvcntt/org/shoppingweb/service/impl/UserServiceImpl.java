@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private User convertUserModelToUser(UserDto userDto) throws RoleNotFoundException {
-        Role role = roleRepository.findByName("ROLE_USER");
+        Role role = roleRepository.findByRoleName("ROLE_USER");
         if (role == null) {
             throw new RoleNotFoundException("ROLE NOT FOUND");
         }

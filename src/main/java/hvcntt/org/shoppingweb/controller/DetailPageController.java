@@ -40,9 +40,9 @@ public class DetailPageController {
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detailPage(Model model, @RequestParam("idproduct") String idproduct, Principal principal) {
         Product product = productservice.findOne(idproduct);
-        if (existId(idproduct)) {
-            productservice.updateView(idproduct);
-        }
+//        if (existId(idproduct)) {
+//            productservice.updateView(idproduct);
+//        }
         List<Image> imgs = imageservice.findByProduct(product);
         model.addAttribute("CommentDto", new CommentDto());
         model.addAttribute("image", imgs);
