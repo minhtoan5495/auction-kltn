@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.controller;
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
+import hvcntt.org.shoppingweb.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private SecurityService securityService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
@@ -65,6 +69,7 @@ public class UserController {
             return "register";
         }
         userService.save(userDto);
+        securityService.autologin(userDto.getUsername(), userDto.getPassword());
         return "redirect:/home";
     }
 

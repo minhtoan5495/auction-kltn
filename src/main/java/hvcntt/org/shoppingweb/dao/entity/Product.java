@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "product")
 @NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
 public class Product implements Serializable {
 	private static final long serialVersionUID = -565138532603166915L;
@@ -38,10 +39,6 @@ public class Product implements Serializable {
 	//bi-directional many-to-one association to Auction
 	@OneToMany(mappedBy="product")
 	private List<Auction> auctions;
-
-	//bi-directional many-to-one association to Discount
-	@OneToMany(mappedBy="product")
-	private List<Discount> discounts;
 
 	//bi-directional many-to-one association to Image
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -145,58 +142,14 @@ public class Product implements Serializable {
 		this.auctions = auctions;
 	}
 
-	public Auction addAuction(Auction auction) {
-		getAuctions().add(auction);
-		auction.setProduct(this);
-
-		return auction;
-	}
-
-	public Auction removeAuction(Auction auction) {
-		getAuctions().remove(auction);
-		auction.setProduct(null);
-
-		return auction;
-	}
-
-//	public Discount getDiscount() {
-//		return this.discount;
-//	}
-//
-//	public void setDiscount(Discount discount) {
-//		this.discount = discount;
-//	}
-
-
 	public List<Image> getImages() {
 		return this.images;
-	}
-
-	public List<Discount> getDiscounts() {
-		return discounts;
-	}
-
-	public void setDiscounts(List<Discount> discounts) {
-		this.discounts = discounts;
 	}
 
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
 
-	public Image addImage(Image image) {
-		getImages().add(image);
-		image.setProduct(this);
-
-		return image;
-	}
-
-	public Image removeImage(Image image) {
-		getImages().remove(image);
-		image.setProduct(null);
-
-		return image;
-	}
 
 	public List<InvoiceDetail> getInvoiceDetails() {
 		return this.invoiceDetails;
@@ -206,19 +159,6 @@ public class Product implements Serializable {
 		this.invoiceDetails = invoiceDetails;
 	}
 
-	public InvoiceDetail addInvoiceDetail(InvoiceDetail invoiceDetail) {
-		getInvoiceDetails().add(invoiceDetail);
-		invoiceDetail.setProduct(this);
-
-		return invoiceDetail;
-	}
-
-	public InvoiceDetail removeInvoiceDetail(InvoiceDetail invoiceDetail) {
-		getInvoiceDetails().remove(invoiceDetail);
-		invoiceDetail.setProduct(null);
-
-		return invoiceDetail;
-	}
 
 	public Category getCategory() {
 		return this.category;
@@ -251,19 +191,4 @@ public class Product implements Serializable {
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
-
-	public Rating addRating(Rating rating) {
-		getRatings().add(rating);
-		rating.setProduct(this);
-
-		return rating;
-	}
-
-	public Rating removeRating(Rating rating) {
-		getRatings().remove(rating);
-		rating.setProduct(null);
-
-		return rating;
-	}
-
 }

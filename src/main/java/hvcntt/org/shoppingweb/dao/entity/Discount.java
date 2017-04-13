@@ -3,9 +3,10 @@ package hvcntt.org.shoppingweb.dao.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-//import java.util.List;
+import java.util.List;
 
 @Entity
+@Table(name = "discount")
 @NamedQuery(name="Discount.findAll", query="SELECT d FROM Discount d")
 public class Discount implements Serializable {
 	private static final long serialVersionUID = -2384639484132944167L;
@@ -33,9 +34,9 @@ public class Discount implements Serializable {
 	private Date startDate;
 
 	//bi-directional many-to-one association to Product
-	@ManyToOne
+	@ManyToOne(targetEntity = Product.class)
 	@JoinColumn(name="product_id")
-	Product product;
+	private List<Product> products;
 
 	public Discount() {
 	}
@@ -88,20 +89,13 @@ public class Discount implements Serializable {
 		this.startDate = startDate;
 	}
 
-	public Product getProduct() {
-		return product;
+
+	public List<Product> getProducts() {
+		return products;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
-
-//	public List<Product> getProducts() {
-//		return products;
-//	}
-//
-//	public void setProducts(List<Product> products) {
-//		this.products = products;
-//	}
 	
 }

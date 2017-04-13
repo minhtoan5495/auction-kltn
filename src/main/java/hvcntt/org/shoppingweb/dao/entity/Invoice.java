@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "invoice")
 @NamedQuery(name="Invoice.findAll", query="SELECT i FROM Invoice i")
 public class Invoice implements Serializable {
 	private static final long serialVersionUID = -183157478453777407L;

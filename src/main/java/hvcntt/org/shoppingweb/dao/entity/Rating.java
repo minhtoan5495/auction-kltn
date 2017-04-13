@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "rating")
 @NamedQuery(name="Rating.findAll", query="SELECT r FROM Rating r")
 public class Rating implements Serializable {
 	private static final long serialVersionUID = 269554955445124013L;

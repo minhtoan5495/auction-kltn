@@ -30,9 +30,6 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
 
     @Autowired
-    private SecurityService securityService;
-
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -40,8 +37,6 @@ public class UserServiceImpl implements UserService {
     public void save(UserDto userDto) throws RoleNotFoundException {
         User user = convertUserModelToUser(userDto);
         userRepository.save(user);
-        System.out.println(user.getUsername()+ user.getPassword());
-        securityService.autologin(user.getUsername(), user.getPassword());
     }
 
     private User convertUserModelToUser(UserDto userDto) throws RoleNotFoundException {

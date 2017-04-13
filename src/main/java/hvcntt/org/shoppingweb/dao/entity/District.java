@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "district")
 @NamedQuery(name="District.findAll", query="SELECT d FROM District d")
 public class District implements Serializable {
 	private static final long serialVersionUID = -8441148627296510528L;

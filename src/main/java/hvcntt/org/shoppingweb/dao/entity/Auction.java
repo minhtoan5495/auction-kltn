@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "auction")
 @NamedQuery(name="Auction.findAll", query="SELECT a FROM Auction a")
 public class Auction implements Serializable {
 	private static final long serialVersionUID = -1134178269384478834L;
