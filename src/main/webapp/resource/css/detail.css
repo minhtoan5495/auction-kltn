@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+.header_detail_lg{
+	margin-top:-125px;
+	width: 100%;
+	height: 56px;
+	background: #333333;
+	position: relative;
+	z-index: 100;
+	border-bottom: 3px solid #111;
+	display: none;
+	position: fixed;
+}
+.main_header_detail{
+	width: 100%;
+	height: 56px;
+	position: relative;
+	z-index: 50;
+	float: left !important;
+	margin-top: 0;
+}
+.main_header_detail_item{
+	position: absolute;	
+	z-index: 9955;
+	position: relative;
+	float: left;
+}
+.main_header_detail_item a{
+	text-decoration: none;
+}
+.main_header_detail_item_link{
+	font-size: 16px;
+	color: #fff;
+	line-height: 18px;
+	float: left;
+	text-shadow: 0 0 1px rgba(255,255,255,0.8);
+	text-align: center;
+	position: relative;
+	padding: 0px 25px;
+	padding-top: 18px;
+	text-transform: uppercase;
+	margin-right: 70px;
+	
+}
+.buy_item{
+	background: #c1ad0f none repeat scroll 0 0;
+	padding: 10px 15px;
+	color: #fff;
+}

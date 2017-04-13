@@ -3,6 +3,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<div class="header_detail_lg hidden-xs" id="header_detail_scroll">
+	<div class="container no-padding">
+		<div class="main_header_detail">
+			<div class="main_header_detail_item">
+				<a href="#" class="main_header_detail_item_link">Thông tin chi
+					tiết</a>
+			</div>
+			<div class="main_header_detail_item">
+				<a href="#" class="main_header_detail_item_link">Đánh giá sản
+					phẩm</a>
+			</div>
+			<div class="main_header_detail_item">
+				<a href="#" class="main_header_detail_item_link">Phản hồi</a>
+			</div>
+			<div class="main_header_detail_item">
+				<a href="#" class="main_header_detail_item_link"><span
+					class="buy_item">Mua ngay</span></a>
+			</div>
+		</div>
+	</div>
+</div>
 <section class="main-content-detail">
 	<div class="container">
 		<div class="row">
@@ -17,15 +38,15 @@
 								<div class="tab-pane active" id="imageContainer">
 									<div class="product-detail-image">
 										<img id="imageContainer" name="image_main"
-											src="resource/images/banner/${singleProduct.image }">
+											src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }">
 									</div>
-									<ul class="nav navbar-nav">
+								<%-- 	<ul class="nav navbar-nav">
 										<c:forEach var="image" items="${singleProduct.imageItem }">
 											<li class="image-list"><img
 												src="resource/images/banner/${image.link_image }"
 												style="width: 65px; height: 100px; padding: 5px"></li>
 										</c:forEach>
-									</ul>
+									</ul> --%>
 								</div>
 							</div>
 						</div>
@@ -36,7 +57,7 @@
 								style="font-family: 'Bitter', serif">${singleProduct.name }</h2>
 							<p class="detail-product-name"
 								style="font-family: 'Bitter', serif">Mã sản phẩm
-								:${singleProduct.idproduct }</p>
+								:${singleProduct.productId }</p>
 							<div class="product-detail">
 								<label>Người đăng:<a href="#">Shinmu13194</a></label>| <label
 									class="memberpost-infor" style="font-weight: 100; color: #333;">Quảng
@@ -55,8 +76,8 @@
 							</div>
 							<div class="product-detail-view">
 								<label><i class="glyphicon glyphicon-eye-open"></i> Lượt
-									xem : ${singleProduct.view}</label>
-								<p>(Còn lại ${singleProduct.quantity} sản phẩm)</p>
+									xem : ${singleProduct.viewNumber}</label>
+								<p>(Còn lại ${singleProduct.stockQuantity} sản phẩm)</p>
 							</div>
 							<div class="product-detail-price">
 								<h2>
@@ -92,7 +113,7 @@
 										<div class="submit-button"
 											style="margin-left: 175px; margin-top: -55px">
 											<a
-												href="${pageContext.request.contextPath }/cart?idproduct=${singleProduct.idproduct}"
+												href="${pageContext.request.contextPath }/cart?idproduct=${singleProduct.productId}"
 												class="btn submit-btn"
 												style="background: #00509d; border-color: #00509d"> <span><i
 													class=""></i> Thêm vào giỏ hàng </span>
@@ -123,7 +144,7 @@
 									
 									<div class="tab-descript">
 										<p>${singleProduct.description }</p>
-										<img src="resource/images/banner/${singleProduct.image }"
+										<img src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }"
 											style="width: 100%">
 									</div>
 								</div>
@@ -187,8 +208,8 @@
 															src="${pageContext.request.contextPath }/resource/images/backgroundmenu/rating_3.png"></a>
 													</div>
 													<div class="status-upload">
-														<form:form commandName="CommentDto"
-															action="${pageContext.request.contextPath }/comment/${singleProduct.idproduct }">
+													<%-- 	<form:form commandName="CommentDto"
+															action="${pageContext.request.contextPath }/comment/${singleProduct.productId }">
 															<p>Nhận xét tổng quan</p>
 															<form:input class="form-control title-comments"
 																placeholder="Nhận xét tổng quan" path="title"></form:input>
@@ -198,7 +219,7 @@
 																path="content" class="comment_input"></form:textarea>
 															<button type="submit"
 																class="btn btn-success sumit_comment">Bình luận</button>
-														</form:form>
+														</form:form> --%>
 													</div>
 													<!-- Status Upload  -->
 												</div>
@@ -210,7 +231,7 @@
 							</div>
 						</div>
 						<div class="row" id="comment">
-							<div class="col-sm-12">
+				<%-- 			<div class="col-sm-12">
 								<h2 style="font-size: 20px; font-weight: bold;">Nhận xét
 									sản phẩm ${singleProduct.name }</h2>
 								<label>Có ${singleProduct.commentItems.size() } nhận xét</label>
@@ -236,7 +257,7 @@
 										</div>
 									</div>
 								</c:forEach>
-							</div>
+							</div> --%>
 
 						</div>
 					</div>

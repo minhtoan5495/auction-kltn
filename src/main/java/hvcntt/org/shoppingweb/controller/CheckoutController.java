@@ -22,6 +22,10 @@ public class CheckoutController {
     public String checkoutPage(Model model) {
         return "checkout";
     }
+    @RequestMapping(value = "/checkoutsuccess", method = RequestMethod.GET)
+    public String checkoutSuccess(Model model) {
+        return "checkoutsuccess";
+    }
 
 //    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
 //    public String checkouted(HttpSession session, Principal principal, HttpServletRequest request) throws UserNotFoundException {

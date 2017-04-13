@@ -1,12 +1,15 @@
 body{
 	font-family: Helvetica,Arial,sans-serif;
 }
+.header_logo{
+	margin-top: -20px;
+}
 .header_logo img{
     height: 80px;
     width: 100px;
 }
 .header_search{
-    padding-top: 35px;
+    padding-top: 5px;
 }
 .header_search input{
     border-radius: 0;
@@ -14,44 +17,20 @@ body{
 }
 .header_search button{
     height: 45px;
-    background: #59b210;
+    background: #649239;
 }
 .header_middle{
-    background-color: #333333;
+    background-color: #20323c;
 }
 .header_middle_item{
     float: left;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-left: 25%;
     width: 200px;
     background: #494E55;
-    height: 55px;
+    height: 48px;
 }
-.header_middle_cart a.cart_link{
-    color: #e9e9ea;
-    text-decoration: none;
-    font-size: 13px;
-    height: 55px;
-    overflow: hidden;
-    padding-left: 20px;
-}
-.header_middle_cart i.cart-icon{
-    font-size: 20px;
-    margin-right: 15px;
-    position: relative;
-    top: 2px;
-}
-.header_middle_cart a b{
-        color: #fff;
-    font-weight: 400;
-    height: 100%;
-    line-height: 55px;
-    position: relative;
-    top: 0px;
-}
-.header_cart_togge{
-	background: #eee;
-}
+
 .personal-profile{
 	color: #eee;
 }
@@ -64,18 +43,6 @@ body{
 }
 .user_avat_toggle{
 	margin-left: -15px;
-}
-.cart_quantity{
-    background: #ff4f4f none repeat scroll 0 0;
-    color: white;
-    display: inline;
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 55px;
-    padding: 0 23px;
-    transition: all 0.3s ease 0s;
-    width: 55px;
-    float: right;
 }
 .header_middle_item li a{
         padding-top: 50px;
@@ -418,16 +385,7 @@ ul li { list-style-type: none;
     border-bottom: 1px solid #d7d7d7;
     margin-bottom: 20px;
 }
-h2.content-paget-title-item{
-  border-top: 1px solid #d7d7d7;
-    display: block;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 44px;
-    position: relative;
-    margin-bottom: 5px;
-}
-h2.content-paget-title-item:before{
+/* h2.content-paget-title-item:before{
         border-top: 3px solid #3a3d42;
     content: "";
     display: block;
@@ -435,7 +393,7 @@ h2.content-paget-title-item:before{
     position: absolute;
     top: 2px;
     width: 80px;
-}
+} */
 .primary-form{
         background: #fbfbfb none repeat scroll 0 0;
     border: 1px solid #d6d4d4;
@@ -478,42 +436,7 @@ margin-top: 15px;
     background: #3A3D42;
     border: 1px solid #3A3D42;
 }
-.content-cart-menu{
-    overflow: hidden;
-    margin-bottom: 30px;
-}
-.step{
-    border-radius: 4px;
-}
-ul.step li.first{
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
-    border-left-width: 1px;
-}
-ul.step li.step-current{
-    border-color: #399b49 #51ae5c #208931 #369946;
-    background: linear-gradient(#42b856, #43ab54);
-}
-ul.step li.step-todo{
-    background: linear-gradient(#f7f7f7, #ededed);
-}
-ul.step li{
-    border-color: #cacaca #b7b7b7 #9a9a9a #9a9a9a;
-    border-style: solid;
-    border-width: 1px 1px 1px 0px;
-    float: left;
-    text-align: left;
-    width: 20%;
-}
-.content-cart-menu ul li{
-    padding: 13.5px 0 13px 13px;
-}
-.content-cart-menu ul li span{
-    font-weight: 400;
-    line-height: 18px;
-    font-weight: bold;
-}
-.table-cart-item{
+/* .table-cart-item{
     border-top:2px solid #ddd;
     border-left: 2px solid #ddd;
     border-right: 2px solid #ddd;
@@ -533,7 +456,7 @@ ul.step li{
 }
 .cart-right-price{
     border-right: 2px solid #ddd;
-}
+} */
 .product-detail-image{
     border: 1px solid #ddd;
     background: white;
@@ -689,9 +612,6 @@ ul.step li{
 .modal-footer{
 	border-top: 1px solid #fff;
 } */
-.modal-content{
-	background: #eee;
-}
 .btn-modal-comment{
 	border-radius: 0;
 	background: #ff4f4f none repeat scroll 0 0;
@@ -795,8 +715,13 @@ ul.step li{
     font-size: 15px;
     font-weight: bold;
 }
-.single-product-infor-name p{
+.single-product-infor-name .single-product-infor-name-title{
     width: 100%;
+    font-size: 14px;
+    text-shadow: 0 0 1px rgba(255,255,255,0.80);
+    color: #333;
+    font-weight: 700;
+    
 }
 .single-product-inforreview{
     float: right;
@@ -818,4 +743,5 @@ ul.step li{
 }
 .content-page-profile{
 	margin-top: 20px;
+	margin-bottom: 20px;
 }

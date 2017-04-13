@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
     public void save(UserDto userDto) throws RoleNotFoundException {
         User user = convertUserModelToUser(userDto);
         userRepository.save(user);
+        System.out.println(user.getUsername()+ user.getPassword());
         securityService.autologin(user.getUsername(), user.getPassword());
     }
 

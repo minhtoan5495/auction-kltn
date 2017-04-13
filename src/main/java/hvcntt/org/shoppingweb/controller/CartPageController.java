@@ -23,7 +23,8 @@ public class CartPageController {
     @Autowired
     private ProductService productservice;
 
-    @RequestMapping(value = "/cart")
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/cart")
     public String cartPage(@RequestParam("idproduct") String idproduct, Model model, HttpSession session) {
         Product product = productservice.findOne(idproduct);
         List<CartItem> items = new ArrayList<>();

@@ -13,8 +13,8 @@
 		</div>
 	</c:if>
 	<section class="form_login">
-		<c:url value="/j_spring_security_check" var="loginUrl" />
-		<form class="form-signin" id="login" action="${loginUrl }" method="post">
+		<form action="${pageContext.request.contextPath }/login" method="get"
+			id="saveLogin">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 			<div class="form_input">
@@ -28,23 +28,23 @@
 				<i class="fa fa-lock"></i>
 			</div>
 			<a href="#"
-				style="color: gray; text-decoration: none; float: right; margin-bottom: 10px">Quên mật khẩu
+				style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Quên mật khẩu
 				</a>
 			<p class="error-msg"
 				style="color: red; margin-top: 50px; display: none">Wrong
 				credentials</p>
 			<div class="form_check">
-				<input type="checkbox">Ghi nhớ
+				<input type="checkbox"><span style="color: #fff">Ghi nhớ</span>	
 			</div>
 			<div class="form_submit">
 				<input type="submit" value="Đăng nhập" name="login" id="login"
 					required="required">
 			</div>
 			<p></p>
-			<a href="${pageContext.request.contextPath }/register" style="color: #282828; text-decoration: none; margin-left: 20px;" class="create_new"><label style="color: gray">Bạn
+			<a href="${pageContext.request.contextPath }/register" style="color: #fff; text-decoration: none; margin-left: 20px;" class="create_new"><label style="color: #fff">Bạn
 					chưa có tài khoản?</label> Đăng ký ngay</a>
 					<p></p>
-			<a href="${pageContext.request.contextPath }/home" style="color: #282828; text-decoration: none; margin-left: 98px;"><label style="color: gray">Về lại trang chủ</label> </a>
+			<a href="${pageContext.request.contextPath }/home" style="color: #fff; text-decoration: none; margin-left: 98px;"><label style="color: #fff">Về lại trang chủ</label> </a>
 		</form>
 	</section>
 </div>

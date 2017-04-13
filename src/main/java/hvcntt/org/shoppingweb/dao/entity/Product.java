@@ -40,11 +40,11 @@ public class Product implements Serializable {
 	private List<Auction> auctions;
 
 	//bi-directional many-to-one association to Discount
-	@ManyToOne
-	private Discount discount;
+	@OneToMany(mappedBy="product")
+	private List<Discount> discounts;
 
 	//bi-directional many-to-one association to Image
-	@OneToMany(mappedBy="product")
+	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Image> images;
 
 	//bi-directional many-to-one association to InvoiceDetail
@@ -159,17 +159,25 @@ public class Product implements Serializable {
 		return auction;
 	}
 
-	public Discount getDiscount() {
-		return this.discount;
-	}
-
-	public void setDiscount(Discount discount) {
-		this.discount = discount;
-	}
+//	public Discount getDiscount() {
+//		return this.discount;
+//	}
+//
+//	public void setDiscount(Discount discount) {
+//		this.discount = discount;
+//	}
 
 
 	public List<Image> getImages() {
 		return this.images;
+	}
+
+	public List<Discount> getDiscounts() {
+		return discounts;
+	}
+
+	public void setDiscounts(List<Discount> discounts) {
+		this.discounts = discounts;
 	}
 
 	public void setImages(List<Image> images) {

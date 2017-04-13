@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.dao.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
@@ -12,7 +13,7 @@ public class Role implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="role_id")
-	private String roleId;
+	private String roleId=UUID.randomUUID().toString();
 
 	@Column(name="role_name")
 	private String roleName;

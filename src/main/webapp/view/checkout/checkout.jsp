@@ -1,5 +1,3 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,139 +5,251 @@
 <div class="main-content-checkout">
 	<div class="container">
 		<div class="row">
-			<div class="content-register-title">
-				<h2 class="content-paget-title-item">Checkout</h2>
+			<div class="col-sm-7" style="margin-top: 10px">
+				<div class="content-checkout-address">
+					<div class="panel panel-default panel-checkout-order">
+						<div class="panel-heading panel-checkout-order-heading">Địa
+							chỉ giao hàng</div>
+						<div class="panel-body">
+							<form action="">
+								<div class="input address_input">
+									<div class="address_input_title">
+										<label class="address_input_label">Họ và tên</label>
+									</div>
+									<div class="address_input_field">
+										<input type="text" class="address_field_input"
+											placeholder="Họ & tên">
+									</div>
+								</div>
+								<div class="input address_select">
+									<div class="address_input_title">
+										<label class="address_input_label">Thành phố</label>
+									</div>
+									<div class="address_input_field">
+										<select class="address_field_select">
+											<option>Hồ Chí Minh</option>
+											<option>Đà Nẵng</option>
+											<option>Hà Nội</option>
+										</select>
+									</div>
+								</div>
+								<div class="input address_select">
+									<div class="address_input_title">
+										<label class="address_input_label">Quận/Huyện</label>
+									</div>
+									<div class="address_input_field">
+										<select class="address_field_select">
+											<option>Hồ Chí Minh</option>
+											<option>Đà Nẵng</option>
+											<option>Hà Nội</option>
+										</select>
+									</div>
+								</div>
+								<div class="input address_select">
+									<div class="address_input_title">
+										<label class="address_input_label">Phường xã</label>
+									</div>
+									<div class="address_input_field">
+										<select class="address_field_select">
+											<option>Hồ Chí Minh</option>
+											<option>Đà Nẵng</option>
+											<option>Hà Nội</option>
+										</select>
+									</div>
+								</div>
+								<div class="input address_input">
+									<div class="address_input_title">
+										<label class="address_input_label">Địa chỉ cụ thể</label>
+									</div>
+									<div class="address_input_field">
+										<input type="text" class="address_field_input"
+											placeholder="Vui lòng điền địa chỉ cụ thể chính xác">
+									</div>
+								</div>
+								<div class="input address_input">
+									<div class="address_input_title">
+										<label class="address_input_label">Số điện thoại</label>
+									</div>
+									<div class="address_input_field">
+										<input class="address_field_input" type="text"
+											placeholder="Sđt">
+									</div>
+								</div>
+							</form>
+							<div class="content-checkout-address-other">
+								<div class="panel panel-default panel-checkout-order">
+									<div class="panel-heading" id="panel_checkout_order_toggle">
+										<i class="glyphicon glyphicon-plus"></i>Chọn thông tin địa chỉ
+										giao hàng khác
+									</div>
+									<div class="panel-body" id="panel_checkout_order_toggle_body">
+										<form action="">
+											<div class="input address_input">
+												<div class="address_input_title">
+													<label class="address_input_label">Họ và tên</label>
+												</div>
+												<div class="address_input_field">
+													<input type="text" class="address_field_input"
+														placeholder="Họ & tên">
+												</div>
+											</div>
+											<div class="input address_select">
+												<div class="address_input_title">
+													<label class="address_input_label">Thành phố</label>
+												</div>
+												<div class="address_input_field">
+													<select class="address_field_select">
+														<option>Hồ Chí Minh</option>
+														<option>Đà Nẵng</option>
+														<option>Hà Nội</option>
+													</select>
+												</div>
+											</div>
+											<div class="input address_select">
+												<div class="address_input_title">
+													<label class="address_input_label">Quận/Huyện</label>
+												</div>
+												<div class="address_input_field">
+													<select class="address_field_select">
+														<option>Hồ Chí Minh</option>
+														<option>Đà Nẵng</option>
+														<option>Hà Nội</option>
+													</select>
+												</div>
+											</div>
+											<div class="input address_select">
+												<div class="address_input_title">
+													<label class="address_input_label">Phường xã</label>
+												</div>
+												<div class="address_input_field">
+													<select class="address_field_select">
+														<option>Hồ Chí Minh</option>
+														<option>Đà Nẵng</option>
+														<option>Hà Nội</option>
+													</select>
+												</div>
+											</div>
+											<div class="input address_input">
+												<div class="address_input_title">
+													<label class="address_input_label">Địa chỉ cụ thể</label>
+												</div>
+												<div class="address_input_field">
+													<input type="text" class="address_field_input"
+														placeholder="Vui lòng điền địa chỉ cụ thể chính xác">
+												</div>
+											</div>
+											<div class="input address_input">
+												<div class="address_input_title">
+													<label class="address_input_label">Số điện thoại</label>
+												</div>
+												<div class="address_input_field">
+													<input class="address_field_input" type="text"
+														placeholder="Sđt">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="content-checkout-type-ship">
+									<div class="checkout-type-item">
+										<div class="checkout-type-item-title">
+											<label>Thông tin giao hàng</label>
+										</div>
+										<div class="checkout-type-item-input">
+											<input type="checkbox">
+										</div>
+										<div class="checkout-type-item-info">
+											<p>Giao hàng bình thường</p>
+											<p>Từ ngày 00 đến ngày 00 tháng 00 năm 0000</p>
+										</div>
+										<p style="margin: 0 0 -10px;">
+											<br>
+										</p>
+										<div class="checkout-type-item-input">
+											<input type="checkbox">
+										</div>
+										<div class="checkout-type-item-info">
+											<p>Giao hàng bình thường</p>
+											<p>Từ ngày 00 đến ngày 00 tháng 00 năm 0000</p>
+										</div>
+									</div>
+								</div>
+								<button class="btn-checkout-continue">TIẾP THEO</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<form class="new-account-form primary-form" action="checkout" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-				<div class="col-sm-6">
-					<div class="account-information">
-						<h3 class="form-heading">Nhập thông tin cá nhân</h3>
-						<div class="form-content">
-							<div class="form-group primary-form-group">
-								<div class="row">
-									<div class="col-sm-6">
-										<label for="fistname">First Name</label> <input
-											class="form-control input-field" type="text"
-											placeholder="first name" name="firstname">
-									</div>
-									<div class="col-sm-6">
-										<label for="lastname">Last Name</label> <input
-											class="form-control input-field" type="text"
-											placeholder="last name" name="lastname">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<label for="address">Địa chỉ</label> <input
-											class="form-control input-field" name="address">
-									</div>
-								</div>
-								<label for="email">Email</label> <input
-									class="form-control input-field" type="email" name="email">
-								<label for="Phone">Phone</label> <input
-									class="form-control input-field" type="tel" name="phone">
-								<label for="email">Age</label> <input
-									class="form-control input-field" type="number" name="age">
+			<div class="col-sm-5" style="margin-top: 10px">
+				<div class="content-checkout-info-order">
+					<div class="panel panel-default">
+						<div class="panel-heading">Thông tin đơn hàng</div>
+						<div class="panel-body panel-order-checkout-info">
+							<div class="checkout-info-order-product">
+								<table class="tbl-info-order-checkout">
+									<thead>
+										<tr>
+											<th class="infor_order_title_product">Sản phẩm</th>
+											<th class="infor_order_title_quantity">Số lượng</th>
+											<th class="infor_order_title_price">Đơn giá</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+						<div class="panel-body panel-order-checkout-info-detail">
+							<div class="checkout-info-order-product">
+								<c:forEach var="cart" items="${cart }">
+									<c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
+									<table class="tbl-info-order-checkout-detail">
+										<tbody>
+											<tr>
+												<td class="infor_order_title_product">
+												<img src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.image}" style="width: 100px;height: 100px">
+												<p style="margin-left: 5px">${cart.product.name }</p>	
+												</td>
+												<td class="infor_order_title_quantity">${cart.quantity } cái</td>
+												<td class="infor_order_title_price"><fmt:formatNumber value="${cart.product.price}"
+													type="number" /> đ</td>
+											</tr>
+											<tr>
+												<td colspan="3"><label
+													style="margin-top: 5px; margin-left: 5px">Giao hàng
+														bình thường</label>
+													<p style="margin-left: 5px">Thứ 00 ngày 00 tháng 00 năm
+														00</p></td>
+											</tr>
+										</tbody>
+									</table>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="panel-body panel-order-checkout-info">
+							<div class="checkout-info-order-total">
+								<table class="tbl-info-order-total">
+									<tbody>
+										<tr class="tr-content-order-total">
+											<td>Tạm tính</td>
+											<td colspan="2"><fmt:formatNumber value="${s}"
+													type="number" /> đ</td>
+										</tr>
+										<tr class="tr-content-order-total" style="padding-bottom: 5px">
+											<!-- 										<td><span class="ship_item_span">Phí ship</span></td>
+										<td colspan="2"><span class="ship_item_span">15,000đ</span></td> -->
+										</tr>
+										<tr class="tr-content-order-total tr-total-payment">
+											<td><label>Tổng tiền</label>
+												<p>Thanh toán</p></td>
+											<td><label style="font-size: 20px"><fmt:formatNumber value="${s}"
+													type="number" /> đ</label></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
-					<div class="account-information">
-						<h3 class="form-heading">Nhập địa chỉ nhận hàng</h3>
-						<div class="form-content">
-							<div class="form-group primary-form-group">
-								<div class="row">
-									<div class="col-sm-6">
-										<label for="fistname">Tên đường</label> <input
-											class="form-control input-field" type="text" placeholder=""
-											name="streetname">
-									</div>
-									<div class="col-sm-6">
-										<label for="lastname">Số nhà</label> <input
-											class="form-control input-field" type="text" placeholder=""
-											name="housenumber">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<label for="year">Quận</label> <input
-											class="form-control input-field" name="district">
-									</div>
-									<div class="col-sm-6">
-										<label for="year">Thành phố</label> <input
-											class="form-control input-field" name="city">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-				<div class="table-responsive">
-					<table class="table table-cart-item">
-							<thead>
-								<tr>
-									<th class="cart-product-item">Hình ảnh</th>
-									<th class="cart-product-item">Tên sản phẩm</th>
-									<th class="cart-product-item">Mô tả</th>
-									<th class="cart-product-item">Số lượng</th>
-									<th class="cart-product-item">Giá</th>
-									<th class="cart-product-item"></th>
-								</tr>
-							</thead>
-							<c:forEach var="cart" items="${cart}">
-								<c:set var="s" value="${s +cart.product.price*cart.quantity}"></c:set>
-								<tbody>
-									<tr>
-										<td class="cart-product-infor"><a
-											href="${pageContext.request.contextPath }/detail?idproduct=${cart.product.idproduct}"><img
-												src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.image}"
-												style="width: 100px; height: 100px"></a></td>
-										<td class="cart-product-infor">
-											<label class="cart-product-name">${cart.product.name }</label>
-										</td>
-										<td class="cart-product-infor">
-											<p class="cart-product-name">${cart.product.name }</p> <small>${cart.product.description }</small><br>
-										<td class="cart-product-infor"><input
-											class="form-control input-field" type="number"
-											value="${cart.quantity}" name="quantity"> <input type="hidden"
-											name="${_csrf.parameterName}" value="${_csrf.token}" /> <input
-											class="btn btn-success" value="update" type="submit">
-										</td>
-										<td class="cart-product-infor">
-											<p>
-												<fmt:formatNumber
-													value="${cart.product.price*cart.quantity}" type="number" />
-												đ
-											</p>
-										</td>
-										<td class="cart-product-infor"><a
-											href="${pageContext.request.contextPath }/removeCart?idproduct=${cart.product.idproduct}"><i
-												class="glyphicon glyphicon-trash"></i></a></td>
-									</tr>
-								</tbody>
-							</c:forEach>
-							<tfoot>
-								<tr class="cart-total-price">
-									<td class="cart-empty" colspan="2" rowspan="5"></td>
-									<td class="cart-right-price" colspan="2"
-										style="font-size: 18px;">Tổng tiền tạm tính</td>
-									<td class="cart-right-price" colspan="1"><fmt:formatNumber
-											value="${s}" type="number" />đ</td>
-									<td class="cart-right-price" colspan="1"></td>
-								</tr>
-
-							</tfoot>
-						</table>
-				</div>
-				</div>
-				<div class="">
-					<button class="btn btn-success" type="submit">Đặt hàng</button>
-				</div>
-				</form>
+			</div>
 		</div>
 	</div>
 </div>

@@ -29,10 +29,10 @@
 					<input type="submit" value="Đăng ký" id="register">
 				</div>
 				<p></p>
-			<a href="${pageContext.request.contextPath }/login" style="color: #282828; text-decoration: none; margin-left: 20px;" class="create_new"><label style="color: gray">Bạn
+			<a href="${pageContext.request.contextPath }/login" style="color: #fff; text-decoration: none; margin-left: 20px;" class="create_new"><label style="color: #fff">Bạn
 					đã có tài khoản?</label> Đăng nhập ngay</a>
 					<p></p>
-			<a href="${pageContext.request.contextPath }/home" style="color: #282828; text-decoration: none; margin-left: 98px;"><label style="color: gray">Về lại trang chủ</label> </a>
+			<a href="${pageContext.request.contextPath }/home" style="color: #fff; text-decoration: none; margin-left: 98px;"><label style="color: #fff">Về lại trang chủ</label> </a>
 			</form:form>
 		</section>
 	</div>

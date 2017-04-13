@@ -1,0 +1,136 @@
+@CHARSET "ISO-8859-1";
+.modal-content{
+	background: #fff;
+	width: 800px;
+}
+.modal-content-order{
+	width: 100%;
+	background: #eee;
+}
+.modal-header .btn-header-close{
+	padding: 5px;
+    background: blue;
+    margin-right: 10px;
+    text-shadow: none;
+}
+.main-content-cart{
+	min-height: 500px;
+}
+.content-cart-menu{
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.content-cart-menu{
+	text-align: center;
+}
+.content-cart-menu button{
+	padding: 10px;
+	background: #eee;
+	color: black;
+	border: none;
+	text-transform: uppercase;
+	font-size: 16px;
+	width: 250px;
+}
+.content-cart-menu ul li{
+    padding: 13.5px 0 13px 13px;
+}
+.content-cart-menu ul li span{
+    font-weight: 400;
+    line-height: 18px;
+    font-weight: bold;
+}
+.table_body_cart{
+	padding: 10px;
+	background: #f8f8f8;
+}
+.btn-update-cart{
+	background-color: #f8f8f8;
+    border-radius: 0;
+    border: 1px solid #dadada;
+    color: gray;
+}
+.table-cart-item thead tr th{
+	border-bottom: none;	
+}
+.cart_continue_shopping_item{
+	margin-left: 15px
+}
+.cart_continue_shopping_item a{
+	text-decoration: none;
+}
+h2.content-paget-title-item{
+  border-top: 1px solid #d7d7d7;
+    display: block;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 44px;
+    position: relative;
+    margin-bottom: 5px;
+}
+.content-cart-title{
+	margin-left: 15px;
+}
+.header_middle_cart a.cart_link{
+    color: #e9e9ea;
+    text-decoration: none;
+    font-size: 13px;
+    height: 55px;
+    overflow: hidden;
+    padding-left: 20px;
+}
+.header_middle_cart i.cart-icon{
+    font-size: 20px;
+    margin-right: 15px;
+    position: relative;
+    top: 2px;
+}
+.header_middle_cart a b{
+        color: #fff;
+    font-weight: 400;
+    height: 100%;
+    line-height: 55px;
+    position: relative;
+    top: 0px;
+}
+.header_cart_togge{
+	background: #eee;
+}
+.cart_quantity{
+    background: #ff4f4f none repeat scroll 0 0;
+    color: white;
+    display: inline;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 55px;
+    padding: 0 23px;
+    transition: all 0.3s ease 0s;
+    width: 55px;
+    float: right;
+    height: 48px;
+}
+.cart_modal_img{
+	max-width: 150px;
+    height: auto;
+    float: left;
+    width: auto;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+.cart_modal_img img{
+	width: 100%;
+}
+.cart_modal_info label{
+	font-size: 18px;
+}
+.modal-title{
+	color: #59b210;
+}
+.modal-header i{
+	color: #59b210;
+	font-size: 16px;
+}
+.modal-body-cart-header{
+	margin-bottom: 10px;
+	margin-top: 10px;
+}

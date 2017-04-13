@@ -6,19 +6,17 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -3939291008303869200L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String username;
 
 	private boolean accountNonLocked;
 
 	private String address;
-
+	private String passwordConfirm;
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 
@@ -30,32 +28,26 @@ public class User implements Serializable {
 
 	private String phone;
 
-	//bi-directional many-to-one association to Rating
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Rating
 	private List<Rating> ratings;
 
-	//bi-directional many-to-one association to City
-	@ManyToOne
-	@JoinColumn(name="city_id")
+	// bi-directional many-to-one association to City
 	private City city;
 
-	//bi-directional many-to-one association to District
-	@ManyToOne
-	@JoinColumn(name="district_id")
+	// bi-directional many-to-one association to District
 	private District district;
 
-	//bi-directional many-to-one association to UserAuction
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to UserAuction
 	private List<UserAuction> userAuctions;
 
-	//bi-directional many-to-many association to Role
-	@ManyToMany
-	@JoinColumn(name="username")
+	// bi-directional many-to-many association to Role
 	private List<Role> roles;
 
 	public User() {
 	}
 
+	@Id
+	@Column(name = "username")
 	public String getUsername() {
 		return this.username;
 	}
@@ -120,6 +112,7 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 
+	@OneToMany(mappedBy = "user")
 	public List<Rating> getRatings() {
 		return this.ratings;
 	}
@@ -142,6 +135,8 @@ public class User implements Serializable {
 		return rating;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "city_id")
 	public City getCity() {
 		return this.city;
 	}
@@ -150,6 +145,8 @@ public class User implements Serializable {
 		this.city = city;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "district_id")
 	public District getDistrict() {
 		return this.district;
 	}
@@ -158,6 +155,7 @@ public class User implements Serializable {
 		this.district = district;
 	}
 
+	@OneToMany(mappedBy = "user")
 	public List<UserAuction> getUserAuctions() {
 		return this.userAuctions;
 	}
@@ -180,6 +178,8 @@ public class User implements Serializable {
 		return userAuction;
 	}
 
+	@ManyToMany
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	public List<Role> getRoles() {
 		return this.roles;
 	}
@@ -187,5 +187,13 @@ public class User implements Serializable {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+	@Transient
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
 
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+	
 }

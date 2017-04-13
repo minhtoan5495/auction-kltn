@@ -2,7 +2,11 @@
 body{
 	margin: 0;
 	padding: 0;
-	background-image: url("../images/backgroundmenu/IehB7.png");
+	background:url("../images/backgroundmenu/background_3.jpg") no-repeat center center fixed;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover; 
+	background-size: cover;
 }
 .form-register{
 	width: 350px;
@@ -14,7 +18,7 @@ body{
 	top: 50%;
 	left: 50%;
 	position: absolute;
-	background: #eee;
+	background: rgba(0,0,0,0.35);
 }
 .register-avatar{
 	width: 100px;

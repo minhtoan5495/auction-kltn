@@ -1,0 +1,101 @@
+@CHARSET "ISO-8859-1";
+.address_input,.address_select{
+	margin-bottom: 10px;
+}
+.address_input_title{
+	display: inline-block;
+	vertical-align: top;
+	padding-right:10px;
+	padding-top: 10px;
+	width: 180px;
+	text-align: right;
+}
+.address_input_label{
+	display: inline-block;
+	vertical-align: baseline;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 15px;
+}
+.address_input_field{
+	display: inline-block;
+	vertical-align: middle;
+	width: 250px;
+	position: relative;
+}
+.address_field_input, .address_field_select{
+	box-sizing: border-box;
+	width: 250px;
+	background: rgba(238, 238, 238, 0.19);
+	color: gray;
+	font-size: 12px;
+	border:1px solid gray;
+	    position: relative;
+    z-index: 2;
+    box-shadow: none;
+    padding: 1px 1px 1px 10px;
+    height: 32px;
+}
+#panel_checkout_order_toggle_body{
+	display: none;
+}
+.checkout-type-item-input ,.checkout-type-item-info{
+	display: inline-block;
+}
+.checkout-type-item-info p{
+	margin: 0 0 5px;
+}
+.checkout-type-item-info{
+	vertical-align: middle;
+}
+.btn-checkout-continue{
+	padding: 10px;
+	width: 200px;
+	background: #649239;
+	border: 1px solid gray;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 700;
+}
+.panel-order-checkout-info{
+	background: #eee;
+}
+.tbl-info-order-checkout thead tr th{
+	padding-top: 7px;
+	padding-bottom: 8px;
+	color: gray;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+.infor_order_title_product{
+	width: 175px;
+	display: flex;
+}
+.infor_order_title_quantity{
+	width: 80px;
+	text-align: center;
+	vertical-align: top;
+}
+.infor_order_title_price{
+	width: 160px;
+	text-align: right;
+	vertical-align: top;
+}
+.tbl-info-order-checkout-detail{
+	margin-top: -10px;
+}
+.tbl-info-order-total{
+	width: 100%;
+}
+.tr-content-order-total{
+	justify-content:space-between;
+	display: flex;
+}
+.ship_item_span{
+	color: #ff4f4f;
+	font-weight: 400;
+}
+.tr-total-payment{
+	padding-top: 10px;
+	border-top: 1px solid rgba(128, 128, 128, 0.35);
+}

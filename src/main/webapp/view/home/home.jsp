@@ -104,12 +104,12 @@
 								<div class="single-product-item">
 									<div class="single-product-image">
 										<a
-											href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.idproduct}"><img
-											src="resource/images/banner/${listProduct.image }"></a>
+											href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.productId}"><img
+											src="resource/images/banner/${listProduct.images.get(i).getImageUrl() }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
-													href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.idproduct}"><i
+													href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.productId}"><i
 														class="fa fa-search"></i></a></li>
 												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
 												</li>
@@ -120,14 +120,14 @@
 									</div>
 									<div class="single-product-showinfor">
 										<div class="single-product-infor-name">
-											<p>${listProduct.name }</p>
+											<p class="single-product-infor-name-title">${listProduct.name }</p>
 										</div>
 										<!-- 	<div class="single-product-inforsale">
                                             Giảm giá 25%
                                          </div> -->
 										<div class="single-product-infor-name">
 											<p>
-												<i class="glyphicon glyphicon-fire"> ${listProduct.view }</i>
+												<i class="glyphicon glyphicon-fire"> ${listProduct.viewNumber }</i>
 												lượt xem
 											</p>
 										</div>
@@ -141,7 +141,7 @@
 											<button class="btn btn-success btn-countdown">20:17:80</button>
 										</div>
 										<div class="single-product-inforreview">
-											<span>(${listProduct.commentItems.size() } nhận xét)</span>
+											<%-- <span>(${listProduct.commentItems.size() } nhận xét)</span> --%>
 										</div>
 										<div class="single-product-inforrating">
 											<div class="rating-box">

@@ -1,0 +1,96 @@
+@CHARSET "ISO-8859-1";
+.page_checkout_success{
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	margin-top: 15px;
+}
+.checkout_success_title{
+	height: 40px;
+	width: 100%;
+	background: rgba(238, 238, 238, 0.37);
+	position: relative;	
+	float: left!important;
+	z-index: 50;
+	border-bottom: 3px solid rgba(182, 16, 20, 0.52);
+	margin-bottom: 20px;
+}
+.checkout_success_title_item{
+	float: left!important;
+	position: absolute;
+	z-index: 9955;
+	position: relative;
+	padding: 0 5px;
+	padding-top: 10px;
+}
+.checkout_success_title_item i{
+	font-size: 12px;
+	font-weight: normal;
+}
+.checkout_success_title_item a{
+	text-decoration: none;
+}
+.checkout_success_title_item_link{
+	font-size: 15px;
+	color: #271e1e;
+	text-decoration: none;
+}
+.checkout_success_title_item_link:hover{
+	color: #271e1e;
+}
+.checkout_success_heading{
+	padding: 10px 15px;
+}
+.checkout_success_heading h3{
+	color: #191616;
+	font-size: 18px;
+	text-align: center;
+	text-shadow: 0 0 1px rgba(255,255,255,0.8);
+}
+.checkout_success_notification{
+	padding: 10px 15px;
+}
+.checkout_success_detail_order{
+	padding: 10px 15px;
+	background: #eee;
+	border: 2px solid gray;
+	padding-bottom: 75px;
+}
+.checkout_success_detail_order .checkout_success_detail_order_name{
+	border-bottom: 2px solid gray;
+}
+.checkout_success_detail_order_item_district{
+	    padding-bottom: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.28);
+}
+.checkout_success_detail_order_product{
+padding-bottom: 5px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.28);
+}
+.checkout_success_detail_order_product img{
+	width: 100px;
+	height: 100px;
+}
+.checkout_success_detail_order_product .checkout_success_detail_order_product_name{
+	color: #548455;
+    padding: 10px 15px;
+}
+.checkout_success_detail_order_product .checkout_success_detail_order_delivery{
+	    color: #151111;
+    margin-left: 110px;
+}
+.checkout_success_detail_order_price{
+		    margin-top: 30px;
+	}
+.checkout_success_detail_order_product_total{
+	margin-right: -100px;
+}
+.checkout_success_detail_order_product_total .checkout_title_item{
+	margin-left: -150px;
+}
+.checkout_success_detail_order_product_total .checkout_price_item{
+	    margin-left: 45px;
+    margin-top: -32px;
+    margin-right: 119px;
+}

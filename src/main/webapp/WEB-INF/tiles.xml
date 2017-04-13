@@ -14,8 +14,10 @@
 	<definition name="registration" template="/view/template/account/MainRegister.jsp">
 		<put-attribute name="body" value=""></put-attribute>
 	</definition>
-	<definition name="searchajax" template="/view/template/searchdemo/maintemplate.jsp">
+		<definition name="profilePage" template="/view/template/profilepage/mainprofile.jsp">
+		<put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
 		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
 	</definition>
 	<definition name="home" extends="definition">
 		<put-attribute name="title" value="Home Page"></put-attribute>
@@ -25,9 +27,13 @@
 		<put-attribute name="title" value="Home Page"></put-attribute>
 		<put-attribute name="body" value="/view/searchby/listProduct.jsp"></put-attribute>
 	</definition>
-	<definition name="profile" extends="definition">
+	<definition name="profile" extends="profilePage">
 		<put-attribute name="title" value="Profile"></put-attribute>
 		<put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
+	</definition>
+		<definition name="orderdetail" extends="profilePage">
+		<put-attribute name="title" value="Profile"></put-attribute>
+		<put-attribute name="body" value="/view/profile/orderdetail.jsp"></put-attribute>
 	</definition>
 	<definition name="cart" extends="definition">
 		<put-attribute name="title" value="Home Page"></put-attribute>
@@ -36,6 +42,10 @@
 	<definition name="checkout" extends="definition">
 		<put-attribute name="title" value="Home Page"></put-attribute>
 		<put-attribute name="body" value="/view/checkout/checkout.jsp"></put-attribute>
+	</definition>
+	<definition name="checkoutsuccess" extends="definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/view/checkout/checkoutsuccess.jsp"></put-attribute>
 	</definition>
 	<definition name="login" extends="account">
 		<put-attribute name="title" value="Home Page"></put-attribute>
@@ -57,10 +67,6 @@
 		<put-attribute name="title" value="Home Page"></put-attribute>
 		<put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
 	</definition>
-	<definition name="information_form" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
-	</definition>
 	<definition name="upload" extends="definition">
 		<put-attribute name="title" value="Profile"></put-attribute>
 		<put-attribute name="body" value="/view/upload/upload.jsp"></put-attribute>
@@ -72,21 +78,5 @@
 		<definition name="detailpage" extends="definition">
 		<put-attribute name="title" value="Home Page"></put-attribute>
 		<put-attribute name="body" value="/view/detail/detailpage.jsp"></put-attribute>
-	</definition>
-		<definition name="ajax" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/ajax/ajax.jsp"></put-attribute>
-	</definition>
-	<definition name="ajaxsave" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/ajax/ajaxsave.jsp"></put-attribute>
-	</definition>
-	<definition name="table" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/loadsearch/table.jsp"></put-attribute>
-	</definition>
-	<definition name="search" extends="searchajax">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/loadsearch/search.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

@@ -22,7 +22,7 @@ public class City implements Serializable {
 	private List<ShippingInfo> shippingInfos;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="city")
+	@OneToMany(mappedBy="city",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<User> users;
 
 	public City() {

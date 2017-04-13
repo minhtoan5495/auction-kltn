@@ -2,10 +2,14 @@
 body{
 	padding:0;
 	margin:0;
-	background-image: url("../images/backgroundmenu/IehB7.png");
+	background: url("../images/backgroundmenu/background_3.jpg") no-repeat center center fixed;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover; 
+	background-size: cover;
 }
 .form-login{
-	background: #eee;
+	background: rgba(0,0,0,0.35);
 	width: 350px;
 	height: auto;
 	position: absolute;

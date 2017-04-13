@@ -5,7 +5,7 @@
            <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
  <html>
 <head>
-	<title><tiles:getAsString name="title" /></title>
+	<title><tiles:getAsString name="title" /></title><link rel="shortcut icon" href="resource/css/images/icon-title.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +13,12 @@
     <link href="resource/css/font-awesome.min.css" rel="stylesheet">
     <link href="resource/css/owl.carousel.css" rel="stylesheet">
     <link href="resource/css/responsive.css" rel="stylesheet">
-    <!-- <link href="resource/css/main.css" rel="stylesheet"> -->
     <link href="resource/css/main12.css" rel="stylesheet">
+    <link href="resource/css/detail.css" rel="stylesheet">
+    <link href="resource/css/checkoutsuccess.css" rel="stylesheet">
+    <link href="resource/css/profile.css" rel="stylesheet">
+    <link href="resource/css/cart.css" rel="stylesheet">
+    <link href="resource/css/checkout.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resource/css/submenu_v2.css" rel="stylesheet">
     
 </head>
