@@ -5,9 +5,6 @@
            prefix="security" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--HEADER-->
 <div class="header_top_bg">
     <div class="container no-padding">
@@ -73,11 +70,11 @@
                         <c:if test="${pageContext.request.userPrincipal.name ==null }">
                         <div class="header_top_account">
                             <div class="header_login_top pull-right">
-                                <a href="#" class="header_login_link" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
+                                <a href="#" class="header_login_link" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span>  Đăng nhập</a>
                             </div>
                         </div>
                         <div class="header_login_top pull-right">
-                            <a href="#" class="header_login_link" data-toggle="modal" data-target="#registerModal">Đăng kí</a>
+                            <a href="#" class="header_login_link" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-user"></span>  Đăng kí</a>
                         </div>
                         <div class="header_login_top pull-right">
                             <a href="${pageContext.request.contextPath}/viewcart"
@@ -113,7 +110,7 @@
                             <input type="text" class="form-control"
                                    placeholder="Search for..." name="name" style="height: 38px"> <span
                                 class="input-group-btn">
-								<button class="btn btn-default" type="submit" style="height: 38px">
+								<button class="btn btn-default" type="submit" style="height: 38px; width: 50px;">
 									<i class="glyphicon glyphicon-search"></i>
 								</button>
 							</span>
@@ -122,11 +119,11 @@
                 </div>
             </div>
             <div class="col-sm-3 hidden-xs">
-                <div class="header_middle_item pull-right">
-                    <div class="header_middle_cart" id="header_middle_cart">
-                        <a href="#" class="cart_link" data-toggle="modal"
-                           data-target="#myCart"> <i
-                                class="fa fa-shopping-cart cart-icon"></i> <b>Giỏ hàng</b> <c:if
+                <div class="header_middle_item pull-right" style="width: 150px;">
+                    <div class="header_middle_cart" style="text-align: center; width: 150px;" id="header_middle_cart">
+                        <a href="#"class="cart_link" data-toggle="modal"
+                           data-target="#myCart" style="padding-left:0px;"> <i
+                                class="fa fa-shopping-cart cart-icon"></i><b>Giỏ hàng</b> <c:if
                                 test="${not empty cart }">
                             <span class="cart_quantity">${cart.size() }</span>
                         </c:if>
@@ -245,11 +242,12 @@
     <div class="container no-padding">
         <div class="main_menu_bg">
             <div class="main_menu_item">
-                <a href="#" class="main_menu_item_active">Home</a>
+                <a href="#" class="main_menu_item_link">Trang chủ<span
+                        class="home_item">Trang chủ</span></a>
             </div>
             <div class="main_menu_item">
                 <a href="#" class="main_menu_item_link">Công nghệ<span
-                        class="laptop_item">Laptop</span></a>
+                        class="laptop_item">Công nghệ</span></a>
             </div>
             <div class="main_menu_item" id="main_menu">
                 <a href="#" class="main_menu_item_link">Thời trang<span
@@ -280,52 +278,6 @@
 								nam</span></a>
                     </div>
                 </div>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Đồng hồ<span
-                        class="watch_item">Đồng hồ</span></a>
-            </div>
-            <div class="main_menu_item" id="main_menu1">
-                <a href="#" class="main_menu_item_link">Giày dép<span
-                        class="shoe_item">Giày dép</span></a>
-                <div class="sub_menu_bg hidden-xs" id="show_main_menu1">
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                    </div>
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                    </div>
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Sắc đẹp<span
-                        class="beauty_item">Sắc đẹp</span></a>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Trang sức<span
-                        class="jewelry_item">Trang sức</span></a>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Trẻ em<span
-                        class="child_item">Trẻ em</span></a>
             </div>
             <div class="main_menu_item">
                 <a href="#" class="main_menu_item_link">Liên hệ<span

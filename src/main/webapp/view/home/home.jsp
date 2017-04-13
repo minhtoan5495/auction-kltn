@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="container slide-show">
 				<div class="row">
-					<div class="col-sm-8">
+					<div>
 						<div id="myCarousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner" role="listbox">
 								<div class="item active">

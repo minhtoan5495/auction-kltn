@@ -109,8 +109,6 @@ body {
 
 
 .main_menu_bg {
-	width: 100%;
-	height: 50px;
 	position: relative;
 	margin-top: 0;
 	float: left ! important;
@@ -207,6 +205,11 @@ body {
 	background-size: 30px 30px;
 }
 
+.main_menu_item_link span.home_item {
+	background: url(images/home.png) no-repeat center -196px;
+	background-size: 30px 30px;
+}
+
 .main_menu_item_link span.watch_item {
 	background: url(images/watch-3.png) no-repeat center -196px;
 	background-size: 30px 30px;
@@ -242,6 +245,12 @@ body {
 	text-align: center;
 	padding: 0 10px;
 	padding-top: 30px;
+}
+
+.main_menu_item_link:hover span.home_item, .main_menu_item.active  .main_menu_item_link span.home_item
+{
+	background: #66CCCC url(images/home.png) no-repeat center 2px;
+	background-size: 30px 30px;
 }
 
 .main_menu_item_link:hover span.laptop_item, .main_menu_item.active  .main_menu_item_link span.latop_item
@@ -287,11 +296,6 @@ body {
 	background-size: 30px 30px;
 }
 
-.main_menu_item_link:hover span.home_item, .main_menu_item.active  .main_menu_item_link span.home_item
-	{
-	background: #66CCCC url(images/home.png) no-repeat center 2px;
-	background-size: 30px 30px;
-}
 .main_menu_item_link:hover span.contact_item, .main_menu_item.active  .main_menu_item_link span.contact_item
 	{
 	background: #66CCCC url(images/contact.png) no-repeat center 2px;
