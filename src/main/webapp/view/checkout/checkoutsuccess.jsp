@@ -45,20 +45,20 @@
 			</strong>
 		</div>
 		<div class="checkout_success_detail_order">
-		<c:forEach var="invoice" items="${invoice }">
 			<label class="checkout_success_detail_order_name">Chi tiết
-				đơn hàng ${invoice.idinvoice }, bao gồm ${invoice.size() } sản phẩm
+				đơn hàng , bao gồm  sản phẩm
 				được đặt </label><br> 
-			<strong>Tên khách hàng: Mai Văn Sơn</strong>
-			<p>Đường: 171 H17/A Phan Thanh-Đà Nẵng</p>
-			<p class="checkout_success_detail_order_item_district">Quận:
-				Thanh Khê-Thạc Gián-Đà Nẵng</p>
-		</c:forEach>
+			<strong>Tên khách hàng: ${pageContext.request.userPrincipal.name}</strong>
+			<p>Đường: ${addShip.address }</p>
+		<%-- 	<p class="checkout_success_detail_order_item_district">Quận:
+				${addShip.district.districtName }</p>
+				<p class="checkout_success_detail_order_item_district">Quận:
+				${addShip.city.cityName }</p> --%>
 		<c:forEach var="cart" items="${cart }">
 		<c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
 			<div class="checkout_success_detail_order_product">
 				<img
-					src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.image}">
+					src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.images.get(i).getImageUrl()}">
 				<label class="checkout_success_detail_order_product_name">${cart.product.name}
 				<p style="color: black">Số lượng:${cart.quantity } cái</p>
 				</label>

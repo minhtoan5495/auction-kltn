@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;/** * Created by Nguyen on 12/04/2017. */public interface InvoiceStatusService {}
+package hvcntt.org.shoppingweb.service;import java.util.List;import hvcntt.org.shoppingweb.dao.entity.InvoiceStatus;/** * Created by Nguyen on 12/04/2017. */public interface InvoiceStatusService {	List<InvoiceStatus> getAll();	InvoiceStatus findByName(String name);}

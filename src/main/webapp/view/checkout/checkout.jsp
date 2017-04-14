@@ -1,17 +1,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!--  CONTENT -->
 <div class="main-content-checkout">
 	<div class="container">
-		<div class="row">
+<form:form action="${pageContext.request.contextPath }/checkout" method="post" commandName="shipping">
+	<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+	<div class="row">
 			<div class="col-sm-7" style="margin-top: 10px">
 				<div class="content-checkout-address">
 					<div class="panel panel-default panel-checkout-order">
 						<div class="panel-heading panel-checkout-order-heading">Địa
 							chỉ giao hàng</div>
 						<div class="panel-body">
-							<form action="">
+							<form>
 								<div class="input address_input">
 									<div class="address_input_title">
 										<label class="address_input_label">Họ và tên</label>
@@ -26,11 +30,13 @@
 										<label class="address_input_label">Thành phố</label>
 									</div>
 									<div class="address_input_field">
-										<select class="address_field_select">
-											<option>Hồ Chí Minh</option>
-											<option>Đà Nẵng</option>
-											<option>Hà Nội</option>
-										</select>
+										<form:select path="city.cityId" class="address_field_select">
+										<c:forEach var="city" items="${city }">
+											<form:option value="${city.cityId }">
+												<c:out value="${city.cityName}"></c:out>
+											</form:option>
+										</c:forEach>
+										</form:select>
 									</div>
 								</div>
 								<div class="input address_select">
@@ -38,11 +44,13 @@
 										<label class="address_input_label">Quận/Huyện</label>
 									</div>
 									<div class="address_input_field">
-										<select class="address_field_select">
-											<option>Hồ Chí Minh</option>
-											<option>Đà Nẵng</option>
-											<option>Hà Nội</option>
-										</select>
+										<form:select path="district.districtId" class="address_field_select">
+										<c:forEach var="district" items="${district }">
+											<form:option value="${district.districtId }">
+												<c:out value="${district.districtName}"></c:out>
+											</form:option>
+										</c:forEach>
+										</form:select>
 									</div>
 								</div>
 								<div class="input address_select">
@@ -62,8 +70,8 @@
 										<label class="address_input_label">Địa chỉ cụ thể</label>
 									</div>
 									<div class="address_input_field">
-										<input type="text" class="address_field_input"
-											placeholder="Vui lòng điền địa chỉ cụ thể chính xác">
+										<form:input type="text" class="address_field_input"
+											placeholder="Vui lòng điền địa chỉ cụ thể chính xác" path="address"></form:input>
 									</div>
 								</div>
 								<div class="input address_input">
@@ -174,7 +182,6 @@
 										</div>
 									</div>
 								</div>
-								<button class="btn-checkout-continue">TIẾP THEO</button>
 							</div>
 						</div>
 					</div>
@@ -205,7 +212,7 @@
 										<tbody>
 											<tr>
 												<td class="infor_order_title_product">
-												<img src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.image}" style="width: 100px;height: 100px">
+												<img src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.images.get(i).getImageUrl()}" style="width: 100px;height: 100px">
 												<p style="margin-left: 5px">${cart.product.name }</p>	
 												</td>
 												<td class="infor_order_title_quantity">${cart.quantity } cái</td>
@@ -250,7 +257,10 @@
 					</div>
 				</div>
 			</div>
+			<button type="submit" class="btn-checkout-continue">TIẾP THEO</button>
 		</div>
+		
+		</form:form>
 	</div>
 </div>
 <!-- END CONTENT -->

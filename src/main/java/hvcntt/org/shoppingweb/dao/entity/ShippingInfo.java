@@ -1,6 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +11,7 @@ public class ShippingInfo implements Serializable {
 	private static final long serialVersionUID = -6812168016853602155L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="shipping_info_id")
 	private String shippingInfoId;
 
@@ -32,6 +33,14 @@ public class ShippingInfo implements Serializable {
 	private Invoice invoice;
 
 	public ShippingInfo() {
+	}
+	
+	public ShippingInfo(String address, City city, District district, Invoice invoice) {
+		super();
+		this.address = address;
+		this.city = city;
+		this.district = district;
+		this.invoice = invoice;
 	}
 
 	public String getShippingInfoId() {
@@ -73,5 +82,8 @@ public class ShippingInfo implements Serializable {
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
-
+	public void getAdd(){
+		ShippingInfo s= new ShippingInfo();
+		s.getDistrict().getDistrictName();
+	}
 }

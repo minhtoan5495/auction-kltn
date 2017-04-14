@@ -3,6 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- START CONTENT -->
 <div class="form-login">
+<c:url value="/j_spring_security_check" var="loginUrl"/>
 	<div class="form-avatar">
 		<img alt=""
 			src="${pageContext.request.contextPath }/resource/images/avatar/icon-lg-register-blue1.png">
@@ -13,7 +14,7 @@
 		</div>
 	</c:if>
 	<section class="form_login">
-		<form action="${pageContext.request.contextPath }/login" method="get"
+		<form action="${loginUrl}" method="post"
 			id="saveLogin">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />

@@ -26,11 +26,11 @@ public class HomePageController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/home")
 	public String homePage(Model model,HttpSession session,HttpServletRequest request){
-//		@SuppressWarnings("unused")
-//		List<CartItem> inFo= (List<CartItem>) session.getAttribute("cart");
-//		List<Category> listMenu=categoryservice.getCategoryParent();
-//		model.addAttribute("listMenu",listMenu);
-//		model.addAttribute("listProduct", productservice.getAll());
+		@SuppressWarnings("unused")
+		List<CartItem> inFo= (List<CartItem>) session.getAttribute("cart");
+		List<Category> listMenu=categoryservice.getCategoryParent();
+		model.addAttribute("listMenu",listMenu);
+		model.addAttribute("listProduct", productservice.getAll());
 		return "home";
 	}
 	@RequestMapping(value="/searchname")

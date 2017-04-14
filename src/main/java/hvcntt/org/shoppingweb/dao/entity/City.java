@@ -11,7 +11,7 @@ public class City implements Serializable {
 	private static final long serialVersionUID = 4614502438211739158L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="city_id")
 	private String cityId;
 
@@ -27,6 +27,14 @@ public class City implements Serializable {
 	private List<User> users;
 
 	public City() {
+	}
+	
+	public City(String cityId, String cityName, List<ShippingInfo> shippingInfos, List<User> users) {
+		super();
+		this.cityId = cityId;
+		this.cityName = cityName;
+		this.shippingInfos = shippingInfos;
+		this.users = users;
 	}
 
 	public String getCityId() {

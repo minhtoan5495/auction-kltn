@@ -9,9 +9,9 @@ import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.Role;
 import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
-import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
+//import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
-import hvcntt.org.shoppingweb.service.SecurityService;
+//import hvcntt.org.shoppingweb.service.SecurityService;
 import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,10 +35,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(UserDto userDto) throws RoleNotFoundException {
-        User user = convertUserModelToUser(userDto);
+    	  User user=convertUserModelToUser(userDto);
         userRepository.save(user);
     }
-
     private User convertUserModelToUser(UserDto userDto) throws RoleNotFoundException {
         Role role = roleRepository.findByRoleName("ROLE_USER");
         if (role == null) {

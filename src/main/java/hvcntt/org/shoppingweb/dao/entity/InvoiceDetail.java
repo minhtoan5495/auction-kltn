@@ -11,7 +11,7 @@ public class InvoiceDetail implements Serializable {
 	private static final long serialVersionUID = -4137213387456601660L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoice_detail_id")
 	private String invoiceDetailId;
 
@@ -30,6 +30,14 @@ public class InvoiceDetail implements Serializable {
 	private Product product;
 
 	public InvoiceDetail() {
+	}
+	
+	public InvoiceDetail(float price, int quantity, Invoice invoice, Product product) {
+		super();
+		this.price = price;
+		this.quantity = quantity;
+		this.invoice = invoice;
+		this.product = product;
 	}
 
 	public String getInvoiceDetailId() {

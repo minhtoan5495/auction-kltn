@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;/** * Created by Nguyen on 12/04/2017. */public interface ShippingInfoService {}
+package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;/** * Created by Nguyen on 12/04/2017. */public interface ShippingInfoService {	ShippingInfo create(ShippingInfo shippingInfo);}

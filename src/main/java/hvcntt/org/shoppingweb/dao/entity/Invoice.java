@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
 @Table(name = "invoice")
 @NamedQuery(name="Invoice.findAll", query="SELECT i FROM Invoice i")
@@ -12,17 +13,17 @@ public class Invoice implements Serializable {
 	private static final long serialVersionUID = -183157478453777407L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoice_id")
 	private String invoiceId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
-	private Date createDate;
+	private Date createDate=new Date();
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="ship_date")
-	private Date shipDate;
+	private Date shipDate=null;
 
 	private String username;
 
@@ -40,6 +41,7 @@ public class Invoice implements Serializable {
 	private List<ShippingInfo> shippingInfos;
 
 	public Invoice() {
+		//setInvoiceId(UUID.randomUUID().toString());
 	}
 
 	public String getInvoiceId() {

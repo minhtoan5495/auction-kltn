@@ -11,7 +11,7 @@ public class District implements Serializable {
 	private static final long serialVersionUID = -8441148627296510528L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="district_id")
 	private String districtId;
 
@@ -27,6 +27,14 @@ public class District implements Serializable {
 	private List<User> users;
 
 	public District() {
+	}
+	
+	public District(String districtId, String districtName, List<ShippingInfo> shippingInfos, List<User> users) {
+		super();
+		this.districtId = districtId;
+		this.districtName = districtName;
+		this.shippingInfos = shippingInfos;
+		this.users = users;
 	}
 
 	public String getDistrictId() {

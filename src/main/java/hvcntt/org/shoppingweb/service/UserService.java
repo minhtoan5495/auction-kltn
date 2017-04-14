@@ -16,4 +16,5 @@ public interface UserService {
     User findByUsernameAndPassword(String username, String password);
 	User findByEmail(String email);
 	User findByPhone(String phone);
+	//void saveUser(User user) throws RoleNotFoundException;
 }

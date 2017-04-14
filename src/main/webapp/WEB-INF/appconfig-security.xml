@@ -17,12 +17,20 @@
                     authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler"
                     authentication-failure-handler-ref="loginFailureHandler"
                     authentication-failure-url="/login?error"
-                    default-target-url="/"
+                    default-target-url="/home"
         />
         <remember-me key="uniqueAndSecret" token-validity-seconds="86400"/>
         <logout logout-success-url="/login?logout"/>
         <access-denied-handler error-page="/403"/>
     </http>
+  <!--    <http auto-config="true">
+     <csrf disabled="false"/>
+        <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN,ROLE_EMPLOYEE')" />
+         <intercept-url pattern="/checkout" access="hasAnyRole('ROLE_USER')" />
+        <form-login login-page="/login" default-target-url="/home" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
+        <logout logout-success-url="/login?logout" />
+    </http> -->
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsServiceImpl">
