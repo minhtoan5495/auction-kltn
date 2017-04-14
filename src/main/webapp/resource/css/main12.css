@@ -125,7 +125,7 @@ h2.title_item:before{
     width: 200px;
 }
 
-<--Mobile-->>
+/*Mobile*/
 .sub-menu-parent { position: relative; }
 .sub-menu-parent:hover .sub-menu {
   visibility: visible; /* shows sub-menu */
@@ -469,7 +469,7 @@ margin-top: 15px;
     max-width: 100%;
     height: 250px;
 }
-..detail-product-share{
+.detail-product-share{
     line-height: 35px;
 }
 .detail-product-share ul li{

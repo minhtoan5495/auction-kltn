@@ -1,0 +1,23 @@
+/*######################## LOGIN/SIGNUP PAGE START ##################################*/
+.modal-content{
+    margin: auto;
+    width: 60%;
+}
+.modal-title{
+    text-align: center;
+}
+.btn-default{
+    margin-left: 80px;
+    padding: auto;
+    width: 50%;
+}
+.checkbox{
+    padding: auto;
+    text-align: center;
+}
+@media (min-width: 1200px){
+    .container {
+        width: 1120px;
+    }
+}
+/*######################## LOGIN/SIGNUP PAGE  END ##################################*/

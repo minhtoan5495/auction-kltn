@@ -1,22 +1,6 @@
 /**
- * 
+ *
  */
-/*   $(document).ready(function(){
-            $("#login").click(function(){
-                if($("#username").val()==""){
-                	$("#error-valid").text("Tên đăng nhập không bỏ trống");
-                    $(".input").addClass("error");
-                    $("#username").css({"border":"1px solid red"});
-                }
-                  if($("#password").val()==""){
-                    $(".pass").addClass("error");
-                }
-            })
-            $(".input").click(function(){
-                $(".input").removeClass("error");
-            })
-        })*/
-
 $(document).ready(function(){
 	$("#saveLogin").validate({
 		rules:{
@@ -29,7 +13,7 @@ $(document).ready(function(){
 				required:true,
 				minlength:6,
 				maxlength:30
-				
+
 			}
 		},
 	messages: {
