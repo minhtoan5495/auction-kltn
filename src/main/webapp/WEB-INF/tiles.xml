@@ -47,7 +47,7 @@
 		<put-attribute name="title" value="Home Page"></put-attribute>
 		<put-attribute name="body" value="/view/checkout/checkoutsuccess.jsp"></put-attribute>
 	</definition>
-	<definition name="login" extends="definition">
+	<definition name="login" extends="registration">
 		<put-attribute name="title" value="Login Page"></put-attribute>
 		<put-attribute name="body" value="/view/login--register/login.jsp"></put-attribute>
 	</definition>

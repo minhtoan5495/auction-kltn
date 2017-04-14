@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="${pageContext.request.contextPath }/resource/css/login.css" rel="stylesheet">
 <!-- START CONTENT -->
 <div class="form-login">
 <c:url value="/j_spring_security_check" var="loginUrl"/>

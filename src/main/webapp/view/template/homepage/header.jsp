@@ -70,11 +70,15 @@
                         <c:if test="${pageContext.request.userPrincipal.name ==null }">
                         <div class="header_top_account">
                             <div class="header_login_top pull-right">
-                                <a href="${pageContext.request.contextPath}/login" class="header_login_link"><span class="glyphicon glyphicon-log-in"></span>  Đăng nhập</a>
+                                <a href="${pageContext.request.contextPath}/login"
+                                   class="header_login_link"><span class="glyphicon glyphicon-log-in"></span> Đăng
+                                    nhập</a>
                             </div>
-                        </div>
-                        <div class="header_login_top pull-right">
-                            <a href="#" class="header_login_link" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-user"></span>  Đăng kí</a>
+                            <div class="header_login_top pull-right">
+                                <a href="${pageContext.request.contextPath}/register"
+                                   class="header_login_link"><span class="glyphicon glyphicon-user"></span> Đăng
+                                    ký</a>
+                            </div>
                         </div>
                         <div class="header_login_top pull-right">
                             <a href="${pageContext.request.contextPath}/viewcart"
