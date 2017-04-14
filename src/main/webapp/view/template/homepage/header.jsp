@@ -45,24 +45,23 @@
                             </a>
                                 <ul class="dropdown-menu item-settings">
                                     <security:authorize access="isAuthenticated()">
-                                        <li
-                                                class="${current=='profile' ? 'active' : ''} personal-setting"><a
+                                        <li class="personal-setting"><a
                                                 class="personal-profile"
                                                 href="${pageContext.request.contextPath }/profile">Trang
                                             cá nhân</a></li>
+                                        <li class="personal-setting"><a class="personal-profile"
+                                                                        href=""> Cài đặt</a></li>
+                                        <li>
+                                            <form id="logoutForm" method="POST"
+                                                  action="${pageContext.request.contextPath}/logout">
+                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                       value="${_csrf.token}"/>
+                                            </form>
+                                        </li>
+                                        <li class="personal-setting"><a class="personal-profile"
+                                                                        onclick="document.forms['logoutForm'].submit()">Đăng
+                                            xuất</a></li>
                                     </security:authorize>
-                                    <li class="personal-setting"><a class="personal-profile"
-                                                                    href=""> Cài đặt</a></li>
-                                    <li>
-                                        <form id="logoutForm" method="POST"
-                                              action="${pageContext.request.contextPath}/logout">
-                                            <input type="hidden" name="${_csrf.parameterName}"
-                                                   value="${_csrf.token}"/>
-                                        </form>
-                                    </li>
-                                    <li class="personal-setting"><a class="personal-profile"
-                                                                    onclick="document.forms['logoutForm'].submit()">Đăng
-                                        xuất</a></li>
                                 </ul>
                             </li>
                         </div>
@@ -125,7 +124,7 @@
             <div class="col-sm-3 hidden-xs">
                 <div class="header_middle_item pull-right" style="width: 150px;">
                     <div class="header_middle_cart" style="text-align: center; width: 150px;" id="header_middle_cart">
-                        <a href="#"class="cart_link" data-toggle="modal"
+                        <a href="#" class="cart_link" data-toggle="modal"
                            data-target="#myCart" style="padding-left:0px;"> <i
                                 class="fa fa-shopping-cart cart-icon"></i><b>Giỏ hàng</b> <c:if
                                 test="${not empty cart }">
@@ -282,6 +281,18 @@
 								nam</span></a>
                     </div>
                 </div>
+            </div>
+            <div class="main_menu_item">
+                <a href="#" class="main_menu_item_link">Sắc đẹp<span
+                        class="beauty_item">Sắc đẹp</span></a>
+            </div>
+            <div class="main_menu_item">
+                <a href="#" class="main_menu_item_link">Trang sức<span
+                        class="jewelry_item">Trang sức</span></a>
+            </div>
+            <div class="main_menu_item">
+                <a href="#" class="main_menu_item_link">Trẻ em<span
+                        class="child_item">Trẻ em</span></a>
             </div>
             <div class="main_menu_item">
                 <a href="#" class="main_menu_item_link">Liên hệ<span
