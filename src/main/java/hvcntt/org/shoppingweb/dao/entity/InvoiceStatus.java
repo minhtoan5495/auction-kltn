@@ -13,7 +13,7 @@ public class InvoiceStatus implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoice_status_id")
-	private String invoiceStatusId;
+	private int invoiceStatusId;
 
 	@Column(name="invoice_status_name")
 	private String invoiceStatusName;
@@ -25,13 +25,19 @@ public class InvoiceStatus implements Serializable {
 	public InvoiceStatus() {
 	}
 
-	public String getInvoiceStatusId() {
-		return this.invoiceStatusId;
+
+
+	public int getInvoiceStatusId() {
+		return invoiceStatusId;
 	}
 
-	public void setInvoiceStatusId(String invoiceStatusId) {
+
+
+	public void setInvoiceStatusId(int invoiceStatusId) {
 		this.invoiceStatusId = invoiceStatusId;
 	}
+
+
 
 	public String getInvoiceStatusName() {
 		return this.invoiceStatusName;

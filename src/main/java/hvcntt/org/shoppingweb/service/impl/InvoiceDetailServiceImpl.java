@@ -16,5 +16,10 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
 		// TODO Auto-generated method stub
 		return invoiceDetailRepo.save(invoiceDetail);
 	}
+	@Override
+	public InvoiceDetail findOne(int id) {
+		// TODO Auto-generated method stub
+		return invoiceDetailRepo.findOne(id);
+	}
 
 }

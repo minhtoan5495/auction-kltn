@@ -9,9 +9,9 @@
 			<div class="col-sm-4">
 				<div class="profile_info_item">
 					<h4>Thông tin cá nhân</h4>
-					<p>maison</p>
-					<p>Sonmv.itedu@gmail.com</p>
-					<p>01665102292</p>
+					<p>${pageContext.request.userPrincipal.name }</p>
+					<p>${user.email }</p>
+					<p>${user.phone }</p>
 					<a href="#">Thay đổi mật khẩu</a><br> <a href="#">Thay đổi
 						Email</a>
 				</div>
@@ -19,9 +19,9 @@
 			<div class="col-sm-4">
 				<div class="profile_info_item">
 					<h4>Thông tin địa chỉ giao hàng</h4>
-					<p>Mai Văn Sơn</p>
-					<p>181 H17/A Phan Thanh-Đà Nẵng</p>
-					<p>Thanh Khê-Thạc Gián-Đà Nẵng</p>
+					<p>${user.name }</p>
+					<p>${user.district.districtName }</p>
+					<p>${user.city.cityName }</p>
 					<button class="btn btn-danger btn-edit-profile">
 						<i class="fa fa-edit"></i> Cập nhật thông tin
 					</button>
@@ -31,10 +31,10 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="profile_info_item">
-					<h4>Thông tin địa chỉ thanh toán</h4>
-					<p>Mai Văn Sơn</p>
-					<p>181 H17/A Phan Thanh-Đà Nẵng</p>
-					<p>Thanh Khê-Thạc Gián-Đà Nẵng</p>
+					<h4>Thông tin địa chỉ giao hàng</h4>
+					<p>${user.name }</p>
+					<p>${user.district.districtName }</p>
+					<p>${user.city.cityName }</p>
 					<button class="btn btn-danger btn-edit-profile">
 						<i class="fa fa-edit"></i> Cập nhật thông tin
 					</button>
@@ -56,10 +56,10 @@
 					<tbody>
 						<c:forEach var="invoice" items="${invoice }">
 							<tr>
-								<td>${invoice.idinvoicedetail }</td>
-								<td><fmt:formatDate value="${invoice.createdate }"
+								<td>${invoice.invoiceId }</td>
+								<td><fmt:formatDate value="${invoice.createDate }"
 										pattern="dd-MM-yyyy" /></td>
-								<td><fmt:formatNumber value="${invoice.product.price}"
+								<td><fmt:formatNumber value="${invoice.invoiceDetails.get(i).getProduct().getPrice()}"
 										type="number" /> đ</td>
 								<td>Đang xử lý</td>
 								<td class="btn_view_detail_order"><button class="btn btn-primary"
@@ -138,15 +138,15 @@
 			<div class="panel panel-default profile_body_item_order">
 				<div class="panel-heading profile_heading_main_item">
 					<div class="profile_heading_date">
-						<p>Đơn hàng ${invoice.idinvoicedetail }</p>
+						<p>Đơn hàng ${invoice.invoiceDetails.get(i).getInvoiceDetailId() }</p>
 						<p>
 							Đặt hàng ngày
-							<fmt:formatDate value="${invoice.createdate }"
+							<fmt:formatDate value="${invoice.createDate }"
 								pattern="dd-MM-yyyy" />
 						</p>
 					</div>
 					<div class="profile_heading_manager">
-						<a href="${pageContext.request.contextPath }/orderdetail?id=${invoice.idinvoicedetail}"><button class="btn_profile_heading_manager">
+						<a href="${pageContext.request.contextPath }/orderdetail?invoiceId=${invoice.invoiceId}"><button class="btn_profile_heading_manager">
 							<i class="fa fa-edit"></i>Quản lý đơn hàng
 						</button></a>
 					</div>
@@ -157,13 +157,12 @@
 							<div class="col-sm-1" style="width: 0.333333%"></div>
 							<div class="col-sm-4" style="width: 20.33333%">
 								<img alt=""
-									src="${pageContext.request.contextPath }/resource/images/banner/${invoice.product.image}"
+									src="${pageContext.request.contextPath }/resource/images/banner/${invoice.invoiceDetails.get(i).getProduct().getImages().get(i).getImageUrl()}"
 									style="width: 100px">
 							</div>
 							<div class="col-sm-6">
-								<p>${invoice.product.name }</p>
-								<button class="btn btn-primary btn-status-order">Đang
-									xử lý</button>
+								<p>${invoice.invoiceDetails.get(i).getProduct().getName() }</p>
+								<button class="btn btn-primary btn-status-order">${invoice.invoiceStatus.invoiceStatusName }</button>
 							</div>
 						</div>
 					</div>

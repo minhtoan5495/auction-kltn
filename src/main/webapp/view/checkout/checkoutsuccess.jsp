@@ -46,7 +46,7 @@
 		</div>
 		<div class="checkout_success_detail_order">
 			<label class="checkout_success_detail_order_name">Chi tiết
-				đơn hàng , bao gồm  sản phẩm
+				đơn hàng , bao gồm ${invoice.invoiceDetails.get(i).getQuantity() }  sản phẩm
 				được đặt </label><br> 
 			<strong>Tên khách hàng: ${pageContext.request.userPrincipal.name}</strong>
 			<p>Đường: ${addShip.address }</p>
@@ -62,8 +62,9 @@
 				<label class="checkout_success_detail_order_product_name">${cart.product.name}
 				<p style="color: black">Số lượng:${cart.quantity } cái</p>
 				</label>
-				 <label class="checkout_success_detail_order_delivery">Giao hàng từ
-					thứ Bảy ngày 8 đến thứ 3 ngày 11 Tháng 4 năm 201</label>
+				 <label class="checkout_success_detail_order_delivery">Giao hàng <fmt:formatDate value="${invoice.createDate }"
+										pattern="dd-MM-yyyy" /> đến <fmt:formatDate value="${invoice.shipDate }"
+										pattern="dd-MM-yyyy" /></label>
 				<div class="checkout_success_detail_order_price pull-right">
 					<label><fmt:formatNumber value="${cart.quantity * cart.product.price}" type="number" />đ</label>
 					<p>

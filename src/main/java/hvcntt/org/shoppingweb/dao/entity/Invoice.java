@@ -15,7 +15,7 @@ public class Invoice implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoice_id")
-	private String invoiceId;
+	private int invoiceId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
@@ -33,7 +33,7 @@ public class Invoice implements Serializable {
 	private InvoiceStatus invoiceStatus;
 
 	//bi-directional many-to-one association to InvoiceDetail
-	@OneToMany(mappedBy="invoice")
+	@OneToMany(mappedBy="invoice",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<InvoiceDetail> invoiceDetails;
 
 	//bi-directional many-to-one association to ShippingInfo
@@ -44,14 +44,12 @@ public class Invoice implements Serializable {
 		//setInvoiceId(UUID.randomUUID().toString());
 	}
 
-	public String getInvoiceId() {
-		return this.invoiceId;
+	public int getInvoiceId() {
+		return invoiceId;
 	}
-
-	public void setInvoiceId(String invoiceId) {
+	public void setInvoiceId(int invoiceId) {
 		this.invoiceId = invoiceId;
 	}
-
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -127,5 +125,5 @@ public class Invoice implements Serializable {
 
 		return shippingInfo;
 	}
-
+	
 }

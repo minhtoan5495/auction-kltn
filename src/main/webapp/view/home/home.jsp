@@ -85,7 +85,7 @@
 		<div class="row">
 			<div class="content-page">
 				<div class="content-page-title">
-					<h2 class="content-paget-title-item">Sản phẩm</h2>
+					<h2 class="content-paget-title-item">SẢN PHẨM BÁN</h2>
 				</div>
 				<div class="row">
 					<h4>${message}</h4>

@@ -55,7 +55,7 @@
 														style="width: 100px; height: 100px"></a></td>
 												<td class="cart-product-infor"><label
 													class="cart-product-name">${cart.product.name }</label><br>
-													<small>${cart.product.description }</small><br></td>
+													<%-- <small>${cart.product.description }</small><br></td> --%>
 												<td class="cart-product-infor"><input
 													class="form-control input-field" type="number"
 													value="${cart.quantity}" name="quantity"> <input

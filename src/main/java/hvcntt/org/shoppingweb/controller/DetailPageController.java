@@ -20,29 +20,25 @@ import hvcntt.org.shoppingweb.dao.dto.CommentDto;
 //import hvcntt.org.shoppingweb.model.User;
 import hvcntt.org.shoppingweb.service.ImageService;
 import hvcntt.org.shoppingweb.service.ProductService;
-import hvcntt.org.shoppingweb.service.UserService;
+//import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class DetailPageController {
-
-    @Autowired
-    private ProductService productservice;
-
     @Autowired
     private ImageService imageservice;
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @Autowired
     private ProductService productService;
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detailPage(Model model, @RequestParam("idproduct") String idproduct, Principal principal) {
-        Product product = productservice.findOne(idproduct);
-//        if (existId(idproduct)) {
-//            productservice.updateView(idproduct);
-//        }
+        Product product = productService.findOne(idproduct);
+        if (existId(idproduct)) {
+        	productService.updateView(idproduct);
+        }
         List<Image> imgs = imageservice.findByProduct(product);
         model.addAttribute("CommentDto", new CommentDto());
         model.addAttribute("image", imgs);
@@ -51,9 +47,9 @@ public class DetailPageController {
     }
 
     private boolean existId(String idproduct) {
-        List<Product> listP = productservice.getAll();
+        List<Product> listP = productService.getAll();
         for (int i = 0; i < listP.size(); i++) {
-            if (listP.get(i).getProductId() == idproduct) {
+            if (listP.get(i).getProductId().equals(idproduct) ) {
                 return true;
             }
         }

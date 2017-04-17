@@ -10,6 +10,8 @@ import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 
 import java.security.Principal;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -60,14 +62,20 @@ public class CheckoutController {
         return "checkout";
     }
     @RequestMapping(value="/checkout",method=RequestMethod.POST)
-    public String checkoutSuccess(Model model,@ModelAttribute("shipping")ShippingInfo shippingInfo,Principal principal,HttpSession session,HttpServletRequest request) throws UserNotFoundException{
+    public String checkoutSuccess(Model model,@ModelAttribute("shipping")ShippingInfo shippingInfo,Principal principal,HttpSession session,HttpServletRequest request) throws UserNotFoundException, ParseException{
     	String username=principal.getName();
     	User user= userService.findByUsername(username);
     	Invoice invoice=new Invoice();
     	InvoiceStatus invoiceStatus=invoiceStatusService.findByName("Đang xử lý");
     	invoice.setCreateDate(new Date());
     	invoice.setInvoiceStatus(invoiceStatus);
-    	invoice.setShipDate(null);
+    	SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy");
+    	Calendar c=Calendar.getInstance();
+    	Date deliver=new Date();
+    	c.setTime(deliver);
+    	c.roll(Calendar.DATE, 7);
+    	String shippDate=dateFormat.format(c.getTime());
+    	invoice.setShipDate(dateFormat.parse(shippDate));
     	invoice.setUsername(user.getUsername());
     	shippingInfo.setInvoice(invoice);
     	invoiceService.create(invoice);
@@ -78,6 +86,7 @@ public class CheckoutController {
     		InvoiceDetail invoiceDetail=new InvoiceDetail(listCartItems.get(i).getProduct().getPrice()*listCartItems.get(i).getQuantity(), listCartItems.get(i).getQuantity(), shippingInfo.getInvoice(), listCartItems.get(i).getProduct());
     		invoiceDetailService.add(invoiceDetail);
     	}
+    	model.addAttribute("invoice", invoice);
     	model.addAttribute("addShip", shippingInfo);
     	return "checkoutsuccess";
     	

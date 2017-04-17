@@ -10,8 +10,9 @@
     <http auto-config="true">
         <csrf/>
         <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN,ROLE_EMPLOYEE')" />
+       <!--  <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN,ROLE_EMPLOYEE')" /> -->
         <intercept-url pattern="/checkout" access="hasAnyRole('ROLE_ADMIN,ROLE_USER')" />
+        <intercept-url pattern="/profile" access="hasAnyRole('ROLE_USER')" />
         <form-login login-page="/login" username-parameter="username" password-parameter="password"
                     login-processing-url="/j_spring_security_check"
                     authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler"
@@ -23,14 +24,6 @@
         <logout logout-success-url="/login?logout"/>
         <access-denied-handler error-page="/403"/>
     </http>
-  <!--    <http auto-config="true">
-     <csrf disabled="false"/>
-        <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN,ROLE_EMPLOYEE')" />
-         <intercept-url pattern="/checkout" access="hasAnyRole('ROLE_USER')" />
-        <form-login login-page="/login" default-target-url="/home" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
-        <logout logout-success-url="/login?logout" />
-    </http> -->
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsServiceImpl">

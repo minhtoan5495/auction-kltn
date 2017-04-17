@@ -8,6 +8,10 @@
 		<put-attribute name="body" value=""></put-attribute>
 		<put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
 	</definition>
+	<definition name="admin" template="/view/template/admin/mainadmin.jsp">
+		<put-attribute name="navbar" value=""></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+	</definition>
 	<definition name="account" template="/view/template/account/MainAcount.jsp">
 		<put-attribute name="body" value=""></put-attribute>
 	</definition>
@@ -36,7 +40,7 @@
 		<put-attribute name="body" value="/view/profile/orderdetail.jsp"></put-attribute>
 	</definition>
 	<definition name="cart" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="title" value="Giỏ hàng"></put-attribute>
 		<put-attribute name="body" value="/view/cart/cart.jsp"></put-attribute>
 	</definition>
 	<definition name="checkout" extends="definition">
@@ -47,7 +51,7 @@
 		<put-attribute name="title" value="Home Page"></put-attribute>
 		<put-attribute name="body" value="/view/checkout/checkoutsuccess.jsp"></put-attribute>
 	</definition>
-	<definition name="login" extends="registration">
+	<definition name="login" extends="account">
 		<put-attribute name="title" value="Login Page"></put-attribute>
 		<put-attribute name="body" value="/view/login--register/login.jsp"></put-attribute>
 	</definition>
@@ -76,7 +80,11 @@
 		<put-attribute name="body" value="/view/upload/Success.jsp"></put-attribute>
 	</definition>
 		<definition name="detailpage" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="title" value="Chi tiết sản phẩm"></put-attribute>
 		<put-attribute name="body" value="/view/detail/detailpage.jsp"></put-attribute>
+	</definition>
+		<definition name="navbar" extends="admin">
+		<put-attribute name="title" value="admin"></put-attribute>
+		<put-attribute name="body" value="/view/admin/navbar.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

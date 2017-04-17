@@ -11,24 +11,35 @@
 					tiết</a>
 			</div>
 			<div class="main_header_detail_item">
+				<a href="#" class="main_header_detail_item_link"> > </a>
+			</div>
+			<div class="main_header_detail_item">
 				<a href="#" class="main_header_detail_item_link">Đánh giá sản
 					phẩm</a>
 			</div>
 			<div class="main_header_detail_item">
-				<a href="#" class="main_header_detail_item_link">Phản hồi</a>
+				<a href="#" class="main_header_detail_item_link"> > </a>
+			</div>
+			<div class="main_header_detail_item">
+				<a href="#" class="main_header_detail_item_link">${singleProduct.category.categoryName }</a>
+			</div>
+			<div class="main_header_detail_item">
+				<a href="#" class="main_header_detail_item_link"> > </a>
 			</div>
 			<div class="main_header_detail_item">
 				<a href="#" class="main_header_detail_item_link"><span
-					class="buy_item">Mua ngay</span></a>
+					class="main_header_detail_item_name">${singleProduct.name }</span></a>
 			</div>
 		</div>
 	</div>
 </div>
 <section class="main-content-detail">
-	<div class="container">
+	<div class="container main-content-detail-contain">
 		<div class="row">
 			<div class="content-detail-title">
-				<h2 class="content-paget-title-item">Chi tiết sản phẩm</h2>
+				<p>Được sản xuất bởi: <a>${singleProduct.supplier. supplierName}</a>
+				<p>Ngày sản xuất:<a><fmt:formatDate value="${singleProduct.manufactureDate }"
+										pattern="dd-MM-yyyy" /></a></p>
 			</div>
 			<div class="col-sm-8">
 				<div class="row">
@@ -40,7 +51,7 @@
 										<img id="imageContainer" name="image_main"
 											src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }">
 									</div>
-								<%-- 	<ul class="nav navbar-nav">
+									<%-- 	<ul class="nav navbar-nav">
 										<c:forEach var="image" items="${singleProduct.imageItem }">
 											<li class="image-list"><img
 												src="resource/images/banner/${image.link_image }"
@@ -55,25 +66,9 @@
 						<div class="detail-product-infor">
 							<h2 class="detail-product-name"
 								style="font-family: 'Bitter', serif">${singleProduct.name }</h2>
-							<p class="detail-product-name"
+							<p class="detail-product-id"
 								style="font-family: 'Bitter', serif">Mã sản phẩm
 								:${singleProduct.productId }</p>
-							<div class="product-detail">
-								<label>Người đăng:<a href="#">Shinmu13194</a></label>| <label
-									class="memberpost-infor" style="font-weight: 100; color: #333;">Quảng
-									Nam</label> <label class="memberpost-infor"
-									style="font-weight: 100; color: #333;">01665102292</label>
-							</div>
-							<div class="detail-product-share">
-								<ul class="product-share">
-									<li><a href="#" class="face-share"><i
-											class="fa fa-facebook"></i></a></li>
-									<li><a href="#" class="ins-share"><i
-											class="fa fa-instagram"></i></a></li>
-									<li><a href="#" class="twit-share"><i
-											class="fa fa-twitter"></i></a></li>
-								</ul>
-							</div>
 							<div class="product-detail-view">
 								<label><i class="glyphicon glyphicon-eye-open"></i> Lượt
 									xem : ${singleProduct.viewNumber}</label>
@@ -91,34 +86,38 @@
 							<div class="box-detail-information">
 								<form class="form-detail-information">
 									<div class="form-detail-size">
-										<label>Thời gian đấu:
-											<button class="btn btn-success">12:20:30</button>
-										</label>
+										<label>Thời gian còn lại</label>
+										<div class="form-detail-timecountdown">
+											<h3>12</h3>
+											<p>Giờ</p>
+											<h3>12</h3>
+											<p>Phút</p>
+										</div>
 									</div>
-									<p>
-										<br>
-									</p>
 									<div class="form-detail-quantity">
 										<label>Giá đấu:</label> <input
 											class="form-control input-field" type="text">
 
 									</div>
 									<div class="form-detail-addcart">
+									<c:choose>
+										<c:when test="${singleProduct.transactionType.transactionTypeId == 1 }">
 										<div class="submit-button">
-											<a href="#" class="btn submit-btn"
-												style="background: green; border-color: green"> <span><i
-													class=""></i> Bắt đầu đấu giá </span>
+											<a href="#" class="btn submit-btn"> <span><img
+													class="" src="resource/css/images/icon-title.png"></img>ĐẤU GIÁ</span>
 											</a>
 										</div>
-										<div class="submit-button"
-											style="margin-left: 175px; margin-top: -55px">
+										</c:when>
+										<c:otherwise>
+										<div class="submit-button">
 											<a
 												href="${pageContext.request.contextPath }/cart?idproduct=${singleProduct.productId}"
-												class="btn submit-btn"
-												style="background: #00509d; border-color: #00509d"> <span><i
-													class=""></i> Thêm vào giỏ hàng </span>
+												class="btn submit-btn"> <span><i
+													class="glyphicon glyphicon-shopping-cart"></i> MUA NGAY </span>
 											</a>
 										</div>
+										</c:otherwise>
+										</c:choose>
 									</div>
 									<p>
 										<br>
@@ -133,18 +132,20 @@
 					<div class="col-sm-12" id="infor-scroll">
 						<div class="product-informore" id="infor-scroll-item">
 							<ul class="nav nav-tabs more-infor">
-								<li class="active">
-								<a href="#detail">Chi tiết sản phẩm</a>
+								<li class="active"><a href="#detail">Chi tiết sản phẩm</a>
 								</li>
 								<li><a href="#review">Đánh giá sản phẩm</a></li>
 								<li><a href="#comment">Bình luận-Hỏi đáp</a></li>
 							</ul>
 							<div class="tab-content-detail" id="detail">
 								<div class="tab-pane active">
-									
+									<div class="content-detail-title">
+										<h2 style="font-size: 20px">Giới thiệu về sản phẩm ${singleProduct.name }</h2>
+									</div>
 									<div class="tab-descript">
 										<p>${singleProduct.description }</p>
-										<img src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }"
+										<img
+											src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }"
 											style="width: 100%">
 									</div>
 								</div>
@@ -154,7 +155,7 @@
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-8">
-										<h2 style="font-size: 20px; font-weight: bold;">Đánh giá
+										<h2 style="font-size: 15px; font-weight: bold;">Đánh giá
 											và nhận xét cho sản phẩm ${singleProduct.name }</h2>
 									</div>
 									<div class="col-sm-4">
@@ -177,11 +178,13 @@
 														</div>
 													</div>
 													<div class="modal-body">
-														<a href="${pageContext.request.contextPath }/login"><button class="btn btn-danger btn-modal-comment">Đăng nhập tại đây</button></a>
+														<a href="${pageContext.request.contextPath }/login"><button
+																class="btn btn-danger btn-modal-comment">Đăng
+																nhập tại đây</button></a>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-primary"
-															data-dismiss="modal" style="border-radius:0 ">X</button>
+															data-dismiss="modal" style="border-radius: 0">X</button>
 													</div>
 												</div>
 
@@ -208,7 +211,7 @@
 															src="${pageContext.request.contextPath }/resource/images/backgroundmenu/rating_3.png"></a>
 													</div>
 													<div class="status-upload">
-													<%-- 	<form:form commandName="CommentDto"
+														<%-- 	<form:form commandName="CommentDto"
 															action="${pageContext.request.contextPath }/comment/${singleProduct.productId }">
 															<p>Nhận xét tổng quan</p>
 															<form:input class="form-control title-comments"
@@ -231,11 +234,11 @@
 							</div>
 						</div>
 						<div class="row" id="comment">
-				<%-- 			<div class="col-sm-12">
-								<h2 style="font-size: 20px; font-weight: bold;">Nhận xét
+										<div class="col-sm-12">
+								<h2 style="font-size: 15px; font-weight: bold;">Nhận xét
 									sản phẩm ${singleProduct.name }</h2>
-								<label>Có ${singleProduct.commentItems.size() } nhận xét</label>
-								<c:forEach var="comment" items="${singleProduct.commentItems }">
+								<%-- <label>Có ${singleProduct.commentItems.size() } nhận xét</label> --%>
+								<%-- <c:forEach var="comment" items="${singleProduct.commentItems }"> --%>
 									<div class="comment-items">
 										<img class="img-responsive user-photo"
 											src="resource/images/avatar/avartar-cmt.png"
@@ -243,21 +246,21 @@
 										<div class="panel panel-default"
 											style="margin-left: 40px; margin-top: -30px;">
 											<div class="panel-heading comment-heading">
-												<label><a href="#">${comment.user.username }</a></label>
+												<%-- <label><a href="#">${comment.user.username }</a></label> --%>
 												<p class="memberpost-infor">
 													Đã comment vào
-													<fmt:formatDate value="${comment.createdate }"
-														pattern="yyyy-MM-dd" />
+													<%-- <fmt:formatDate value="${comment.createdate }"
+														pattern="yyyy-MM-dd" /> --%>
 												</p>
 											</div>
-											<label class="memberpost-infor">${comment.title }</label>
+											<%-- <label class="memberpost-infor">${comment.title }</label> --%>
 											<div class="content-comment">
-												<p>${comment.content }</p>
+												<%-- <p>${comment.content }</p> --%>
 											</div>
 										</div>
 									</div>
-								</c:forEach>
-							</div> --%>
+							<%-- 	</c:forEach> --%>
+							</div>
 
 						</div>
 					</div>

@@ -13,7 +13,7 @@ public class InvoiceDetail implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoice_detail_id")
-	private String invoiceDetailId;
+	private int invoiceDetailId;
 
 	private float price;
 
@@ -40,11 +40,13 @@ public class InvoiceDetail implements Serializable {
 		this.product = product;
 	}
 
-	public String getInvoiceDetailId() {
-		return this.invoiceDetailId;
+
+
+	public int getInvoiceDetailId() {
+		return invoiceDetailId;
 	}
 
-	public void setInvoiceDetailId(String invoiceDetailId) {
+	public void setInvoiceDetailId(int invoiceDetailId) {
 		this.invoiceDetailId = invoiceDetailId;
 	}
 
@@ -79,5 +81,5 @@ public class InvoiceDetail implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
+	
 }

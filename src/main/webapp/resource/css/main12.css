@@ -385,15 +385,6 @@ ul li { list-style-type: none;
     border-bottom: 1px solid #d7d7d7;
     margin-bottom: 20px;
 }
-/* h2.content-paget-title-item:before{
-        border-top: 3px solid #3a3d42;
-    content: "";
-    display: block;
-    left: 0;
-    position: absolute;
-    top: 2px;
-    width: 80px;
-} */
 .primary-form{
         background: #fbfbfb none repeat scroll 0 0;
     border: 1px solid #d6d4d4;
@@ -421,7 +412,7 @@ ul li { list-style-type: none;
 }
 .submit-btn{
 margin-top: 15px;
-    background: #ff4f4f none repeat scroll 0 0;
+    background: #f37021 none repeat scroll 0 0;
     border: 1px solid #ff4f4f;
     border-radius: 0;
     color: #fff;
@@ -429,7 +420,7 @@ margin-top: 15px;
     line-height: 21px;
     transition: all 500ms ease 0s;  
     height: 38px;
-    padding: 5px;
+    padding: 8px;
 }
 .submit-btn:hover{
     color: #fff;
@@ -509,9 +500,6 @@ margin-top: 15px;
     background: aqua;
     color: white;
 }
-.product-detail-view{
-    margin-top: 50px;
-}
 .product-viewed ul li a img{
     width: 100%;
 }
@@ -570,7 +558,7 @@ margin-top: 15px;
 }
 .tab-descript p{
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: 400;
 }
 .review_item{
 	margin-top: 10px;
@@ -592,7 +580,7 @@ margin-top: 15px;
 	display: none;
 }
 .review_boxes{
-	background: #eee;
+	background: rgba(238, 238, 238, 0.16);
 	padding: 20px 25px;
 }
 .sumit_comment{
@@ -733,7 +721,7 @@ margin-top: 15px;
     color: red;
 }
 .table .table_heading .table_heading_item{
-	background: #ff4f4f none repeat scroll 0 0;
+	background: #f37021 none repeat scroll 0 0;
 	color: #fff;
 }
 .profile-image img{

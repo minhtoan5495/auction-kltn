@@ -41,7 +41,7 @@
 								<p class="profile-infor-name" style="text-align: center;">${user.username }</p>
 								<label>Thông tin cá nhân</label>
 								<p>
-									<strong>Họ và tên</strong>:${user.firstname} ${user.lastname }
+									<strong>Họ và tên</strong>:${user.name}
 								</p>
 								<p>
 									<strong>Email</strong>:${user.email }

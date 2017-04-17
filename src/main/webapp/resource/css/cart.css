@@ -63,10 +63,11 @@ h2.content-paget-title-item{
   border-top: 1px solid #d7d7d7;
     display: block;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 25px;
     line-height: 44px;
     position: relative;
     margin-bottom: 5px;
+    text-align: center;
 }
 .content-cart-title{
 	margin-left: 15px;
