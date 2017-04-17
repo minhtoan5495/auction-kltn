@@ -30,25 +30,25 @@
             pickerPosition: "bottom-left"
         });
     });
-    $(function() {
-        $('#register').validate({
-            framework: 'bootstrap',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                confirmPassword: {
-                    validators: {
-                        identical: {
-                            field: 'password',
-                            message: 'The password and its confirm are not the same'
-                        }
-                    }
-                }
-            }
-        });
-    });
+//    $(document).ready(function() {
+//        $('#saveRegister').ready(function(event){
+//
+//            data = $('#password').val();
+//            var len = data.length;
+//
+//            if(len >0 && len < 6) {
+//                alert("Độ dài mật khẩu phải lớn hơn 6 !");
+//                // Prevent form submission
+//                event.preventDefault();
+//            }
+//
+//            if($('#password').val() != $('#confirmPassword').val()) {
+//                alert("Nhập lại mật khẩu không chính xác !");
+//                // Prevent form submission
+//                event.preventDefault();
+//            }
+//
+//        });
+//    });
 </script>
 </html>
