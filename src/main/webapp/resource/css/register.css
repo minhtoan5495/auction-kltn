@@ -1,23 +1,23 @@
 @CHARSET "ISO-8859-1";
 body{
-	margin: 0;
+	margin: auto;
 	padding: 0;
-	background:url("../images/backgroundmenu/background_3.jpg") no-repeat center center fixed;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover; 
+	background:url("../images/backgroundmenu/background.jpg") no-repeat center center fixed;
+		-webkit-background-size:cover;
+		-moz-background-size:cover;
+		-o-background-size:cover;
 	background-size: cover;
 }
 .form-register{
-	width: 350px;
-	height: auto;
+	width: 20%;
+	height: 100%;
+	margin: auto;
 	padding: 10px 25px;
 	border-bottom: 5px solid gray;
 	border-radius:3px;
-	transform: translateX(-50%) translateY(-50%);
 	top: 50%;
 	left: 50%;
-	position: absolute;
+	position: static;
 	background: rgba(0,0,0,0.35);
 }
 .register-avatar{
@@ -40,10 +40,17 @@ body{
 	margin: 25px auto;
 }
 .form_input_register{
+	display: block;
 	width: 100%;
 	height: 50px;
 	position: relative;
-	margin: 8px auto;
+	margin: 35px auto;
+}
+
+.form_submit_register{
+	width: 100%;
+	height: 50px;
+	margin: 15px 0;
 }
 
 .fa{

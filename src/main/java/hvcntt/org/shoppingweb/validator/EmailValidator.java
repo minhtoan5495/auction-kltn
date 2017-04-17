@@ -2,6 +2,8 @@ package hvcntt.org.shoppingweb.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by toannguyen on 06/04/17.
@@ -17,10 +19,8 @@ public class EmailValidator implements ConstraintValidator<Email, String>{
         if (emailStr == null){
             return false;
         }
-
-        //validate phone numbers of format "1234567890"
-        if (emailStr.matches("^(0[1-9]|1[0-2])\\/(0[1-9]|1\\d|2\\d|3[01])\\/(19|20)\\d{2}$")) return true;
-
-        else return false;
+        Pattern pattern = Pattern.compile("^[\\\\w!#$%&'*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$");
+        Matcher matcher = pattern.matcher(emailStr);
+        return matcher.matches();
     }
 }

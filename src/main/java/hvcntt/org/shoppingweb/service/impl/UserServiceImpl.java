@@ -1,7 +1,12 @@
 package hvcntt.org.shoppingweb.service.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.transaction.Transactional;
 
@@ -34,11 +39,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void save(UserDto userDto) throws RoleNotFoundException {
-    	  User user=convertUserModelToUser(userDto);
+    public void save(UserDto userDto) throws RoleNotFoundException, ParseException {
+        User user = convertUserModelToUser(userDto);
         userRepository.save(user);
     }
-    private User convertUserModelToUser(UserDto userDto) throws RoleNotFoundException {
+    private User convertUserModelToUser(UserDto userDto) throws RoleNotFoundException, ParseException {
         Role role = roleRepository.findByRoleName("ROLE_USER");
         if (role == null) {
             throw new RoleNotFoundException("ROLE NOT FOUND");
@@ -50,11 +55,17 @@ public class UserServiceImpl implements UserService {
         user.setAddress(userDto.getAddress());
         user.setPhone(userDto.getPhone());
         user.setEmail(userDto.getEmail());
-        user.setBirthday(userDto.getBirthday());
+        user.setBirthday(convertStringToDate(userDto.getBirthday()));
         user.setAccountNonLocked(true);
         roles.add(role);
         user.setRoles(roles);
         return user;
+    }
+
+    private Date convertStringToDate(String input) throws ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+        Date date = format.parse(input);
+        return date;
     }
 
     @Override
@@ -66,11 +77,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
-    }
-
-    @Override
-    public User findByUsernameAndPassword(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username, password);
     }
 
     @Override

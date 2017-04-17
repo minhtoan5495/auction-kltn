@@ -20,16 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.security.Principal;
+import java.text.ParseException;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserValidator userValidator;
 
     @Autowired
     private SecurityService securityService;
@@ -56,31 +55,15 @@ public class UserController {
         modelAndView.setViewName("login");
         return modelAndView;
     }
-//    @RequestMapping(value="/login",method=RequestMethod.GET)
-//	public String loginPage(Model model,String error,String logout,HttpServletRequest request){
-//		if(error!=null){
-//			model.addAttribute("error","Tên đăng nhập hoặc mật khẩu không đúng");
-//			String targetUrl = getRememberMeTargetUrlFromSession(request);
-//			ModelAndView modelAndView = new ModelAndView();
-//			if (StringUtils.hasText(targetUrl)) {
-//              modelAndView.addObject("targetUrl", targetUrl);
-//              modelAndView.addObject("home", true);
-//          }
-//		}
-//		if(logout!=null){
-//			model.addAttribute("message", "Đăng xuất thành công");
-//		}
-//		return "login";
-//	}
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
-        model.addAttribute("user", new UserDto());
+        model.addAttribute("userDto", new UserDto());
         return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute("user") UserDto userDto, BindingResult binding) throws RoleNotFoundException, UserAlreadyExistsException {
-       // userValidator.validate(userDto, binding);
+    public String register(@Valid UserDto userDto, BindingResult binding) throws RoleNotFoundException, UserAlreadyExistsException, ParseException {
         if (binding.hasErrors()) {
             return "register";
         }

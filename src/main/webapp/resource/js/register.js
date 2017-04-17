@@ -45,4 +45,9 @@
 // 		},
 // 	});
 // });
-angular.module("MyApp",["ui.bootstrap"]).filter('RegisterController', function (){});
+$(function () {
+    $('#datetimepicker').datetimepicker({
+        viewMode: 'years',
+        format: 'MM/YYYY'
+    });
+});

@@ -2,7 +2,7 @@
 body{
 	padding:0;
 	margin:0;
-	background: url("../images/backgroundmenu/background_3.jpg") no-repeat center center fixed;
+	background: url("../images/backgroundmenu/background.jpg") no-repeat center center fixed;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;
@@ -16,7 +16,7 @@ body{
 	border:5px;
 	border-bottom: 5px solid gray;
 	padding: 10px 25px;
-	top:50%;
+	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
 }
@@ -66,10 +66,11 @@ input[type="submit"]{
 	height: 50px;
 	font-size: 16px;
 	font-family: sans-serif,Arial;
-	background: #00FF66;
+	background: #2F4F4F;
 	border:5px;
 	color: #fff;
 	font-weight: gray;
+	border: 1px solid #ddd;
 }
 input[type="text"]:focus,
 input[type="password"]:focus{
