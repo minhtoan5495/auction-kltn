@@ -17,14 +17,12 @@
     </div>
     <section class="form_register">
         <form:form action="${pageContext.request.contextPath }/register" method="post"
-                   commandName="userDto" id="saveRegister">
+                   commandName="userDto" id="register">
             <div class="form_input_register">
-                <div class="error">
-                    <form:errors path="username" cssClass="error"/>
-                </div>
+                <form:errors path="username" cssClass="error"/>
                 <div class="form-group">
                     <div class='input-group'>
-                        <form:input class="input" type="text" placeholder="Tên đăng nhập" id="username" name="username"
+                        <form:input type="text" placeholder="Tên đăng nhập" id="username" name="username"
                                     path="username"></form:input>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-user"></span>
@@ -34,13 +32,10 @@
 
             </div>
             <div class="form_input_register">
-                <div class="error">
-                    <form:errors path="email" cssClass="error"/>
-                </div>
+                <form:errors path="email" cssClass="error"/>
                 <div class="form-group">
                     <div class='input-group'>
-                        <form:input class="input" type="email" placeholder="Email" id="email" name="email"
-                                    path="email"></form:input>
+                        <form:input type="email" placeholder="Email" id="email" name="email" path="email"></form:input>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-envelope"></span>
                         </span>
@@ -48,42 +43,34 @@
                 </div>
             </div>
             <div class="form_input_register">
-                <div class="error">
-                    <form:errors path="password" cssClass="error"/>
-                </div>
+                <form:errors path="password" cssClass="error"/>
                 <div class="form-group">
                     <div class='input-group'>
-                        <form:input class="input" type="password" placeholder="Mật khẩu" id="password" name="password"
+                        <form:input type="password" placeholder="Mật khẩu" id="password" name="password"
                                     path="password"></form:input>
-                        <span class="input-group-addon" id="passwordIcon">
+                        <span class="input-group-addon">
                             <span class="glyphicon glyphicon-lock"></span>
                         </span>
                     </div>
                 </div>
             </div>
             <div class="form_input_register">
-                <div class="error">
-                    <form:errors path="confirmPassword" cssClass="error"/>
-                </div>
+                <form:errors path="confirmPassword" cssClass="error"/>
                 <div class="form-group">
                     <div class='input-group'>
-                        <form:input class="input" type="password" placeholder="Xác nhận mật khẩu" id="confirmPassword"
-                                    name="confirmPassword"
-                                    path="confirmPassword" data-rule-password="true"
-                                    data-rule-equalTo="#password"></form:input>
-                        <span class="input-group-addon" id="confirmPasswordIcon">
+                        <form:input type="password" placeholder="Xác nhận mật khẩu" id="confirmPassword" name="confirmPassword"
+                                    path="confirmPassword" data-rule-password="true" data-rule-equalTo="#password"></form:input>
+                        <span class="input-group-addon">
                             <span class="glyphicon glyphicon-lock"></span>
                         </span>
                     </div>
                 </div>
             </div>
             <div class="form_input_register">
-                <div class="error">
-                    <form:errors path="phone" cssClass="error"/>
-                </div>
+                <form:errors path="phone" cssClass="error"/>
                 <div class="form-group">
                     <div class='input-group'>
-                        <form:input class="input" type="text" placeholder="Số điện thoại" id="phone" name="phone"
+                        <form:input type="text" placeholder="Số điện thoại" id="phone" name="phone"
                                     path="phone"></form:input>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-phone"></span>
@@ -92,13 +79,11 @@
                 </div>
             </div>
             <div class="form_input_register">
-                <div class="error">
-                    <form:errors path="address" cssClass="error"/>
-                </div>
+                <form:errors path="address" cssClass="error"/>
                 <div class="form-group">
                     <div class='input-group'>
-                        <form:input class="input" type="text" placeholder="Địa chỉ" id="address" name="address"
-                                    path="address"></form:input>
+                        <form:input type="text" placeholder="Địa chỉ" id="address" name="address"
+                                 path="address"></form:input>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
                         </span>
@@ -106,14 +91,11 @@
                 </div>
             </div>
             <div class="form_input_register">
-                <div class="error">
-                    <form:errors path="birthday" cssClass="error"/>
-                </div>
+                <form:errors path="birthday" cssClass="error"/>
                 <div class="form-group">
                     <div class='input-group date' id='datetimepicker'>
-                        <form:input class="input" type="text" placeholder="Chọn ngày sinh của bạn" id="birthday"
-                                    name="birthday"
-                                    path="birthday"></form:input>
+                            <form:input type="text" placeholder="Chọn ngày sinh của bạn" id="birthday" name="birthday"
+                                        path="birthday"></form:input>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -136,3 +118,25 @@
     </section>
 </div>
 <!-- END CONTENT -->
+<script>
+    $(document).ready(function() {
+        $('#register').validate({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                confirmPassword: {
+                    validators: {
+                        identical: {
+                            field: 'password',
+                            message: 'The password and its confirm are not the same'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>

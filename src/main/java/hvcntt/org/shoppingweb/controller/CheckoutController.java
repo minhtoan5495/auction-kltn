@@ -56,8 +56,11 @@ public class CheckoutController {
     }
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public String checkoutPage(Model model,Principal principal) throws UserNotFoundException, ParseException{
+    	String username=principal.getName();
+    	User user=userService.findByUsername(username);
     	model.addAttribute("district", districtService.getAll());
     	model.addAttribute("city", cityService.getAll());
+    	model.addAttribute("user", user);
     	model.addAttribute("shipping", new ShippingInfo());
         return "checkout";
     }

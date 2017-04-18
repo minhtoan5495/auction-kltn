@@ -15,7 +15,23 @@
 						<div class="panel-heading panel-checkout-order-heading">Địa
 							chỉ giao hàng</div>
 						<div class="panel-body">
-							<form>
+							<c:if test="${not empty user }">
+							<div class="panel-body-info-user">
+								<label>${user.name }</label>
+								<p>${user.address }</p>
+								<p>Quận ${user.district.districtName }</p>
+								<p>Thành phố ${user.city.cityName }</p>
+								<p>Điện thoại:${user.phone }</p>
+							</div>
+						</c:if>
+							<div class="content-checkout-address-other">
+								<div class="panel panel-default panel-checkout-order">
+									<div class="panel-heading" id="panel_checkout_order_toggle">
+										<i class="glyphicon glyphicon-plus"></i>Chọn thông tin địa chỉ
+										giao hàng khác
+									</div>
+									<div class="panel-body" id="panel_checkout_order_toggle_body">
+										<form>
 								<div class="input address_input">
 									<div class="address_input_title">
 										<label class="address_input_label">Họ và tên</label>
@@ -84,78 +100,6 @@
 									</div>
 								</div>
 							</form>
-							<div class="content-checkout-address-other">
-								<div class="panel panel-default panel-checkout-order">
-									<div class="panel-heading" id="panel_checkout_order_toggle">
-										<i class="glyphicon glyphicon-plus"></i>Chọn thông tin địa chỉ
-										giao hàng khác
-									</div>
-									<div class="panel-body" id="panel_checkout_order_toggle_body">
-										<form action="">
-											<div class="input address_input">
-												<div class="address_input_title">
-													<label class="address_input_label">Họ và tên</label>
-												</div>
-												<div class="address_input_field">
-													<input type="text" class="address_field_input"
-														placeholder="Họ & tên">
-												</div>
-											</div>
-											<div class="input address_select">
-												<div class="address_input_title">
-													<label class="address_input_label">Thành phố</label>
-												</div>
-												<div class="address_input_field">
-													<select class="address_field_select">
-														<option>Hồ Chí Minh</option>
-														<option>Đà Nẵng</option>
-														<option>Hà Nội</option>
-													</select>
-												</div>
-											</div>
-											<div class="input address_select">
-												<div class="address_input_title">
-													<label class="address_input_label">Quận/Huyện</label>
-												</div>
-												<div class="address_input_field">
-													<select class="address_field_select">
-														<option>Hồ Chí Minh</option>
-														<option>Đà Nẵng</option>
-														<option>Hà Nội</option>
-													</select>
-												</div>
-											</div>
-											<div class="input address_select">
-												<div class="address_input_title">
-													<label class="address_input_label">Phường xã</label>
-												</div>
-												<div class="address_input_field">
-													<select class="address_field_select">
-														<option>Hồ Chí Minh</option>
-														<option>Đà Nẵng</option>
-														<option>Hà Nội</option>
-													</select>
-												</div>
-											</div>
-											<div class="input address_input">
-												<div class="address_input_title">
-													<label class="address_input_label">Địa chỉ cụ thể</label>
-												</div>
-												<div class="address_input_field">
-													<input type="text" class="address_field_input"
-														placeholder="Vui lòng điền địa chỉ cụ thể chính xác">
-												</div>
-											</div>
-											<div class="input address_input">
-												<div class="address_input_title">
-													<label class="address_input_label">Số điện thoại</label>
-												</div>
-												<div class="address_input_field">
-													<input class="address_field_input" type="text"
-														placeholder="Sđt">
-												</div>
-											</div>
-										</form>
 									</div>
 								</div>
 								<div class="content-checkout-type-ship">
@@ -257,7 +201,7 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn-checkout-continue">TIẾP THEO</button>
+			<button type="submit" class="btn-checkout-continue" style="margin-left: 20px">TIẾP THEO</button>
 		</div>
 		
 		</form:form>

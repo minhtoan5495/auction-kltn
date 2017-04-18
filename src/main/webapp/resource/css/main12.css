@@ -124,7 +124,16 @@ h2.title_item:before{
     height: 200px;
     width: 200px;
 }
-
+.btn-countdown{
+	color: #fff;
+    background-color: rgba(208, 191, 22, 0.42);
+    border-color: rgba(208, 191, 22, 0.42);
+}
+.btn-countdown:hover{
+	color: #fff;
+    background-color: rgba(208, 191, 22, 0.42);
+    border-color: rgba(208, 191, 22, 0.42);
+}
 /*Mobile*/
 .sub-menu-parent { position: relative; }
 .sub-menu-parent:hover .sub-menu {
@@ -427,27 +436,6 @@ margin-top: 15px;
     background: #3A3D42;
     border: 1px solid #3A3D42;
 }
-/* .table-cart-item{
-    border-top:2px solid #ddd;
-    border-left: 2px solid #ddd;
-    border-right: 2px solid #ddd;
-}
-.cart-product-item{
-    border-right: 2px solid #ddd;
-}
-.cart-product-infor{
-    border-right: 2px solid #ddd;
-    border-bottom: 2px solid #ddd;
-}
-.cart-total-price{
-    border-bottom: 2px solid #ddd;
-}
-.cart-empty{
-    border-right: 2px solid #ddd;
-}
-.cart-right-price{
-    border-right: 2px solid #ddd;
-} */
 .product-detail-image{
     border: 1px solid #ddd;
     background: white;
@@ -594,12 +582,6 @@ margin-top: 15px;
 .sumit_comment:hover{
 	background: #ff4f4f none repeat scroll 0 0;
 }
-/* .modal-header{
-	border-bottom: 1px solid #fff;
-}
-.modal-footer{
-	border-top: 1px solid #fff;
-} */
 .btn-modal-comment{
 	border-radius: 0;
 	background: #ff4f4f none repeat scroll 0 0;
@@ -691,6 +673,20 @@ margin-top: 15px;
 }
 .rating-box i.fa fa-star-half-empty{
     color: gray;
+}
+.single-product-infor-timecountdown-title{
+	text-align: center;
+	color: #ec2800;
+	font-size: 11px;
+}
+.single-product-infor-timecountdown{
+	display: flex;
+	margin-top: -20px;
+	margin-left: 85px;
+}
+.single-product-infor-timecountdown p{
+	margin: 32px 0 10px;
+	font-size: 9px;
 }
 .single-product-inforsale{
     margin-top: -35px;
