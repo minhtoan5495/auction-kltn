@@ -74,6 +74,10 @@
 									xem : ${singleProduct.viewNumber}</label>
 								<p>(Còn lại ${singleProduct.stockQuantity} sản phẩm)</p>
 							</div>
+							<div class="product-detail-color">
+								<%-- <p>Màu sắc</p>
+								<p>${singleProduct. } --%>
+							</div>
 							<div class="product-detail-price">
 								<h2>
 									<fmt:formatNumber value="${singleProduct.price}" type="number" />
@@ -169,7 +173,7 @@
 										<div class="modal fade" id="myModal" role="dialog">
 											<div class="modal-dialog">
 												<!-- Modal content-->
-												<div class="modal-content">
+												<div class="modal-content-review">
 													<div class="modal-header">
 														<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
 														<div class="alert alert-success">

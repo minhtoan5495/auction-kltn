@@ -41,7 +41,7 @@
 						<div class="col-sm-10">
 						<c:choose>
 						<c:when test="${invoices.invoiceStatus.invoiceStatusId ==4}">
-						<div class="profile_order_item_check">
+						<div class="profile_order_item_check" style="background: rgba(255, 255, 0, 0.43)">
 								<p>Ngày <fmt:formatDate value="${invoices.createDate }"
 								pattern="dd-MM-yyyy" /></p>
 								<p style="margin-left: 20px">Đơn hàng đã được hủy vì một vài lí do nào đó và được hệ thống xác nhận.

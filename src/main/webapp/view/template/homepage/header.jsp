@@ -79,6 +79,10 @@
                                     <a href="${pageContext.request.contextPath}/viewcart"
                                        class="header_login_link"><i class="glyphicon glyphicon-shopping-cart"></i>Xem giỏ hàng</a>
                                 </div>
+                                <div class="header_login_top pull-right hidden-xs">
+                                    <a href="#"
+                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Kiểm tra đơn hàng</a>
+                                </div>
                             </div>
                         </c:if>
                     </ul>
@@ -231,8 +235,7 @@
     <div class="container no-padding">
         <div class="main_menu_bg">
             <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Home<span
-                        class="home_item">Home</span></a>
+                <a href="#" class="main_menu_item_active">Home</a>
             </div>
             <div class="main_menu_item">
                 <a href="#" class="main_menu_item_link">Công nghệ<span
