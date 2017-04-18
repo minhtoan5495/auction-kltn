@@ -21,6 +21,8 @@
 <!-- Include Date Range Picker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resource/js/register.js"></script>
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker').datepicker({
@@ -30,25 +32,5 @@
             pickerPosition: "bottom-left"
         });
     });
-//    $(document).ready(function() {
-//        $('#saveRegister').ready(function(event){
-//
-//            data = $('#password').val();
-//            var len = data.length;
-//
-//            if(len >0 && len < 6) {
-//                alert("Độ dài mật khẩu phải lớn hơn 6 !");
-//                // Prevent form submission
-//                event.preventDefault();
-//            }
-//
-//            if($('#password').val() != $('#confirmPassword').val()) {
-//                alert("Nhập lại mật khẩu không chính xác !");
-//                // Prevent form submission
-//                event.preventDefault();
-//            }
-//
-//        });
-//    });
 </script>
 </html>

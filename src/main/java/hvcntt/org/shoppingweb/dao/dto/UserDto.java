@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,7 +16,10 @@ public class UserDto implements Serializable {
 
     private static final long serialVersionUID = 7907931692605937196L;
 
-    @NotBlank
+    @Pattern(regexp = "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$")
+    private String name;
+
+    @Size(min = 6, max = 12)
     private String username;
 
     @NotBlank
@@ -26,8 +30,8 @@ public class UserDto implements Serializable {
     @Email
     private String email;
 
-    @NotBlank
-    private String birthday;
+    @NotNull
+    private Date birthday;
 
     @Size(max = 12, min = 6)
     private String password;
@@ -35,15 +39,23 @@ public class UserDto implements Serializable {
     @Phone
     private String phone;
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
     public UserDto() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
@@ -54,14 +66,15 @@ public class UserDto implements Serializable {
         this.address = address;
     }
 
-    public UserDto(String address, String birthday, String email, String password, String phone, String username, String confirmPassword) {
+    public UserDto(String name, String username, String address, String confirmPassword, String email, Date birthday, String password, String phone) {
+        this.name = name;
+        this.username = username;
         this.address = address;
-        this.birthday = birthday;
+        this.confirmPassword = confirmPassword;
         this.email = email;
+        this.birthday = birthday;
         this.password = password;
         this.phone = phone;
-        this.username = username;
-        this.confirmPassword = confirmPassword;
     }
 
     public String getEmail() {

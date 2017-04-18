@@ -20,14 +20,24 @@
             <input type="hidden" name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
             <div class="form_input">
-                <input type="text" placeholder="Tên đăng nhập" id="username"
-                       name="username" required="required">
-                <i class="fa fa-user"></i>
+                <div class='input-group'>
+                    <input data-validation="required"
+                           data-validation-error-msg="Bạn chưa nhập tài khoản " type="text" placeholder="Tên đăng nhập" id="username"
+                           name="username">
+                    <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                </div>
             </div>
             <div class="form_input">
-                <input type="password" placeholder="Mật khẩu" name="password"
-                       id="password" required="required">
-                <i class="fa fa-lock"></i>
+                <div class='input-group'>
+                    <input data-validation="required"
+                           data-validation-error-msg="Bạn chưa nhập password" type="password" placeholder="Mật khẩu" name="password"
+                           id="password">
+                    <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </span>
+                </div>
             </div>
             <a href="#"
                style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Quên mật khẩu

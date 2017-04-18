@@ -50,22 +50,17 @@ public class UserServiceImpl implements UserService {
         }
         List<Role> roles = new ArrayList<>();
         User user = new User();
+        user.setName(userDto.getName());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setUsername(userDto.getUsername());
         user.setAddress(userDto.getAddress());
         user.setPhone(userDto.getPhone());
         user.setEmail(userDto.getEmail());
-        user.setBirthday(convertStringToDate(userDto.getBirthday()));
+        user.setBirthday(userDto.getBirthday());
         user.setAccountNonLocked(true);
         roles.add(role);
         user.setRoles(roles);
         return user;
-    }
-
-    private Date convertStringToDate(String input) throws ParseException {
-        DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-        Date date = format.parse(input);
-        return date;
     }
 
     @Override
