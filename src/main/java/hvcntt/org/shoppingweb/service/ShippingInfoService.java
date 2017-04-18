@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;/** * Created by Nguyen on 12/04/2017. */public interface ShippingInfoService {	ShippingInfo create(ShippingInfo shippingInfo);}
+package hvcntt.org.shoppingweb.service;import java.text.ParseException;import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;/** * Created by Nguyen on 12/04/2017. */public interface ShippingInfoService {	ShippingInfo create(ShippingInfo shippingInfo) throws ParseException;}

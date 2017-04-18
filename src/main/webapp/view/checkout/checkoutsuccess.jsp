@@ -67,11 +67,6 @@
 										pattern="dd-MM-yyyy" /></label>
 				<div class="checkout_success_detail_order_price pull-right">
 					<label><fmt:formatNumber value="${cart.quantity * cart.product.price}" type="number" />đ</label>
-					<p>
-						<strike>700,000đ</strike>
-					</p>
-					<p style="color: rgba(255, 0, 0, 0.74); margin-top: -10px">Tiết
-						kiệm 50%</p>
 				</div>
 			</div>
 				</c:forEach>
