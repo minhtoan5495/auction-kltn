@@ -116,21 +116,10 @@
 										<!-- 	<div class="single-product-inforsale">
                                             Giảm giá 25%
                                          </div> -->
-                                         <div class="single-product-info-timecountdown">
-                                         	<div class="single-product-info-timecountdown-title">
-                                         	<p>THỜI GIAN CÒN LẠI</p>
-                                         	</div>
-                                         	<div class="single-product-info-timecountdown-item">
-                                         		<h3>12</h3>
-                                         		<p>GIỜ</p>
-                                         		<h3>12</h3>
-                                         		<p>PHÚT</p>
-                                         	</div>
-                                         </div>
 										<div class="single-product-infor-name">
 											<p>
-												<i class="glyphicon glyphicon-fire"> ${listProduct.viewNumber }</i>
-												lượt xem
+												<i class="glyphicon glyphicon-fire">
+													${listProduct.viewNumber }</i> lượt xem
 											</p>
 										</div>
 										<div class="single-product-inforprice">
@@ -140,7 +129,89 @@
 											</p>
 										</div>
 										<div class="single-product-inforsale">
-											<a href="${pageContext.request.contextPath }/cart?idproduct=${listProduct.productId}"><button class="btn btn-success btn-countdown"><i class="fa fa-shopping-cart"></i> MUA NGAY</button></a>
+											<a
+												href="${pageContext.request.contextPath }/cart?idproduct=${listProduct.productId}"><button
+													class="btn btn-success btn-countdown">
+													<i class="fa fa-shopping-cart"></i> MUA NGAY
+												</button></a>
+										</div>
+										<div class="single-product-inforrating">
+											<div class="rating-box">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star-half-empty" style="color: gray"></i> <br>
+												<span>(Có 0 nhận xét)</span>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<div class="content-page-title">
+					<h2 class="content-paget-title-item">SẢN PHẨM ĐẤU GIÁ</h2>
+				</div>
+				<div class="row">
+					<h4>${message}</h4>
+					<c:forEach var="listProduct2" items="${listProduct2 }">
+						<div class="col-sm-3">
+							<div class="new-product">
+								<div class="single-product-item">
+									<div class="single-product-image">
+										<a
+											href="${pageContext.request.contextPath }/detail?idproduct=${listProduct2.productId}"><img
+											src="resource/images/banner/${listProduct2.images.get(i).getImageUrl() }"></a>
+										<div class="overplay-content">
+											<ul>
+												<li><a
+													href="${pageContext.request.contextPath }/detail?idproduct=${listProduct2.productId}"><i
+														class="fa fa-search"></i></a></li>
+												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+												</li>
+												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+												<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="single-product-showinfor">
+										<div class="single-product-infor-name">
+											<p class="single-product-infor-name-title">${listProduct2.name }</p>
+										</div>
+										<!-- 	<div class="single-product-inforsale">
+                                            Giảm giá 25%
+                                         </div> -->
+										<div class="single-product-info-timecountdown">
+											<div class="single-product-info-timecountdown-title">
+												<p>THỜI GIAN CÒN LẠI</p>
+											</div>
+											<div class="single-product-info-timecountdown-item">
+												<h3>12</h3>
+												<p>GIỜ</p>
+												<h3>12</h3>
+												<p>PHÚT</p>
+											</div>
+										</div>
+										<div class="single-product-infor-name">
+											<p>
+												<i class="glyphicon glyphicon-fire">
+													${listProduct2.viewNumber }</i> lượt xem
+											</p>
+										</div>
+										<div class="single-product-inforprice">
+											<p>
+												<fmt:formatNumber value="${listProduct2.price}"
+													type="number" />
+												đ
+											</p>
+										</div>
+										<div class="single-product-inforsale">
+											<a
+												href="${pageContext.request.contextPath }/detail?idproduct=${listProduct2.productId}"><button
+													class="btn btn-success btn-countdown">
+													<i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
+												</button></a>
 										</div>
 										<div class="single-product-inforreview">
 											<%-- <span>(${listProduct.commentItems.size() } nhận xét)</span> --%>

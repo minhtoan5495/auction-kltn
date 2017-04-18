@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.entity.Category;
+import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 import hvcntt.org.shoppingweb.service.CategoryService;
 import hvcntt.org.shoppingweb.service.ProductService;
+import hvcntt.org.shoppingweb.service.TransactionTypeService;
 
 @Controller
 public class HomePageController {
@@ -23,6 +25,8 @@ public class HomePageController {
 	CategoryService categoryservice;
 	@Autowired
 	ProductService productservice;
+	@Autowired
+	TransactionTypeService transactionService;
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/home")
 	public String homePage(Model model,HttpSession session,HttpServletRequest request){
@@ -30,7 +34,10 @@ public class HomePageController {
 		List<CartItem> inFo= (List<CartItem>) session.getAttribute("cart");
 		List<Category> listMenu=categoryservice.getCategoryParent();
 		model.addAttribute("listMenu",listMenu);
-		model.addAttribute("listProduct", productservice.getAll());
+		TransactionType transactionType=transactionService.findByName("BÁN");
+		model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
+		TransactionType transactionType2=transactionService.findByName("ĐẤU GIÁ");
+		model.addAttribute("listProduct2", productservice.findByProductTransactionType(transactionType2));
 		return "home";
 	}
 	@RequestMapping(value="/searchname")
