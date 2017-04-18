@@ -8,6 +8,7 @@ import java.util.List;
 import hvcntt.org.shoppingweb.dao.dto.RatingDto;
 import hvcntt.org.shoppingweb.dao.entity.Image;
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.Rating;
 import hvcntt.org.shoppingweb.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,33 +44,50 @@ public class DetailPageController {
         setRememberMeTargetUrlToSession(request, productId);
         Product product = productService.findOne(productId);
         if (existId(productId)) {
-        	productService.updateView(productId);
+            productService.updateView(productId);
         }
         List<Image> imgs = imageservice.findByProduct(product);
+        int rating = getAverage(product.getRatings());
+        model.addAttribute("ratingNumber", rating);
         model.addAttribute("ratingDto", new RatingDto());
         model.addAttribute("image", imgs);
         model.addAttribute("singleProduct", product);
         return "detailpage";
     }
 
+    private int getAverage(List<Rating> ratings) {
+        int ratingTotal = 0;
+        if(ratings.size() == 0){
+            return ratingTotal;
+        }else {
+            for (Rating rating : ratings
+                    ) {
+                ratingTotal += rating.getRating();
+            }
+
+            return ratingTotal / ratings.size();
+        }
+    }
+
     private boolean existId(String idproduct) {
         List<Product> listP = productService.getAll();
         for (int i = 0; i < listP.size(); i++) {
-            if (listP.get(i).getProductId().equals(idproduct) ) {
+            if (listP.get(i).getProductId().equals(idproduct)) {
                 return true;
             }
         }
         return false;
     }
-//	@RequestMapping(value="/detail",method=RequestMethod.POST)
+
+    //	@RequestMapping(value="/detail",method=RequestMethod.POST)
 //	public String createComment(@ModelAttribute("comment")Comment comment){
 //		commentService.create(comment);;
 //		return "redirect:/home";
 //	}
-private void setRememberMeTargetUrlToSession(HttpServletRequest request, String productId){
-    HttpSession session = request.getSession(false);
-    if(session!=null){
-        session.setAttribute("targetUrl", "/detail/" + productId);
+    private void setRememberMeTargetUrlToSession(HttpServletRequest request, String productId) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.setAttribute("targetUrl", "/detail/" + productId);
+        }
     }
-}
 }
