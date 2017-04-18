@@ -178,7 +178,6 @@
                                                 </div>
                                                 <div class="cart_modal_info">
                                                     <p>${cart.product.name}</p>
-                                                    <p>${cart.product.description }</p>
                                                     <p>${cart.quantity }cái</p>
                                                     <label><fmt:formatNumber
                                                             value="${cart.product.price}" type="number" />đ</label>

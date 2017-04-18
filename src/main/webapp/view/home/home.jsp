@@ -116,6 +116,17 @@
 										<!-- 	<div class="single-product-inforsale">
                                             Giảm giá 25%
                                          </div> -->
+                                         <div class="single-product-info-timecountdown">
+                                         	<div class="single-product-info-timecountdown-title">
+                                         	<p>THỜI GIAN CÒN LẠI</p>
+                                         	</div>
+                                         	<div class="single-product-info-timecountdown-item">
+                                         		<h3>12</h3>
+                                         		<p>GIỜ</p>
+                                         		<h3>12</h3>
+                                         		<p>PHÚT</p>
+                                         	</div>
+                                         </div>
 										<div class="single-product-infor-name">
 											<p>
 												<i class="glyphicon glyphicon-fire"> ${listProduct.viewNumber }</i>
@@ -129,7 +140,7 @@
 											</p>
 										</div>
 										<div class="single-product-inforsale">
-											<button class="btn btn-success btn-countdown">20:17:80</button>
+											<a href="${pageContext.request.contextPath }/cart?idproduct=${listProduct.productId}"><button class="btn btn-success btn-countdown"><i class="fa fa-shopping-cart"></i> MUA NGAY</button></a>
 										</div>
 										<div class="single-product-inforreview">
 											<%-- <span>(${listProduct.commentItems.size() } nhận xét)</span> --%>

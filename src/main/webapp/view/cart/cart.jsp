@@ -111,7 +111,7 @@
 													</div>
 												</div>
 												<div class="modal-body">
-													<a href="${pageContext.request.contextPath }/login"><button
+													<a href="${pageContext.request.contextPath }/checkout"><button
 															class="btn btn-danger btn-modal-comment">Đăng
 															nhập tại đây</button></a>
 												</div>

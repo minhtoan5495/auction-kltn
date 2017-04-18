@@ -607,6 +607,20 @@ margin-top: 15px;
 .title-comments{
 	border-radius: 0px;
 }
+.single-product-info-timecountdown-title{
+	text-align: center;
+	font-size: 11px;
+	color: #f37021;
+}
+.single-product-info-timecountdown-item{
+	display: flex;
+	margin-top: -20px;
+	margin-left: 85px;	
+}
+.single-product-info-timecountdown-item p{
+	margin: 32px 0 10px;
+	font-size: 9px
+}
 .single-product-image{
     position: relative;
     overflow: hidden;
