@@ -51,13 +51,6 @@
 										<img id="imageContainer" name="image_main"
 											src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }">
 									</div>
-									<%-- 	<ul class="nav navbar-nav">
-										<c:forEach var="image" items="${singleProduct.imageItem }">
-											<li class="image-list"><img
-												src="resource/images/banner/${image.link_image }"
-												style="width: 65px; height: 100px; padding: 5px"></li>
-										</c:forEach>
-									</ul> --%>
 								</div>
 							</div>
 						</div>
@@ -75,8 +68,8 @@
 								<p>(Còn lại ${singleProduct.stockQuantity} sản phẩm)</p>
 							</div>
 							<div class="product-detail-color">
-								<%-- <p>Màu sắc</p>
-								<p>${singleProduct. } --%>
+								<%--<p>Màu sắc</p>--%>
+								<%--<p>${singleProduct. }</p>--%>
 							</div>
 							<div class="product-detail-price">
 								<h2>
@@ -89,26 +82,28 @@
 							</div>
 							<div class="box-detail-information">
 								<form class="form-detail-information">
-									<div class="form-detail-size">
-										<label>Thời gian còn lại</label>
-										<div class="form-detail-timecountdown">
-											<h3>12</h3>
-											<p>Giờ</p>
-											<h3>12</h3>
-											<p>Phút</p>
+									<c:if test="${singleProduct.transactionType.transactionTypeId == 2}">
+										<div class="form-detail-size">
+											<label>Thời gian còn lại</label>
+											<div class="form-detail-timecountdown">
+												<h3>12</h3>
+												<p>Giờ</p>
+												<h3>12</h3>
+												<p>Phút</p>
+											</div>
 										</div>
-									</div>
-									<div class="form-detail-quantity">
-										<label>Giá đấu:</label> <input
-											class="form-control input-field" type="text">
+										<div class="form-detail-quantity">
+											<label>Giá đấu:</label> <input
+												class="form-control input-field" type="text">
 
-									</div>
+										</div>
+									</c:if>
 									<div class="form-detail-addcart">
 									<c:choose>
-										<c:when test="${singleProduct.transactionType.transactionTypeId == 1 }">
+										<c:when test="${singleProduct.transactionType.transactionTypeId == 2 }">
 										<div class="submit-button">
 											<a href="#" class="btn submit-btn"> <span><img
-													class="" src="resource/css/images/icon-title.png"></img>ĐẤU GIÁ</span>
+													class="" src="resource/css/images/icon-title.png">ĐẤU GIÁ</span>
 											</a>
 										</div>
 										</c:when>
@@ -121,7 +116,7 @@
 											</a>
 										</div>
 										</c:otherwise>
-										</c:choose>
+									</c:choose>
 									</div>
 									<p>
 										<br>
@@ -175,7 +170,6 @@
 												<!-- Modal content-->
 												<div class="modal-content-review">
 													<div class="modal-header">
-														<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
 														<div class="alert alert-success">
 															<strong>Cảnh báo!</strong> Bạn phải đăng nhập mới được
 															bình luận sản phẩm này
@@ -202,33 +196,24 @@
 													<label>Vui lòng chia sẻ nhận xét đánh giá về sản
 														phẩm này</label>
 													<p>Bình chọn sản phẩm này</p>
-													<div class="rating_star_item">
-														<a href="#"><img alt=""
-															src="${pageContext.request.contextPath }/resource/images/backgroundmenu/rating_3.png"></a>
-														<a href="#"><img alt=""
-															src="${pageContext.request.contextPath }/resource/images/backgroundmenu/rating_3.png"></a>
-														<a href="#"><img alt=""
-															src="${pageContext.request.contextPath }/resource/images/backgroundmenu/rating_3.png"></a>
-														<a href="#"><img alt=""
-															src="${pageContext.request.contextPath }/resource/images/backgroundmenu/rating_2.png"></a>
-														<a href="#"><img alt=""
-															src="${pageContext.request.contextPath }/resource/images/backgroundmenu/rating_3.png"></a>
-													</div>
-													<div class="status-upload">
-														<%-- 	<form:form commandName="CommentDto"
-															action="${pageContext.request.contextPath }/comment/${singleProduct.productId }">
-															<p>Nhận xét tổng quan</p>
-															<form:input class="form-control title-comments"
-																placeholder="Nhận xét tổng quan" path="title"></form:input>
-															<p>Mô tả đánh giá</p>
-															<form:textarea
+													<form:form commandName="ratingDto" method="post"
+															   action="${pageContext.request.contextPath }/rating/${singleProduct.productId}">
+														<p><div id="ratingStars">
+														<form:input class="form-control title-comments" id="ratingInput"
+																	type="hidden" path="rating"></form:input>
+														</div></p>
+														<p>Nhận xét tổng quan</p>
+														<form:input class="form-control title-comments"
+																	placeholder="Nhận xét tổng quan" path="title"></form:input>
+														<p>Mô tả đánh giá</p>
+														<form:textarea
 																placeholder="Viết đánh giá nhận xét cho sản phẩm này..."
 																path="content" class="comment_input"></form:textarea>
-															<button type="submit"
-																class="btn btn-success sumit_comment">Bình luận</button>
-														</form:form> --%>
+														<button type="submit"
+																class="btn btn-success sumit_comment">Bình chọn</button>
+													</form:form>
+													<div class="status-upload">
 													</div>
-													<!-- Status Upload  -->
 												</div>
 											</div>
 										</div>
@@ -241,8 +226,8 @@
 										<div class="col-sm-12">
 								<h2 style="font-size: 15px; font-weight: bold;">Nhận xét
 									sản phẩm ${singleProduct.name }</h2>
-								<%-- <label>Có ${singleProduct.commentItems.size() } nhận xét</label> --%>
-								<%-- <c:forEach var="comment" items="${singleProduct.commentItems }"> --%>
+								<label>Có ${singleProduct.ratings.size() } nhận xét</label>
+									<c:forEach var="rating" items="${singleProduct.ratings }">
 									<div class="comment-items">
 										<img class="img-responsive user-photo"
 											src="resource/images/avatar/avartar-cmt.png"
@@ -250,20 +235,20 @@
 										<div class="panel panel-default"
 											style="margin-left: 40px; margin-top: -30px;">
 											<div class="panel-heading comment-heading">
-												<%-- <label><a href="#">${comment.user.username }</a></label> --%>
+												 <label><a href="#">${rating.user.username }</a></label>
 												<p class="memberpost-infor">
 													Đã comment vào
 													<%-- <fmt:formatDate value="${comment.createdate }"
 														pattern="yyyy-MM-dd" /> --%>
 												</p>
 											</div>
-											<%-- <label class="memberpost-infor">${comment.title }</label> --%>
+											<label class="memberpost-infor">${rating.ratingTitle }</label>
 											<div class="content-comment">
-												<%-- <p>${comment.content }</p> --%>
+												<p>${rating.ratingContent }</p>
 											</div>
 										</div>
 									</div>
-							<%-- 	</c:forEach> --%>
+								</c:forEach>
 							</div>
 
 						</div>

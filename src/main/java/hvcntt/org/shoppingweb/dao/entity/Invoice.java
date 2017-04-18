@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity
@@ -13,9 +14,8 @@ public class Invoice implements Serializable {
 	private static final long serialVersionUID = -183157478453777407L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoice_id")
-	private int invoiceId;
+	private String invoiceId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
@@ -41,13 +41,13 @@ public class Invoice implements Serializable {
 	private List<ShippingInfo> shippingInfos;
 
 	public Invoice() {
-		//setInvoiceId(UUID.randomUUID().toString());
+		setInvoiceId(UUID.randomUUID().toString());
 	}
 
-	public int getInvoiceId() {
+	public String getInvoiceId() {
 		return invoiceId;
 	}
-	public void setInvoiceId(int invoiceId) {
+	public void setInvoiceId(String invoiceId) {
 		this.invoiceId = invoiceId;
 	}
 	public Date getCreateDate() {

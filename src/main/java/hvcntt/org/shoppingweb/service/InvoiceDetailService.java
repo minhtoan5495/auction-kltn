@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.InvoiceDetail;/** * Created by Nguyen on 12/04/2017. */public interface InvoiceDetailService {		public InvoiceDetail add(InvoiceDetail invoiceDetail);	InvoiceDetail findOne(int id);}
+package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.InvoiceDetail;/** * Created by Nguyen on 12/04/2017. */public interface InvoiceDetailService {		InvoiceDetail add(InvoiceDetail invoiceDetail);	InvoiceDetail findOne(int id);}

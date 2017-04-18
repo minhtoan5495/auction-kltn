@@ -1,6 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.*;
 
 
@@ -11,9 +12,8 @@ public class InvoiceDetail implements Serializable {
 	private static final long serialVersionUID = -4137213387456601660L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoice_detail_id")
-	private int invoiceDetailId;
+	private String invoiceDetailId;
 
 	private float price;
 
@@ -30,23 +30,22 @@ public class InvoiceDetail implements Serializable {
 	private Product product;
 
 	public InvoiceDetail() {
+		setInvoiceDetailId(UUID.randomUUID().toString());
 	}
 	
 	public InvoiceDetail(float price, int quantity, Invoice invoice, Product product) {
-		super();
+		setInvoiceDetailId(UUID.randomUUID().toString());
 		this.price = price;
 		this.quantity = quantity;
 		this.invoice = invoice;
 		this.product = product;
 	}
 
-
-
-	public int getInvoiceDetailId() {
+	public String getInvoiceDetailId() {
 		return invoiceDetailId;
 	}
 
-	public void setInvoiceDetailId(int invoiceDetailId) {
+	public void setInvoiceDetailId(String invoiceDetailId) {
 		this.invoiceDetailId = invoiceDetailId;
 	}
 

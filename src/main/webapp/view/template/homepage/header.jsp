@@ -39,9 +39,9 @@
                                 <li class="dropdown"><a href="#"
                                                         class="dropdown-toggle user_avat_toggle" data-toggle="dropdown">
                                     <img alt="" src="resource/images/avatar/google_avatar.png"
-                                         height="27" width="27" data-ytimg="1" onload=";__ytRIL(this)"
+                                         height="27" width="27" data-ytimg="1"
                                          aria-hidden="true"
-                                         style="margin-top: -46px; margin-left: -6px"> <!--  <b class="caret"></b> -->
+                                         style="margin-top: -46px; margin-left: -6px">
                                 </a>
                                     <ul class="dropdown-menu item-settings">
                                         <security:authorize access="isAuthenticated()">

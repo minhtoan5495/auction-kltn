@@ -20,6 +20,8 @@
     <link href="${pageContext.request.contextPath }/resource/css/cart.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resource/css/checkout.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resource/css/submenu_v2.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/rating/style.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/rating/rating.min.css">
 </head>
 <body>
 
@@ -37,10 +39,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resource/js/main.js"></script>
 <script  src="${pageContext.request.contextPath }/resource/js/photoZoom.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/customer.js"></script>
-<script type="text/javascript">
-    $(document).ready(function (){
-        $("#imageContainer").photoZoom();
-    });
-</script>
-
+<script src="${pageContext.request.contextPath }/resource/js/rating/rating.min.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/rating.js"></script>
 </html>

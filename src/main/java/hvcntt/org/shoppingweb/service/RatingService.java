@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;/** * Created by Nguyen on 12/04/2017. */public interface RatingService {}
+package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.dto.RatingDto;import hvcntt.org.shoppingweb.dao.entity.Product;import hvcntt.org.shoppingweb.dao.entity.Rating;import hvcntt.org.shoppingweb.dao.entity.User;import java.util.List;/** * Created by Nguyen on 12/04/2017. */public interface RatingService {    void save(RatingDto ratingDto, Product product, User user);    List<Rating> findAll();}

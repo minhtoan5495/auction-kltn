@@ -50,8 +50,4 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         }
         super.onAuthenticationFailure(request, response, exception);
     }
-
-    public boolean isExists(String username) {
-        return userAttemptsService.checkAttempts(username);
-    }
 }

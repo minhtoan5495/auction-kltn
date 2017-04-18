@@ -18,7 +18,7 @@
                     authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler"
                     authentication-failure-handler-ref="loginFailureHandler"
                     authentication-failure-url="/login?error"
-                    default-target-url="/home"
+                    default-target-url="/"
         />
         <remember-me key="uniqueAndSecret" token-validity-seconds="86400"/>
         <logout logout-success-url="/login?logout"/>
@@ -31,7 +31,7 @@
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="userDetailsServiceImpl" class="hvcntt.org.shoppingweb.service.impl.UserDetailsServiceImpl"></beans:bean>
+    <beans:bean id="userDetailsServiceImpl" class="hvcntt.org.shoppingweb.service.impl.UserDetailsServiceImpl" autowire="byType"></beans:bean>
 
     <beans:bean id="encoder"
           class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
@@ -41,5 +41,4 @@
     <beans:bean id="loginFailureHandler" class="hvcntt.org.shoppingweb.security.LoginFailureHandler">
         <beans:property name="defaultFailureUrl" value="/login?error" />
     </beans:bean>
-
 </beans:beans>

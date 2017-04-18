@@ -1,6 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.*;
 
 
@@ -11,7 +12,6 @@ public class Rating implements Serializable {
 	private static final long serialVersionUID = 269554955445124013L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="rating_id")
 	private String ratingId;
 
@@ -34,6 +34,7 @@ public class Rating implements Serializable {
 	private Product product;
 
 	public Rating() {
+		setRatingId(UUID.randomUUID().toString());
 	}
 
 	public String getRatingId() {
