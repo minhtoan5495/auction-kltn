@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.service.impl;
 import java.util.List;
 
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 import hvcntt.org.shoppingweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,11 @@ public class ProductServiceImpl implements ProductService {
 	public void updateView(String idproduct) {
 		// TODO Auto-generated method stub
 		 productrepo.updateView(idproduct);
+	}
+	@Override
+	public List<Product> findByProductTransactionType(TransactionType transactionType) {
+		// TODO Auto-generated method stub
+		return productrepo.findByTransactionType(transactionType);
 	}
 
 }
