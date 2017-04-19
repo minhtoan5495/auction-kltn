@@ -41,7 +41,7 @@
                                     <img alt="" src="resource/images/avatar/google_avatar.png"
                                          height="27" width="27" data-ytimg="1"
                                          aria-hidden="true"
-                                         style="margin-top: -46px; margin-left: -6px">
+                                         style="margin-top: -60px; margin-left: -6px">
                                 </a>
                                     <ul class="dropdown-menu item-settings">
                                         <security:authorize access="isAuthenticated()">

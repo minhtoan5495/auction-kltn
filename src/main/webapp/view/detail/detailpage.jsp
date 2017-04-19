@@ -61,8 +61,8 @@
                                 style="font-family: 'Bitter', serif">${singleProduct.name }</h2>
                             <p class="detail-product-id"
                                style="font-family: 'Bitter', serif">Lượt bình chọn :
-                                <input type="hidden" value="${ratingNumber}" id="ratingNumber"><div id="ratingShow"></div>
-                            </p>
+                                <input type="hidden" value="${ratingNumber}" id="ratingNumber"></p><div id="ratingShow"></div>
+                            <p>(${ratingNumber} sao)</p>
                             <p class="detail-product-id"
                                style="font-family: 'Bitter', serif">Mã sản phẩm
                                 :${singleProduct.productId }</p>

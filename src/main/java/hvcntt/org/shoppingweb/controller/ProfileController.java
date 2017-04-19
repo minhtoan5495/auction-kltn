@@ -35,7 +35,7 @@ public class ProfileController {
 		return "profile";
 	}
 	@RequestMapping(value="/orderdetail")
-	public String getOrderDetail(Model model,@RequestParam("invoiceId")int invoiceId,Principal principal) throws UserNotFoundException{
+	public String getOrderDetail(Model model,@RequestParam("invoiceId")String invoiceId,Principal principal) throws UserNotFoundException{
 		Invoice invoice=invoiceService.findOne(invoiceId);
 		String username=principal.getName();
 		model.addAttribute("user", userService.findByUsername(username));
@@ -44,7 +44,7 @@ public class ProfileController {
 		return "orderdetail";
 	}
 	@RequestMapping("/cancelOrder")
-	public String cancelOrder(@RequestParam("invoiceId")int invoiceId){
+	public String cancelOrder(@RequestParam("invoiceId")String invoiceId){
 		Invoice invoice=invoiceService.findOne(invoiceId);
 		invoice.setInvoiceStatus(invoiceStatusService.findByName("Đã hủy đơn hàng"));
 		invoiceService.save(invoice);

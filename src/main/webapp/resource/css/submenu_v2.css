@@ -127,7 +127,6 @@ body {
     height: 50px;
     position: relative;
     float: left;
-    border-right: 1px dotted;
 }
 
 .main_menu_item a {

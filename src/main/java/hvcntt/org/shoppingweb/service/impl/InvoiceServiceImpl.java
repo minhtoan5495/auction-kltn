@@ -31,7 +31,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		return invoiceRepository.save(invoice);
 	}
 	@Override
-	public Invoice findOne(int id) {
+	public Invoice findOne(String id) {
 		// TODO Auto-generated method stub
 		return invoiceRepository.findOne(id);
 	}
