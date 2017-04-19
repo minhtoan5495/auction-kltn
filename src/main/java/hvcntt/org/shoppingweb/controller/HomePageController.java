@@ -34,9 +34,9 @@ public class HomePageController {
 		List<CartItem> inFo= (List<CartItem>) session.getAttribute("cart");
 		List<Category> listMenu=categoryservice.getCategoryParent();
 		model.addAttribute("listMenu",listMenu);
-		TransactionType transactionType=transactionService.findByName("BÁN");
+		TransactionType transactionType=transactionService.findByName("Sale");
 		model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
-		TransactionType transactionType2=transactionService.findByName("ĐẤU GIÁ");
+		TransactionType transactionType2=transactionService.findByName("Auction");
 		model.addAttribute("listProduct2", productservice.findByProductTransactionType(transactionType2));
 		return "home";
 	}

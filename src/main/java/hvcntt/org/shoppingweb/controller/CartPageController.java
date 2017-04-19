@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.service.ProductService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CartPageController {
@@ -23,27 +24,27 @@ public class CartPageController {
     @Autowired
     private ProductService productservice;
 
-    @SuppressWarnings("unchecked")
-	@RequestMapping(value = "/cart")
-    public String cartPage(@RequestParam("idproduct") String idproduct, Model model, HttpSession session) {
-        Product product = productservice.findOne(idproduct);
-        List<CartItem> items = new ArrayList<>();
-        if (session.getAttribute("cart") == null) {
-            items.add(new CartItem(1, product));
-            session.setAttribute("cart", items);
-        } else {
-            items = (List<CartItem>) session.getAttribute("cart");
-            int index = isExist(idproduct, session);
-            if (index == -1) {
-                items.add(new CartItem(1, product));
-            } else {
-                int quantity = items.get(index).getQuantity() + 1;
-                items.get(index).setQuantity(quantity);
-            }
-            session.setAttribute("cart", items);
-        }
-        return "cart";
-    }
+//    @SuppressWarnings("unchecked")
+//	@RequestMapping(value = "/cart", method = RequestMethod.GET)
+//    public String cartPage(@RequestParam("idproduct") String idproduct, HttpSession session) {
+//        Product product = productservice.findOne(idproduct);
+//        List<CartItem> items = new ArrayList<>();
+//        if (session.getAttribute("cart") == null) {
+//            items.add(new CartItem(1, product));
+//            session.setAttribute("cart", items);
+//        } else {
+//            items = (List<CartItem>) session.getAttribute("cart");
+//            int index = isExist(idproduct, session);
+//            if (index == -1) {
+//                items.add(new CartItem(1, product));
+//            } else {
+//                int quantity = items.get(index).getQuantity() + 1;
+//                items.get(index).setQuantity(quantity);
+//            }
+//            session.setAttribute("cart", items);
+//        }
+//        return "cart";
+//    }
 
     private int isExist(String idproduct, HttpSession session) {
         @SuppressWarnings("unchecked")

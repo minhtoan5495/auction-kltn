@@ -36,9 +36,12 @@
 </body>
 <script src="${pageContext.request.contextPath }/resource/js/jquery-1.8.3.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/angular.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resource/js/main.js"></script>
 <script  src="${pageContext.request.contextPath }/resource/js/photoZoom.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/customer.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/rating/rating.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/rating.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/cart.js"></script>
+<script type="text/javascript">var rootUrl="<%=request.getContextPath()%>";</script>
 </html>

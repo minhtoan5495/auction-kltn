@@ -44,7 +44,7 @@ public class CheckoutController {
 	InvoiceService invoiceService;
 
 	@RequestMapping(value = "/checkoutsuccess", method = RequestMethod.GET)
-	public String checkoutSuccess(Model model) {
+	public String checkoutSuccess() {
 		return "checkoutsuccess";
 	}
 

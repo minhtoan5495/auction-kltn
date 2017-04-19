@@ -129,7 +129,7 @@
                     </div>
                     <c:if test="${not empty cart }">
                         <c:set var="sum"
-                               value="${sum +cart.get(i).getProduct().getPrice()+cart.get(i).getQuantity() }"></c:set>
+                               value="${sum +cart.get(i).getProduct().getPrice()*cart.get(i).getQuantity() }"></c:set>
                         <div class="modal fade" id="myCart" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
@@ -178,7 +178,7 @@
                                                 </div>
                                                 <div class="cart_modal_info">
                                                     <p>${cart.product.name}</p>
-                                                    <p>${cart.quantity }cái</p>
+                                                    <p>${cart.quantity } cái</p>
                                                     <label><fmt:formatNumber
                                                             value="${cart.product.price}" type="number" />đ</label>
                                                 </div>
