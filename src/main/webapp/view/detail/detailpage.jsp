@@ -41,7 +41,7 @@
                 <p>Ngày sản xuất:<a><fmt:formatDate value="${singleProduct.manufactureDate }"
                                                     pattern="dd-MM-yyyy"/></a></p>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="detail-product-item">
@@ -115,7 +115,7 @@
                                             <c:otherwise>
                                                 <div class="submit-button">
                                                     <a
-                                                            href="${pageContext.request.contextPath }/cart?idproduct=${singleProduct.productId}"
+                                                            href="${pageContext.request.contextPath }/addCart?idproduct=${singleProduct.productId}"
                                                             class="btn submit-btn"> <span><i
                                                             class="glyphicon glyphicon-shopping-cart"></i> MUA NGAY </span>
                                                     </a>
@@ -201,7 +201,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <div class="row review_boxes" id="review_item_show">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-9">
                                                 <div class="review_boxes_item">
                                                     <label>Vui lòng chia sẻ nhận xét đánh giá về sản
                                                         phẩm này</label>
@@ -271,7 +271,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                <c:if test="${singleProduct.transactionType.transactionTypeId==1 }">
                     <div class="product-viewed">
                         <div class="product-detail-viewed">
                             <h2 class="content-paget-title-item">Danh sách người đấu</h2>
@@ -304,6 +305,65 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    </c:if>
+                    <div class="product-detail-relate">
+                     	<div class="product-detail-relate-item-title">
+                     		<h3>Sản phẩm liên quan</h3>
+                     	</div>
+                     	<div class="product-detail-relate-item-stack">
+                     		<c:forEach var="getRelateProduct" items="${getRelateProduct }">
+                     		<div class="new-product" style="margin-bottom: 5px">
+								<div class="single-product-item">
+									<div class="single-product-image">
+										<a
+											href=""><img
+											src="resource/images/banner/${getRelateProduct.images.get(i).getImageUrl() }"></a>
+										<div class="overplay-content">
+											<ul>
+												<li><a
+													href=""><i
+														class="fa fa-search"></i></a></li>
+												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+												</li>
+												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+												<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="single-product-showinfor">
+										<div class="single-product-infor-name">
+											<p class="single-product-infor-name-title">${getRelateProduct.name }</p>
+										</div>
+										<!-- 	<div class="single-product-inforsale">
+                                            Giảm giá 25%
+                                         </div> -->
+										<div class="single-product-inforprice">
+											<p>
+												<fmt:formatNumber value="${getRelateProduct.price }" type="number" />đ
+											</p>
+										</div>
+										<div class="single-product-inforsale">
+											<a
+												href=""><button
+													class="btn btn-success btn-countdown">
+													<i class="fa fa-shopping-cart"></i> MUA NGAY
+												</button></a>
+										</div>
+										<div class="single-product-inforrating">
+											<div class="rating-box">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star-half-empty" style="color: gray"></i> <br>
+												<span>(Có  10 nhận xét)</span>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							</c:forEach>
+                     	</div>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ public class Product implements Serializable {
 	private int viewNumber;
 
 	//bi-directional many-to-one association to Auction
-	@OneToMany(mappedBy="product")
+	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Auction> auctions;
 
 	//bi-directional many-to-one association to Image

@@ -2,6 +2,7 @@ package hvcntt.org.shoppingweb.service.impl;
 
 import java.util.List;
 
+import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 import hvcntt.org.shoppingweb.service.ProductService;
@@ -40,6 +41,17 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> findByProductTransactionType(TransactionType transactionType) {
 		// TODO Auto-generated method stub
 		return productrepo.findByTransactionType(transactionType);
+	}
+	@Override
+	public List<Product> findByCategoryAndPrice(Category category, float minPrice, float maxPrice) {
+		// TODO Auto-generated method stub
+		return productrepo.findByCategoryAndPriceBetween(category, minPrice, maxPrice);
+	}
+	@Override
+	public List<Product> findByCategoryAndPriceBetweenAndProductIdNotIn(Category category, float minPrice,
+			float maxPrice, String productId) {
+		// TODO Auto-generated method stub
+		return productrepo.findByCategoryAndPriceBetweenAndProductIdNotIn(category, minPrice, maxPrice, productId);
 	}
 
 }
