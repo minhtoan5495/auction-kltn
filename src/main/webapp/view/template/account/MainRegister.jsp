@@ -18,10 +18,12 @@
 </body>
 <!-- Include jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"
+        type="text/javascript"></script>
 <!-- Include Date Range Picker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resource/js/register.js"></script>
 <script type="text/javascript">
     $(function () {
@@ -31,6 +33,19 @@
             autoclose: true,
             pickerPosition: "bottom-left"
         });
+    });
+</script>
+<script type="text/javascript">
+    jQuery('#saveRegister').validate({
+        rules: {
+            password: {
+                minlength: 5
+            },
+            confirmPassword: {
+                minlength: 5,
+                equalTo: '[name="password"]'
+            }
+        }
     });
 </script>
 </html>

@@ -20,23 +20,29 @@
             <input type="hidden" name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
             <div class="form_input">
-                <div class='input-group'>
-                    <input data-validation="required"
-                           data-validation-error-msg="Bạn chưa nhập tài khoản " type="text" placeholder="Tên đăng nhập" id="username"
-                           name="username">
-                    <span class="input-group-addon">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input data-validation="required"
+                               data-validation-error-msg="Bạn chưa nhập tài khoản " type="text"
+                               placeholder="Tên đăng nhập" id="username"
+                               name="username">
+                        <span class="input-group-addon">
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
+                    </div>
                 </div>
             </div>
             <div class="form_input">
-                <div class='input-group'>
-                    <input data-validation="required"
-                           data-validation-error-msg="Bạn chưa nhập password" type="password" placeholder="Mật khẩu" name="password"
-                           id="password">
-                    <span class="input-group-addon">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input data-validation="required"
+                               data-validation-error-msg="Bạn chưa nhập password" type="password" placeholder="Mật khẩu"
+                               name="password"
+                               id="password">
+                        <span class="input-group-addon">
                             <span class="glyphicon glyphicon-lock"></span>
                         </span>
+                    </div>
                 </div>
             </div>
             <a href="#"

@@ -1,12 +1,8 @@
 package hvcntt.org.shoppingweb.service.impl;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.transaction.Transactional;
 
@@ -14,9 +10,7 @@ import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.Role;
 import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
-//import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
-//import hvcntt.org.shoppingweb.service.SecurityService;
 import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

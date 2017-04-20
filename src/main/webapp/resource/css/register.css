@@ -102,12 +102,19 @@ input[type="submit"]{
 input.error {
 	border: 1px solid red;
 }
+input.valid {
+	border: 1px solid #3c763d;
+}
 #error-valid {
 	color: red;
 	animation: shake 0.2s !important;
 }
 .error {
-	color: red;
+	color: #a94442;
+	display: block;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
 	position: relative;
 	animation: shake 0.2s;
 }

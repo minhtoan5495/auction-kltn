@@ -9,14 +9,12 @@ import javax.servlet.http.HttpSession;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.service.ProductService;
-//import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CartPageController {
@@ -25,7 +23,7 @@ public class CartPageController {
     private ProductService productservice;
 
     @SuppressWarnings("unchecked")
-	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
+	@RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String cartPage(@RequestParam("idproduct") String idproduct, HttpSession session) {
         Product product = productservice.findOne(idproduct);
         List<CartItem> items = new ArrayList<>();

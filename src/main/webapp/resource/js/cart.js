@@ -1,23 +1,6 @@
 var app = angular.module('plunker', []);
 
-app.controller('CartController', function($scope, $http) {
-
-    $scope.carts = [];
-    $scope.product = null;
-    $scope.quantity = 0;
-    $scope.total = 0;
-
-    $scope.getData = function (page) {
-        $http.get(rootUrl+'/'+page)
-            .success(function (data) {
-                $scope.carts = data;
-            })
-    }
-
-    $http.get("/cart").then(function (response) {
-        $scope.cart = response.data.records;
-    })
-
+app.controller('CartCtrl', function($scope) {
     $scope.total = 0;
 
     // Catch the event to add
