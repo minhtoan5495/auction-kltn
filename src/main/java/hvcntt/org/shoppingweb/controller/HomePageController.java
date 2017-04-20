@@ -1,11 +1,14 @@
 package hvcntt.org.shoppingweb.controller;
 
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.ha.backend.CollectedInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +38,7 @@ public class HomePageController {
 		List<Category> listMenu=categoryservice.getCategoryParent();
 		model.addAttribute("listMenu",listMenu);
 		TransactionType transactionType=transactionService.findByName("Sale");
+		Collections.shuffle(productservice.findByProductTransactionType(transactionType));
 		model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
 		TransactionType transactionType2=transactionService.findByName("Auction");
 		model.addAttribute("listProduct2", productservice.findByProductTransactionType(transactionType2));

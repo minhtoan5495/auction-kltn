@@ -53,11 +53,7 @@ public class DetailPageController {
         }
         Category category=categoryService.findOne(product.getCategory().getCategoryId());
         List<Product> getRelateProduct=productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice()-10000), (product.getPrice()+10000), product.getProductId());
-        for(int i=0;i<getRelateProduct.size();i++){
-        	if(getRelateProduct.get(i).getProductId()!=product.getProductId()){
-                model.addAttribute("getRelateProduct", getRelateProduct);
-        	}
-        }
+        model.addAttribute("getRelateProduct", getRelateProduct);
         List<Image> imgs = imageservice.findByProduct(product);
         int rating = getAverage(product.getRatings());
         model.addAttribute("ratingNumber", rating);
@@ -99,7 +95,7 @@ public class DetailPageController {
     private void setRememberMeTargetUrlToSession(HttpServletRequest request, String productId) {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            session.setAttribute("targetUrl", "/detail/" + productId);
+            session.setAttribute("targetUrl", "/rating/" + productId);
         }
     }
 }
