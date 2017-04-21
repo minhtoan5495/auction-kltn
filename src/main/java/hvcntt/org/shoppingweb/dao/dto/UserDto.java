@@ -16,7 +16,7 @@ public class UserDto implements Serializable {
 
     private static final long serialVersionUID = 7907931692605937196L;
 
-    @Pattern(regexp = "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$")
+    @Pattern(regexp = "^[a-zA-ZàáâäãåąčćęèéêễëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$")
     private String name;
 
     @Size(min = 6, max = 12)
@@ -33,7 +33,7 @@ public class UserDto implements Serializable {
     @NotNull
     private Date birthday;
 
-    @Size(max = 12, min = 6)
+    @Size(max = 20, min = 6)
     private String password;
 
     @Phone

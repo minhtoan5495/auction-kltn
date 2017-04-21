@@ -17,7 +17,9 @@ public class User implements Serializable {
 	private boolean accountNonLocked;
 
 	private String address;
+
 	private String passwordConfirm;
+
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 

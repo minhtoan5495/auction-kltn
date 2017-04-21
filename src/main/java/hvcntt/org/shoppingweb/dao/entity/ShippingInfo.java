@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -30,6 +32,7 @@ public class ShippingInfo implements Serializable {
 	//bi-directional many-to-one association to Invoice
 	@OneToOne
 	@JoinColumn(name="invoice_id")
+	@JsonBackReference
 	private Invoice invoice;
 
 	public ShippingInfo() {

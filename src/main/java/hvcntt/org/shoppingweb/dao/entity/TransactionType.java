@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -19,7 +21,8 @@ public class TransactionType implements Serializable {
 	private String transactionTypeName;
 
 	//bi-directional many-to-one association to Product
-	@OneToMany(mappedBy="transactionType")
+	@OneToMany(mappedBy="transactionType", fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private List<Product> products;
 
 	public TransactionType() {

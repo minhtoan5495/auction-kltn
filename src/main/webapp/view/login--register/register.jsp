@@ -25,14 +25,14 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="custom" data-validation-regexp="^[a-zA-Z*]{3,}$"
-                                                data-validation-error-msg="Họ tên phải có 3 kí tự"
+                                    <form:input data-validation="custom" data-validation-regexp="^[a-zA-Z .*]{3,}$"
+                                                data-validation-error-msg="Họ tên phải có 3 tự"
                                                 type="text" placeholder="Họ tên" class="input" id="name"
                                                 name="name"
                                                 path="name"></form:input>
                                     <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </span>
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
                                 </div>
                             </div>
                             <div class="error">
@@ -59,7 +59,7 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="required" data-validation-regexp="^[a-zA-Z0-9._*]{6,}$"
+                                    <form:input data-validation="required length" data-validation-length="6-20"
                                                 data-validation-error-msg="Mật khẩu phải lớn hơn 6 kí tự"
                                                 class="input" type="password" placeholder="Mật khẩu" id="password"
                                                 name="password"
@@ -113,9 +113,9 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="required" data-validation-regexp="^[0-9]{10,11}$"
+                                    <form:input data-validation="required length" data-validation-length="10-11"
                                                 data-validation-error-msg="Bạn chưa nhập số điện thoại"
-                                                class="input" type="text" placeholder="Số điện thoại" id="phone"
+                                                class="input" onkeyup="validate()" type="text" placeholder="Số điện thoại" id="phone"
                                                 name="phone"
                                                 path="phone"></form:input>
                                     <span class="input-group-addon">

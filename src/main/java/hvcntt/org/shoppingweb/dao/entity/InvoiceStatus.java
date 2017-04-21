@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -20,6 +22,7 @@ public class InvoiceStatus implements Serializable {
 
 	//bi-directional many-to-one association to Invoice
 	@OneToMany(mappedBy="invoiceStatus")
+	@JsonManagedReference
 	private List<Invoice> invoices;
 
 	public InvoiceStatus() {

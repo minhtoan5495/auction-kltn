@@ -1,5 +1,8 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -30,14 +33,17 @@ public class Invoice implements Serializable {
 	//bi-directional many-to-one association to InvoiceStatus
 	@ManyToOne
 	@JoinColumn(name="invoice_status_id")
+	@JsonBackReference
 	private InvoiceStatus invoiceStatus;
 
 	//bi-directional many-to-one association to InvoiceDetail
 	@OneToMany(mappedBy="invoice",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<InvoiceDetail> invoiceDetails;
 
 	//bi-directional many-to-one association to ShippingInfo
 	@OneToMany(mappedBy="invoice")
+	@JsonManagedReference
 	private List<ShippingInfo> shippingInfos;
 
 	public Invoice() {

@@ -19,9 +19,9 @@ public class EmailValidator implements ConstraintValidator<Email, String>{
         if (emailStr == null){
             return false;
         }
-        Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$");
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9.*]{3,}.@[a-z*]{3,}\\.[a-z]{3,}$");
         Matcher matcher = pattern.matcher(emailStr);
-        if(matcher.matches()) return false;
-        else return true;
+        if(matcher.matches()) return true;
+        else return false;
     }
 }

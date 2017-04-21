@@ -1,5 +1,8 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -42,29 +45,35 @@ public class Product implements Serializable {
 
 	//bi-directional many-to-one association to Image
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<Image> images;
 
 	//bi-directional many-to-one association to InvoiceDetail
-	@OneToMany(mappedBy="product")
+	@OneToMany(mappedBy="product", fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<InvoiceDetail> invoiceDetails;
 
 	//bi-directional many-to-one association to Category
 	@ManyToOne
 	@JoinColumn(name="category_id")
+	@JsonBackReference
 	private Category category;
 
 	//bi-directional many-to-one association to Supplier
 	@ManyToOne
 	@JoinColumn(name="supplier_id")
+	@JsonBackReference
 	private Supplier supplier;
 
 	//bi-directional many-to-one association to TransactionType
 	@ManyToOne
 	@JoinColumn(name="transaction_type_id")
+	@JsonBackReference
 	private TransactionType transactionType;
 
 	//bi-directional many-to-one association to Rating
 	@OneToMany(mappedBy="product",fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private List<Rating> ratings;
 
 	public Product() {

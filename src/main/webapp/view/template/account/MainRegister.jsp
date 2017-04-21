@@ -34,18 +34,9 @@
             pickerPosition: "bottom-left"
         });
     });
-</script>
-<script type="text/javascript">
-    jQuery('#saveRegister').validate({
-        rules: {
-            password: {
-                minlength: 5
-            },
-            confirmPassword: {
-                minlength: 5,
-                equalTo: '[name="password"]'
-            }
-        }
-    });
+    function validate() {
+        var element = document.getElementById('phone');
+        element.value = element.value.replace(/[^0-9+()]+/, '');
+    };
 </script>
 </html>

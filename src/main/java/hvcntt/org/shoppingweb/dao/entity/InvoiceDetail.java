@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.UUID;
 import javax.persistence.*;
@@ -22,11 +24,13 @@ public class InvoiceDetail implements Serializable {
 	//bi-directional many-to-one association to Invoice
 	@ManyToOne
 	@JoinColumn(name="invoice_id")
+	@JsonBackReference
 	private Invoice invoice;
 
 	//bi-directional many-to-one association to Product
 	@ManyToOne
 	@JoinColumn(name="product_id")
+	@JsonBackReference
 	private Product product;
 
 	public InvoiceDetail() {

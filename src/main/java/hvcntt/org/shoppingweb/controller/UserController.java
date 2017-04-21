@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.controller;
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
+import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -14,13 +15,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import hvcntt.org.shoppingweb.service.UserService;
-import hvcntt.org.shoppingweb.validator.UserValidator;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +41,7 @@ public class UserController {
         model.addAttribute("userModel", new UserDto());
         ModelAndView modelAndView = new ModelAndView();
         if (error != null) {
-            model.addAttribute("error", "User or password invalid");
+            model.addAttribute("error", "Tên tài khoản hoặc mật khẩu không đúng");
             String targetUrl = getRememberMeTargetUrlFromSession(request);
             if (StringUtils.hasText(targetUrl)) {
                 modelAndView.addObject("targetUrl", targetUrl);
@@ -63,8 +62,24 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@Valid UserDto userDto, BindingResult binding) throws RoleNotFoundException, UserAlreadyExistsException, ParseException {
+    public String register(@Valid UserDto userDto,Model model, BindingResult binding) throws RoleNotFoundException, UserAlreadyExistsException, ParseException, UserNotFoundException {
         if (binding.hasErrors()) {
+            return "register";
+        }
+        if (!userDto.getConfirmPassword().equals(userDto.getPassword())) {
+            model.addAttribute("error", "Nhập lại mật khẩu không đúng");
+            return "register";
+        }
+        if (userService.findByUsername(userDto.getUsername()) != null) {
+            model.addAttribute("error", "Tên tài khoản đã tồn tại");
+            return "register";
+        }
+        if (userService.findByEmail(userDto.getEmail()) != null) {
+            model.addAttribute("error", "Email đã có tài khoản đăng kí");
+            return "register";
+        }
+        if (userService.findByPhone(userDto.getPhone()) != null) {
+            model.addAttribute("error", "Số điện thoại đã được đăng kí");
             return "register";
         }
         userService.save(userDto);

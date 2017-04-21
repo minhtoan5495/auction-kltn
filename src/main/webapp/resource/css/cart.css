@@ -7,6 +7,9 @@
 	width: 100%;
 	background: #eee;
 }
+.input-group{
+    width: 100px;
+}
 .modal-header .btn-header-close{
 	padding: 5px;
     background: blue;
