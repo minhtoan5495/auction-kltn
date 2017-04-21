@@ -159,7 +159,7 @@
 										</div>
 										<div class="single-product-inforsale">
 											<a
-												href="${pageContext.request.contextPath }/cart?idproduct=${listProduct.productId}"><button
+												href="${pageContext.request.contextPath }/addCart?idproduct=${listProduct.productId}"><button
 													class="btn btn-success btn-countdown">
 													<i class="fa fa-shopping-cart"></i> MUA NGAY
 												</button></a>

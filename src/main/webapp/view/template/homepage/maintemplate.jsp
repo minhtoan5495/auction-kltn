@@ -36,8 +36,8 @@
 </body>
 <script src="${pageContext.request.contextPath }/resource/js/jquery-1.8.3.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath }/resource/js/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<%--<script src="${pageContext.request.contextPath }/resource/js/angular.min.js"></script>--%>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>--%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resource/js/main.js"></script>
 <script  src="${pageContext.request.contextPath }/resource/js/photoZoom.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/customer.js"></script>
@@ -46,6 +46,6 @@
 <script>
     document.write('<base href="' + document.location + '" />');
 </script>
-<script src="${pageContext.request.contextPath }/resource/js/cart.js"></script>
+<%--<script src="${pageContext.request.contextPath }/resource/js/cart.js"></script>--%>
 <script type="text/javascript">var rootUrl="${pageContext.request.contextPath }";</script>
 </html>

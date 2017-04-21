@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) throws UserNotFoundException {
         return userRepository.findByUsername(username);
-
     }
 
     @Override
@@ -76,6 +75,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByPhone(String phone) {
         return userRepository.findByPhone(phone);
+    }
+
+    @Override
+    public User findByUsernameAndPhoneAndEmail(String username, String phone, String email) {
+        return userRepository.findByUsernameAndPhoneAndEmail(username, phone, email);
     }
 
 }

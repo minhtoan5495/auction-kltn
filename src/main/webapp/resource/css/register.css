@@ -107,7 +107,7 @@ input.valid {
 }
 #error-valid {
 	color: red;
-	animation: shake 0.2s !important;
+	animation: shake 0.5s !important;
 }
 .error {
 	color: #a94442;
