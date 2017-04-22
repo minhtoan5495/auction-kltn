@@ -72,6 +72,7 @@ public class CheckoutController {
 					listCartItems.get(i).getQuantity(), shippingInfo.getInvoice(), listCartItems.get(i).getProduct());
 			invoiceDetailService.add(invoiceDetail);
 		}
+		model.addAttribute("listCartItems", listCartItems);
 		model.addAttribute("invoice", shippingInfo.getInvoice());
 		model.addAttribute("addShip", shippingInfo);
 		return "checkoutsuccess";

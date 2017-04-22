@@ -68,3 +68,29 @@ textarea{
 .modal-content-review{
 	background: #eee;
 }
+.single-product-info-timecountdown-title-notice{
+	text-align: center;
+}
+.single-product-info-timecountdown-title-notice label{
+	color: rgba(112, 243, 33, 0.54);
+	font-size: 20px;
+}
+.single-product-info-timecountdown-title-notice p{
+	font-size: 20px;
+	margin-top: -7px;
+}
+@media screen and (max-width:320px){
+	.single-product-info-timecountdown-item{
+		margin-left: 120px;
+	}
+}
+@media screen and (max-width:360px){
+	.single-product-info-timecountdown-item{
+		margin-left: 120px;
+	}
+}
+@media screen and (max-width:412px){
+	.single-product-info-timecountdown-item{
+		margin-left: 160px;
+	}
+}

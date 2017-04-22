@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "auction")
@@ -31,10 +32,11 @@ public class Auction implements Serializable {
 	private Product product;
 
 	//bi-directional many-to-one association to UserAuction
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction",fetch=FetchType.EAGER)
 	private List<UserAuction> userAuctions;
 
 	public Auction() {
+		setAuctionId(UUID.randomUUID().toString());
 	}
 
 	public String getAuctionId() {

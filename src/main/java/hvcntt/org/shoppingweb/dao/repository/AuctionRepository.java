@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Auction;import org.springframework.data.jpa.repository.JpaRepository;public interface AuctionRepository extends JpaRepository<Auction, String> {}
+package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Auction;import hvcntt.org.shoppingweb.dao.entity.Product;import org.springframework.data.jpa.repository.JpaRepository;public interface AuctionRepository extends JpaRepository<Auction, String> {	Auction findByProduct(Product product);}

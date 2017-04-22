@@ -43,6 +43,8 @@
             </div>
             <div class="col-sm-9">
                 <div class="row">
+                <form action="addAuction">
+                	<input value="${singleProduct.productId }" name="productId" type="hidden">
                     <div class="col-sm-4">
                         <div class="detail-product-item">
                             <div class="tab-content">
@@ -72,8 +74,8 @@
                                 <p>(Còn lại ${singleProduct.stockQuantity} sản phẩm)</p>
                             </div>
                             <div class="product-detail-color">
-                                <%--<p>Màu sắc</p>--%>
-                                <%--<p>${singleProduct. }</p>--%>
+                                <p><i class="glyphicon glyphicon-ok"></i>Màu sắc ${singleProduct.productDetails.get(i).color }</p>
+                                <p><i class="glyphicon glyphicon-ok"></i>Kích cỡ ${singleProduct.productDetails.get(i).size }</p>
                             </div>
                             <div class="product-detail-price">
                                 <h2>
@@ -88,6 +90,8 @@
                                 <form class="form-detail-information">
                                     <c:if test="${singleProduct.transactionType.transactionTypeId == 1}">
                                         <div class="form-detail-size">
+                                         <label style="color: #f37021">Kết thúc vào ngày</label> <p style="font-size: 30px"><fmt:formatDate value="${singleProduct.auctions.get(i).getEndTime() }"
+                                                    pattern="dd-MM-yyyy"/></p>
                                             <label>Thời gian còn lại</label>
                                             <div class="form-detail-timecountdown">
                                                 <h3>12</h3>
@@ -98,7 +102,7 @@
                                         </div>
                                         <div class="form-detail-quantity">
                                             <label>Giá đấu:</label> <input
-                                                class="form-control input-field" type="text">
+                                                class="form-control input-field" type="text" id="price" name="price">
 
                                         </div>
                                     </c:if>
@@ -106,10 +110,10 @@
                                         <c:choose>
                                             <c:when test="${singleProduct.transactionType.transactionTypeId == 1 }">
                                                 <div class="submit-button">
-                                                    <a href="#" class="btn submit-btn"> <span><img
+                                                    <button type="submit"><img
                                                             class=""
-                                                            src="resource/css/images/icon-title.png">ĐẤU GIÁ</span>
-                                                    </a>
+                                                            src="resource/css/images/icon-title.png">ĐẤU GIÁ</button>
+                                              
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
@@ -131,6 +135,7 @@
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <div class="row">
                     <div class="col-sm-12" id="infor-scroll">
@@ -287,21 +292,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Shinmu13194</td>
-                                    <td>17:30:35</td>
-                                    <td>355,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Lucky</td>
-                                    <td>17:30:35</td>
-                                    <td>340,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Mesutozil</td>
-                                    <td>17:30:35</td>
-                                    <td>345,000</td>
-                                </tr>
+                                <c:forEach var="userAuction" items="${userAuctions }">
+	                                <tr>
+	                                    <td>${userAuction.user.username }</td>
+	                                    <%-- <td>${userAuction.bidtime}</td>
+	                                    <td>${userAuction.price}</td> --%>
+	                                </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
