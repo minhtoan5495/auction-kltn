@@ -61,7 +61,7 @@ public class CheckoutController {
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
 	public String checkoutSuccess(Model model, @ModelAttribute("shipping") ShippingInfo shippingInfo,
-								   HttpSession session)
+								  Principal principal, HttpSession session, HttpServletRequest request)
 			throws UserNotFoundException, ParseException {
 		shippingService.create(shippingInfo);
 		@SuppressWarnings("unchecked")
@@ -72,7 +72,6 @@ public class CheckoutController {
 					listCartItems.get(i).getQuantity(), shippingInfo.getInvoice(), listCartItems.get(i).getProduct());
 			invoiceDetailService.add(invoiceDetail);
 		}
-		model.addAttribute("listCartItems", listCartItems);
 		model.addAttribute("invoice", shippingInfo.getInvoice());
 		model.addAttribute("addShip", shippingInfo);
 		return "checkoutsuccess";
