@@ -44,6 +44,7 @@ public class HomePageController {
 		model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
 		TransactionType transactionType2=transactionService.findByName("Auction");
 		model.addAttribute("listProduct2", productservice.findByProductTransactionType(transactionType2));
+		
 		model.addAttribute("listAuction", auctionService.getAll());
 		return "home";
 	}

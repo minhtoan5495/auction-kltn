@@ -77,6 +77,8 @@ public class Product implements Serializable {
 	private List<Rating> ratings;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
 	private List<ProductDetail> productDetails;
+	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER)
+	List<Discount> discounts;
 	public Product() {
 	}
 
@@ -209,5 +211,12 @@ public class Product implements Serializable {
 	public void setProductDetails(List<ProductDetail> productDetails) {
 		this.productDetails = productDetails;
 	}
-	
+
+	public List<Discount> getDiscounts() {
+		return discounts;
+	}
+
+	public void setDiscounts(List<Discount> discounts) {
+		this.discounts = discounts;
+	}
 }

@@ -32,11 +32,13 @@ public class Discount implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date")
 	private Date startDate;
-
-	//bi-directional many-to-one association to Product
-	@ManyToOne(targetEntity = Product.class)
-	@JoinColumn(name="product_id")
+		
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="discount_product",joinColumns=@JoinColumn(name="discount_id"),inverseJoinColumns=@JoinColumn(name="product_id"))
 	private List<Product> products;
+	//bi-directional many-to-one association to Product
+//	@ManyToOne(targetEntity = Product.class)
+//	@JoinColumn(name="product_id")
 
 	public Discount() {
 	}

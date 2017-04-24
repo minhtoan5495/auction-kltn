@@ -130,9 +130,11 @@
 										<div class="single-product-infor-name">
 											<p class="single-product-infor-name-title">${listProduct.name }</p>
 										</div>
+										<c:if test="${not empty (listProduct.discounts) }">
 											<div class="single-product-inforsale">
-                                            Giảm giá 25%
+                                            Giảm giá ${listProduct.discounts.get(i).getDiscountPercent() }%
                                          </div>
+                                         </c:if>
 										<div class="single-product-infor-name">
 											<p>
 												<i class="glyphicon glyphicon-fire">
@@ -140,10 +142,28 @@
 											</p>
 										</div>
 										<div class="single-product-inforprice">
-											<p>
+										<c:choose>
+										<c:when test="${not empty(listProduct.discounts) }">
+											<strike style="color: black">
+												<fmt:formatNumber value="${listProduct.price}" type="number" />
+												đ
+											</strike>
+										</c:when>
+										<c:otherwise>
+										<p style="color: black">
 												<fmt:formatNumber value="${listProduct.price}" type="number" />
 												đ
 											</p>
+										</c:otherwise>
+										</c:choose>
+										</div>
+										<div class="single-product-inforprice">
+										<c:if test="${not empty(listProduct.discounts)  }">
+											<p>
+												<fmt:formatNumber value="${(listProduct.price)-((listProduct.price*listProduct.discounts.get(i).getDiscountPercent())/100)}" type="number" />
+												đ
+											</p>
+										</c:if>
 										</div>
 										<div class="single-product-inforsale">
 											<a
