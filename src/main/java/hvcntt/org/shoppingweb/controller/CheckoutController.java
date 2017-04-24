@@ -61,7 +61,7 @@ public class CheckoutController {
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
 	public String checkoutSuccess(Model model, @ModelAttribute("shipping") ShippingInfo shippingInfo,
-								   HttpSession session)
+								  Principal principal, HttpSession session, HttpServletRequest request)
 			throws UserNotFoundException, ParseException {
 		shippingService.create(shippingInfo);
 		@SuppressWarnings("unchecked")

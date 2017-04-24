@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;/** * Created by Nguyen on 12/04/2017. */public interface AuctionService {}
+package hvcntt.org.shoppingweb.service;import java.util.List;import hvcntt.org.shoppingweb.dao.entity.Auction;import hvcntt.org.shoppingweb.dao.entity.Product;/** * Created by Nguyen on 12/04/2017. */public interface AuctionService {	Auction create(Auction auction);	Auction findByProduct(Product product);	List<Auction> getAll();}

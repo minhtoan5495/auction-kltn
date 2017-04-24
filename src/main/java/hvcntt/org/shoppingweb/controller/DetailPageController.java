@@ -1,16 +1,23 @@
 package hvcntt.org.shoppingweb.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 //import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 //import javax.servlet.http.HttpServletRequest;
 
 import hvcntt.org.shoppingweb.dao.dto.RatingDto;
+import hvcntt.org.shoppingweb.dao.entity.Auction;
 import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Image;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.Rating;
+import hvcntt.org.shoppingweb.dao.entity.UserAuction;
 import hvcntt.org.shoppingweb.service.RatingService;
+import hvcntt.org.shoppingweb.service.UserAuctionService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +47,8 @@ public class DetailPageController {
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private UserAuctionService userAuctionService;
     @SuppressWarnings("unused")
 	@Autowired
     private RatingService ratingService;
@@ -59,6 +68,15 @@ public class DetailPageController {
         model.addAttribute("ratingNumber", rating);
         model.addAttribute("ratingDto", new RatingDto());
         model.addAttribute("image", imgs);
+        Set<UserAuction> userAuctions  = new HashSet<>();
+        List<Auction> auctions = product.getAuctions();
+        for(Auction auction : auctions){
+        	if(auction.getStatus().equals("Đang đấu giá") && auction.getProduct().getProductId().equals(productId)){
+        		userAuctions.addAll(auction.getUserAuctions());
+        		System.out.println(auction.getUserAuctions().size());
+        	}
+        }
+        model.addAttribute("userAuctions",userAuctions);
         model.addAttribute("singleProduct", product);
         return "detailpage";
     }

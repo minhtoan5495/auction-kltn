@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.dao.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name="user_auction")
@@ -11,7 +12,6 @@ public class UserAuction implements Serializable {
 	private static final long serialVersionUID = -6386595161965771905L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_auction_id")
 	private String userAuctionId;
 
@@ -31,6 +31,7 @@ public class UserAuction implements Serializable {
 	private User user;
 
 	public UserAuction() {
+		setUserAuctionId(UUID.randomUUID().toString());
 	}
 
 	public String getUserAuctionId() {

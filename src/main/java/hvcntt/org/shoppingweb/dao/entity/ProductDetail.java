@@ -16,14 +16,16 @@ public class ProductDetail implements Serializable {
 
 	private String color;
 
-	@Column(name="product_id")
-	private String productId;
+//	@Column(name="product_id")
+//	private String productId;
 
 	private String size;
 
 	@Column(name="stock_quantity")
 	private int stockQuantity;
-
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Product product;
 	public ProductDetail() {
 	}
 
@@ -43,13 +45,13 @@ public class ProductDetail implements Serializable {
 		this.color = color;
 	}
 
-	public String getProductId() {
-		return this.productId;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
+//	public String getProductId() {
+//		return this.productId;
+//	}
+//
+//	public void setProductId(String productId) {
+//		this.productId = productId;
+//	}
 
 	public String getSize() {
 		return this.size;
@@ -65,6 +67,14 @@ public class ProductDetail implements Serializable {
 
 	public void setStockQuantity(int stockQuantity) {
 		this.stockQuantity = stockQuantity;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 }

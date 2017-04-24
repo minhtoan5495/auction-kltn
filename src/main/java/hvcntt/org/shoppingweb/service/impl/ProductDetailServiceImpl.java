@@ -1,9 +1,10 @@
 package hvcntt.org.shoppingweb.service.impl;
 
-import hvcntt.org.shoppingweb.service.AuctionService;
+import hvcntt.org.shoppingweb.service.ProductDetailService;
+
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductDetailServiceImpl implements AuctionService {
+public class ProductDetailServiceImpl implements ProductDetailService {
 
 }

@@ -6,6 +6,10 @@ import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+//import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Pageable;
+
 public interface ProductService {
 
 	List<Product> getAll();
@@ -13,6 +17,9 @@ public interface ProductService {
 	List<Product> findByNameContaining(String name);
 	void updateView(String idproduct);
 	List<Product> findByProductTransactionType(TransactionType transactionType);
+	Page<Product> findProductPaging(TransactionType transactionType,Pageable pageable);
 	List<Product> findByCategoryAndPrice(Category category,float minPrice,float maxPrice);
 	List<Product> findByCategoryAndPriceBetweenAndProductIdNotIn(Category category,float minPrice,float maxPrice,String productId);
+	Page<Product> getProductPaging(int pagenumber);
+//	List<Product> findByProductTransactionType(TransactionType);
 }

@@ -6,8 +6,10 @@ import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.CityService;
 import hvcntt.org.shoppingweb.service.SecurityService;
+import hvcntt.org.shoppingweb.service.UserAttemptsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -36,6 +38,9 @@ public class UserController {
 
     @Autowired
     private CityService cityService;
+
+    @Autowired
+    private UserAttemptsService userAttemptsService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
