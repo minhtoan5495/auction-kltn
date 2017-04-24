@@ -10,6 +10,7 @@ import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.CityService;
+import hvcntt.org.shoppingweb.service.DistrictService;
 import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,9 @@ public class AdminController {
 	@Autowired
 	CityService cityService;
 
+	@Autowired
+	DistrictService districtService;
+
 	@RequestMapping
 	public String admin(){
 		return "redirect:/admin/manageAccount";
@@ -57,7 +61,8 @@ public class AdminController {
 	@RequestMapping(value = "/getDistrict", method = RequestMethod.GET)
 	public @ResponseBody List<District> getDistrict(@RequestParam(value = "cityId") String cityId){
 		City city = cityService.findById(cityId);
-		return city.getDistricts();
+		List<District> districts = districtService.findByCity(city);
+		return districts;
 	}
 
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)

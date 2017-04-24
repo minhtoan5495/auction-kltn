@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -19,13 +21,16 @@ public class City implements Serializable {
 
 	//bi-directional many-to-one association to ShippingInfo
 	@OneToMany(mappedBy="city")
+	@JsonBackReference
 	private List<ShippingInfo> shippingInfos;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="city",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="city",cascade=CascadeType.ALL)
+	@JsonBackReference
 	private List<User> users;
 
-	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<District> districts;
 
 	public City() {

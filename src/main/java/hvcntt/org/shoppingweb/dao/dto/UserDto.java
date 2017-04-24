@@ -1,6 +1,8 @@
 package hvcntt.org.shoppingweb.dao.dto;
 
 
+import hvcntt.org.shoppingweb.dao.entity.City;
+import hvcntt.org.shoppingweb.dao.entity.District;
 import hvcntt.org.shoppingweb.validator.Email;
 import hvcntt.org.shoppingweb.validator.Phone;
 import org.hibernate.validator.constraints.NotBlank;
@@ -32,6 +34,10 @@ public class UserDto implements Serializable {
 
     @NotNull
     private Date birthday;
+
+    private City city;
+
+    private District district;
 
     @Size(max = 20, min = 6)
     private String password;
@@ -117,4 +123,19 @@ public class UserDto implements Serializable {
         this.confirmPassword = confirmPassword;
     }
 
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
 }

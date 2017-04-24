@@ -4,24 +4,24 @@ app.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }]);
 
-app.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/update',
-        {
-            templateUrl : '/views/cart',
-            controller : 'CartController'
-        }
-    ).when('/removeCart',
-        {
-            templateUrl : '/views/cart',
-            controller : 'CartController'
-        }
-    ).when('/cart',
-        {
-            templateUrl : '/views/cart',
-            controller : 'CartController'
-        }
-    )
-}])
+// app.config(['$routeProvider', function ($routeProvider) {
+//     $routeProvider.when('/update',
+//         {
+//             templateUrl : '/views/cart',
+//             controller : 'CartController'
+//         }
+//     ).when('/removeCart',
+//         {
+//             templateUrl : '/views/cart',
+//             controller : 'CartController'
+//         }
+//     ).when('/addCart',
+//         {
+//             templateUrl : '/views/cart',
+//             controller : 'CartController'
+//         }
+//     )
+// }])
 
 app.controller('CartController', function ($scope, $http) {
     $scope.carts = [];
@@ -48,7 +48,7 @@ app.controller('CartController', function ($scope, $http) {
         //     alert('success');
         // })
         $http({
-            url: rootUrl + '/update',
+            url: 'http://localhost:8080/update',
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             dataType: "json",
@@ -78,7 +78,7 @@ app.controller('CartController', function ($scope, $http) {
             //     alert('success');
             // })
             $http({
-                url: rootUrl + '/update',
+                url: 'http://localhost:8080/update',
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 dataType: "json",
@@ -110,7 +110,7 @@ app.controller('CartController', function ($scope, $http) {
         //     $scope.carts = carts.body;
         // });
         $http({
-            url: rootUrl + '/removeCart',
+            url: 'http://localhost:8080/removeCart',
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             dataType: "json",
@@ -123,6 +123,7 @@ app.controller('CartController', function ($scope, $http) {
             $scope.carts = response.body
             alert('success');
         })
+        console.log(rootUrl);
         // $http.post(rootUrl + '/removeCart', cart.product.productId).then(function(response){
         //     $scope.carts = response.body;
         //     alert('success');

@@ -21,18 +21,18 @@ public class District implements Serializable {
 	private String districtName;
 
 	//bi-directional many-to-one association to ShippingInfo
-	@OneToMany(mappedBy="district", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@OneToMany(mappedBy="district")
+	@JsonBackReference
 	private List<ShippingInfo> shippingInfos;
 
-	@ManyToOne(targetEntity = City.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "city_id")
-	@JsonBackReference
+	@JsonManagedReference
 	private City city;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="district", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@OneToMany(mappedBy="district")
+	@JsonBackReference
 	private List<User> users;
 
 	public District() {

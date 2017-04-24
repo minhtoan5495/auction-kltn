@@ -32,9 +32,8 @@
                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th>STT</th>
                             <th>Username</th>
-                            <!-- <th>Password</th> -->
                             <th>Full name</th>
                             <th>Address</th>
                             <th>Email</th>
@@ -46,11 +45,11 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:set var="i" value="${1}"/>
                         <c:forEach var="user" items="${users}">
                             <tr class="">
-                                <td></td>
+                                <td>${i}</td>
                                 <td>${user.username}</td>
-                               <%--  <td>${user.password}</td> --%>
                                 <td>${user.name}</td>
                                 <td>${user.address}</td>
                                 <td>${user.email}</td>
@@ -61,6 +60,7 @@
                                 <td><a class="edit" href="javascript:;">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
+                            <c:set var="i" value="${i+1}"/>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -121,15 +121,17 @@
                             <div class="form-group ">
                                 <div class="col-lg-7">
                                     <label for="city" class="control-label col-lg-2 col-sm-3">City</label>
-                                    <select class="col-lg-10" style="margin-left: 0px;left: 60px; width: 200px;" onchange="getDistrict();" id="city">
+                                    <select class="col-lg-10" style="left: 42px;" onchange="getDistrict();" id="city">
                                         <option>Select city</option>
                                         <c:forEach var="city" items="${cities}">
                                             <option value="${city.cityId}">${city.cityName}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
-                                <div class="col-lg-5">
-                                    <label for="district" style="margin-right: 0px;right: 60px;" class="control-label col-lg-2 col-sm-3">District</label>
+                            </div>
+                            <div class="form-group ">
+                                <label for="city" class="control-label col-lg-2 col-sm-3">District</label>
+                                <div class="col-lg-7">
                                     <select class="col-lg-10" id="district">
                                     </select>
                                 </div>

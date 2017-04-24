@@ -1,6 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -22,11 +23,13 @@ public class ShippingInfo implements Serializable {
 	//bi-directional many-to-one association to City
 	@ManyToOne
 	@JoinColumn(name="city_id")
+	@JsonManagedReference
 	private City city;
 
 	//bi-directional many-to-one association to District
 	@ManyToOne
 	@JoinColumn(name="district_id")
+	@JsonManagedReference
 	private District district;
 
 	//bi-directional many-to-one association to Invoice
