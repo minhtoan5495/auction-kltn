@@ -1,10 +1,10 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/security/tags"
-           prefix="security"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+           prefix="security" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!--HEADER-->
 <div class="header_top_bg">
     <div class="container no-padding">
@@ -53,17 +53,21 @@
                                         </security:authorize>
                                         <li class="personal-setting"><a class="personal-profile"
                                                                         href=""> Cài đặt</a></li>
-                                        <li><form id="logoutForm" method="POST"
+                                        <li>
+                                            <form id="logoutForm" method="POST"
                                                   action="${pageContext.request.contextPath}/logout">
-                                            <input type="hidden" name="${_csrf.parameterName}"
-                                                   value="${_csrf.token}" />
-                                        </form></li>
+                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                       value="${_csrf.token}"/>
+                                            </form>
+                                        </li>
                                         <li class="personal-setting"><a class="personal-profile"
-                                                                        onclick="document.forms['logoutForm'].submit()">Đăng xuất</a></li>
-                                    </ul></li>
+                                                                        onclick="document.forms['logoutForm'].submit()">Đăng
+                                            xuất</a></li>
+                                    </ul>
+                                </li>
                             </div>
                         </c:if>
-                        <c:if test="${pageContext.request.userPrincipal.name ==null }">
+                        <c:if test="${pageContext.request.userPrincipal.name == null }">
                             <div class="header_top_account">
                                 <div class="header_login_top pull-right">
                                     <a href="${pageContext.request.contextPath}/login"
@@ -77,14 +81,22 @@
                                 </div>
                                 <div class="header_login_top pull-right">
                                     <a href="${pageContext.request.contextPath}/viewcart"
-                                       class="header_login_link"><i class="glyphicon glyphicon-shopping-cart"></i>Xem giỏ hàng</a>
+                                       class="header_login_link"><i class="glyphicon glyphicon-shopping-cart"></i>Xem
+                                        giỏ hàng</a>
                                 </div>
                                 <div class="header_login_top pull-right hidden-xs">
                                     <a href="#"
-                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Kiểm tra đơn hàng</a>
+                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Kiểm tra đơn
+                                        hàng</a>
                                 </div>
                             </div>
                         </c:if>
+                        <div class="header_top_account">
+                            <div class="header_login_top pull-right">
+                                <a href="${pageContext.request.contextPath}/admin"
+                                   class="header_login_link"><i class="fa fa-user"></i>Admin</a>
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -157,7 +169,7 @@
                                                     <div class="col-sm-3"></div>
                                                     <div class="col-sm-3">
                                                         <p>
-                                                            <fmt:formatNumber value="${sum}" type="number" />
+                                                            <fmt:formatNumber value="${sum}" type="number"/>
                                                             đ
                                                         </p>
                                                     </div>
@@ -180,7 +192,7 @@
                                                     <p>${cart.product.name}</p>
                                                     <p>${cart.quantity } cái</p>
                                                     <label><fmt:formatNumber
-                                                            value="${cart.product.price}" type="number" />đ</label>
+                                                            value="${cart.product.price}" type="number"/>đ</label>
                                                 </div>
                                             </div>
 
@@ -194,7 +206,7 @@
                                                     <div class="col-sm-3"></div>
                                                     <div class="col-sm-3">
                                                         <p>
-                                                            <fmt:formatNumber value="${s}" type="number" />
+                                                            <fmt:formatNumber value="${s}" type="number"/>
                                                             đ
                                                         </p>
                                                     </div>
@@ -205,10 +217,13 @@
                                                            style="text-decoration: none">TIẾP TỤC MUA HÀNG</a>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <a href="${pageContext.request.contextPath }/home"><button
-                                                                class="btn btn-primary"
-                                                                style="border-radius: 0; margin-left: -5px;">TIẾN
-                                                            HÀNH ĐẶT HÀNG</button></a>
+                                                        <a href="${pageContext.request.contextPath }/home">
+                                                            <button
+                                                                    class="btn btn-primary"
+                                                                    style="border-radius: 0; margin-left: -5px;">TIẾN
+                                                                HÀNH ĐẶT HÀNG
+                                                            </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -217,7 +232,8 @@
                                     </c:forEach>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary"
-                                                data-dismiss="modal" style="border-radius: 0">X</button>
+                                                data-dismiss="modal" style="border-radius: 0">X
+                                        </button>
                                     </div>
                                 </div>
 
@@ -324,4 +340,4 @@
     </div>
     <a href="#" id="pull" class="menu_reponsive">Menu</a>
 </div>
-<!--    END HEADER-->
+<!-- END HEADER-->

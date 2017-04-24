@@ -1,90 +1,90 @@
 <!DOCTYPE tiles-definitions PUBLIC
-"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="definition" template="/view/template/homepage/maintemplate.jsp">
-		<put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
-<!-- 		<put-attribute name="slide" value="/view/template/homepage/slide.jsp"></put-attribute> -->
-		<put-attribute name="body" value=""></put-attribute>
-		<put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
-	</definition>
-	<definition name="admin" template="/view/template/admin/mainadmin.jsp">
-		<put-attribute name="navbar" value=""></put-attribute>
-		<put-attribute name="body" value=""></put-attribute>
-	</definition>
-	<definition name="account" template="/view/template/account/MainAcount.jsp">
-		<put-attribute name="body" value=""></put-attribute>
-	</definition>
-	<definition name="registration" template="/view/template/account/MainRegister.jsp">
-		<put-attribute name="body" value=""></put-attribute>
-	</definition>
-		<definition name="profilePage" template="/view/template/profilepage/mainprofile.jsp">
-		<put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
-		<put-attribute name="body" value=""></put-attribute>
-		<put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
-	</definition>
-	<definition name="home" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/home/home.jsp"></put-attribute>
-	</definition>
-	<definition name="listProduct" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/searchby/listProduct.jsp"></put-attribute>
-	</definition>
-	<definition name="profile" extends="profilePage">
-		<put-attribute name="title" value="Profile"></put-attribute>
-		<put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
-	</definition>
-		<definition name="orderdetail" extends="profilePage">
-		<put-attribute name="title" value="Profile"></put-attribute>
-		<put-attribute name="body" value="/view/profile/orderdetail.jsp"></put-attribute>
-	</definition>
-	<definition name="cart" extends="definition">
-		<put-attribute name="title" value="Giỏ hàng"></put-attribute>
-		<put-attribute name="body" value="/view/cart/cart.jsp"></put-attribute>
-	</definition>
-	<definition name="checkout" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/checkout/checkout.jsp"></put-attribute>
-	</definition>
-	<definition name="checkoutsuccess" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/checkout/checkoutsuccess.jsp"></put-attribute>
-	</definition>
-	<definition name="login" extends="account">
-		<put-attribute name="title" value="Login Page"></put-attribute>
-		<put-attribute name="body" value="/view/login--register/login.jsp"></put-attribute>
-	</definition>
-	<definition name="contact" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/contact/contact.jsp"></put-attribute>
-	</definition>
-	<definition name="contactsuccess" extends="definition">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/contact/contactsuccess.jsp"></put-attribute>
-	</definition>
-	<definition name="forgetPassword" extends="definition">
-		<put-attribute name="title" value="Forget Password"></put-attribute>
-		<put-attribute name="body" value="/view/login--register/forgetPassword.jsp"></put-attribute>
-	</definition>
-	<definition name="register" extends="registration">
-		<put-attribute name="title" value="Home Page"></put-attribute>
-		<put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
-	</definition>
-	<definition name="upload" extends="definition">
-		<put-attribute name="title" value="Profile"></put-attribute>
-		<put-attribute name="body" value="/view/upload/upload.jsp"></put-attribute>
-	</definition>
-	<definition name="Success" extends="definition">
-		<put-attribute name="title" value="Profile"></put-attribute>
-		<put-attribute name="body" value="/view/upload/Success.jsp"></put-attribute>
-	</definition>
-		<definition name="detailpage" extends="definition">
-		<put-attribute name="title" value="Chi tiết sản phẩm"></put-attribute>
-		<put-attribute name="body" value="/view/detail/detailpage.jsp"></put-attribute>
-	</definition>
-		<definition name="navbar" extends="admin">
-		<put-attribute name="title" value="admin"></put-attribute>
-		<put-attribute name="body" value="/view/admin/navbar.jsp"></put-attribute>
-	</definition>
+    <definition name="definition" template="/view/template/homepage/mainTemplate.jsp">
+        <put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+        <put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
+    </definition>
+    <definition name="account" template="/view/template/account/mainAcount.jsp">
+        <put-attribute name="body" value=""></put-attribute>
+    </definition>
+    <definition name="registration" template="/view/template/account/mainRegister.jsp">
+        <put-attribute name="body" value=""></put-attribute>
+    </definition>
+    <definition name="profilePage" template="/view/template/profilepage/mainProfile.jsp">
+        <put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+        <put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
+    </definition>
+    <definition name="home" extends="definition">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="body" value="/view/home/home.jsp"></put-attribute>
+    </definition>
+    <definition name="listProduct" extends="definition">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="body" value="/view/searchby/listProduct.jsp"></put-attribute>
+    </definition>
+    <definition name="profile" extends="profilePage">
+        <put-attribute name="title" value="Profile"></put-attribute>
+        <put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
+    </definition>
+    <definition name="orderdetail" extends="profilePage">
+        <put-attribute name="title" value="Profile"></put-attribute>
+        <put-attribute name="body" value="/view/profile/orderDetail.jsp"></put-attribute>
+    </definition>
+    <definition name="cart" extends="definition">
+        <put-attribute name="title" value="Giỏ hàng"></put-attribute>
+        <put-attribute name="body" value="/view/cart/cart.jsp"></put-attribute>
+    </definition>
+    <definition name="checkout" extends="definition">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="body" value="/view/checkout/checkout.jsp"></put-attribute>
+    </definition>
+    <definition name="checkoutSuccess" extends="definition">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="body" value="/view/checkout/checkoutSuccess.jsp"></put-attribute>
+    </definition>
+    <definition name="login" extends="account">
+        <put-attribute name="title" value="Login Page"></put-attribute>
+        <put-attribute name="body" value="/view/login--register/login.jsp"></put-attribute>
+    </definition>
+    <definition name="contact" extends="definition">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="body" value="/view/contact/contact.jsp"></put-attribute>
+    </definition>
+    <definition name="contactSuccess" extends="definition">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="body" value="/view/contact/contactSuccess.jsp"></put-attribute>
+    </definition>
+    <definition name="forgetPassword" extends="definition">
+        <put-attribute name="title" value="Forget Password"></put-attribute>
+        <put-attribute name="body" value="/view/login--register/forgetPassword.jsp"></put-attribute>
+    </definition>
+    <definition name="register" extends="registration">
+        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
+    </definition>
+    <definition name="upload" extends="definition">
+        <put-attribute name="title" value="Profile"></put-attribute>
+        <put-attribute name="body" value="/view/upload/upload.jsp"></put-attribute>
+    </definition>
+    <definition name="success" extends="definition">
+        <put-attribute name="title" value="Profile"></put-attribute>
+        <put-attribute name="body" value="/view/upload/success.jsp"></put-attribute>
+    </definition>
+    <definition name="detailPage" extends="definition">
+        <put-attribute name="title" value="Chi tiết sản phẩm"></put-attribute>
+        <put-attribute name="body" value="/view/detail/detailPage.jsp"></put-attribute>
+    </definition>
+    <definition name="templateAdmin" template="/view/template/admin/templateAdmin.jsp">
+        <put-attribute name="header" value="/view/template/admin/header.jsp"></put-attribute>
+        <put-attribute name="menu" value="/view/template/admin/menu.jsp"></put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+        <put-attribute name="footer" value="/view/template/admin/footer.jsp"></put-attribute>
+    </definition>
+    <definition name="manageAccount" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageAccount.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>

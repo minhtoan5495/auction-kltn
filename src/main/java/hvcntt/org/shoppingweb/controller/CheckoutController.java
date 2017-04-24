@@ -43,9 +43,9 @@ public class CheckoutController {
 	@Autowired
 	InvoiceService invoiceService;
 
-	@RequestMapping(value = "/checkoutsuccess", method = RequestMethod.GET)
+	@RequestMapping(value = "/checkoutSuccess", method = RequestMethod.GET)
 	public String checkoutSuccess() {
-		return "checkoutsuccess";
+		return "checkoutSuccess";
 	}
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
@@ -74,7 +74,7 @@ public class CheckoutController {
 		}
 		model.addAttribute("invoice", shippingInfo.getInvoice());
 		model.addAttribute("addShip", shippingInfo);
-		return "checkoutsuccess";
+		return "checkoutSuccess";
 
 	}
 }

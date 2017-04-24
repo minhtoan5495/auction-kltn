@@ -1,5 +1,8 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +14,6 @@ public class District implements Serializable {
 	private static final long serialVersionUID = -8441148627296510528L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="district_id")
 	private String districtId;
 
@@ -19,11 +21,18 @@ public class District implements Serializable {
 	private String districtName;
 
 	//bi-directional many-to-one association to ShippingInfo
-	@OneToMany(mappedBy="district")
+	@OneToMany(mappedBy="district", fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private List<ShippingInfo> shippingInfos;
 
+	@ManyToOne(targetEntity = City.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "city_id")
+	@JsonBackReference
+	private City city;
+
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="district")
+	@OneToMany(mappedBy="district", fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private List<User> users;
 
 	public District() {
@@ -61,20 +70,6 @@ public class District implements Serializable {
 		this.shippingInfos = shippingInfos;
 	}
 
-	public ShippingInfo addShippingInfo(ShippingInfo shippingInfo) {
-		getShippingInfos().add(shippingInfo);
-		shippingInfo.setDistrict(this);
-
-		return shippingInfo;
-	}
-
-	public ShippingInfo removeShippingInfo(ShippingInfo shippingInfo) {
-		getShippingInfos().remove(shippingInfo);
-		shippingInfo.setDistrict(null);
-
-		return shippingInfo;
-	}
-
 	public List<User> getUsers() {
 		return this.users;
 	}
@@ -83,18 +78,11 @@ public class District implements Serializable {
 		this.users = users;
 	}
 
-	public User addUser(User user) {
-		getUsers().add(user);
-		user.setDistrict(this);
-
-		return user;
+	public City getCity() {
+		return city;
 	}
 
-	public User removeUser(User user) {
-		getUsers().remove(user);
-		user.setDistrict(null);
-
-		return user;
+	public void setCity(City city) {
+		this.city = city;
 	}
-
 }

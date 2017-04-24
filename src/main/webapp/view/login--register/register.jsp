@@ -155,8 +155,8 @@
                                                 name="birthday"
                                                 path="birthday"></form:input>
                                     <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
                                 </div>
                             </div>
                             <div class="error">

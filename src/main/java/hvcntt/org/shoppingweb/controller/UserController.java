@@ -4,6 +4,7 @@ import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserAlreadyExistsException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
+import hvcntt.org.shoppingweb.service.CityService;
 import hvcntt.org.shoppingweb.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -33,6 +34,9 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
+    @Autowired
+    private CityService cityService;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout,
@@ -57,6 +61,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
+        model.addAttribute("cities", cityService.getAll());
         model.addAttribute("userDto", new UserDto());
         return "register";
     }

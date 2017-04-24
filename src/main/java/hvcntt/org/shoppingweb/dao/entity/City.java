@@ -11,7 +11,6 @@ public class City implements Serializable {
 	private static final long serialVersionUID = 4614502438211739158L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="city_id")
 	private String cityId;
 
@@ -25,6 +24,9 @@ public class City implements Serializable {
 	//bi-directional many-to-one association to User
 	@OneToMany(mappedBy="city",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<User> users;
+
+	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<District> districts;
 
 	public City() {
 	}
@@ -61,20 +63,6 @@ public class City implements Serializable {
 		this.shippingInfos = shippingInfos;
 	}
 
-	public ShippingInfo addShippingInfo(ShippingInfo shippingInfo) {
-		getShippingInfos().add(shippingInfo);
-		shippingInfo.setCity(this);
-
-		return shippingInfo;
-	}
-
-	public ShippingInfo removeShippingInfo(ShippingInfo shippingInfo) {
-		getShippingInfos().remove(shippingInfo);
-		shippingInfo.setCity(null);
-
-		return shippingInfo;
-	}
-
 	public List<User> getUsers() {
 		return this.users;
 	}
@@ -83,18 +71,11 @@ public class City implements Serializable {
 		this.users = users;
 	}
 
-	public User addUser(User user) {
-		getUsers().add(user);
-		user.setCity(this);
-
-		return user;
+	public List<District> getDistricts() {
+		return districts;
 	}
 
-	public User removeUser(User user) {
-		getUsers().remove(user);
-		user.setCity(null);
-
-		return user;
+	public void setDistricts(List<District> districts) {
+		this.districts = districts;
 	}
-
 }

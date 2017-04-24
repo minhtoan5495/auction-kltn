@@ -66,11 +66,10 @@ public class UserDto implements Serializable {
         this.address = address;
     }
 
-    public UserDto(String name, String username, String address, String confirmPassword, String email, Date birthday, String password, String phone) {
+    public UserDto(String name, String username, String address, String email, Date birthday, String password, String phone) {
         this.name = name;
         this.username = username;
         this.address = address;
-        this.confirmPassword = confirmPassword;
         this.email = email;
         this.birthday = birthday;
         this.password = password;

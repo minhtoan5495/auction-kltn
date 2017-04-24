@@ -12,11 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CityServiceImpl implements CityService {
 	@Autowired
-	CityRepository cityRepo;
+	CityRepository cityRepository;
 	@Override
 	public List<City> getAll() {
-		// TODO Auto-generated method stub
-		return cityRepo.findAll();
+		return cityRepository.findAll();
+	}
+
+	@Override
+	public City findById(String cityId) {
+		return cityRepository.findOne(cityId);
 	}
 
 }

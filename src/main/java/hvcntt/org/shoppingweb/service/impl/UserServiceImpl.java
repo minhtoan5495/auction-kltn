@@ -78,4 +78,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByPhone(phone);
     }
 
+    @Override
+    public void deleteUser(String username) throws UserNotFoundException {
+        User user = userRepository.findOne(username);
+        userRepository.delete(user);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

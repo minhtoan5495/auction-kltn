@@ -16,4 +16,6 @@ public interface UserService {
 	List<User> getAll();
 	User findByEmail(String email);
 	User findByPhone(String phone);
+    void deleteUser(String username) throws UserNotFoundException;
+	void save(User user);
 }
