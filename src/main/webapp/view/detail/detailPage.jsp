@@ -295,8 +295,10 @@
                                 <c:forEach var="userAuction" items="${userAuctions }">
 	                                <tr>
 	                                    <td>${userAuction.user.username }</td>
-	                                    <%-- <td>${userAuction.bidtime}</td>
-	                                    <td>${userAuction.price}</td> --%>
+	                                    <td><fmt:formatDate value="${userAuction.bidtime }"
+                                                    pattern="HH:MM:ss"/></td>
+	                                    <td><fmt:formatNumber value="${userAuction.price}" type="number"/>
+                                    đ</td>
 	                                </tr>
                                 </c:forEach>
                                 </tbody>

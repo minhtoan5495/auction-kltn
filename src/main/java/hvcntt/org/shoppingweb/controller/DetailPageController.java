@@ -78,7 +78,7 @@ public class DetailPageController {
         }
         model.addAttribute("userAuctions",userAuctions);
         model.addAttribute("singleProduct", product);
-        return "detailpage";
+        return "detailPage";
     }
 
     private int getAverage(List<Rating> ratings) {

@@ -34,7 +34,7 @@
                         <tr>
                             <th></th>
                             <th>Username</th>
-                            <th>Password</th>
+                            <!-- <th>Password</th> -->
                             <th>Full name</th>
                             <th>Address</th>
                             <th>Email</th>
@@ -50,7 +50,7 @@
                             <tr class="">
                                 <td></td>
                                 <td>${user.username}</td>
-                                <td>${user.password}</td>
+                               <%--  <td>${user.password}</td> --%>
                                 <td>${user.name}</td>
                                 <td>${user.address}</td>
                                 <td>${user.email}</td>
