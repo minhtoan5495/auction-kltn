@@ -69,6 +69,14 @@
     });
 </script>
 <script type="text/javascript">
+    function preview_image()
+    {
+        var total_file=document.getElementById("upload_file").files.length;
+        for(var i=0;i<total_file;i++)
+        {
+            $('#image_preview').append("<img style='width:50px;height:50px; display: inline-block;' src='"+URL.createObjectURL(event.target.files[i])+"'><br>");
+        }
+    }
     /* Formating function for row details */
     function fnFormatDetails ( oTable, nTr )
     {
@@ -134,7 +142,7 @@
             var nRow = $(this).parents('tr')[0];
             var aData = oTable.fnGetData(nRow);
             var productId = aData[1];
-            if (confirm("Are you sure to delete this row  with username : " + productId) == false) {
+            if (confirm("Are you sure to delete this row  with productId : " + productId) == false) {
                 return;
             }
             deleteUser(productId);
@@ -148,13 +156,6 @@
             });
             console.log(productId);
         }
-        $("input[name=file]").change( function() {
-            var names = [];
-            for (var i = 0; i < $(this).get(0).files.length; ++i) {
-                names.push($(this).get(0).files[i].name);
-            }
-            $("input[name=file]").val(names);
-        } );
     } );
 </script>
 </html>

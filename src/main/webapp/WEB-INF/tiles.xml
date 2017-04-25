@@ -91,7 +91,10 @@
     <definition name="manageProduct" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/manageProduct.jsp"></put-attribute>
     </definition>
-    <definition name="addOrEditProduct" extends="templateAdmin">
-        <put-attribute name="body" value="/view/admin/addOrEditProduct.jsp"></put-attribute>
+    <definition name="addProduct" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/addProduct.jsp"></put-attribute>
+    </definition>
+    <definition name="editProduct" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/editProduct.jsp"></put-attribute>
     </definition>
 </tiles-definitions>

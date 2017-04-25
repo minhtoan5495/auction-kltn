@@ -156,7 +156,7 @@
 										<tbody>
 											<tr>
 												<td class="infor_order_title_product">
-												<img src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.images.get(i).getImageUrl()}" style="width: 100px;height: 100px">
+												<img src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).getImageUrl()}" style="width: 100px;height: 100px">
 												<p style="margin-left: 5px">${cart.product.name }</p>	
 												</td>
 												<td class="infor_order_title_quantity">${cart.quantity } cái</td>

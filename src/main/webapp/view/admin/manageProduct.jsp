@@ -13,7 +13,7 @@
             <div class="panel-body">
                 <div class="adv-table">
                     <div class="btn-group">
-                        <a href="/admin/addProduct" type="button" id="addNewProduct" class="btn green">
+                        <a href="${pageContext.request.contextPath}/admin/addProduct" type="button" id="addNewProduct" class="btn green">
                             Add New Product
                         </a>
                     </div>
@@ -48,7 +48,7 @@
                             </c:if>
                             <tr class="gradeX">
                                 <td hidden="hidden">${product.productId}</td>
-                                <td><img src="${pageContext.request.contextPath}/resource/images/banner/${product.images.get(i).imageUrl}" style="width:80px;height:80px"/></td>
+                                <td><a href="${pageContext.request.contextPath}/admin/detailProduct?productId=${product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${product.images.get(i).imageUrl}" style="width:80px;height:80px"/></a></td>
                                 <td>${product.name}</td>
                                 <td><fmt:formatNumber value="${product.price}" type="number"/> đ</td>
                                 <td>${product.createDate}</td>
@@ -60,13 +60,12 @@
                                 <td hidden="hidden">${product.stockQuantity}</td>
                                 <td hidden="hidden">${product.viewNumber}</td>
                                 <td hidden="hidden">${ratingNumber}</td>
-                                <td><a class="edit" href="#">Edit</a></td>
+                                <td><a class="edit" href="${pageContext.request.contextPath}/admin/editProduct?productId=${product.productId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </section>

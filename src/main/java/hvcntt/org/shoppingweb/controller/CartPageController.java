@@ -3,18 +3,20 @@ package hvcntt.org.shoppingweb.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import hvcntt.org.shoppingweb.dao.entity.Product;
-import hvcntt.org.shoppingweb.utils.BaseResponse;
-import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+//import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.service.ProductService;
+//import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CartPageController {
@@ -24,7 +26,7 @@ public class CartPageController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/addCart", method = RequestMethod.GET)
-    public String cartPage(@RequestParam("idproduct") String idproduct, Model model, HttpSession session) {
+    public String cartPage(@RequestParam("idproduct") String idproduct, HttpSession session) {
         Product product = productservice.findOne(idproduct);
         List<CartItem> items = new ArrayList<>();
         if (session.getAttribute("cart") == null) {
@@ -41,7 +43,6 @@ public class CartPageController {
             }
             session.setAttribute("cart", items);
         }
-        model.addAttribute("carts", JsonUtil.convertObjectToJson(items));
         return "cart";
     }
 
@@ -56,31 +57,31 @@ public class CartPageController {
         return -1;
     }
 
-    @RequestMapping(value = "/removeCart", method = RequestMethod.POST)
-    public void removeItems(HttpSession session, Model model, @RequestBody String productId) {
+    @RequestMapping(value = "/removeCart")
+    public String removeItems(HttpSession session, @RequestParam("idproduct") String idproduct) {
         @SuppressWarnings("unchecked")
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cart");
-        int index = isExist(productId, session);
+        int index = isExist(idproduct, session);
         cartItems.remove(index);
-        model.addAttribute("carts", JsonUtil.convertObjectToJson(cartItems));
+        return "cart";
     }
 
     @RequestMapping(value = "/viewcart")
-    private String viewCart(HttpSession session, Model model) {
+    private String viewCart(HttpSession session) {
         @SuppressWarnings({"unchecked", "unused"})
         List<CartItem> listItems = (List<CartItem>) session.getAttribute("cart");
-        model.addAttribute("carts", JsonUtil.convertObjectToJson(listItems));
         return "cart";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public void cartUpdate(@RequestBody String quantity, Model model, HttpSession session) {
+    public String cartUpdate(HttpServletRequest request, HttpSession session) {
         @SuppressWarnings("unchecked")
         List<CartItem> carts = (List<CartItem>) session.getAttribute("cart");
+        String[] quantity = request.getParameterValues("quantity");
         for (int i = 0; i < carts.size(); i++) {
-            carts.get(i).setQuantity(Integer.parseInt(quantity));
+            carts.get(i).setQuantity(Integer.parseInt(quantity[i]));
         }
         session.setAttribute("cart", carts);
-        model.addAttribute("carts", JsonUtil.convertObjectToJson(carts));
+        return "cart";
     }
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "product")
@@ -15,7 +16,6 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = -565138532603166915L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="product_id")
 	private String productId;
 
@@ -83,6 +83,7 @@ public class Product implements Serializable {
 	private List<Discount> discounts;
 
 	public Product() {
+		setProductId(UUID.randomUUID().toString());
 	}
 
 	public String getProductId() {

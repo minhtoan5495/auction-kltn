@@ -113,7 +113,7 @@
 									<div class="single-product-image">
 										<a
 											href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.productId}"><img
-											src="resource/images/banner/${listProduct.images.get(i).getImageUrl() }"></a>
+											src="resource/images/product/${listProduct.images.get(i).getImageUrl() }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
@@ -215,7 +215,7 @@
 									<div class="single-product-image">
 										<a
 											href="${pageContext.request.contextPath }/detail?idproduct=${auction.product.productId}"><img
-											src="resource/images/banner/${auction.product.images.get(i).getImageUrl() }"></a>
+											src="${pageContext.request.contextPath}/resource/images/product/${auction.product.images.get(i).getImageUrl() }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a

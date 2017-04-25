@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.dao.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +13,6 @@ public class Image implements Serializable {
 	private static final long serialVersionUID = -2021860502153172019L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="image_id")
 	private String imageId;
 
@@ -29,6 +29,7 @@ public class Image implements Serializable {
 	private Product product;
 
 	public Image() {
+		setImageId(UUID.randomUUID().toString());
 	}
 
 	public String getImageId() {

@@ -52,11 +52,21 @@ public class ManageProductController {
         model.addAttribute("transactionTypes", transactionTypeService.getAll());
         model.addAttribute("suppliers", supplierService.getAll());
         model.addAttribute("categories", categoryService.getAll());
-        return "addOrEditProduct";
+        return "addProduct";
+    }
+
+    @RequestMapping(value = "/admin/editProduct", method = RequestMethod.GET)
+    public String editProduct(@RequestParam(value = "productId") String productId, Model model){
+        model.addAttribute("productDto", new ProductDto());
+        model.addAttribute("transactionTypes", transactionTypeService.getAll());
+        model.addAttribute("suppliers", supplierService.getAll());
+        model.addAttribute("categories", categoryService.getAll());
+        model.addAttribute("product",productservice.findOne(productId));
+        return "editProduct";
     }
 
     @RequestMapping(value = "/admin/saveProduct", method = RequestMethod.POST)
-    public String addProduct(@ModelAttribute(value = "productDto") ProductDto productDto) throws ParseException {
+    public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto) throws ParseException {
         productservice.save(productDto);
         return "redirect:/admin/manageProduct";
     }

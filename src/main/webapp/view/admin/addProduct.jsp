@@ -15,7 +15,7 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form:form action="${pageContext.request.contextPath}/admin/saveProduct" commandName="productDto" class="cmxform form-horizontal tasi-form" id="addProduct"
+                    <form:form action="${pageContext.request.contextPath}/admin/saveProduct" enctype="multipart/form-data" commandName="productDto" class="cmxform form-horizontal tasi-form" id="addProduct"
                                 method="post" >
                         <div class="col-lg-6">
                             <div class="form-group ">
@@ -52,8 +52,8 @@
                             </div>
                             <div class="form-group ">
                                 <label for="category" class="control-label col-lg-3">Category</label>
-                                <div class="col-lg-7">
-                                    <form:select path="categoryId" class="col-lg-7" style="height: 34px;" id="category">
+                                <div class="col-lg-9">
+                                    <form:select path="categoryId" class="col-lg-9" style="height: 34px;" id="category">
                                         <option>Select category</option>
                                         <c:forEach var="category" items="${categories}">
                                             <option value="${category.categoryId}">${category.categoryName}</option>
@@ -63,8 +63,8 @@
                             </div>
                             <div class="form-group ">
                                 <label for="supplier" class="control-label col-lg-3">Supplier</label>
-                                <div class="col-lg-7">
-                                    <form:select path="supplierId" class="col-lg-7" style="height: 34px;" id="supplier">
+                                <div class="col-lg-9">
+                                    <form:select path="supplierId" class="col-lg-9" style="height: 34px;" id="supplier">
                                         <option>Select supplier</option>
                                         <c:forEach var="supplier" items="${suppliers}">
                                             <option value="${supplier.supplierId}">${supplier.supplierName}</option>
@@ -75,8 +75,8 @@
                             <div class="form-group ">
                                 <label for="transactionType" style="height: 34px;"
                                        class="control-label col-lg-3">Transaction Type</label>
-                                <div class="col-lg-7">
-                                    <form:select path="transactionTypeId" class="col-lg-7" style="height: 34px;"
+                                <div class="col-lg-9">
+                                    <form:select path="transactionTypeId" class="col-lg-9" style="height: 34px;"
                                                  id="transactionType">
                                         <option>Select transaction type</option>
                                         <c:forEach var="transactionType" items="${transactionTypes}">
@@ -95,7 +95,7 @@
                             </div>
                             <div class="form-group last">
                                 <label class="control-label col-lg-3">Description</label>
-                                <div class="col-lg-7">
+                                <div class="col-lg-9">
                                     <form:textarea path="description" class="form-control ckeditor" name="editor"
                                                    rows="6"></form:textarea>
                                 </div>

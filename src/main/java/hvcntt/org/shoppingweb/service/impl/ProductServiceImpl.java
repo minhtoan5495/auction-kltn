@@ -1,5 +1,10 @@
 package hvcntt.org.shoppingweb.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,9 +16,7 @@ import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Image;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
-import hvcntt.org.shoppingweb.dao.repository.CategoryRepository;
-import hvcntt.org.shoppingweb.dao.repository.SupplierRepository;
-import hvcntt.org.shoppingweb.dao.repository.TransactionTypeRepository;
+import hvcntt.org.shoppingweb.dao.repository.*;
 import hvcntt.org.shoppingweb.exception.ProductNotFoundException;
 import hvcntt.org.shoppingweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +25,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import hvcntt.org.shoppingweb.dao.repository.ProductRepository;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private static final int PAGE_SIZE = 8;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    private ImageRepository imageRepository;
 
     @Autowired
     private ProductRepository productRepository;
@@ -105,8 +115,10 @@ public class ProductServiceImpl implements ProductService {
         product.setSupplier(supplierRepository.getOne(productDto.getSupplierId()));
         product.setTransactionType(transactionTypeRepository.getOne(productDto.getTransactionTypeId()));
         product.setName(productDto.getName());
-        product.setImages(getImageUrlFromMultiFile(productDto.getImages(), product));
+        List<Image> images = getImageUrlFromMultiFile(productDto.getImages(), product);
+        product.setImages(images);
         productRepository.save(product);
+        imageRepository.save(images);
     }
 
     private Date formatStringToDate(String date) throws ParseException {
@@ -116,7 +128,7 @@ public class ProductServiceImpl implements ProductService {
 
     private List<Image> getImageUrlFromMultiFile(List<MultipartFile> multipartFiles, Product product) {
         List<Image> images = new ArrayList<>();
-        if(null != images && images.size() > 0) {
+        if (null != multipartFiles && multipartFiles.size() > 0) {
             int i = 1;
             for (MultipartFile multipartFile : multipartFiles) {
                 String fileName = multipartFile.getOriginalFilename();
@@ -125,6 +137,16 @@ public class ProductServiceImpl implements ProductService {
                 image.setImageTitle(product.getName() + " " + i);
                 image.setProduct(product);
                 images.add(image);
+                try {
+                    String uploadsDir = "/resource/images/product/";
+                    String realPathtoUploads =  request.getServletContext().getRealPath(uploadsDir);
+                    String orgName = multipartFile.getOriginalFilename();
+                    String filePath = realPathtoUploads + orgName;
+                    File dest = new File(filePath);
+                    multipartFile.transferTo(dest);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return images;
