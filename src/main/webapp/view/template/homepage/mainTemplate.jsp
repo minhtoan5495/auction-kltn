@@ -23,6 +23,7 @@
     <link href="${pageContext.request.contextPath }/resource/css/submenu_v2.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/rating/style.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/rating/rating.min.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/contact.css">
 </head>
 <body>
 
