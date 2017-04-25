@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.Supplier;import java.util.List;/** * Created by Nguyen on 12/04/2017. */public interface SupplierService {    List<Supplier> getAll();}
+package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.Supplier;import java.util.List;/** * Created by Nguyen on 12/04/2017. */public interface SupplierService {    List<Supplier> getAll();    void save(Supplier supplier);    Supplier findOne(String supplyId);    void delete(String supplyId);}

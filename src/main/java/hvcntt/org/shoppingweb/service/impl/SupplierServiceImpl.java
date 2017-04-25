@@ -19,4 +19,22 @@ public class SupplierServiceImpl implements SupplierService {
     public List<Supplier> getAll() {
         return supplierRepository.findAll();
     }
+
+	@Override
+	public void save(Supplier supplier) {
+		supplierRepository.save(supplier);
+		
+	}
+
+	@Override
+	public Supplier findOne(String supplyId) {
+		return supplierRepository.findOne(supplyId);
+		
+	}
+
+	@Override
+	public void delete(String supplyId) {
+		supplierRepository.delete(supplyId);
+		
+	}
 }

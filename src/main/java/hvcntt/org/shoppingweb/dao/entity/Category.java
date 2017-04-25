@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "category")
@@ -13,7 +14,7 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = -2196480188211956616L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="category_id")
 	private String categoryId;
 
@@ -29,6 +30,7 @@ public class Category implements Serializable {
 	private List<Product> products;
 
 	public Category() {
+		setCategoryId(UUID.randomUUID().toString());
 	}
 
 	public String getCategoryId() {

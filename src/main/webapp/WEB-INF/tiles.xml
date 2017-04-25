@@ -97,4 +97,16 @@
     <definition name="editProduct" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/editProduct.jsp"></put-attribute>
     </definition>
+     <definition name="manageCategory" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageCategory.jsp"></put-attribute>
+    </definition>
+    <definition name="addOrEditCategory" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/addOrEditCategory.jsp"></put-attribute>
+    </definition>
+    <definition name="manageSupplier" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageSupplier.jsp"></put-attribute>
+    </definition>
+    <definition name="addOrEditSupplier" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/addOrEditSupplier.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>

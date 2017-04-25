@@ -48,6 +48,7 @@
                 <ul class="sub">
                     <li><a href="${pageContext.request.contextPath}/admin/manageAccount">ManageAccount</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/manageProduct">ManageProduct</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/manageCategory">ManageCategory</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
