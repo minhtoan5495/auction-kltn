@@ -75,10 +75,13 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy="product",fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private List<Rating> ratings;
+
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
 	private List<ProductDetail> productDetails;
+
 	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER)
-	List<Discount> discounts;
+	private List<Discount> discounts;
+
 	public Product() {
 	}
 

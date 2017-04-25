@@ -55,8 +55,8 @@
 </script>
 <script src="${pageContext.request.contextPath }/resource/js/cart.js"></script>
 <script type="text/javascript">
-$(document).ready(function () {
-  $('#theCarousel').find('.item').first().addClass('active');
-});
+    $(document).ready(function () {
+        $('#theCarousel').find('.item').first().addClass('active');
+    });
 </script>
 </html>

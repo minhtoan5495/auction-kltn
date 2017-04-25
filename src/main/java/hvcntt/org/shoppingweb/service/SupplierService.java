@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;/** * Created by Nguyen on 12/04/2017. */public interface SupplierService {}
+package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.Supplier;import java.util.List;/** * Created by Nguyen on 12/04/2017. */public interface SupplierService {    List<Supplier> getAll();}

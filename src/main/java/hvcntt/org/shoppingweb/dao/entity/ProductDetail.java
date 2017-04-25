@@ -16,16 +16,15 @@ public class ProductDetail implements Serializable {
 
 	private String color;
 
-//	@Column(name="product_id")
-//	private String productId;
-
 	private String size;
 
 	@Column(name="stock_quantity")
 	private int stockQuantity;
+
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	private Product product;
+
 	public ProductDetail() {
 	}
 

@@ -1,10 +1,20 @@
 package hvcntt.org.shoppingweb.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import hvcntt.org.shoppingweb.dao.dto.ProductDto;
 import hvcntt.org.shoppingweb.dao.entity.Category;
+import hvcntt.org.shoppingweb.dao.entity.Image;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
+import hvcntt.org.shoppingweb.dao.repository.CategoryRepository;
+import hvcntt.org.shoppingweb.dao.repository.SupplierRepository;
+import hvcntt.org.shoppingweb.dao.repository.TransactionTypeRepository;
+import hvcntt.org.shoppingweb.exception.ProductNotFoundException;
 import hvcntt.org.shoppingweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,61 +23,117 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import hvcntt.org.shoppingweb.dao.repository.ProductRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	private static final int PAGE_SIZE=8;
 
-	@Autowired
-	private ProductRepository productrepo;
+    private static final int PAGE_SIZE = 8;
 
-	@Override
-	public List<Product> getAll() {
-		// TODO Auto-generated method stub
-		return productrepo.findAll();
-	}
-	@Override
-	public Product findOne(String idproduct) {
-		// TODO Auto-generated method stub
-		return productrepo.findOne(idproduct);
-	}
-	@Override
-	public List<Product> findByNameContaining(String name) {
-		// TODO Auto-generated method stub
-		return productrepo.findByNameContaining(name);
-	}
-	@Override
-	public void updateView(String idproduct) {
-		// TODO Auto-generated method stub
-		 productrepo.updateView(idproduct);
-	}
-	@Override
-	public List<Product> findByProductTransactionType(TransactionType transactionType) {
-		// TODO Auto-generated method stub
-		return productrepo.findByTransactionType(transactionType, new PageRequest(0, 12)).getContent();
-	}
-	@Override
-	public List<Product> findByCategoryAndPrice(Category category, float minPrice, float maxPrice) {
-		// TODO Auto-generated method stub
-		return productrepo.findByCategoryAndPriceBetween(category, minPrice, maxPrice);
-	}
-	@Override
-	public List<Product> findByCategoryAndPriceBetweenAndProductIdNotIn(Category category, float minPrice,
-			float maxPrice, String productId) {
-		// TODO Auto-generated method stub
-		return productrepo.findByCategoryAndPriceBetweenAndProductIdNotIn(category, minPrice, maxPrice, productId);
-	}
-	@Override
-	public Page<Product> getProductPaging(int pagenumber) {
-		PageRequest request=new PageRequest(pagenumber-1,PAGE_SIZE);
-		return productrepo.findAll(request);
-	}
-	@Override
-	public Page<Product> findProductPaging(TransactionType transactionType, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return productrepo.findByTransactionType(transactionType, pageable);
-	}
+    @Autowired
+    private ProductRepository productRepository;
 
-	
+    @Autowired
+    private TransactionTypeRepository transactionTypeRepository;
+
+    @Autowired
+    private SupplierRepository supplierRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Override
+    public List<Product> getAll() {
+        return productRepository.findAll();
+    }
+
+    @Override
+    public Product findOne(String idproduct) {
+        return productRepository.findOne(idproduct);
+    }
+
+    @Override
+    public List<Product> findByNameContaining(String name) {
+        return productRepository.findByNameContaining(name);
+    }
+
+    @Override
+    public void updateView(String idproduct) {
+        productRepository.updateView(idproduct);
+    }
+
+    @Override
+    public List<Product> findByProductTransactionType(TransactionType transactionType) {
+        return productRepository.findByTransactionType(transactionType, new PageRequest(0, 12)).getContent();
+    }
+
+    @Override
+    public List<Product> findByCategoryAndPrice(Category category, float minPrice, float maxPrice) {
+        return productRepository.findByCategoryAndPriceBetween(category, minPrice, maxPrice);
+    }
+
+    @Override
+    public List<Product> findByCategoryAndPriceBetweenAndProductIdNotIn(Category category, float minPrice,
+                                                                        float maxPrice, String productId) {
+        return productRepository.findByCategoryAndPriceBetweenAndProductIdNotIn(category, minPrice, maxPrice, productId);
+    }
+
+    @Override
+    public Page<Product> getProductPaging(int pagenumber) {
+        PageRequest request = new PageRequest(pagenumber - 1, PAGE_SIZE);
+        return productRepository.findAll(request);
+    }
+
+    @Override
+    public void deleteProduct(String productId) throws ProductNotFoundException {
+        if (productRepository.getOne(productId) != null) {
+            productRepository.delete(productId);
+        } else {
+            throw new ProductNotFoundException("Product not found with Id : " + productId);
+        }
+    }
+
+    @Override
+    public void save(ProductDto productDto) throws ParseException {
+        Product product = new Product();
+        product.setCategory(categoryRepository.getOne(productDto.getCategoryId()));
+        product.setDescription(productDto.getDescription());
+        product.setCreateDate(new Date());
+        product.setManufactureDate(formatStringToDate(productDto.getManufactureDate()));
+        product.setPrice(productDto.getPrice());
+        product.setStockQuantity(productDto.getStockQuantity());
+        product.setSupplier(supplierRepository.getOne(productDto.getSupplierId()));
+        product.setTransactionType(transactionTypeRepository.getOne(productDto.getTransactionTypeId()));
+        product.setName(productDto.getName());
+        product.setImages(getImageUrlFromMultiFile(productDto.getImages(), product));
+        productRepository.save(product);
+    }
+
+    private Date formatStringToDate(String date) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.parse(date);
+    }
+
+    private List<Image> getImageUrlFromMultiFile(List<MultipartFile> multipartFiles, Product product) {
+        List<Image> images = new ArrayList<>();
+        if(null != images && images.size() > 0) {
+            int i = 1;
+            for (MultipartFile multipartFile : multipartFiles) {
+                String fileName = multipartFile.getOriginalFilename();
+                Image image = new Image();
+                image.setImageUrl(fileName);
+                image.setImageTitle(product.getName() + " " + i);
+                image.setProduct(product);
+                images.add(image);
+            }
+        }
+        return images;
+    }
+
+    @Override
+    public Page<Product> findProductPaging(TransactionType transactionType, Pageable pageable) {
+        return productRepository.findByTransactionType(transactionType, pageable);
+    }
+
 
 }

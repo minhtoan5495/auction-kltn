@@ -46,11 +46,8 @@
                     <span>Data Tables</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="basic_table.html">Basic Table</a></li>
-                    <li><a href="responsive_table.html">Responsive Table</a></li>
-                    <li><a href="dynamic_table.html">Dynamic Table</a></li>
-                    <li><a href="advanced_table.html">Advanced Table</a></li>
-                    <li class="active"><a href="editable_table.jsp">Editable Table</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/manageAccount">ManageAccount</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/manageProduct">ManageProduct</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

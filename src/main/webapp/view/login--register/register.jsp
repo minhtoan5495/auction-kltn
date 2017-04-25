@@ -25,8 +25,8 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="custom" data-validation-regexp="^[a-zA-Z .*]{3,}$"
-                                                data-validation-error-msg="Họ tên phải có 3 tự"
+                                    <form:input data-validation="custom" data-validation-length="3-30"
+                                                data-validation-error-msg="Họ tên phải hơn 3 kí tự"
                                                 type="text" placeholder="Họ tên" class="input" id="name"
                                                 name="name"
                                                 path="name"></form:input>
@@ -91,6 +91,8 @@
                                 <form:errors path="confirmPassword" cssClass="error"/>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-sm-6">
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
@@ -108,8 +110,6 @@
                                 <form:errors path="email" cssClass="error"/>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
@@ -145,42 +145,6 @@
                             </div>
                         </div>
                         <div class="form_input_register">
-                            <div class="form-group">
-                                <div class='input-group'>
-                                    <form:input data-validation="required"
-                                                data-validation-error-msg="Bạn chưa nhập địa chỉ "
-                                                class="input" type="text" placeholder="Địa chỉ" id="address"
-                                                name="address"
-                                                path="address"></form:input>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-home"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="error">
-                                <form:errors path="address" cssClass="error"/>
-                            </div>
-                        </div>
-                        <div class="form_input_register">
-                            <div class="form-group">
-                                <div class='input-group'>
-                                    <form:select path="city" class="input" onchange="getDistrict();" id="city">
-                                        <option>Select city</option>
-                                        <c:forEach var="city" items="${cities}">
-                                            <option value="${city.cityId}">${city.cityName}</option>
-                                        </c:forEach>
-                                    </form:select>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-home"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="error">
-                                <form:errors path="address" cssClass="error"/>
-                            </div>
-                        </div>
-                        <div class="form_input_register">
-
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker'>
                                     <form:input data-validation="required"

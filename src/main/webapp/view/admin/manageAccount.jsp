@@ -12,11 +12,6 @@
             <div class="panel-body">
                 <div class="adv-table editable-table ">
                     <div class="clearfix">
-                        <div class="btn-group">
-                            <button id="editable-sample_new" class="btn green">
-                                Add New <i class="icon-plus"></i>
-                            </button>
-                        </div>
                         <div class="btn-group pull-right">
                             <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i
                                     class="icon-angle-down"></i>
@@ -29,13 +24,15 @@
                         </div>
                     </div>
                     <div class="space15"></div>
-                    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                    <table class="table table-striped table-hover table-bordered" id="manageAccountTable">
                         <thead>
                         <tr>
                             <th>STT</th>
                             <th>Username</th>
                             <th>Full name</th>
                             <th>Address</th>
+                            <th>District</th>
+                            <th>City</th>
                             <th>Email</th>
                             <th>Birthday</th>
                             <th>Phone</th>
@@ -52,6 +49,8 @@
                                 <td>${user.username}</td>
                                 <td>${user.name}</td>
                                 <td>${user.address}</td>
+                                <td>${user.district.districtName}</td>
+                                <td>${user.city.cityName}</td>
                                 <td>${user.email}</td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd"
                                                     value="${user.birthday}"/></td>
@@ -66,95 +65,97 @@
                     </table>
                 </div>
             </div>
-            <header class="panel-heading">
-                Advanced Form validations
-            </header>
-            <div class="panel-body">
-                <div class="form">
-                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
-                        <div class="col-lg-6">
-                            <div class="form-group ">
-                                <label for="name" class="control-label col-lg-2">Full name</label>
-                                <div class="col-lg-10">
-                                    <input class=" form-control" id="name" name="name" type="text"/>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="username" class="control-label col-lg-2">Username</label>
-                                <div class="col-lg-10">
-                                    <input class="form-control " id="username" name="username" type="text"/>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-2">Password</label>
-                                <div class="col-lg-10">
-                                    <input class="form-control " id="password" name="password" type="password"/>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="confirm_password" class="control-label col-lg-2">Confirm Password</label>
-                                <div class="col-lg-10">
-                                    <input class="form-control " id="confirm_password" name="confirm_password"
-                                           type="password"/>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="phone" class="control-label col-lg-2">Phone</label>
-                                <div class="col-lg-10">
-                                    <input class=" form-control" id="phone" name="phone" type="text"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group ">
-                                <label for="email" class="control-label col-lg-2">Email</label>
-                                <div class="col-lg-10">
-                                    <input class="form-control " id="email" name="email" type="email"/>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="address" class="control-label col-lg-2">Address</label>
-                                <div class="col-lg-10">
-                                    <input class="form-control " id="address" name="address" type="text"/>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <div class="col-lg-7">
-                                    <label for="city" class="control-label col-lg-2 col-sm-3">City</label>
-                                    <select class="col-lg-10" style="left: 42px;" onchange="getDistrict();" id="city">
-                                        <option>Select city</option>
-                                        <c:forEach var="city" items="${cities}">
-                                            <option value="${city.cityId}">${city.cityName}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="city" class="control-label col-lg-2 col-sm-3">District</label>
-                                <div class="col-lg-7">
-                                    <select class="col-lg-10" id="district">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-
-                            </div>
-                            <div class="form-group ">
-                                <label class="control-label col-lg-2 col-sm-3">Role</label>
-                                <c:forEach var="role" items="${roles}">
-                                    <input type='radio' id='radio_1' name='type' value='${role.roleId}' /> ${role.roleName}
-                                </c:forEach>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-offset-2 col-lg-10">
-                                    <button class="btn btn-danger" type="submit">Save</button>
-                                    <button class="btn btn-default" type="button">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <%--<header class="panel-heading">--%>
+                <%--Advanced Form validations--%>
+            <%--</header>--%>
+            <%--<div class="panel-body">--%>
+                <%--<div class="form">--%>
+                    <%--<form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">--%>
+                        <%--<div class="col-lg-6">--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label for="name" class="control-label col-lg-2">Full name</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<input class=" form-control" id="name" name="name" type="text"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label for="username" class="control-label col-lg-2">Username</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<input class="form-control " id="username" name="username" type="text"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label for="password" class="control-label col-lg-2">Password</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<input class="form-control " id="password" name="password" type="password"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label for="confirm_password" class="control-label col-lg-2">Confirm Password</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<input class="form-control " id="confirm_password" name="confirm_password"--%>
+                                           <%--type="password"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label for="phone" class="control-label col-lg-2">Phone</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<input class="form-control" id="phone" name="phone" type="text"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-6">--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label for="email" class="control-label col-lg-2">Email</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<input class="form-control " id="email" name="email" type="email"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label for="address" class="control-label col-lg-2">Address</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<input class="form-control " id="address" name="address" type="text"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<div>--%>
+                                    <%--<label for="city" class="control-label col-lg-2 col-sm-3">City</label>--%>
+                                    <%--<select class="col-lg-5" onchange="getDistrict();" id="city">--%>
+                                        <%--<option>Select city</option>--%>
+                                        <%--<c:forEach var="city" items="${cities}">--%>
+                                            <%--<option value="${city.cityId}">${city.cityName}</option>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<div>--%>
+                                    <%--<label for="city" class="control-label col-lg-2 col-sm-3">District</label>--%>
+                                    <%--<select class="col-lg-5" id="district">--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group ">--%>
+                                <%--<label class="control-label col-lg-2 col-sm-3">Role</label>--%>
+                                <%--<div class="col-lg-10">--%>
+                                    <%--<c:forEach var="role" items="${roles}">--%>
+                                        <%--<label class="checkbox-inline">--%>
+                                            <%--<input type="checkbox" id="inlineCheckbox1"--%>
+                                                   <%--value="${role.roleId}"> ${role.roleName}--%>
+                                        <%--</label>--%>
+                                    <%--</c:forEach>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group">--%>
+                                <%--<div class="col-lg-offset-2 col-lg-10">--%>
+                                    <%--<button class="btn btn-danger" type="submit">Save</button>--%>
+                                    <%--<button class="btn btn-default" type="button">Cancel</button>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</form>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </section>
         <!-- page end-->
     </section>

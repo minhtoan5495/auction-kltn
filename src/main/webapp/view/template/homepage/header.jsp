@@ -92,7 +92,7 @@
                             </div>
                         </c:if>
                         <div class="header_top_account">
-                            <div class="header_login_top pull-right">
+                            <div class="header_login_top pull-left">
                                 <a href="${pageContext.request.contextPath}/admin"
                                    class="header_login_link"><i class="fa fa-user"></i>Admin</a>
                             </div>

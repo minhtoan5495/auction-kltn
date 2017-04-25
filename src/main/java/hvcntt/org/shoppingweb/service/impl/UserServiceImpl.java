@@ -79,8 +79,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String username) throws UserNotFoundException {
-        User user = userRepository.findOne(username);
-        userRepository.delete(user);
+        if(userRepository.findOne(username) != null){
+            userRepository.delete(username);
+        }
     }
 
     @Override

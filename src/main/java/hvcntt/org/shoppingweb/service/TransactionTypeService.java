@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.TransactionType;/** * Created by Nguyen on 12/04/2017. */public interface TransactionTypeService {	TransactionType findByName(String name);}
+package hvcntt.org.shoppingweb.service;import hvcntt.org.shoppingweb.dao.entity.TransactionType;import java.util.List;/** * Created by Nguyen on 12/04/2017. */public interface TransactionTypeService {    TransactionType findByName(String name);    List<TransactionType> getAll();}

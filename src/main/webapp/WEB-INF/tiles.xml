@@ -78,6 +78,7 @@
         <put-attribute name="title" value="Chi tiết sản phẩm"></put-attribute>
         <put-attribute name="body" value="/view/detail/detailPage.jsp"></put-attribute>
     </definition>
+    <!--admin template-->
     <definition name="templateAdmin" template="/view/template/admin/templateAdmin.jsp">
         <put-attribute name="header" value="/view/template/admin/header.jsp"></put-attribute>
         <put-attribute name="menu" value="/view/template/admin/menu.jsp"></put-attribute>
@@ -86,5 +87,11 @@
     </definition>
     <definition name="manageAccount" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/manageAccount.jsp"></put-attribute>
+    </definition>
+    <definition name="manageProduct" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageProduct.jsp"></put-attribute>
+    </definition>
+    <definition name="addOrEditProduct" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/addOrEditProduct.jsp"></put-attribute>
     </definition>
 </tiles-definitions>

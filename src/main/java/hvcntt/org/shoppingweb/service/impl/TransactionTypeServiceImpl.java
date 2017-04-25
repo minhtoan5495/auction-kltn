@@ -7,14 +7,22 @@ import hvcntt.org.shoppingweb.service.TransactionTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TransactionTypeServiceImpl implements TransactionTypeService {
+
 	@Autowired
-	TransactionTypeRepository transactionRepo;
+	TransactionTypeRepository transactionTypeRepository;
+
 	@Override
 	public TransactionType findByName(String name) {
-		// TODO Auto-generated method stub
-		return transactionRepo.findByTransactionTypeName(name);
+		return transactionTypeRepository.findByTransactionTypeName(name);
+	}
+
+	@Override
+	public List<TransactionType> getAll() {
+		return transactionTypeRepository.findAll();
 	}
 
 }

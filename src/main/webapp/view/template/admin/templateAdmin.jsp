@@ -15,8 +15,16 @@
           rel="stylesheet"/>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resource/admin/assets/data-tables/DT_bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/jquery-multi-select/css/multi-select.css" />
     <link href="${pageContext.request.contextPath}/resource/admin/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resource/admin/css/style-responsive.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
 
 </head>
 
@@ -29,6 +37,7 @@
 </section>
 </body>
 
+<script src="${pageContext.request.contextPath}/resource/admin/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/jquery-1.8.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/bootstrap.min.js"></script>
 <script class="include" type="text/javascript"
@@ -41,14 +50,111 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resource/admin/assets/data-tables/DT_bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/respond.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/ckeditor/ckeditor.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resource/admin/js/advanced-form-components.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/common-scripts.js"></script>
-<script src="${pageContext.request.contextPath}/resource/admin/js/editable-table.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageAccount.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageProduct.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"></script>
-<script src="${pageContext.request.contextPath}/resource/admin/js/mainAccount.js"></script>
 <script>
     jQuery(document).ready(function () {
-        EditableTable.init();
+        TableAccount.init();
     });
 </script>
+<script type="text/javascript">
+    /* Formating function for row details */
+    function fnFormatDetails ( oTable, nTr )
+    {
+        var aData = oTable.fnGetData( nTr );
+        var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+        sOut += '<tr><td>Description :</td><td>'+aData[10]+'</td></tr>';
+        sOut += '<tr><td>Stock Quantity :</td><td>'+aData[11]+'</td></tr>';
+        sOut += '<tr><td>View number :</td><td>'+aData[12]+'</td></tr>';
+        sOut += '<tr><td>Rating number :</td><td>'+aData[13]+'</td></tr>';
+        sOut += '</table>';
 
+        return sOut;
+    }
+
+    $(document).ready(function() {
+        /*
+         * Insert a 'details' column to the table
+         */
+        var nCloneTh = document.createElement( 'th' );
+        var nCloneTd = document.createElement( 'td' );
+        nCloneTd.innerHTML = '<img src="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/details_open.png">';
+        nCloneTd.className = "center";
+
+        $('#manageProductTable thead tr').each( function () {
+            this.insertBefore( nCloneTh, this.childNodes[0] );
+        } );
+
+        $('#manageProductTable tbody tr').each( function () {
+            this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+        } );
+
+        /*
+         * Initialse DataTables, with no sorting on the 'details' column
+         */
+        var oTable = $('#manageProductTable').dataTable( {
+            "aoColumnDefs": [
+                { "bSortable": false, "aTargets": [ 0 ] }
+            ],
+            "aaSorting": [[1, 'asc']]
+        });
+
+        /* Add event listener for opening and closing details
+         * Note that the indicator for showing which row is open is not controlled by DataTables,
+         * rather it is done here
+         */
+        $('#manageProductTable tbody td img').live('click', function () {
+            var nTr = $(this).parents('tr')[0];
+            if ( oTable.fnIsOpen(nTr) )
+            {
+                /* This row is already open - close it */
+                this.src = "${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/details_open.png";
+                oTable.fnClose( nTr );
+            }
+            else
+            {
+                /* Open this row */
+                this.src = "${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/details_close.png";
+                oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+            }
+        } );
+        $('#manageProductTable a.delete').live('click', function (e) {
+            e.preventDefault();
+            var nRow = $(this).parents('tr')[0];
+            var aData = oTable.fnGetData(nRow);
+            var productId = aData[1];
+            if (confirm("Are you sure to delete this row  with username : " + productId) == false) {
+                return;
+            }
+            deleteUser(productId);
+            oTable.fnDeleteRow(nRow);
+        });
+        function deleteUser(productId) {
+            $.ajax({
+                type: "GET",
+                url: "/admin/deleteProduct",
+                data: "productId=" + productId,
+            });
+            console.log(productId);
+        }
+        $("input[name=file]").change( function() {
+            var names = [];
+            for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                names.push($(this).get(0).files[i].name);
+            }
+            $("input[name=file]").val(names);
+        } );
+    } );
+</script>
 </html>

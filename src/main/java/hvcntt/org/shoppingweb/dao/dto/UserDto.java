@@ -1,15 +1,12 @@
 package hvcntt.org.shoppingweb.dao.dto;
 
 
-import hvcntt.org.shoppingweb.dao.entity.City;
-import hvcntt.org.shoppingweb.dao.entity.District;
 import hvcntt.org.shoppingweb.validator.Email;
 import hvcntt.org.shoppingweb.validator.Phone;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +15,7 @@ public class UserDto implements Serializable {
 
     private static final long serialVersionUID = 7907931692605937196L;
 
-    @Pattern(regexp = "^[a-zA-ZàáâäãåąčćęèéêễëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$")
+    @Size(min = 3, max = 30)
     private String name;
 
     @Size(min = 6, max = 12)
@@ -34,10 +31,6 @@ public class UserDto implements Serializable {
 
     @NotNull
     private Date birthday;
-
-    private City city;
-
-    private District district;
 
     @Size(max = 20, min = 6)
     private String password;
@@ -121,21 +114,5 @@ public class UserDto implements Serializable {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public District getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(District district) {
-        this.district = district;
     }
 }

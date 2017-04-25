@@ -51,19 +51,4 @@ public class TransactionType implements Serializable {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-
-	public Product addProduct(Product product) {
-		getProducts().add(product);
-		product.setTransactionType(this);
-
-		return product;
-	}
-
-	public Product removeProduct(Product product) {
-		getProducts().remove(product);
-		product.setTransactionType(null);
-
-		return product;
-	}
-
 }
