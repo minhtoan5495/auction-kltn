@@ -28,13 +28,11 @@ public class Rating implements Serializable {
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="username")
-	@JsonBackReference
 	private User user;
 
 	//bi-directional many-to-one association to Product
 	@ManyToOne
 	@JoinColumn(name="product_id")
-	@JsonBackReference
 	private Product product;
 
 	public Rating() {

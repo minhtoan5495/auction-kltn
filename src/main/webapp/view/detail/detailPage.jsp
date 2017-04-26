@@ -51,7 +51,7 @@
                                 <div class="tab-pane active" id="imageContainer">
                                     <div class="product-detail-image">
                                         <img id="imageContainer1" name="image_main"
-                                             src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }">
+                                             src="resource/images/product/${singleProduct.images.get(i).getImageUrl() }">
                                     </div>
                                 </div>
                             </div>
@@ -74,8 +74,8 @@
                                 <p>(Còn lại ${singleProduct.stockQuantity} sản phẩm)</p>
                             </div>
                             <div class="product-detail-color">
-                                <p><i class="glyphicon glyphicon-ok"></i>Màu sắc ${singleProduct.productDetails.get(i).color }</p>
-                                <p><i class="glyphicon glyphicon-ok"></i>Kích cỡ ${singleProduct.productDetails.get(i).size }</p>
+                                <%--<p><i class="glyphicon glyphicon-ok"></i>Màu sắc ${singleProduct.productDetails.get(i).color }</p>--%>
+                                <%--<p><i class="glyphicon glyphicon-ok"></i>Kích cỡ ${singleProduct.productDetails.get(i).size }</p>--%>
                             </div>
                             <div class="product-detail-price">
                                 <h2>
@@ -119,7 +119,7 @@
                                             <c:otherwise>
                                                 <div class="submit-button">
                                                     <a
-                                                            href="${pageContext.request.contextPath }/addCart?idproduct=${singleProduct.productId}"
+                                                            href="${pageContext.request.contextPath }/addCart?productId=${singleProduct.productId}"
                                                             class="btn submit-btn"> <span><i
                                                             class="glyphicon glyphicon-shopping-cart"></i> MUA NGAY </span>
                                                     </a>
@@ -154,7 +154,7 @@
                                     <div class="tab-descript">
                                         <p>${singleProduct.description }</p>
                                         <img
-                                                src="resource/images/banner/${singleProduct.images.get(i).getImageUrl() }"
+                                                src="resource/images/product/${singleProduct.images.get(i).getImageUrl() }"
                                                 style="width: 100%">
                                     </div>
                                 </div>
@@ -246,8 +246,8 @@
                             <div class="col-sm-12">
                                 <h2 style="font-size: 15px; font-weight: bold;">Nhận xét
                                     sản phẩm ${singleProduct.name }</h2>
-                                <label>Có ${singleProduct.ratings.size() } nhận xét</label>
-                                <c:forEach var="rating" items="${singleProduct.ratings }">
+                                <label>Có ${ratings.size() } nhận xét</label>
+                                <c:forEach var="rating" items="${ratings }">
                                     <div class="comment-items">
                                         <img class="img-responsive user-photo"
                                              src="resource/images/avatar/avartar-cmt.png"
@@ -317,7 +317,7 @@
 									<div class="single-product-image">
 										<a
 											href=""><img
-											src="resource/images/banner/${getRelateProduct.images.get(i).getImageUrl() }"></a>
+											src="resource/images/product/${getRelateProduct.images.get(i).getImageUrl() }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a

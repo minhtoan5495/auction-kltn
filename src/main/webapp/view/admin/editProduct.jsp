@@ -15,8 +15,10 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form:form action="${pageContext.request.contextPath}/admin/saveProduct" enctype="multipart/form-data" commandName="productDto" class="cmxform form-horizontal tasi-form" id="addProduct"
-                                method="post" >
+                    <form:form action="${pageContext.request.contextPath}/admin/saveProduct"
+                               enctype="multipart/form-data" commandName="productDto"
+                               class="cmxform form-horizontal tasi-form" id="addProduct"
+                               method="post">
                         <div class="col-lg-6">
                             <div class="form-group ">
                                 <label for="name" class="control-label col-lg-3">Product name</label>
@@ -36,7 +38,9 @@
                             <div class="form-group ">
                                 <label for="quantity" class="control-label col-lg-3">Quantity</label>
                                 <div class="col-lg-7">
-                                    <form:input path="stockQuantity" value="${product.stockQuantity}" class="form-control" min="0"
+                                    <form:input path="stockQuantity" value="${product.stockQuantity}"
+                                                class="form-control"
+                                                min="0"
                                                 placeholder="Enter product quantity" id="quantity" name="quantity"
                                                 type="number"/>
                                 </div>
@@ -44,7 +48,8 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-3">Manufacture Date</label>
                                 <div class="col-lg-7">
-                                    <form:input path="manufactureDate" value="${product.manufactureDate}" name="manufactureDate" id="manufactureDate"
+                                    <form:input path="manufactureDate" value="${product.manufactureDate}"
+                                                name="manufactureDate" id="manufactureDate"
                                                 class="form-control form-control-inline input-medium default-date-picker"
                                                 type="text" placeholder="Choose product manufacture date"
                                     />
@@ -57,7 +62,8 @@
                                         <option>Select category</option>
                                         <c:forEach var="category" items="${categories}">
                                             <c:if test="${product.category.categoryName eq category.categoryName}">
-                                                <option value="${category.categoryId}" selected>${category.categoryName}</option>
+                                                <option value="${category.categoryId}"
+                                                        selected>${category.categoryName}</option>
                                             </c:if>
                                             <c:if test="${product.category.categoryName ne category.categoryName }">
                                                 <option value="${category.categoryId}">${category.categoryName}</option>
@@ -73,7 +79,8 @@
                                         <option>Select supplier</option>
                                         <c:forEach var="supplier" items="${suppliers}">
                                             <c:if test="${product.supplier.supplierName eq supplier.supplierName}">
-                                                <option value="${supplier.supplierId}" selected>${supplier.supplierName}</option>
+                                                <option value="${supplier.supplierId}"
+                                                        selected>${supplier.supplierName}</option>
                                             </c:if>
                                             <c:if test="${product.supplier.supplierName ne supplier.supplierName}">
                                                 <option value="${supplier.supplierId}">${supplier.supplierName}</option>
@@ -91,7 +98,8 @@
                                         <option>Select transaction type</option>
                                         <c:forEach var="transactionType" items="${transactionTypes}">
                                             <c:if test="${product.transactionType.transactionTypeName eq transactionType.transactionTypeName}">
-                                                <option value="${transactionType.transactionTypeId}" selected>${transactionType.transactionTypeName}</option>
+                                                <option value="${transactionType.transactionTypeId}"
+                                                        selected>${transactionType.transactionTypeName}</option>
                                             </c:if>
                                             <c:if test="${product.transactionType.transactionTypeName eq transactionType.transactionTypeName}">
                                                 <option value="${transactionType.transactionTypeId}">${transactionType.transactionTypeName}</option>
@@ -102,13 +110,74 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="form-group last">
+                            <div class="form-group last" id="wrapper">
                                 <label class="control-label col-lg-3">Image Upload</label>
-                                <div class="col-lg-7">
-                                    <form:input path="images" id="upload_file" type="file" onchange="preview_image();" name="file" value="${pageContext.request.contextPath}/resource/images/product/${product.images.get(i).imageUrl}" multiple="multiple"/>
+                                <div class="col-md-3">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail"
+                                             style="width: 200px; height: 150px; line-height: 20px;"></div>
+                                        <div id = 'button-change-remove'>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i
+                                                           class="icon-undo"></i> Change</span>
+                                                   <form:input path="image1" type="file" class="default"/>
+                                                   </span>
+                                            <a href="#" class="btn btn-danger fileupload-exists"
+                                               data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-10" style="display: inline-block;" id="image_preview"></div>
+                                <div class="col-md-3">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail"
+                                             style="width: 200px; height: 150px; line-height: 20px;"></div>
+                                        <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i
+                                                           class="icon-undo"></i> Change</span>
+                                                   <form:input path="image2" type="file" class="default"/>
+                                                   </span>
+                                            <a href="#" class="btn btn-danger fileupload-exists"
+                                               data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail"
+                                             style="width: 200px; height: 150px; line-height: 20px;"></div>
+                                        <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i
+                                                           class="icon-undo"></i> Change</span>
+                                                   <form:input path="image3" type="file" class="default"/>
+                                                   </span>
+                                            <a href="#" class="btn btn-danger fileupload-exists"
+                                               data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+                                <%--<div class="form-group last">--%>
+                                <%--<label class="control-label col-lg-3">Preview</label>--%>
+                                <%--<div class="col-lg-9" style="display: inline-block;" id="image_preview"></div>--%>
+                                <%--</div>--%>
                             <div class="form-group last">
                                 <label class="control-label col-lg-3">Description</label>
                                 <div class="col-lg-9">

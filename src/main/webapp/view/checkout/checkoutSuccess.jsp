@@ -58,7 +58,7 @@
 		<c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
 			<div class="checkout_success_detail_order_product">
 				<img
-					src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.images.get(i).getImageUrl()}">
+					src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).getImageUrl()}">
 				<label class="checkout_success_detail_order_product_name">${cart.product.name}
 				<p style="color: black">Số lượng:${cart.quantity } cái</p>
 				</label>

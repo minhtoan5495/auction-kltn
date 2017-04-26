@@ -29,6 +29,11 @@ public class RatingServiceImpl implements RatingService {
         return ratingRepository.findAll();
     }
 
+    @Override
+    public List<Rating> getByProduct(Product product) {
+        return ratingRepository.findByProduct(product);
+    }
+
     private Rating convertDtoToEntity(RatingDto ratingDto, Product product, User user) {
         Rating rating = new Rating();
         rating.setProduct(product);

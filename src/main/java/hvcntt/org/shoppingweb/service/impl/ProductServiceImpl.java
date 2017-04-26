@@ -20,6 +20,7 @@ import hvcntt.org.shoppingweb.dao.repository.*;
 import hvcntt.org.shoppingweb.exception.ProductNotFoundException;
 import hvcntt.org.shoppingweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,12 @@ import javax.servlet.http.HttpServletRequest;
 public class ProductServiceImpl implements ProductService {
 
     private static final int PAGE_SIZE = 8;
+
+    @Value("${UPLOAD_DIR_TARGET}")
+    private String UPLOAD_DIR_TARGET;
+
+    @Value("${UPLOAD_DIR_SRC}")
+    private String UPLOAD_DIR_SRC;
 
     @Autowired
     private HttpServletRequest request;
@@ -115,10 +122,19 @@ public class ProductServiceImpl implements ProductService {
         product.setSupplier(supplierRepository.getOne(productDto.getSupplierId()));
         product.setTransactionType(transactionTypeRepository.getOne(productDto.getTransactionTypeId()));
         product.setName(productDto.getName());
-        List<Image> images = getImageUrlFromMultiFile(productDto.getImages(), product);
+        List<MultipartFile> multipartFiles = getMultipartFiles(productDto);
+        List<Image> images = getImageUrlFromMultiFile(multipartFiles, product);
         product.setImages(images);
         productRepository.save(product);
         imageRepository.save(images);
+    }
+
+    private List<MultipartFile> getMultipartFiles(ProductDto productDto) {
+        List<MultipartFile> multipartFiles = new ArrayList<>();
+        multipartFiles.add(productDto.getImage1());
+        multipartFiles.add(productDto.getImage2());
+        multipartFiles.add(productDto.getImage3());
+        return multipartFiles;
     }
 
     private Date formatStringToDate(String date) throws ParseException {
@@ -138,12 +154,19 @@ public class ProductServiceImpl implements ProductService {
                 image.setProduct(product);
                 images.add(image);
                 try {
-                    String uploadsDir = "/resource/images/product/";
-                    String realPathtoUploads =  request.getServletContext().getRealPath(uploadsDir);
-                    String orgName = multipartFile.getOriginalFilename();
-                    String filePath = realPathtoUploads + orgName;
-                    File dest = new File(filePath);
-                    multipartFile.transferTo(dest);
+                    String targetPathToUploads =  request.getServletContext().getRealPath(UPLOAD_DIR_TARGET);
+                    if(! new File(targetPathToUploads).exists())
+                    {
+                        new File(targetPathToUploads).mkdir();
+                    }
+                    String filePathTarget = targetPathToUploads + fileName;
+                    String filePathSrc = UPLOAD_DIR_SRC + fileName;
+                    File destTarget = new File(filePathTarget);
+                    File destSrc = new File(filePathSrc);
+                    System.out.println(destSrc);
+                    System.out.println(destTarget);
+                    multipartFile.transferTo(destTarget);
+                    multipartFile.transferTo(destSrc);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

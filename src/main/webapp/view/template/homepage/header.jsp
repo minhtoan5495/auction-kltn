@@ -186,7 +186,7 @@
                                             <div class="col-sm-6">
                                                 <div class="cart_modal_img">
                                                     <img alt=""
-                                                         src="${pageContext.request.contextPath }/resource/images/banner/${cart.product.images.get(i).getImageUrl()}">
+                                                         src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).getImageUrl()}">
                                                 </div>
                                                 <div class="cart_modal_info">
                                                     <p>${cart.product.name}</p>

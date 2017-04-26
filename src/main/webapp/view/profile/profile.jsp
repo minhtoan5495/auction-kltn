@@ -157,7 +157,7 @@
 							<div class="col-sm-1" style="width: 0.333333%"></div>
 							<div class="col-sm-4" style="width: 20.33333%">
 								<img alt=""
-									src="${pageContext.request.contextPath }/resource/images/banner/${invoice.invoiceDetails.get(i).getProduct().getImages().get(i).getImageUrl()}"
+									src="${pageContext.request.contextPath }/resource/images/product/${invoice.invoiceDetails.get(i).getProduct().getImages().get(i).getImageUrl()}"
 									style="width: 100px">
 							</div>
 							<div class="col-sm-6">

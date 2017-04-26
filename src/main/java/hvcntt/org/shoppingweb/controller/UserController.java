@@ -39,9 +39,6 @@ public class UserController {
     @Autowired
     private CityService cityService;
 
-    @Autowired
-    private UserAttemptsService userAttemptsService;
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout,

@@ -15,7 +15,7 @@
     <import resource="appconfig-upload.xml"/>
     <!-- Scans within the base package of the application for @Component classes to configure as beans -->
     <context:component-scan base-package="hvcntt.org.shoppingweb.*"/>
-    <bean id="multipartresolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+    <bean id="multipartresolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="100000000"></property>
     </bean>
     <context:property-placeholder location="classpath:message.properties" order="0" ignore-unresolvable="true"/>
@@ -23,7 +23,6 @@
     <bean class="org.springframework.context.support.ResourceBundleMessageSource"
           id="messageSource">
         <property name="basename" value="message"/>
-        <property name="defaultEncoding" value="UTF-8" />
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
-
 </beans>

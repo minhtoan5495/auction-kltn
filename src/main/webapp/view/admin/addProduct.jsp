@@ -89,8 +89,65 @@
                         <div class="col-lg-6">
                             <div class="form-group last">
                                 <label class="control-label col-lg-3">Image Upload</label>
-                                <div class="col-lg-7">
-                                    <form:input path="images" type="file" name="file" multiple="multiple"/>
+                                <div class="col-md-3">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail"
+                                             style="width: 200px; height: 150px; line-height: 20px;"></div>
+                                        <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i
+                                                           class="icon-undo"></i> Change</span>
+                                                   <form:input path="image1" type="file" class="default"/>
+                                                   </span>
+                                            <a href="#" class="btn btn-danger fileupload-exists"
+                                               data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail"
+                                             style="width: 200px; height: 150px; line-height: 20px;"></div>
+                                        <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i
+                                                           class="icon-undo"></i> Change</span>
+                                                   <form:input path="image2" type="file" class="default"/>
+                                                   </span>
+                                            <a href="#" class="btn btn-danger fileupload-exists"
+                                               data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="fileupload-preview fileupload-exists thumbnail"
+                                             style="width: 200px; height: 150px; line-height: 20px;"></div>
+                                        <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i
+                                                           class="icon-undo"></i> Change</span>
+                                                   <form:input path="image3" type="file" class="default"/>
+                                                   </span>
+                                            <a href="#" class="btn btn-danger fileupload-exists"
+                                               data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group last">

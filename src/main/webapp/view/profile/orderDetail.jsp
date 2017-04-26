@@ -69,7 +69,7 @@ Mong quý khách thông cảm vì sản phẩm ko được ưng ý, chúng tôi 
 								<tr>
 								<form:form action="${pageContext.request.contextPath}/orderdetail">
 									<td>
-										<img alt="" src="${pageContext.request.contextPath }/resource/images/banner/${invoices.invoiceDetails.get(i).getProduct().getImages().get(i).getImageUrl()}" style="width:100px ">
+										<img alt="" src="${pageContext.request.contextPath }/resource/images/product/${invoices.invoiceDetails.get(i).getProduct().getImages().get(i).getImageUrl()}" style="width:100px ">
 									</td>
 									<td>
 										${invoices.invoiceDetails.get(i).getProduct().getName()}

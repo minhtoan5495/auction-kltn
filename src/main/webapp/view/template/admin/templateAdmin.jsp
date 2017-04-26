@@ -13,6 +13,7 @@
     <link href="${pageContext.request.contextPath}/resource/admin/css/bootstrap-reset.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resource/admin/assets/font-awesome/css/font-awesome.css"
           rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resource/admin/assets/data-tables/DT_bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datepicker/css/datepicker.css" />
@@ -25,7 +26,26 @@
     <link href="${pageContext.request.contextPath}/resource/admin/css/style-responsive.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
-
+    <%--<style>--%>
+        <%--#wrapper h1--%>
+        <%--{--%>
+            <%--color:white;--%>
+            <%--margin-top:100px;--%>
+            <%--font-size:30px;--%>
+        <%--}--%>
+        <%--#wrapper h1 p--%>
+        <%--{--%>
+            <%--font-size:17px;--%>
+        <%--}--%>
+        <%--#wrapper a--%>
+        <%--{--%>
+            <%--color:white;--%>
+        <%--}--%>
+        <%--#image_upload--%>
+        <%--{--%>
+            <%--color:white;--%>
+        <%--}--%>
+    <%--</style>--%>
 </head>
 
 <body>
@@ -50,6 +70,7 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resource/admin/assets/data-tables/DT_bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/respond.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
@@ -69,14 +90,14 @@
     });
 </script>
 <script type="text/javascript">
-    function preview_image()
-    {
-        var total_file=document.getElementById("upload_file").files.length;
-        for(var i=0;i<total_file;i++)
-        {
-            $('#image_preview').append("<img style='width:50px;height:50px; display: inline-block;' src='"+URL.createObjectURL(event.target.files[i])+"'><br>");
-        }
-    }
+//    function preview_image()
+//    {
+//        var total_file=document.getElementById("image_upload").files.length;
+//        for(var i=0;i<total_file;i++)
+//        {
+//            $('#image_preview').append("<img style='margin:10px;width:200px;height:150px;' src='"+URL.createObjectURL(event.target.files[i])+"'>");
+//        }
+//    }
     /* Formating function for row details */
     function fnFormatDetails ( oTable, nTr )
     {

@@ -47,15 +47,14 @@ public class DetailPageController {
 
     @Autowired
     private CategoryService categoryService;
-    @Autowired
-    private UserAuctionService userAuctionService;
+
     @SuppressWarnings("unused")
 	@Autowired
     private RatingService ratingService;
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detailPage(Model model, @RequestParam("idproduct") String productId, HttpServletRequest request) {
-        setRememberMeTargetUrlToSession(request, productId);
+//        setRememberMeTargetUrlToSession(request, productId);
         Product product = productService.findOne(productId);
         if (existId(productId)) {
             productService.updateView(productId);
@@ -73,11 +72,11 @@ public class DetailPageController {
         for(Auction auction : auctions){
         	if(auction.getStatus().equals("Đang đấu giá") && auction.getProduct().getProductId().equals(productId)){
         		userAuctions.addAll(auction.getUserAuctions());
-        		System.out.println(auction.getUserAuctions().size());
         	}
         }
         model.addAttribute("userAuctions",userAuctions);
         model.addAttribute("singleProduct", product);
+        model.addAttribute("ratings",ratingService.getByProduct(product));
         return "detailPage";
     }
 
@@ -105,15 +104,10 @@ public class DetailPageController {
         return false;
     }
 
-    //	@RequestMapping(value="/detail",method=RequestMethod.POST)
-//	public String createComment(@ModelAttribute("comment")Comment comment){
-//		commentService.create(comment);;
-//		return "redirect:/home";
-//	}
-    private void setRememberMeTargetUrlToSession(HttpServletRequest request, String productId) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.setAttribute("targetUrl", "/rating/" + productId);
-        }
-    }
+//    private void setRememberMeTargetUrlToSession(HttpServletRequest request, String productId) {
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            session.setAttribute("targetUrl", "/rating/" + productId);
+//        }
+//    }
 }
