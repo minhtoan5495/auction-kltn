@@ -1,0 +1,1 @@
+/** * Created by Nguyen on 26/04/2017. */// $(function(){//     $('[data-countdown]').each(function() {//         var $this = $(this), finalDate = $(this).data('countdown');//         $this.countdown(finalDate, function(event) {//             $this.html(event.strftime('%D days %H:%M:%S'));//         });//     });// });

@@ -102,7 +102,7 @@
                                                 <option value="${transactionType.transactionTypeId}"
                                                         selected>${transactionType.transactionTypeName}</option>
                                             </c:if>
-                                            <c:if test="${product.transactionType.transactionTypeName eq transactionType.transactionTypeName}">
+                                            <c:if test="${product.transactionType.transactionTypeName ne transactionType.transactionTypeName}">
                                                 <option value="${transactionType.transactionTypeId}">${transactionType.transactionTypeName}</option>
                                             </c:if>
                                         </c:forEach>

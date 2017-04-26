@@ -231,31 +231,7 @@
 										<!-- 	<div class="single-product-inforsale">
                                             Giảm giá 25%
                                          </div> -->
-										<p id="demo" style="text-align: center;"></p>
-										<div class="single-product-info-timecountdown" id="countDownAuction">
-											<div class="single-product-info-timecountdown-title">
-												<p>THỜI GIAN CÒN LẠI</p>
-											</div>
-											<div class="single-product-info-timecountdown-item">
-												<div id="clockdiv">
-													<div>
-														<span class="days"></span>
-														<div class="smalltext">Days</div>
-													</div>
-													<div>
-														<span class="hours"></span>
-														<div class="smalltext">Hours</div>
-													</div>
-													<div>
-														<span class="minutes"></span>
-														<div class="smalltext">Minutes</div>
-													</div>
-													<div>
-														<span class="seconds"></span>
-														<div class="smalltext">Seconds</div>
-													</div>
-												</div>
-											</div>
+										<div class="single-product-info-timecountdown">
 											<input value="${product.auctions.get(i).endTime }" id="endTime" type="hidden">
 											<div class="single-product-info-timecountdown-title-notice">
 												<label>Ngày kết thúc</label>
