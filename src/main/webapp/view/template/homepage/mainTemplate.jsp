@@ -45,6 +45,7 @@
 <script src="${pageContext.request.contextPath }/resource/js/customer.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/rating/rating.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/rating.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/detailPage.js"></script>
 <script>
     document.write('<base href="' + document.location + '" />');
 </script>

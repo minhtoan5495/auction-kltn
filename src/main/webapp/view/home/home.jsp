@@ -113,7 +113,7 @@
 									<div class="single-product-image">
 										<a
 											href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.productId}"><img
-											src="resource/images/product/${listProduct.images.get(i).getImageUrl() }"></a>
+											style="width: 253px;height: 250px;" src="resource/images/product/${listProduct.images.get(i).getImageUrl() }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
@@ -174,11 +174,7 @@
 										</div>
 										<div class="single-product-inforrating">
 											<div class="rating-box">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-													class="fa fa-star-half-empty" style="color: gray"></i> <br>
 												<span>(Có ${listProduct.ratings.size() } nhận xét)</span>
-
 											</div>
 										</div>
 									</div>
@@ -208,14 +204,14 @@
 				</div>
 				<div class="row">
 					<h4>${message}</h4>
-					<c:forEach var="auction" items="${listAuction }">
+					<c:forEach var="product" items="${listProduct2 }">
 						<div class="col-sm-3">
 							<div class="new-product">
 								<div class="single-product-item">
 									<div class="single-product-image">
 										<a
-											href="${pageContext.request.contextPath }/detail?idproduct=${auction.product.productId}"><img
-											src="${pageContext.request.contextPath}/resource/images/product/${auction.product.images.get(i).getImageUrl() }"></a>
+											href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><img
+												style="width: 255px;height: 250px;" src="${pageContext.request.contextPath}/resource/images/product/${product.images.get(i).imageUrl }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
@@ -230,56 +226,65 @@
 									</div>
 									<div class="single-product-showinfor">
 										<div class="single-product-infor-name">
-											<p class="single-product-infor-name-title">${auction.product.name }</p>
+											<p class="single-product-infor-name-title">${product.name }</p>
 										</div>
 										<!-- 	<div class="single-product-inforsale">
                                             Giảm giá 25%
                                          </div> -->
-										<div class="single-product-info-timecountdown">
+										<p id="demo" style="text-align: center;"></p>
+										<div class="single-product-info-timecountdown" id="countDownAuction">
 											<div class="single-product-info-timecountdown-title">
 												<p>THỜI GIAN CÒN LẠI</p>
 											</div>
 											<div class="single-product-info-timecountdown-item">
-												<h3>12</h3>
-												<p>GIỜ</p>
-												<h3>12</h3>
-												<p>PHÚT</p>
+												<div id="clockdiv">
+													<div>
+														<span class="days"></span>
+														<div class="smalltext">Days</div>
+													</div>
+													<div>
+														<span class="hours"></span>
+														<div class="smalltext">Hours</div>
+													</div>
+													<div>
+														<span class="minutes"></span>
+														<div class="smalltext">Minutes</div>
+													</div>
+													<div>
+														<span class="seconds"></span>
+														<div class="smalltext">Seconds</div>
+													</div>
+												</div>
 											</div>
+											<input value="${product.auctions.get(i).endTime }" id="endTime" type="hidden">
 											<div class="single-product-info-timecountdown-title-notice">
 												<label>Ngày kết thúc</label>
-												<p><fmt:formatDate value="${auction.endTime }"
+												<p><fmt:formatDate value="${product.auctions.get(i).endTime }"
                                                     pattern="dd-MM-yyyy"/>
 											</div>
 										</div>
 										<div class="single-product-infor-name">
 											<p>
 												<i class="glyphicon glyphicon-fire">
-													${auction.product.viewNumber }</i> lượt xem
+													${product.viewNumber }</i> lượt xem
 											</p>
 										</div>
 										<div class="single-product-inforprice">
 											<p>
-												<fmt:formatNumber value="${auction.product.price}"
+												<fmt:formatNumber value="${product.price}"
 													type="number" />
 												đ
 											</p>
 										</div>
 										<div class="single-product-inforsale">
 											<a
-												href="${pageContext.request.contextPath }/detail?idproduct=${auction.product.productId}"><button
+												href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><button
 													class="btn btn-success btn-countdown">
 													<i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
 												</button></a>
 										</div>
 										<div class="single-product-inforreview">
 											<%-- <span>(${listProduct.commentItems.size() } nhận xét)</span> --%>
-										</div>
-										<div class="single-product-inforrating">
-											<div class="rating-box">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-													class="fa fa-star-half-empty" style="color: gray"></i>
-											</div>
 										</div>
 									</div>
 								</div>

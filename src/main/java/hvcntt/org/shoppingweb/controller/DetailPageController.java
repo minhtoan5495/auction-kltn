@@ -54,7 +54,6 @@ public class DetailPageController {
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detailPage(Model model, @RequestParam("idproduct") String productId, HttpServletRequest request) {
-//        setRememberMeTargetUrlToSession(request, productId);
         Product product = productService.findOne(productId);
         if (existId(productId)) {
             productService.updateView(productId);

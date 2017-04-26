@@ -12,6 +12,7 @@ import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import hvcntt.org.shoppingweb.service.ProductService;
 import hvcntt.org.shoppingweb.service.UserService;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RatingController {
@@ -33,13 +35,20 @@ public class RatingController {
     @Autowired
     private RatingService ratingService;
 
-    @RequestMapping(value = "/rating/{idproduct}", produces = {"application/x-www-form-urlencoded; charset=UTF-8"})
+    @RequestMapping(value = "/rating/{idproduct}", method = RequestMethod.POST)
     public String createComment(@PathVariable("idproduct") String productId,
                                 @ModelAttribute RatingDto ratingDto, Principal principal) throws UserNotFoundException {
         Product product = productService.findOne(productId);
         String username = principal.getName();
         User user = userService.findByUsername(username);
         ratingService.save(ratingDto, product, user);
+        return "redirect:/detail?idproduct=" + productId;
+    }
+
+    @RequestMapping(value = "/rating/{idproduct}", method = RequestMethod.GET)
+    @Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+    public String comment(@PathVariable("idproduct") String productId,
+                                @ModelAttribute RatingDto ratingDto) throws UserNotFoundException {
         return "redirect:/detail?idproduct=" + productId;
     }
 }

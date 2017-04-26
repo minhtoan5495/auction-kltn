@@ -43,98 +43,121 @@
             </div>
             <div class="col-sm-9">
                 <div class="row">
-                <form action="addAuction">
-                	<input value="${singleProduct.productId }" name="productId" type="hidden">
-                    <div class="col-sm-4">
-                        <div class="detail-product-item">
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="imageContainer">
-                                    <div class="product-detail-image">
-                                        <img id="imageContainer1" name="image_main"
-                                             src="resource/images/product/${singleProduct.images.get(i).getImageUrl() }">
+                    <form action="addAuction">
+                        <input value="${singleProduct.productId }" name="productId" type="hidden">
+                        <div class="col-sm-4">
+                            <div class="detail-product-item">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="imageContainer">
+                                        <div class="product-detail-image">
+                                            <img id="imageContainer1" name="image_main"
+                                                 src="resource/images/product/${singleProduct.images.get(i).getImageUrl() }">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="detail-product-infor">
-                            <h2 class="detail-product-name"
-                                style="font-family: 'Bitter', serif">${singleProduct.name }</h2>
-                            <p class="detail-product-id"
-                               style="font-family: 'Bitter', serif">Lượt bình chọn :
-                                <input type="hidden" value="${ratingNumber}" id="ratingNumber"></p><div id="ratingShow"></div>
-                            <p>(${ratingNumber} sao)</p>
-                            <p class="detail-product-id"
-                               style="font-family: 'Bitter', serif">Mã sản phẩm
-                                :${singleProduct.productId }</p>
-                            <div class="product-detail-view">
-                                <label><i class="glyphicon glyphicon-eye-open"></i> Lượt
-                                    xem : ${singleProduct.viewNumber}</label>
-                                <p>(Còn lại ${singleProduct.stockQuantity} sản phẩm)</p>
-                            </div>
-                            <div class="product-detail-color">
-                                <%--<p><i class="glyphicon glyphicon-ok"></i>Màu sắc ${singleProduct.productDetails.get(i).color }</p>--%>
-                                <%--<p><i class="glyphicon glyphicon-ok"></i>Kích cỡ ${singleProduct.productDetails.get(i).size }</p>--%>
-                            </div>
-                            <div class="product-detail-price">
-                                <h2>
-                                    <fmt:formatNumber value="${singleProduct.price}" type="number"/>
-                                    đ
-                                </h2>
-                            </div>
-                            <div class="product-detail-description">
-                                <p>${singleProduct.description }</p>
-                            </div>
-                            <div class="box-detail-information">
-                                <form class="form-detail-information">
-                                    <c:if test="${singleProduct.transactionType.transactionTypeId == 1}">
-                                        <div class="form-detail-size">
-                                         <label style="color: #f37021">Kết thúc vào ngày</label> <p style="font-size: 30px"><fmt:formatDate value="${singleProduct.auctions.get(i).getEndTime() }"
-                                                    pattern="dd-MM-yyyy"/></p>
-                                            <label>Thời gian còn lại</label>
-                                            <div class="form-detail-timecountdown">
-                                                <h3>12</h3>
-                                                <p>Giờ</p>
-                                                <h3>12</h3>
-                                                <p>Phút</p>
+                        <div class="col-sm-8">
+                            <div class="detail-product-infor">
+                                <h2 class="detail-product-name"
+                                    style="font-family: 'Bitter', serif">${singleProduct.name }</h2>
+                                <p class="detail-product-id"
+                                   style="font-family: 'Bitter', serif">Lượt bình chọn :
+                                    <input type="hidden" value="${ratingNumber}" id="ratingNumber"></p>
+                                <div id="ratingShow"></div>
+                                <p>(${ratingNumber} sao)</p>
+                                <p class="detail-product-id"
+                                   style="font-family: 'Bitter', serif">Mã sản phẩm
+                                    :${singleProduct.productId }</p>
+                                <div class="product-detail-view">
+                                    <label><i class="glyphicon glyphicon-eye-open"></i> Lượt
+                                        xem : ${singleProduct.viewNumber}</label>
+                                    <p>(Còn lại ${singleProduct.stockQuantity} sản phẩm)</p>
+                                </div>
+                                <div class="product-detail-color">
+                                    <%--<p><i class="glyphicon glyphicon-ok"></i>Màu sắc ${singleProduct.productDetails.get(i).color }</p>--%>
+                                    <%--<p><i class="glyphicon glyphicon-ok"></i>Kích cỡ ${singleProduct.productDetails.get(i).size }</p>--%>
+                                </div>
+                                <div class="product-detail-price">
+                                    <h2>
+                                        <fmt:formatNumber value="${singleProduct.price}" type="number"/>
+                                        đ
+                                    </h2>
+                                </div>
+                                <div class="product-detail-description">
+                                    <p>${singleProduct.description }</p>
+                                </div>
+                                <div class="box-detail-information">
+                                    <form class="form-detail-information">
+                                        <c:if test="${singleProduct.transactionType.transactionTypeId == 1}">
+                                            <p id="demo" style="text-align: center;"></p>
+                                            <div id="countDownAuction">
+                                                <div class="form-detail-size">
+                                                    <label style="color: #f37021">Kết thúc vào ngày</label>
+                                                    <p style="font-size: 30px"><fmt:formatDate
+                                                            value="${singleProduct.auctions.get(i).getEndTime() }"
+                                                            pattern="dd-MM-yyyy"/></p>
+                                                    <input value="${singleProduct.auctions.get(i).endTime }"
+                                                           id="endTime" type="hidden">
+                                                    <label>Thời gian còn lại</label>
+                                                    <div class="form-detail-timecountdown">
+                                                        <div id="clockdiv">
+                                                            <div>
+                                                                <span class="days"></span>
+                                                                <div class="smalltext">Days</div>
+                                                            </div>
+                                                            <div>
+                                                                <span class="hours"></span>
+                                                                <div class="smalltext">Hours</div>
+                                                            </div>
+                                                            <div>
+                                                                <span class="minutes"></span>
+                                                                <div class="smalltext">Minutes</div>
+                                                            </div>
+                                                            <div>
+                                                                <span class="seconds"></span>
+                                                                <div class="smalltext">Seconds</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-detail-quantity">
+                                                    <label>Giá đấu:</label> <input
+                                                        class="form-control input-field" type="text" id="price"
+                                                        name="price">
+
+                                                </div>
                                             </div>
+                                        </c:if>
+                                        <div class="form-detail-addcart">
+                                            <c:choose>
+                                                <c:when test="${singleProduct.transactionType.transactionTypeId == 1 }">
+                                                    <div class="submit-button" id="buttonAuction">
+                                                        <button type="submit"><img
+                                                                class=""
+                                                                src="resource/css/images/icon-title.png">ĐẤU GIÁ
+                                                        </button>
+
+                                                    </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="submit-button">
+                                                        <a
+                                                                href="${pageContext.request.contextPath }/addCart?idproduct=${singleProduct.productId}"
+                                                                class="btn submit-btn"> <span><i
+                                                                class="glyphicon glyphicon-shopping-cart"></i> MUA NGAY </span>
+                                                        </a>
+                                                    </div>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
-                                        <div class="form-detail-quantity">
-                                            <label>Giá đấu:</label> <input
-                                                class="form-control input-field" type="text" id="price" name="price">
-
-                                        </div>
-                                    </c:if>
-                                    <div class="form-detail-addcart">
-                                        <c:choose>
-                                            <c:when test="${singleProduct.transactionType.transactionTypeId == 1 }">
-                                                <div class="submit-button">
-                                                    <button type="submit"><img
-                                                            class=""
-                                                            src="resource/css/images/icon-title.png">ĐẤU GIÁ</button>
-
-                                                </div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="submit-button">
-                                                    <a
-                                                            href="${pageContext.request.contextPath }/addCart?productId=${singleProduct.productId}"
-                                                            class="btn submit-btn"> <span><i
-                                                            class="glyphicon glyphicon-shopping-cart"></i> MUA NGAY </span>
-                                                    </a>
-                                                </div>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                    <p>
-                                        <br>
-                                    </p>
-
-                                </form>
+                                        <p>
+                                            <br>
+                                        </p>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </form>
                 </div>
                 <div class="row">
@@ -187,7 +210,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <a href="${pageContext.request.contextPath }/login">
+                                                        <a href="${pageContext.request.contextPath }/rating/${singleProduct.productId}">
                                                             <button
                                                                     class="btn btn-danger btn-modal-comment">Đăng
                                                                 nhập tại đây
@@ -277,92 +300,95 @@
             </div>
             <div class="row">
                 <div class="col-sm-3">
-                <c:if test="${singleProduct.transactionType.transactionTypeId==1 }">
-                    <div class="product-viewed">
-                        <div class="product-detail-viewed">
-                            <h2 class="content-paget-title-item">Danh sách người đấu</h2>
+                    <c:if test="${singleProduct.transactionType.transactionTypeId==1 }">
+                        <div class="product-viewed">
+                            <div class="product-detail-viewed">
+                                <h2 class="content-paget-title-item">Danh sách người đấu</h2>
+                            </div>
+                            <div class="infor_user_auction">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr class="table_heading">
+                                        <th class="table_heading_item">Tên tài khoản</th>
+                                        <th class="table_heading_item">Thời gian đấu</th>
+                                        <th class="table_heading_item">Giá tiền</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="userAuction" items="${userAuctions }">
+                                        <tr>
+                                            <td>${userAuction.user.username }</td>
+                                            <td><fmt:formatDate value="${userAuction.bidtime }"
+                                                                pattern="HH:MM:ss"/></td>
+                                            <td><fmt:formatNumber value="${userAuction.price}" type="number"/>
+                                                đ
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="infor_user_auction">
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr class="table_heading">
-                                    <th class="table_heading_item">Tên tài khoản</th>
-                                    <th class="table_heading_item">Thời gian đấu</th>
-                                    <th class="table_heading_item">Giá tiền</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="userAuction" items="${userAuctions }">
-	                                <tr>
-	                                    <td>${userAuction.user.username }</td>
-	                                    <td><fmt:formatDate value="${userAuction.bidtime }"
-                                                    pattern="HH:MM:ss"/></td>
-	                                    <td><fmt:formatNumber value="${userAuction.price}" type="number"/>
-                                    đ</td>
-	                                </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                     </c:if>
                     <div class="product-detail-relate">
-                     	<div class="product-detail-relate-item-title">
-                     		<h3>Sản phẩm liên quan</h3>
-                     	</div>
-                     	<div class="product-detail-relate-item-stack">
-                     		<c:forEach var="getRelateProduct" items="${getRelateProduct }">
-                     		<div class="new-product" style="margin-bottom: 5px">
-								<div class="single-product-item">
-									<div class="single-product-image">
-										<a
-											href=""><img
-											src="resource/images/product/${getRelateProduct.images.get(i).getImageUrl() }"></a>
-										<div class="overplay-content">
-											<ul>
-												<li><a
-													href=""><i
-														class="fa fa-search"></i></a></li>
-												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
-												</li>
-												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-												<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="single-product-showinfor">
-										<div class="single-product-infor-name">
-											<p class="single-product-infor-name-title">${getRelateProduct.name }</p>
-										</div>
-										<!-- 	<div class="single-product-inforsale">
-                                            Giảm giá 25%
-                                         </div> -->
-										<div class="single-product-inforprice">
-											<p>
-												<fmt:formatNumber value="${getRelateProduct.price }" type="number" />đ
-											</p>
-										</div>
-										<div class="single-product-inforsale">
-											<a
-												href=""><button
-													class="btn btn-success btn-countdown">
-													<i class="fa fa-shopping-cart"></i> MUA NGAY
-												</button></a>
-										</div>
-										<div class="single-product-inforrating">
-											<div class="rating-box">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-													class="fa fa-star-half-empty" style="color: gray"></i> <br>
-												<span>(Có  10 nhận xét)</span>
+                        <div class="product-detail-relate-item-title">
+                            <h3>Sản phẩm liên quan</h3>
+                        </div>
+                        <div class="product-detail-relate-item-stack">
+                            <c:forEach var="getRelateProduct" items="${getRelateProduct }">
+                                <div class="new-product" style="margin-bottom: 5px">
+                                    <div class="single-product-item">
+                                        <div class="single-product-image">
+                                            <a
+                                                    href=""><img
+                                                    src="resource/images/product/${getRelateProduct.images.get(i).getImageUrl() }"></a>
+                                            <div class="overplay-content">
+                                                <ul>
+                                                    <li><a
+                                                            href=""><i
+                                                            class="fa fa-search"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="single-product-showinfor">
+                                            <div class="single-product-infor-name">
+                                                <p class="single-product-infor-name-title">${getRelateProduct.name }</p>
+                                            </div>
+                                            <!-- 	<div class="single-product-inforsale">
+                                                Giảm giá 25%
+                                             </div> -->
+                                            <div class="single-product-inforprice">
+                                                <p>
+                                                    <fmt:formatNumber value="${getRelateProduct.price }" type="number"/>đ
+                                                </p>
+                                            </div>
+                                            <div class="single-product-inforsale">
+                                                <a
+                                                        href="">
+                                                    <button
+                                                            class="btn btn-success btn-countdown">
+                                                        <i class="fa fa-shopping-cart"></i> MUA NGAY
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <div class="single-product-inforrating">
+                                                <div class="rating-box">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                        class="fa fa-star-half-empty" style="color: gray"></i> <br>
+                                                    <span>(Có  10 nhận xét)</span>
 
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							</c:forEach>
-                     	</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>
