@@ -15,12 +15,13 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form:form action="${pageContext.request.contextPath}/admin/saveProduct"
+                    <form:form action="${pageContext.request.contextPath}/admin/updateProduct"
                                enctype="multipart/form-data" commandName="productDto"
                                class="cmxform form-horizontal tasi-form" id="addProduct"
                                method="post">
                         <div class="col-lg-6">
                             <div class="form-group ">
+                                <input value="${product.productId}" name="productId" id="productId" hidden>
                                 <label for="name" class="control-label col-lg-3">Product name</label>
                                 <div class="col-lg-7">
                                     <form:input path="name" class=" form-control" placeholder="Enter product name"
@@ -182,7 +183,7 @@
                                 <label class="control-label col-lg-3">Description</label>
                                 <div class="col-lg-9">
                                     <form:textarea path="description" class="form-control ckeditor" name="editor"
-                                                   rows="6"></form:textarea>
+                                                   rows="6"/>
                                 </div>
                             </div>
                             <div class="form-group">

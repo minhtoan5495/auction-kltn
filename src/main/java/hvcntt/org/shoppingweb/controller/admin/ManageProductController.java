@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
 /**
@@ -68,6 +69,13 @@ public class ManageProductController {
     @RequestMapping(value = "/admin/saveProduct", method = RequestMethod.POST)
     public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto) throws ParseException {
         productservice.save(productDto);
+        return "redirect:/admin/manageProduct";
+    }
+
+    @RequestMapping(value = "/admin/updateProduct", method = RequestMethod.POST)
+    public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto, HttpServletRequest request) throws ParseException {
+        String productId = request.getParameter("productId");
+        productservice.update(productDto, productId);
         return "redirect:/admin/manageProduct";
     }
 }

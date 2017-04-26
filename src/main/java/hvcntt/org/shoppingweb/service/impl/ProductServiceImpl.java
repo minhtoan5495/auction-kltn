@@ -129,6 +129,32 @@ public class ProductServiceImpl implements ProductService {
         imageRepository.save(images);
     }
 
+    @Override
+    public void update(ProductDto productDto, String productId) throws ParseException {
+        Product product = productRepository.findOne(productId);
+        product.setCategory(categoryRepository.getOne(productDto.getCategoryId()));
+        String description = productDto.getDescription();
+        if(description != null){
+            product.setDescription(description);
+        }
+        product.setCreateDate(new Date());
+        product.setManufactureDate(formatStringToDate(productDto.getManufactureDate()));
+        product.setPrice(productDto.getPrice());
+        product.setStockQuantity(productDto.getStockQuantity());
+        product.setSupplier(supplierRepository.getOne(productDto.getSupplierId()));
+        product.setTransactionType(transactionTypeRepository.getOne(productDto.getTransactionTypeId()));
+        product.setName(productDto.getName());
+        List<MultipartFile> multipartFiles = getMultipartFiles(productDto);
+        if(!multipartFiles.isEmpty()){
+            List<Image> images = getImageUrlFromMultiFile(multipartFiles, product);
+            product.setImages(images);
+            productRepository.save(product);
+            imageRepository.save(images);
+        }else{
+            productRepository.save(product);
+        }
+    }
+
     private List<MultipartFile> getMultipartFiles(ProductDto productDto) {
         List<MultipartFile> multipartFiles = new ArrayList<>();
         multipartFiles.add(productDto.getImage1());
