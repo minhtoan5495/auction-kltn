@@ -115,4 +115,10 @@
      <definition name="invoiceDetail" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/invoiceDetail.jsp"></put-attribute>
     </definition>
+    <definition name="manageDiscount" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageDiscount.jsp"></put-attribute>
+    </definition>
+     <definition name="addOrEditDiscount" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/addOrEditDiscount.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "discount")
@@ -12,7 +13,7 @@ public class Discount implements Serializable {
     private static final long serialVersionUID = -2384639484132944167L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "discount_id")
     private String discountId;
 
@@ -38,6 +39,7 @@ public class Discount implements Serializable {
     private List<Product> products;
 
     public Discount() {
+    	setDiscountId(UUID.randomUUID().toString());
     }
 
     public String getDiscountId() {

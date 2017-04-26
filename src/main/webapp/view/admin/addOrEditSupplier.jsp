@@ -11,7 +11,7 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                Add Product
+                Add Supplier
             </header>
             <div class="panel-body">
                 <div class="form">

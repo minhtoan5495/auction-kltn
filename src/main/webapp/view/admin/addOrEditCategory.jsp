@@ -1,4 +1,6 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -11,7 +13,7 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                Add Product
+                Add Category
             </header>
             <div class="panel-body">
                 <div class="form">

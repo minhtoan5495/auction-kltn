@@ -1,4 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -7,6 +9,7 @@
 <head>
     <title>Editable Table</title>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="${pageContext.request.contextPath}/resource/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -66,6 +69,9 @@
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAccount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageProduct.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageCategory.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageSupplier.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageInvoice.js"></script>
 <script>
     jQuery(document).ready(function () {
         TableAccount.init();

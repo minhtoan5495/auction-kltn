@@ -17,7 +17,7 @@
                             Add New Supplier
                         </a>
                     </div>
-                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageProductTable">
+                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageSupplierTable">
                         <thead>
                         <tr>
                             <th hidden="hidden"></th>
@@ -32,7 +32,7 @@
                                 <td hidden="hidden">${supplier.supplierId}</td>
                                 <td>${supplier.supplierName}</td>
                                 <td><a class="" href="${pageContext.request.contextPath }/admin/editSupplier?supplierId=${supplier.supplierId}">Edit</a></td>
-                                <td><a class="" href="${pageContext.request.contextPath }/admin/deleteSupplier?supplierId=${supplier.supplierId}">Delete</a></td>
+                                <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>

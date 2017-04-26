@@ -1,23 +1,25 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <section id="main-content">
     <section class="wrapper">
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                DataTables hidden row details example
+                Manage Category
             </header>
             <div class="panel-body">
-                <div class="adv-table">
-                    <div class="btn-group">
-                        <a href="${pageContext.request.contextPath }/admin/addCategory" type="button" id="addNewCategory" class="btn green">
+                <div class="adv-table editable-table ">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <a href="${pageContext.request.contextPath }/admin/addCategory" type="button" id="addNewCategory" class="btn green">
                             Add New Category
                         </a>
+                        </div>
                     </div>
-                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageProductTable">
+                    <div class="space15"></div>
+                    <table class="table table-striped table-hover table-bordered" id="manageCategoryTable">
                         <thead>
                         <tr>
                             <th hidden="hidden"></th>
@@ -34,12 +36,11 @@
                                 <td>${category.categoryName}</td>
                                 <td>${category.parentId}</td>
                                 <td><a class="" href="${pageContext.request.contextPath }/admin/editCategory?categoryId=${category.categoryId}">Edit</a></td>
-                                <td><a class="" href="${pageContext.request.contextPath }/admin/deleteCategory?categoryId=${category.categoryId}">Delete</a></td>
+                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </section>

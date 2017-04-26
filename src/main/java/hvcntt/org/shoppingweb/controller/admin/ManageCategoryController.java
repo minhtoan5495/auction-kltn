@@ -32,9 +32,9 @@ public class ManageCategoryController {
 		return "redirect:/admin/manageCategory";
 	}
 	@RequestMapping(value="/admin/deleteCategory",method=RequestMethod.GET)
-	public String deleteCategory(@RequestParam("categoryId")String categoryId) throws CategoryNotFoundExeption{
+	public void deleteCategory(@RequestParam("categoryId")String categoryId) throws CategoryNotFoundExeption{
 		categoryService.delete(categoryId);
-		return "redirect:/admin/manageCategory";
+//		return "redirect:/admin/manageCategory";
 	}
 	@RequestMapping(value="/admin/editCategory",method=RequestMethod.GET)
 	public String editCategory(Model model,@RequestParam("categoryId")String categoryId){

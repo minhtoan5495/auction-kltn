@@ -13,33 +13,36 @@
             <div class="panel-body">
                 <div class="adv-table">
                     <div class="btn-group">
+                      <a href="${pageContext.request.contextPath}/admin/addDiscount" type="button" id="addNewDiscount" class="btn green">
+                            Add New Discount
+                        </a>
                     </div>
-                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageInvoiceTable">
+                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageProductTable">
                         <thead>
                         <tr>
-                        	<th>Id</th>
-                            <th>Create Date</th>
-                            <th>Shipping Date</th>
-                            <th>Username</th>
-                            <th>Status</th>
+                            <th>Discount Title</th>
+                            <th>Discount Content</th>
+                            <th>Discount Percent</th>
+                            <th>Start Date</th>
+                             <th>End Date</th>
                             <th>Show</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="invoice" items="${invoices}">
+                        <c:forEach var="discount" items="${discounts}">
                             <tr class="gradeX">
-                            <td>${invoice.invoiceId}</td>
-                                <td><fmt:formatDate value="${invoice.createDate }"
+                            <td>${discount.discountTitle}</td>
+                                <td>${discount.discountContent}</td>
+                                <td>${discount.discountPercent}</td>
+                                <td><fmt:formatDate value="${discount.startDate }"
                                                     pattern="dd-MM-yyyy"/></td>
-                                <td><fmt:formatDate value="${invoice.shipDate }"
+                                <td><fmt:formatDate value="${discount.endDate }"
                                                     pattern="dd-MM-yyyy"/></td>
-                                <td>${invoice.username}</td>
-                                <td>${invoice.invoiceStatus.invoiceStatusName}</td>
-                                <td><a class="" href="${pageContext.request.contextPath}/admin/showDetailInvoice?invoiceId=${invoice.invoiceId}">Show</a></td>
+                                <td><a class="" href="${pageContext.request.contextPath}/admin/">Show</a></td>
                                 <td><a class="" href="">Edit</a></td>
-                                <td><a class="delete" href="javascript:;">Delete</a></td>
+                                <td><a class="" href="${pageContext.request.contextPath}/admin/">Delete</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
