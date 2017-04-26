@@ -109,4 +109,10 @@
     <definition name="addOrEditSupplier" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/addOrEditSupplier.jsp"></put-attribute>
     </definition>
+       <definition name="manageInvoice" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageInvoice.jsp"></put-attribute>
+    </definition>
+     <definition name="invoiceDetail" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/invoiceDetail.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>

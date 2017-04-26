@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+.manage-invoice-detail{
+	border: 1px solid;
+}
+.btn-manage-invoice-status{
+	border-radius: 100px;
+	padding: 15px;
+	border: none;
+	background: #eee;
+	font-size: 15px;
+}

@@ -26,26 +26,8 @@
     <link href="${pageContext.request.contextPath}/resource/admin/css/style-responsive.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
-    <%--<style>--%>
-        <%--#wrapper h1--%>
-        <%--{--%>
-            <%--color:white;--%>
-            <%--margin-top:100px;--%>
-            <%--font-size:30px;--%>
-        <%--}--%>
-        <%--#wrapper h1 p--%>
-        <%--{--%>
-            <%--font-size:17px;--%>
-        <%--}--%>
-        <%--#wrapper a--%>
-        <%--{--%>
-            <%--color:white;--%>
-        <%--}--%>
-        <%--#image_upload--%>
-        <%--{--%>
-            <%--color:white;--%>
-        <%--}--%>
-    <%--</style>--%>
+    <link href="${pageContext.request.contextPath}/resource/admin/css/mainAdmin.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -90,14 +72,14 @@
     });
 </script>
 <script type="text/javascript">
-//    function preview_image()
-//    {
-//        var total_file=document.getElementById("image_upload").files.length;
-//        for(var i=0;i<total_file;i++)
-//        {
-//            $('#image_preview').append("<img style='margin:10px;width:200px;height:150px;' src='"+URL.createObjectURL(event.target.files[i])+"'>");
-//        }
-//    }
+    function preview_image()
+    {
+        var total_file=document.getElementById("upload_file").files.length;
+        for(var i=0;i<total_file;i++)
+        {
+            $('#image_preview').append("<img style='width:50px;height:50px; display: inline-block;' src='"+URL.createObjectURL(event.target.files[i])+"'><br>");
+        }
+    }
     /* Formating function for row details */
     function fnFormatDetails ( oTable, nTr )
     {

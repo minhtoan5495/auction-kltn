@@ -35,5 +35,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 		// TODO Auto-generated method stub
 		return invoiceRepository.findOne(id);
 	}
+	@Override
+	public void delete(String invoiceId) {
+		invoiceRepository.delete(invoiceId);
+		
+	}
 
 }
