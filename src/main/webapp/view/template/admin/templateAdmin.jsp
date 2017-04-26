@@ -25,6 +25,7 @@
     <link href="${pageContext.request.contextPath}/resource/admin/css/style-responsive.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resource/admin/css/mainAdmin.css" rel="stylesheet" />
 
 </head>
 
