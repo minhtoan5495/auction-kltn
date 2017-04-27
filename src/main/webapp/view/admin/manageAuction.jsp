@@ -14,7 +14,7 @@
                     <div class="clearfix">
                         <div class="btn-group">
                              <a href="${pageContext.request.contextPath }/admin/addAuction" type="button" id="addNewAuction" class="btn green">
-                            Add New Category
+                            Add New Auction
                         </a>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                     <table class="table table-striped table-hover table-bordered" id="manageAuctionTable">
                         <thead>
                         <tr>
-                            <th>STT</th>
+                            <th hidden="hidden"></th>
                             <th>Start Time</th>
                             <th>End Time</th>
                             <th>Status</th>
@@ -35,14 +35,14 @@
                         <c:set var="i" value="${1}"/>
                         <c:forEach var="auction" items="${auctions}">
                             <tr class="">
-                                <td>${i}</td>
+                                <td hidden="hidden">${auction.auctionId}</td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd"
                                                     value="${auction.startTime}"/></td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd"
                                                     value="${auction.endTime}"/></td>
                                 <td>${auction.status}</td>
                                 <td>${auction.product.name}</td>
-                                <td><a class="edit" href="javascript:;">Edit</a></td>
+                                <td><a class="" href="${pageContext.request.contextPath }/admin/updateAuction?auctionId=${auction.auctionId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                             <c:set var="i" value="${i+1}"/>

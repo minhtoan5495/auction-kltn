@@ -1,6 +1,4 @@
 package hvcntt.org.shoppingweb.controller;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 //import java.security.Principal;
 import java.util.List;
@@ -16,7 +14,6 @@ import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.Rating;
 import hvcntt.org.shoppingweb.dao.entity.UserAuction;
 import hvcntt.org.shoppingweb.service.RatingService;
-import hvcntt.org.shoppingweb.service.UserAuctionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +31,6 @@ import hvcntt.org.shoppingweb.service.ImageService;
 import hvcntt.org.shoppingweb.service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 //import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
@@ -48,8 +44,7 @@ public class DetailPageController {
     @Autowired
     private CategoryService categoryService;
 
-    @SuppressWarnings("unused")
-	@Autowired
+    @Autowired
     private RatingService ratingService;
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
