@@ -59,7 +59,7 @@
                                                 class="cart-product-name">{{cart.product.name }}</label><br>
                                         <td class="cart-product-infor"><label
                                                 class="cart-product-name">
-                                            {{cart.product.price}} đ</label><br>
+                                            {{cart.product.price | number}} đ</label><br>
                                                 <%-- <small>${cart.product.description }</small><br></td> --%>
                                         <td class="cart-product-infor" id="inputQuantity"
                                             style="align-content: center">
@@ -73,7 +73,7 @@
                                                   </span>
                                                 <input type="text" style="width: 50px" name="quantity"
                                                        class="form-control input-number"
-                                                       value={{cart.quantity}} min="1" readonly max="100">
+                                                       value={{cart.quantity}} min="2" readonly max="100">
                                                 <span class="input-group-btn">
                                                       <button type="button" ng-click="add(cart);" class="btn btn-default btn-number"
                                                               data-type="plus" data-field="quantity">
@@ -90,7 +90,7 @@
                                         </td>
                                         <td class="cart-product-infor">
                                             <p>
-                                                {{cart.product.price * cart.quantity}}   đ
+                                                {{(cart.product.price * cart.quantity) | number}}   đ
                                             </p>
                                         </td>
                                         <td class="cart-product-infor" ng-click="delete(cart);"><i
@@ -107,7 +107,7 @@
                                         </td>
                                         <td class="cart-right-price" colspan="1">
                                             <%--<fmt:formatNumber value="${s}" type="number"/>--%>
-                                        {{getTotal()}} đ
+                                            {{getTotal() | number}} đ
                                         </td>
                                         <td class="cart-right-price" colspan="1"></td>
                                     </tr>

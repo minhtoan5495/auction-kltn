@@ -68,10 +68,9 @@
 <script src="${pageContext.request.contextPath}/resource/admin/js/common-scripts.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAccount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageProduct.js"></script>
-<script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"/>
-<script src="${pageContext.request.contextPath}/resource/admin/js/manageCategory.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageSupplier.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageInvoice.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageCategory.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAuction.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"></script>
 <script>
