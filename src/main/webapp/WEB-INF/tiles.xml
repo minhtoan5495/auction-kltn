@@ -121,4 +121,7 @@
      <definition name="addOrEditDiscount" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/addOrEditDiscount.jsp"></put-attribute>
     </definition>
+    <definition name="manageAuction" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageAuction.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>

@@ -2,8 +2,11 @@ package hvcntt.org.shoppingweb.service.impl;
 
 import hvcntt.org.shoppingweb.dao.entity.Auction;
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 import hvcntt.org.shoppingweb.dao.repository.AuctionRepository;
 import hvcntt.org.shoppingweb.service.AuctionService;
+import hvcntt.org.shoppingweb.service.ProductService;
+import hvcntt.org.shoppingweb.service.TransactionTypeService;
 
 import java.util.List;
 
@@ -14,9 +17,15 @@ import org.springframework.stereotype.Service;
 public class AutionServiceImpl implements AuctionService {
 	@Autowired
 	AuctionRepository auctionRepository;
+	@Autowired
+	TransactionTypeService transactionTypeService;
+	@Autowired
+	ProductService productService;
 	@Override
 	public Auction create(Auction auction) {
-		// TODO Auto-generated method stub
+		TransactionType transactionType=transactionTypeService.findByName("Auction");
+		Product product=productService.findByTransactionType(transactionType);
+		auction.setProduct(product);
 		return auctionRepository.save(auction);
 	}
 	@Override

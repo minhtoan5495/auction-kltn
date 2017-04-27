@@ -68,13 +68,28 @@
 <script src="${pageContext.request.contextPath}/resource/admin/js/common-scripts.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAccount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageProduct.js"></script>
-<script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"></script>
-<script src="${pageContext.request.contextPath}/resource/admin/js/manageCategory.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageSupplier.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageInvoice.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageCategory.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"></script>
 <script>
     jQuery(document).ready(function () {
         TableAccount.init();
+    });
+</script>
+<script>
+    jQuery(document).ready(function () {
+        TableCategory.init();
+    });
+</script>
+<script>
+    jQuery(document).ready(function () {
+        TableInvoice.init();
+    });
+</script>
+<script>
+    jQuery(document).ready(function () {
+        TableSupplier.init();
     });
 </script>
 <script type="text/javascript">

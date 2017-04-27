@@ -1,4 +1,4 @@
-var TableAccount = function () {
+var TableCategory = function () {
 
     return {
 

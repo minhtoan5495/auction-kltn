@@ -17,7 +17,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageInvoiceTable">
                         <thead>
                         <tr>
-                        	<th>Id</th>
+                        	<th hidden="hidden"></th>
                             <th>Create Date</th>
                             <th>Shipping Date</th>
                             <th>Username</th>
@@ -30,7 +30,7 @@
                         <tbody>
                         <c:forEach var="invoice" items="${invoices}">
                             <tr class="gradeX">
-                            <td>${invoice.invoiceId}</td>
+                           <td hidden="hidden">${invoice.invoiceId}</td>
                                 <td><fmt:formatDate value="${invoice.createDate }"
                                                     pattern="dd-MM-yyyy"/></td>
                                 <td><fmt:formatDate value="${invoice.shipDate }"

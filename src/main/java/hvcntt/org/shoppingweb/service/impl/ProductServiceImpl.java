@@ -206,5 +206,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByTransactionType(transactionType, pageable);
     }
 
+	@Override
+	public Product findByTransactionType(TransactionType transactionType) {
+		// TODO Auto-generated method stub
+		return productRepository.findByTransactionType(transactionType);
+	}
+
 
 }
