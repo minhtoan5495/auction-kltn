@@ -18,52 +18,45 @@
                     <form:form action="${pageContext.request.contextPath}/admin/saveAuction" commandName="auction" class="cmxform form-horizontal tasi-form" id="addAuction"
                                 method="post" >
                         <div class="col-lg-12">
-                        <div class="form-group">
+                     <%--    <div class="form-group">
                     <form:label for="usr" path="auctionId">ID</form:label>
                          <form:input type="text" class="form-control" path="auctionId" disabled="true" />
                          <form:input path="auctionId" type="hidden"/>
-                    </div>
+                    </div> --%>
                              <div class="form-group">
                                 <label class="control-label col-lg-3">Start Time</label>
                                 <div class="col-lg-7">
                                     <form:input path="startTime" name="startTime" id="startTime"
                                                 class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose discount start date"
+                                                type="text" placeholder="Choose  start date"
                                     />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-3">End Time</label>
                                 <div class="col-lg-7">
-                                    <form:input path="startDate" name="startDate" id="startDate"
+                                    <form:input path="endTime" name="endTime" id="endTime"
                                                 class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose discount start date"
+                                                type="text" placeholder="Choose  start date"
                                     />
                                 </div>
                             </div>
                              <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Discount Percent</label>
+                                <label for="name" class="control-label col-lg-3">Status</label>
                                 <div class="col-lg-7">
-                                    <form:input path="discountPercent" class=" form-control" placeholder="Enter discount percent"
-                                                id="discountPercent" name="discountPercent" type="text"/>
+                                    <form:input path="status" class=" form-control" placeholder="Enter Auction Status"
+                                                id="status" name="status" type="text"/>
                                 </div>
                             </div>
-                              <div class="form-group">
-                                <label class="control-label col-lg-3">Start Date</label>
-                                <div class="col-lg-7">
-                                    <form:input path="startDate" name="startDate" id="startDate"
-                                                class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose discount start date"
-                                    />
-                                </div>
-                            </div>
-                           <div class="form-group">
-                                <label class="control-label col-lg-3">End Date</label>
-                                <div class="col-lg-7">
-                                    <form:input path="endDate" name="endDate" id="endDate"
-                                                class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose discount end date"
-                                    />
+                            <div class="form-group ">
+                                <label for="product" class="control-label col-lg-3">Product</label>
+                                <div class="col-lg-9">
+                                    <form:select path="productId" class="col-lg-9" style="height: 34px;" id="product">
+                                        <option>Select product</option>
+                                        <c:forEach var="product" items="${products}">
+                                            <option value="${product.productId}">${product.name}</option>
+                                        </c:forEach>
+                                    </form:select>
                                 </div>
                             </div>
                                <div class="form-group">

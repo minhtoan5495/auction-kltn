@@ -29,5 +29,5 @@ public interface ProductService {
     void save(ProductDto productDto) throws ParseException;
 	void update(ProductDto productDto, String productId) throws ParseException;
 //	List<Product> findByProductTransactionType(TransactionType);
-	Product findByTransactionType(TransactionType transactionType);
+	List<Product> findByTransactionType(TransactionType transactionType);
 }

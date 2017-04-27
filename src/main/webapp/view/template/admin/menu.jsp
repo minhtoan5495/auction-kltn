@@ -50,7 +50,9 @@
                     <li><a href="${pageContext.request.contextPath}/admin/manageProduct">ManageProduct</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/manageCategory">ManageCategory</a></li>
                      <li><a href="${pageContext.request.contextPath}/admin/manageSupplier">ManageSupplier</a></li>
-               		 <li><a href="${pageContext.request.contextPath}/admin/manageInvoice">ManageInvoice</a></li>	
+               		 <li><a href="${pageContext.request.contextPath}/admin/manageInvoice">ManageInvoice</a></li>
+               		 <li><a href="${pageContext.request.contextPath}/admin/manageAuction">ManageAuction</a></li>	
+               		 <li><a href="${pageContext.request.contextPath}/admin/manageDiscount">ManageDiscount</a></li>		
                 </ul>
             </li>
             <li class="sub-menu">

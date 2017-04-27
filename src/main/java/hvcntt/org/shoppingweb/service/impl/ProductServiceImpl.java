@@ -207,7 +207,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
 	@Override
-	public Product findByTransactionType(TransactionType transactionType) {
+	public List<Product> findByTransactionType(TransactionType transactionType) {
 		// TODO Auto-generated method stub
 		return productRepository.findByTransactionType(transactionType);
 	}

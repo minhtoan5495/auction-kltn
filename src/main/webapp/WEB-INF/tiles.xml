@@ -124,4 +124,10 @@
     <definition name="manageAuction" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/manageAuction.jsp"></put-attribute>
     </definition>
+    <definition name="addAuction" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/addAuction.jsp"></put-attribute>
+    </definition>
+    <definition name="EditAuction" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/EditAuction.jsp"></put-attribute>
+    </definition>
 </tiles-definitions>
