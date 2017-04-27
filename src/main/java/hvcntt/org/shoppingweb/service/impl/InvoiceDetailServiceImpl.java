@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InvoiceDetailServiceImpl implements InvoiceDetailService {
-	@Autowired
-	InvoiceDetailRepository invoiceDetailRepo;
-	@Override
-	public InvoiceDetail add(InvoiceDetail invoiceDetail) {
-		// TODO Auto-generated method stub
-		return invoiceDetailRepo.save(invoiceDetail);
-	}
-	@Override
-	public InvoiceDetail findOne(int id) {
-		// TODO Auto-generated method stub
-		return invoiceDetailRepo.findOne(id);
-	}
+    @Autowired
+    InvoiceDetailRepository invoiceDetailRepository;
+
+    @Override
+    public InvoiceDetail save(InvoiceDetail invoiceDetail) {
+        return invoiceDetailRepository.save(invoiceDetail);
+    }
+
+    @Override
+    public InvoiceDetail findOne(String id) {
+        return invoiceDetailRepository.findOne(id);
+    }
 
 }

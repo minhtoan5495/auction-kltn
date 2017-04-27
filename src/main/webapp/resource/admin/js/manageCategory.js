@@ -69,7 +69,7 @@ var TableCategory = function () {
             function deleteCategory(categoryId) {
                 $.ajax({
                     type: "GET",
-                    url: "/AuctionWeb/admin/deleteCategory",
+                    url: "/admin/deleteCategory",
                     data: "categoryId=" + categoryId,
                 });
                 console.log(categoryId);

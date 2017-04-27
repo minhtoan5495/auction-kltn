@@ -30,7 +30,7 @@
         <put-attribute name="title" value="Profile"></put-attribute>
         <put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
     </definition>
-    <definition name="orderdetail" extends="profilePage">
+    <definition name="orderDetail" extends="profilePage">
         <put-attribute name="title" value="Profile"></put-attribute>
         <put-attribute name="body" value="/view/profile/orderDetail.jsp"></put-attribute>
     </definition>

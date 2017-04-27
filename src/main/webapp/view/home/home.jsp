@@ -106,18 +106,18 @@
 				</div>
 				<div class="row">
 					<h4>${message}</h4>
-					<c:forEach var="listProduct" items="${listProduct }">
+					<c:forEach var="product" items="${listProduct }">
 						<div class="col-sm-3 new-product-main">
 							<div class="new-product">
 								<div class="single-product-item">
 									<div class="single-product-image">
 										<a
-											href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.productId}"><img
-											style="width: 253px;height: 250px;" src="resource/images/product/${listProduct.images.get(i).getImageUrl() }"></a>
+											href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><img
+											style="width: 253px;height: 250px;" src="resource/images/product/${product.images.get(i).imageUrl }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
-													href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.productId}"><i
+													href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><i
 														class="fa fa-search"></i></a></li>
 												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
 												</li>
@@ -128,53 +128,54 @@
 									</div>
 									<div class="single-product-showinfor">
 										<div class="single-product-infor-name">
-											<p class="single-product-infor-name-title">${listProduct.name }</p>
+											<p class="single-product-infor-name-title">${product.name }</p>
 										</div>
-										<c:if test="${not empty (listProduct.discounts) }">
+										<c:if test="${not empty (product.discounts) }">
 											<div class="single-product-inforsale">
-                                            Giảm giá ${listProduct.discounts.get(i).getDiscountPercent() }%
+                                            Giảm giá ${product.discounts.get(i).discountPercent }%
                                          </div>
                                          </c:if>
 										<div class="single-product-infor-name">
 											<p>
 												<i class="glyphicon glyphicon-fire">
-													${listProduct.viewNumber }</i> lượt xem
+													${product.viewNumber }</i> lượt xem
 											</p>
 										</div>
 										<div class="single-product-inforprice">
 										<c:choose>
-										<c:when test="${not empty(listProduct.discounts) }">
+										<c:when test="${not empty(product.discounts) }">
 											<strike style="color: black">
-												<fmt:formatNumber value="${listProduct.price}" type="number" />
+												<fmt:formatNumber value="${product.price}" type="number" />
 												đ
 											</strike>
 										</c:when>
 										<c:otherwise>
 										<p style="color: black">
-												<fmt:formatNumber value="${listProduct.price}" type="number" />
+												<fmt:formatNumber value="${product.price}" type="number" />
 												đ
 											</p>
 										</c:otherwise>
 										</c:choose>
 										</div>
 										<div class="single-product-inforprice">
-										<c:if test="${not empty(listProduct.discounts)  }">
+										<c:if test="${not empty(product.discounts)  }">
 											<p>
-												<fmt:formatNumber value="${(listProduct.price)-((listProduct.price*listProduct.discounts.get(i).getDiscountPercent())/100)}" type="number" />
+												<fmt:formatNumber value="${(product.price)-((product.price*product.discounts.get(i).discountPercent)/100)}" type="number" />
 												đ
 											</p>
 										</c:if>
 										</div>
 										<div class="single-product-inforsale">
+											<input hidden value="${product.productId}" id="productId">
 											<a
-												href="${pageContext.request.contextPath }/addCart?idproduct=${listProduct.productId}"><button
+												href="${pageContext.request.contextPath }/addCart?idproduct=${product.productId}"><button
 													class="btn btn-success btn-countdown">
 													<i class="fa fa-shopping-cart"></i> MUA NGAY
 												</button></a>
 										</div>
 										<div class="single-product-inforrating">
 											<div class="rating-box">
-												<span>(Có ${listProduct.ratings.size() } nhận xét)</span>
+												<span>(Có ${product.ratings.size() } nhận xét)</span>
 											</div>
 										</div>
 									</div>
@@ -236,7 +237,7 @@
 											<div class="single-product-info-timecountdown-title-notice">
 												<label>Ngày kết thúc</label>
 												<p><fmt:formatDate value="${product.auctions.get(i).endTime }"
-                                                    pattern="dd-MM-yyyy"/>
+                                                    pattern="dd-MM-yyyy hh:mm"/>
 											</div>
 										</div>
 										<div class="single-product-infor-name">

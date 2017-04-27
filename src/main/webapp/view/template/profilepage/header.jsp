@@ -27,7 +27,7 @@
 										</a>
 								</div>
 									<div class="header_login_top pull-right">
-									<a href="${pageContext.request.contextPath}/viewcart"
+									<a href="${pageContext.request.contextPath}/viewCart"
 										class="header_login_link"><i class="fa fa-lock"></i>Xem giỏ hàng</a>
 								</div>
 							</div>
@@ -76,7 +76,7 @@
 										ký</a>
 								</div>
 									<div class="header_login_top pull-right">
-									<a href="${pageContext.request.contextPath}/viewcart"
+									<a href="${pageContext.request.contextPath}/viewCart"
 										class="header_login_link"><i class="glyphicon glyphicon-shopping-cart"></i>Xem giỏ hàng</a>
 								</div>
 								<div class="header_login_top pull-right hidden-xs">
@@ -121,15 +121,15 @@
 						<a href="#" class="cart_link" data-toggle="modal"
 							data-target="#myCart"> <i
 							class="fa fa-shopping-cart cart-icon"></i> <b>Giỏ hàng</b> <c:if
-								test="${not empty cart }">
-								<span class="cart_quantity">${cart.size() }</span>
+								test="${not empty carts }">
+								<span class="cart_quantity">${carts.size() }</span>
 							</c:if>
 						</a>
 
 					</div>
-					<c:if test="${not empty cart }">
+					<c:if test="${not empty carts }">
 						<c:set var="sum"
-							value="${sum +cart.get(i).getProduct().getPrice()+cart.get(i).getQuantity() }"></c:set>
+							value="${sum +carts.get(i).getProduct().getPrice()+carts.get(i).getQuantity() }"></c:set>
 						<div class="modal fade" id="myCart" role="dialog">
 							<div class="modal-dialog">
 								<!-- Modal content-->
@@ -145,8 +145,8 @@
 											</div>
 											<div class="col-sm-6">
 												<h4 style="margin-top: 0px">
-													Xem giỏ hàng (${ cart.size()} sản phẩm)<a
-														href="${pageContext.request.contextPath }/viewcart"><i
+													Xem giỏ hàng (${ carts.size()} sản phẩm)<a
+														href="${pageContext.request.contextPath }/viewCart"><i
 														class="fa fa-edit"
 														style="margin-left: 10px; font-size: 20px; color: #11252f"></i></a>
 												</h4>
@@ -166,8 +166,8 @@
 										</div>
 
 									</div>
-									<c:set var="i" value="${fn:length(cart)}"></c:set>
-									<c:forEach var="cart" items="${cart }" varStatus="cartCount">
+									<c:set var="i" value="${fn:length(carts)}"></c:set>
+									<c:forEach var="cart" items="${carts }" varStatus="cartCount">
 										<c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
 										<c:if test="${ cartCount.count > (i-1)}">
 											<div class="row modal-body-cart-header">

@@ -43,18 +43,11 @@
     line-height: 18px;
     font-weight: bold;
 }
-.table_body_cart{
-	padding: 10px;
-	background: #f8f8f8;
-}
 .btn-update-cart{
 	background-color: #f8f8f8;
     border-radius: 0;
     border: 1px solid #dadada;
     color: gray;
-}
-.table-cart-item thead tr th{
-	border-bottom: none;	
 }
 .cart_continue_shopping_item{
 	margin-left: 15px

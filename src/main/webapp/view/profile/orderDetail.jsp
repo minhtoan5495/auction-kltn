@@ -67,7 +67,7 @@ Mong quý khách thông cảm vì sản phẩm ko được ưng ý, chúng tôi 
 						<table class="tbl_order_item_body_info">
 							<tbody>
 								<tr>
-								<form:form action="${pageContext.request.contextPath}/orderdetail">
+								<form:form action="${pageContext.request.contextPath}/orderDetail">
 									<td>
 										<img alt="" src="${pageContext.request.contextPath }/resource/images/product/${invoices.invoiceDetails.get(i).getProduct().getImages().get(i).getImageUrl()}" style="width:100px ">
 									</td>

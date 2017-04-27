@@ -39,44 +39,38 @@ public class Product implements Serializable {
 	@Column(name="view_number")
 	private int viewNumber;
 
-	//bi-directional many-to-one association to Auction
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Auction> auctions;
 
-	//bi-directional many-to-one association to Image
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonManagedReference
 	private List<Image> images;
 
-	//bi-directional many-to-one association to InvoiceDetail
 	@OneToMany(mappedBy="product", fetch=FetchType.EAGER)
 	@JsonManagedReference
 	private List<InvoiceDetail> invoiceDetails;
 
-	//bi-directional many-to-one association to Category
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	@JsonBackReference
 	private Category category;
 
-	//bi-directional many-to-one association to Supplier
 	@ManyToOne
 	@JoinColumn(name="supplier_id")
 	@JsonBackReference
 	private Supplier supplier;
 
-	//bi-directional many-to-one association to TransactionType
 	@ManyToOne
 	@JoinColumn(name="transaction_type_id")
 	@JsonBackReference
 	private TransactionType transactionType;
 
-	//bi-directional many-to-one association to Rating
 	@OneToMany(mappedBy="product",fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private List<Rating> ratings;
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
+	@JsonManagedReference
 	private List<ProductDetail> productDetails;
 
 	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER)

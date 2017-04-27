@@ -1,6 +1,10 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +14,6 @@ public class ProductDetail implements Serializable {
 	private static final long serialVersionUID = 5854685643364326441L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="product_detail_id")
 	private String productDetailId;
 
@@ -23,9 +26,11 @@ public class ProductDetail implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="product_id")
+	@JsonBackReference
 	private Product product;
 
 	public ProductDetail() {
+		setProductDetailId(UUID.randomUUID().toString());
 	}
 
 	public String getProductDetailId() {
@@ -43,14 +48,6 @@ public class ProductDetail implements Serializable {
 	public void setColor(String color) {
 		this.color = color;
 	}
-
-//	public String getProductId() {
-//		return this.productId;
-//	}
-//
-//	public void setProductId(String productId) {
-//		this.productId = productId;
-//	}
 
 	public String getSize() {
 		return this.size;

@@ -1,5 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -116,6 +118,7 @@ public class User implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "user")
+	@JsonManagedReference
 	public List<Rating> getRatings() {
 		return this.ratings;
 	}

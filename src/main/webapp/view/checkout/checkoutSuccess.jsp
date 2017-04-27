@@ -46,7 +46,7 @@
 		</div>
 		<div class="checkout_success_detail_order">
 			<label class="checkout_success_detail_order_name">Chi tiết
-				đơn hàng , bao gồm ${invoice.invoiceDetails.get(i).getQuantity() }  sản phẩm
+				đơn hàng , bao gồm ${invoice.invoiceDetails.get(i).quantity }  sản phẩm
 				được đặt </label><br> 
 			<strong>Tên khách hàng: ${pageContext.request.userPrincipal.name}</strong>
 			<p>Đường: ${addShip.address }</p>

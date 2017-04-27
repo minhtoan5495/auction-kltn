@@ -149,18 +149,18 @@ var TableAccount = function () {
         }
     };
 }();
-function getDistrict() {
-    var cityId = $('#city').val();
-    $.ajax({
-        type: 'GET',
-        url: '/admin/getDistrict',
-        data: "cityId=" + cityId,
-        success: function (response) {
-            var select = $('#district');
-            select.find('option').remove();
-            $.each(response, function (index, value) {
-                $('<option>').val(value).text(value.districtName).appendTo(select);
-            });
-        }
-    });
-}
+// function getDistrict() {
+//     var cityId = $('#city').val();
+//     $.ajax({
+//         type: 'GET',
+//         url: '/admin/getDistrict',
+//         data: "cityId=" + cityId,
+//         success: function (response) {
+//             var select = $('#district');
+//             select.find('option').remove();
+//             $.each(response, function (index, value) {
+//                 $('<option>').val(value).text(value.districtName).appendTo(select);
+//             });
+//         }
+//     });
+// }

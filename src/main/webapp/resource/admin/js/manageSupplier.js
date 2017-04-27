@@ -69,7 +69,7 @@ var TableSupplier = function () {
             function deleteSupplier(supplierId) {
                 $.ajax({
                     type: "GET",
-                    url: "/AuctionWeb/admin/deleteSupplier",
+                    url: "/admin/deleteSupplier",
                     data: "supplierId=" + supplierId,
                 });
                 console.log(supplierId);

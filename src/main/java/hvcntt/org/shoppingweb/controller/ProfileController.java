@@ -5,6 +5,7 @@ import java.security.Principal;
 
 import hvcntt.org.shoppingweb.dao.entity.Invoice;
 //import hvcntt.org.shoppingweb.dao.entity.InvoiceStatus;
+import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,35 +20,38 @@ import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class ProfileController {
-	@Autowired
-	InvoiceService invoiceService;
-	@Autowired
-	InvoiceDetailService invoiceDetailService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	InvoiceStatusService invoiceStatusService;
-	@RequestMapping(value="/profile")
-	public String profile(Model model,Principal principal) throws UserNotFoundException {
-		String username=principal.getName();
-		model.addAttribute("user", userService.findByUsername(username));
-		model.addAttribute("invoice", invoiceService.getAll());
-		return "profile";
-	}
-	@RequestMapping(value="/orderdetail")
-	public String getOrderDetail(Model model,@RequestParam("invoiceId")String invoiceId,Principal principal) throws UserNotFoundException{
-		Invoice invoice=invoiceService.findOne(invoiceId);
-		String username=principal.getName();
-		model.addAttribute("user", userService.findByUsername(username));
-		model.addAttribute("invoice", invoiceService.getAll());
-		model.addAttribute("invoices",invoice );
-		return "orderdetail";
-	}
-	@RequestMapping("/cancelOrder")
-	public String cancelOrder(@RequestParam("invoiceId")String invoiceId){
-		Invoice invoice=invoiceService.findOne(invoiceId);
-		invoice.setInvoiceStatus(invoiceStatusService.findByName("Đã hủy đơn hàng"));
-		invoiceService.save(invoice);
-		return "redirect:/orderdetail?invoiceId="+invoiceId;
-	}
+    @Autowired
+    InvoiceService invoiceService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    InvoiceStatusService invoiceStatusService;
+
+    @RequestMapping(value = "/profile")
+    public String profile(Model model, Principal principal) throws UserNotFoundException {
+        String username = principal.getName();
+        model.addAttribute("user", userService.findByUsername(username));
+        model.addAttribute("invoices", invoiceService.getAll());
+        model.addAttribute("ordered", invoiceService.findByUsername(username));
+        return "profile";
+    }
+
+    @RequestMapping(value = "/orderDetail")
+    public String getOrderDetail(Model model, @RequestParam("invoiceId") String invoiceId, Principal principal) throws UserNotFoundException {
+        Invoice invoice = invoiceService.findOne(invoiceId);
+        String username = principal.getName();
+        model.addAttribute("user", userService.findByUsername(username));
+        model.addAttribute("invoice", invoiceService.getAll());
+        model.addAttribute("invoices", invoice);
+        return "orderDetail";
+    }
+
+    @RequestMapping("/cancelOrder")
+    public String cancelOrder(@RequestParam("invoiceId") String invoiceId) throws InvoiceStatusNotFoundException {
+        Invoice invoice = invoiceService.findOne(invoiceId);
+        invoice.setInvoiceStatus(invoiceStatusService.findByName("Đã hủy đơn hàng"));
+        invoiceService.save(invoice);
+        return "redirect:/orderDetail?invoiceId=" + invoiceId;
+    }
+
 }

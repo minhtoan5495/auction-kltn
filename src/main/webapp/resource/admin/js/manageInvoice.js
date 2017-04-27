@@ -69,7 +69,7 @@ var TableInvoice = function () {
             function deleteInvoice(invoiceId) {
                 $.ajax({
                     type: "GET",
-                    url: "/AuctionWeb/admin/deleteInvoice",
+                    url: "/admin/deleteInvoice",
                     data: "invoiceId=" + invoiceId,
                 });
                 console.log(invoiceId);
