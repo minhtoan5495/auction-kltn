@@ -52,11 +52,11 @@
                                     <form:select path="productId" class="col-lg-9" style="height: 34px;" id="product">
                                         <option>Select product</option>
                                         <c:forEach var="product" items="${products}">
-                                          <c:if test="${product.auctions.get(i).getProduct().getName() eq product.name}">
+                                          <c:if test="${auction.product.name eq product.name}">
                                                 <option value="${product.productId}"
                                                         selected>${product.name}</option>
                                             </c:if>
-                                            <c:if test="${product.auctions.get(i).getProduct().getName() ne product.name }">
+                                            <c:if test="${auction.product.name ne product.name }">
                                                 <option value="${product.productId}">${product.name}</option>
                                             </c:if>
                                         </c:forEach>
