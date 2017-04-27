@@ -117,7 +117,7 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER)
 	@JsonManagedReference
 	public List<Rating> getRatings() {
 		return this.ratings;
@@ -161,7 +161,8 @@ public class User implements Serializable {
 		this.district = district;
 	}
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER)
+	@JsonManagedReference
 	public List<UserAuction> getUserAuctions() {
 		return this.userAuctions;
 	}

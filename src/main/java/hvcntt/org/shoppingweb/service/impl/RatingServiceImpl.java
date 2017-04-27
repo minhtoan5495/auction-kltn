@@ -10,6 +10,7 @@ import hvcntt.org.shoppingweb.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,6 +37,7 @@ public class RatingServiceImpl implements RatingService {
 
     private Rating convertDtoToEntity(RatingDto ratingDto, Product product, User user) {
         Rating rating = new Rating();
+        rating.setCreateDate(new Date());
         rating.setProduct(product);
         rating.setUser(user);
         rating.setRating(ratingDto.getRating());

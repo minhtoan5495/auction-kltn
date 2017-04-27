@@ -2,6 +2,9 @@ package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -23,11 +26,13 @@ public class UserAuction implements Serializable {
 	//bi-directional many-to-one association to Auction
 	@ManyToOne
 	@JoinColumn(name="auction_id")
+	@JsonBackReference
 	private Auction auction;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="username")
+	@JsonBackReference
 	private User user;
 
 	public UserAuction() {

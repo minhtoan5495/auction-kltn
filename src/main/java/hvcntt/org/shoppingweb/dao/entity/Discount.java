@@ -2,6 +2,9 @@ package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +39,7 @@ public class Discount implements Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "discount_product", joinColumns = @JoinColumn(name = "discount_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @JsonBackReference
     private List<Product> products;
 
     public Discount() {

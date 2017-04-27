@@ -40,6 +40,7 @@ public class Product implements Serializable {
 	private int viewNumber;
 
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<Auction> auctions;
 
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -74,6 +75,7 @@ public class Product implements Serializable {
 	private List<ProductDetail> productDetails;
 
 	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<Discount> discounts;
 
 	public Product() {

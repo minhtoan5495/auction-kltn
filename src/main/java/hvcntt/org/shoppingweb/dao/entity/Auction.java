@@ -2,6 +2,10 @@ package hvcntt.org.shoppingweb.dao.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -29,10 +33,12 @@ public class Auction implements Serializable {
 	//bi-directional many-to-one association to Product
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="product_id")
+	@JsonBackReference
 	private Product product;
 
 	//bi-directional many-to-one association to UserAuction
 	@OneToMany(mappedBy="auction",fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<UserAuction> userAuctions;
 
 	public Auction() {

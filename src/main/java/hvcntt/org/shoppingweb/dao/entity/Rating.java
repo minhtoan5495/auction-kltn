@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.dao.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.UUID;
 import javax.persistence.*;
 
@@ -24,7 +25,8 @@ public class Rating implements Serializable {
 
 	@Column(name="rating_content")
 	private String ratingContent;
-
+	@Column(name="create_date")
+	private Date createDate;
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="username")
@@ -32,7 +34,7 @@ public class Rating implements Serializable {
 	private User user;
 
 	//bi-directional many-to-one association to Product
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="product_id")
 	@JsonBackReference
 	private Product product;
@@ -88,4 +90,13 @@ public class Rating implements Serializable {
 	public void setRatingTitle(String ratingTitle) {
 		this.ratingTitle = ratingTitle;
 	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
 }
