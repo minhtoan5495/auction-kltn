@@ -54,11 +54,11 @@
 				${addShip.district.districtName }</p>
 				<p class="checkout_success_detail_order_item_district">Quận:
 				${addShip.city.cityName }</p> --%>
-		<c:forEach var="cart" items="${cart }">
+		<c:forEach var="cart" items="${carts }">
 		<c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
 			<div class="checkout_success_detail_order_product">
 				<img
-					src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).getImageUrl()}">
+					src="${pageContext.request.contextPath }/resource/images/product/${cart.product.imageUrl}">
 				<label class="checkout_success_detail_order_product_name">${cart.product.name}
 				<p style="color: black">Số lượng:${cart.quantity } cái</p>
 				</label>

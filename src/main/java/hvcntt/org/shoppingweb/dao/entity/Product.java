@@ -13,6 +13,7 @@ import java.util.UUID;
 @Table(name = "product")
 @NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
 public class Product implements Serializable {
+
 	private static final long serialVersionUID = -565138532603166915L;
 
 	@Id
@@ -219,4 +220,5 @@ public class Product implements Serializable {
 	public void setDiscounts(List<Discount> discounts) {
 		this.discounts = discounts;
 	}
+
 }

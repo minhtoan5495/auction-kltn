@@ -72,21 +72,11 @@ public class ManageAccountController {
 	@RequestMapping(value = "/admin/editAccount", method = RequestMethod.GET, produces = "application/x-www-form-urlencoded;charset=UTF-8")
 	public String editAccount(HttpServletRequest request) throws ParseException, UserAlreadyExistsException, RoleNotFoundException, UserNotFoundException {
 		User user = userService.findByUsername(request.getParameter("username"));
-		user.setName(request.getParameter("name"));
-		user.setAddress(request.getParameter("address"));
-		user.setEmail(request.getParameter("email"));
-		user.setBirthday(formatStringToDate(request.getParameter("birthday")));
-		user.setPhone(request.getParameter("phone"));
 		String role = request.getParameter("role");
 		List<Role> roles = new ArrayList<>();
 		roles.add(roleRepository.findByRoleName(role));
 		user.setRoles(roles);
 		userService.save(user);
 		return "redirect:/admin/manageAccount";
-	}
-
-	private Date formatStringToDate(String date) throws ParseException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		return format.parse(date);
 	}
 }

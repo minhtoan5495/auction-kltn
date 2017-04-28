@@ -53,7 +53,7 @@
                                     <tr>
                                         <td class="cart-product-infor"><a
                                                 href="${pageContext.request.contextPath}/detail?idproduct={{cart.product.productId}}">
-                                            <img ng-src="${pageContext.request.contextPath}/resource/images/banner/{{cart.product.images.get(i).imageUrl}}"
+                                            <img src="${pageContext.request.contextPath }/resource/images/product/{{cart.image.imageUrl}}"
                                                  style="width: 100px; height: 100px"></a></td>
                                         <td class="cart-product-infor"><label
                                                 class="cart-product-name">{{cart.product.name }}</label><br>
@@ -81,12 +81,6 @@
                                                       </button>
                                                   </span>
                                             </div>
-                                                <%--<input type="hidden" name="${_csrf.parameterName}"--%>
-                                                <%--value="${_csrf.token}"/>--%>
-                                                <%--<button class="btn btn-success btn-update-cart"--%>
-                                                <%--type="submit">--%>
-                                                <%--<i class="fa fa-edit"></i>Cập nhật--%>
-                                                <%--</button>--%>
                                         </td>
                                         <td class="cart-product-infor">
                                             <p>

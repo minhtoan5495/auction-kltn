@@ -28,13 +28,13 @@ public class CartPageController {
         Product product = productservice.findOne(idproduct);
         List<CartItem> cartItems = new ArrayList<>();
         if (session.getAttribute("carts") == null) {
-            cartItems.add(new CartItem(1, product));
+            cartItems.add(new CartItem(1, product, product.getImages().get(0)));
             session.setAttribute("carts", cartItems);
         } else {
             cartItems = (List<CartItem>) session.getAttribute("carts");
             int index = isExist(idproduct, session);
             if (index == -1) {
-                cartItems.add(new CartItem(1, product));
+                cartItems.add(new CartItem(1, product, product.getImages().get(0)));
             } else {
                 int quantity = cartItems.get(index).getQuantity() + 1;
                 cartItems.get(index).setQuantity(quantity);
@@ -57,11 +57,12 @@ public class CartPageController {
     }
 
     @RequestMapping(value = "/removeCart")
-    public void removeItems(HttpSession session, @RequestParam("productId") String productId) {
+    public BaseResponse<?> removeItems(HttpSession session, @RequestParam("productId") String productId) {
         @SuppressWarnings("unchecked")
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("carts");
         int index = isExist(productId, session);
         cartItems.remove(index);
+        return new BaseResponse<>(null);
     }
 
     @RequestMapping(value = "/viewCart")
@@ -73,12 +74,13 @@ public class CartPageController {
     }
 
     @RequestMapping(value = "/updateCart")
-    public void cartUpdate(@RequestParam("quantity") int quantity, @RequestParam("productId") String productId, Model model, HttpSession session) {
+    public BaseResponse<?> cartUpdate(@RequestParam("quantity") int quantity, @RequestParam("productId") String productId, Model model, HttpSession session) {
         @SuppressWarnings("unchecked")
         List<CartItem> carts = (List<CartItem>) session.getAttribute("carts");
         int index = isExist(productId, session);
         carts.get(index).setQuantity(quantity);
         session.setAttribute("carts", carts);
         model.addAttribute("cartAngular", JsonUtil.convertObjectToJson(carts));
+        return new BaseResponse<>(null);
     }
 }

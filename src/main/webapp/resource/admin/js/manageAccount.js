@@ -18,11 +18,6 @@ var TableAccount = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
-                jqTds[6].innerHTML = '<input type="text" class="form-control small" value="' + aData[6] + '">';
-                jqTds[7].innerHTML = '<input type="text" class="form-control small" value="' + aData[7] + '">';
-                jqTds[8].innerHTML = '<input type="text" class="form-control small" value="' + aData[8] + '">';
                 jqTds[9].innerHTML = '<input type="text" class="form-control small" value="' + aData[9] + '">';
                 jqTds[10].innerHTML = '<a class="edit" href="">Save</a>';
                 jqTds[11].innerHTML = '<a class="cancel" href="">Cancel</a>';
@@ -30,12 +25,7 @@ var TableAccount = function () {
 
             function saveRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 3, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 6, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 7, false);
-                oTable.fnUpdate(jqInputs[4].value, nRow, 8, false);
-                oTable.fnUpdate(jqInputs[5].value, nRow, 9, false);
+                oTable.fnUpdate(jqInputs[0].value, nRow, 9, false);
                 oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
                 oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 11, false);
                 oTable.fnDraw();
@@ -44,11 +34,6 @@ var TableAccount = function () {
                         type: "GET",
                         url: "/admin/editAccount",
                         data: "username=" + oTable.fnGetData(nRow)[1] +
-                        "&name=" + jqInputs[0].value +
-                        "&address=" + jqInputs[1].value +
-                        "&email=" + jqInputs[2].value +
-                        "&birthday=" + jqInputs[3].value +
-                        "&phone="  + jqInputs[4].value +
                         "&role=" + jqInputs[5].value
                     });
                 }

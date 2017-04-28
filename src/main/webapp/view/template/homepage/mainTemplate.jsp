@@ -59,6 +59,7 @@
         src="${pageContext.request.contextPath}/resource/admin/assets/data-tables/DT_bootstrap.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/angular-base64.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/common-scripts.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resource/js/main.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/customer.js"></script>

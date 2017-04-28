@@ -9,6 +9,7 @@ app.controller('CartController', function ($scope, $http) {
     $scope.init = function (carts) {
         $scope.carts = carts;
     }
+
     // localStorage.setItem("carts", $scope.carts);
     $scope.add = function (cart) {
         cart.quantity++;
@@ -59,6 +60,11 @@ app.controller('CartController', function ($scope, $http) {
         console.log(cart.product.productId);
     }
 
+    $scope.getSrc = function (cart) {
+        var imageBase64 = $base64.encode(unescape(encodeURIComponent(cart.product.imageUrl)));
+        return imageBase64;
+    }
+
     $scope.getTotal = function () {
         var total = 0;
         for (var i = 0; i < $scope.carts.length; i++) {
@@ -67,5 +73,6 @@ app.controller('CartController', function ($scope, $http) {
             total += (product.price * quantity);
         }
         return total;
+        console.log(cart.product.imageUrl);
     }
 });

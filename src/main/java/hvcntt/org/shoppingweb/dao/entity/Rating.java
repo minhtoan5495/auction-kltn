@@ -10,93 +10,93 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "rating")
-@NamedQuery(name="Rating.findAll", query="SELECT r FROM Rating r")
+@NamedQuery(name = "Rating.findAll", query = "SELECT r FROM Rating r")
 public class Rating implements Serializable {
-	private static final long serialVersionUID = 269554955445124013L;
+    private static final long serialVersionUID = 269554955445124013L;
 
-	@Id
-	@Column(name="rating_id")
-	private String ratingId;
+    @Id
+    @Column(name = "rating_id")
+    private String ratingId;
 
-	private int rating;
+    private int rating;
 
-	@Column(name="rating_title")
-	private String ratingTitle;
+    @Column(name = "rating_title")
+    private String ratingTitle;
 
-	@Column(name="rating_content")
-	private String ratingContent;
-	@Column(name="create_date")
-	private Date createDate;
-	//bi-directional many-to-one association to User
-	@ManyToOne
-	@JoinColumn(name="username")
-	@JsonBackReference
-	private User user;
+    @Column(name = "rating_content")
+    private String ratingContent;
 
-	//bi-directional many-to-one association to Product
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="product_id")
-	@JsonBackReference
-	private Product product;
+    @Column(name = "create_date")
+    private Date createDate;
 
-	public Rating() {
-		setRatingId(UUID.randomUUID().toString());
-	}
+    @ManyToOne
+    @JoinColumn(name = "username")
+    @JsonBackReference
+    private User user;
 
-	public String getRatingId() {
-		return this.ratingId;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
+    @JsonBackReference
+    private Product product;
 
-	public void setRatingId(String ratingId) {
-		this.ratingId = ratingId;
-	}
+    public Rating() {
+        setRatingId(UUID.randomUUID().toString());
+    }
 
-	public int getRating() {
-		return this.rating;
-	}
+    public String getRatingId() {
+        return this.ratingId;
+    }
 
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
+    public void setRatingId(String ratingId) {
+        this.ratingId = ratingId;
+    }
 
-	public String getRatingContent() {
-		return this.ratingContent;
-	}
+    public int getRating() {
+        return this.rating;
+    }
 
-	public void setRatingContent(String ratingContent) {
-		this.ratingContent = ratingContent;
-	}
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
-	public User getUser() {
-		return this.user;
-	}
+    public String getRatingContent() {
+        return this.ratingContent;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setRatingContent(String ratingContent) {
+        this.ratingContent = ratingContent;
+    }
 
-	public Product getProduct() {
-		return this.product;
-	}
+    public User getUser() {
+        return this.user;
+    }
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public String getRatingTitle() {
-		return ratingTitle;
-	}
+    public Product getProduct() {
+        return this.product;
+    }
 
-	public void setRatingTitle(String ratingTitle) {
-		this.ratingTitle = ratingTitle;
-	}
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public String getRatingTitle() {
+        return ratingTitle;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-	
+    public void setRatingTitle(String ratingTitle) {
+        this.ratingTitle = ratingTitle;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
 }

@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="panel-body panel-order-checkout-info-detail">
                                         <div class="checkout-info-order-product">
-                                            <c:forEach var="cart" items="${cart }">
+                                            <c:forEach var="cart" items="${carts }">
                                                 <c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
                                                 <table class="tbl-info-order-checkout-detail">
                                                     <tbody>
