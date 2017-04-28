@@ -12,6 +12,7 @@ app.controller('CartController', function ($scope, $http) {
 
     // localStorage.setItem("carts", $scope.carts);
     $scope.add = function (cart) {
+        console.log(cart.product.imageUrl);
         cart.quantity++;
         var quantity = cart.quantity;
         $http({

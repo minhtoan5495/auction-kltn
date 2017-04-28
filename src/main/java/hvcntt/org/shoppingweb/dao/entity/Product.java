@@ -13,7 +13,6 @@ import java.util.UUID;
 @Table(name = "product")
 @NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
 public class Product implements Serializable {
-
 	private static final long serialVersionUID = -565138532603166915L;
 
 	@Id
@@ -41,7 +40,6 @@ public class Product implements Serializable {
 	private int viewNumber;
 
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonManagedReference
 	private List<Auction> auctions;
 
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -62,6 +60,8 @@ public class Product implements Serializable {
 	@JsonBackReference
 	private Supplier supplier;
 
+	private String imageUrl;
+
 	@ManyToOne
 	@JoinColumn(name="transaction_type_id")
 	@JsonBackReference
@@ -76,7 +76,6 @@ public class Product implements Serializable {
 	private List<ProductDetail> productDetails;
 
 	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER)
-	@JsonManagedReference
 	private List<Discount> discounts;
 
 	public Product() {
@@ -163,7 +162,6 @@ public class Product implements Serializable {
 		this.images = images;
 	}
 
-
 	public List<InvoiceDetail> getInvoiceDetails() {
 		return this.invoiceDetails;
 	}
@@ -171,7 +169,6 @@ public class Product implements Serializable {
 	public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
 		this.invoiceDetails = invoiceDetails;
 	}
-
 
 	public Category getCategory() {
 		return this.category;
@@ -221,4 +218,11 @@ public class Product implements Serializable {
 		this.discounts = discounts;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 }

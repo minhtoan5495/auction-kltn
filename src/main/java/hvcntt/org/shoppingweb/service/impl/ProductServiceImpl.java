@@ -124,6 +124,7 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productDto.getName());
         List<MultipartFile> multipartFiles = getMultipartFiles(productDto);
         List<Image> images = getImageUrlFromMultiFile(multipartFiles, product);
+        product.setImageUrl(images.get(0).getImageUrl());
         product.setImages(images);
         productRepository.save(product);
         imageRepository.save(images);

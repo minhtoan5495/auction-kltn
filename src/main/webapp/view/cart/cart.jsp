@@ -47,23 +47,23 @@
                                         <th class="cart-product-item"></th>
                                     </tr>
                                     </thead>
-                                        <%--<c:forEach var="cart" items="${cart}">--%>
+                                    <c:forEach var="Cart" items="${carts}">
                                         <%--<c:set var="s" value="${s + cart.product.price*cart.quantity}"></c:set>--%>
-                                    <tbody class="table_body_cart" ng-repeat="cart in carts">
-                                    <tr>
-                                        <td class="cart-product-infor"><a
-                                                href="${pageContext.request.contextPath}/detail?idproduct={{cart.product.productId}}">
-                                            <img src="${pageContext.request.contextPath }/resource/images/product/{{cart.image.imageUrl}}"
-                                                 style="width: 100px; height: 100px"></a></td>
-                                        <td class="cart-product-infor"><label
-                                                class="cart-product-name">{{cart.product.name }}</label><br>
-                                        <td class="cart-product-infor"><label
-                                                class="cart-product-name">
-                                            {{cart.product.price | number}} đ</label><br>
-                                                <%-- <small>${cart.product.description }</small><br></td> --%>
-                                        <td class="cart-product-infor" id="inputQuantity"
-                                            style="align-content: center">
-                                            <div class="input-group">
+                                        <tbody class="table_body_cart" ng-repeat="cart in carts">
+                                        <tr>
+                                            <td class="cart-product-infor"><a
+                                                    href="${pageContext.request.contextPath}/detail?idproduct={{cart.product.productId}}">
+                                                <img src='${pageContext.request.contextPath}/resource/images/product/${Cart.product.imageUrl}'
+                                                     style="width: 100px; height: 100px"></a></td>
+                                            <td class="cart-product-infor"><label
+                                                    class="cart-product-name">{{cart.product.name }}</label><br>
+                                            <td class="cart-product-infor"><label
+                                                    class="cart-product-name">
+                                                {{cart.product.price | number}} đ</label><br>
+                                                    <%-- <small>${cart.product.description }</small><br></td> --%>
+                                            <td class="cart-product-infor" id="inputQuantity"
+                                                style="align-content: center">
+                                                <div class="input-group">
                                                   <span class="input-group-btn">
                                                       <button type="button" class="btn btn-default btn-number"
                                                               data-type="minus" ng-click="remove(cart);"
@@ -71,28 +71,35 @@
                                                           <span class="glyphicon glyphicon-minus"></span>
                                                       </button>
                                                   </span>
-                                                <input type="text" style="width: 50px" name="quantity"
-                                                       class="form-control input-number"
-                                                       value={{cart.quantity}} min="2" readonly max="100">
-                                                <span class="input-group-btn">
-                                                      <button type="button" ng-click="add(cart);" class="btn btn-default btn-number"
+                                                    <input type="text" style="width: 50px" name="quantity"
+                                                           class="form-control input-number"
+                                                           value={{cart.quantity}} min="2" readonly max="100">
+                                                    <span class="input-group-btn">
+                                                      <button type="button" ng-click="add(cart);"
+                                                              class="btn btn-default btn-number"
                                                               data-type="plus" data-field="quantity">
                                                           <span class="glyphicon glyphicon-plus"></span>
                                                       </button>
                                                   </span>
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-infor">
-                                            <p>
-                                                {{(cart.product.price * cart.quantity) | number}}   đ
-                                            </p>
-                                        </td>
-                                        <td class="cart-product-infor" ng-click="delete(cart);"><i
-                                                class="glyphicon glyphicon-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                        <%--</c:forEach>--%>
+                                                </div>
+                                                    <%--<input type="hidden" name="${_csrf.parameterName}"--%>
+                                                    <%--value="${_csrf.token}"/>--%>
+                                                    <%--<button class="btn btn-success btn-update-cart"--%>
+                                                    <%--type="submit">--%>
+                                                    <%--<i class="fa fa-edit"></i>Cập nhật--%>
+                                                    <%--</button>--%>
+                                            </td>
+                                            <td class="cart-product-infor">
+                                                <p>
+                                                    {{(cart.product.price * cart.quantity) | number}} đ
+                                                </p>
+                                            </td>
+                                            <td class="cart-product-infor" ng-click="delete(cart);"><i
+                                                    class="glyphicon glyphicon-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </c:forEach>
                                     <tfoot>
                                     <tr class="cart-total-price">
                                         <td class="cart-empty" colspan="2" rowspan="5"></td>
@@ -100,7 +107,7 @@
                                             style="font-size: 16px;">Tổng tiền tạm tính
                                         </td>
                                         <td class="cart-right-price" colspan="1">
-                                            <%--<fmt:formatNumber value="${s}" type="number"/>--%>
+                                                <%--<fmt:formatNumber value="${s}" type="number"/>--%>
                                             {{getTotal() | number}} đ
                                         </td>
                                         <td class="cart-right-price" colspan="1"></td>

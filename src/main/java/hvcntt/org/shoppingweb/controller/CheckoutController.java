@@ -64,7 +64,7 @@ public class CheckoutController {
 								  HttpSession session)
 			throws UserNotFoundException, ParseException {
 		@SuppressWarnings("unchecked")
-		List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cart");
+		List<CartItem> cartItems = (List<CartItem>) session.getAttribute("carts");
 		invoiceService.checkOut(shippingInfo, cartItems);
 		model.addAttribute("invoice", shippingInfo.getInvoice());
 		model.addAttribute("addShip", shippingInfo);
