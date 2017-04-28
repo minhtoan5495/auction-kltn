@@ -52,7 +52,8 @@
                      <li><a href="${pageContext.request.contextPath}/admin/manageSupplier">ManageSupplier</a></li>
                		 <li><a href="${pageContext.request.contextPath}/admin/manageInvoice">ManageInvoice</a></li>
                		 <li><a href="${pageContext.request.contextPath}/admin/manageAuction">ManageAuction</a></li>	
-               		 <li><a href="${pageContext.request.contextPath}/admin/manageDiscount">ManageDiscount</a></li>		
+               		 <li><a href="${pageContext.request.contextPath}/admin/manageDiscount">ManageDiscount</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/manageParent">ManageParent</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

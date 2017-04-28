@@ -15,27 +15,28 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form:form action="${pageContext.request.contextPath}/admin/saveSupplier" commandName="supplier" class="cmxform form-horizontal tasi-form" id="addSupplier"
-                                method="post" >
+                    <form:form action="${pageContext.request.contextPath}/admin/saveSupplier" commandName="supplier"
+                               class="cmxform form-horizontal tasi-form" id="addSupplier"
+                               method="post">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                    <form:label for="usr" path="supplierId">ID</form:label>
-                         <form:input type="text" class="form-control" path="supplierId" disabled="true" />
-                         <form:input path="supplierId" type="hidden"/>
-                    </div>
+                            <div class="form-group">
+                                <form:label for="usr" path="supplierId">ID</form:label>
+                                <form:input path="supplierId" type="hidden"/>
+                            </div>
                             <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Supplier name</label>
+                                <label for="supplierName" class="control-label col-lg-3">Supplier name</label>
                                 <div class="col-lg-7">
-                                    <form:input path="supplierName" class=" form-control" placeholder="Enter supplier name"
+                                    <form:input path="supplierName" class=" form-control"
+                                                placeholder="Enter supplier name"
                                                 id="supplierName" name="supplierName" type="text"/>
                                 </div>
                             </div>
-                               <div class="form-group">
+                            <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <input class="btn btn-danger" value="Save" type="submit"/>
                                 </div>
                             </div>
-                           </div>
+                        </div>
                     </form:form>
                 </div>
             </div>

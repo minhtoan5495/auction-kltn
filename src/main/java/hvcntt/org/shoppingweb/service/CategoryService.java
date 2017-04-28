@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.service;
 
+import hvcntt.org.shoppingweb.dao.dto.CategoryDto;
 import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.exception.CategoryNotFoundExeption;
 
@@ -9,8 +10,7 @@ public interface CategoryService {
 
 	List<Category> getAll();
 	Category findOne(String idcategory);
-	List<Category> getCategoryParent();
-	List<Category> getCategoryChildren(String parentid);
-	void save(Category category);
+	void update(Category category);
+	void save(CategoryDto categoryDto);
 	void delete(String categoryId) throws CategoryNotFoundExeption;
 }

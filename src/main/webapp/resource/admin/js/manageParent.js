@@ -1,4 +1,7 @@
-var TableAccount = function () {
+/**
+ * Created by toannguyen on 28/04/2017.
+ */
+var TableParent = function () {
 
     return {
 
@@ -18,29 +21,29 @@ var TableAccount = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[9].innerHTML = '<input type="text" class="form-control small" value="' + aData[9] + '">';
-                jqTds[10].innerHTML = '<a class="edit" href="">Save</a>';
-                jqTds[11].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
+                jqTds[2].innerHTML = '<a class="edit" href="">Save</a>';
+                jqTds[3].innerHTML = '<a class="cancel" href="">Cancel</a>';
             }
 
             function saveRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 9, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 11, false);
+                oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
+                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 2, false);
+                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 3, false);
                 oTable.fnDraw();
-                function editAccount() {
+                function editParent() {
                     $.ajax({
                         type: "GET",
-                        url: "/admin/editAccount",
-                        data: "username=" + oTable.fnGetData(nRow)[1] +
-                        "&role=" + jqInputs[5].value
+                        url: "/admin/updateParent",
+                        data: "parentId=" + oTable.fnGetData(nRow)[0] +
+                        "&parentName=" + jqInputs[0].value
                     });
                 }
-                editAccount();
+                editParent();
             }
 
-            var oTable = $('#manageAccountTable').dataTable({
+            var oTable = $('#manageParentTable').dataTable({
                 "aLengthMenu": [
                     [10, 15, 20, -1],
                     [10, 15, 20, "All"] // change per page values here
@@ -57,9 +60,9 @@ var TableAccount = function () {
                     }
                 },
                 "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0]
-                    }
+                    'bSortable': false,
+                    'aTargets': [0]
+                }
                 ]
             });
 
@@ -68,28 +71,28 @@ var TableAccount = function () {
 
             var nEditing = null;
 
-            $('#manageAccountTable a.delete').live('click', function (e) {
+            $('#manageParentTable a.delete').live('click', function (e) {
                 e.preventDefault();
                 var nRow = $(this).parents('tr')[0];
                 var aData = oTable.fnGetData(nRow);
-                var username = aData[1];
-                if (confirm("Are you sure to delete this row  with username : " + username) == false) {
+                var parentId = aData[0];
+                if (confirm("Are you sure to delete this row  with parent : " + aData[1]) == false) {
                     return;
                 }
-                deleteUser(username);
+                deleteParent(parentId);
                 oTable.fnDeleteRow(nRow);
             });
 
-            function deleteUser(username) {
+            function deleteParent(parentId) {
                 $.ajax({
                     type: "GET",
-                    url: "/admin/deleteAccount",
-                    data: "username=" + username,
+                    url: "/admin/deleteParent",
+                    data: "parentId=" + parentId,
                 });
-                console.log(username);
+                console.log(parentId);
             }
 
-            $('#manageAccountTable a.cancel').live('click', function (e) {
+            $('#manageParentTable a.cancel').live('click', function (e) {
                 e.preventDefault();
                 if ($(this).attr("data-mode") == "new") {
                     var nRow = $(this).parents('tr')[0];
@@ -100,7 +103,7 @@ var TableAccount = function () {
                 }
             });
 
-            $('#manageAccountTable a.edit').live('click', function (e) {
+            $('#manageParentTable a.edit').live('click', function (e) {
                 e.preventDefault();
 
                 /* Get the row as a parent of the link that was clicked on */
@@ -124,18 +127,3 @@ var TableAccount = function () {
         }
     };
 }();
-// function getDistrict() {
-//     var cityId = $('#city').val();
-//     $.ajax({
-//         type: 'GET',
-//         url: '/admin/getDistrict',
-//         data: "cityId=" + cityId,
-//         success: function (response) {
-//             var select = $('#district');
-//             select.find('option').remove();
-//             $.each(response, function (index, value) {
-//                 $('<option>').val(value).text(value.districtName).appendTo(select);
-//             });
-//         }
-//     });
-// }

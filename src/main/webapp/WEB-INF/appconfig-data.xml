@@ -12,16 +12,16 @@
 
 
     <!-- Configure the data source bean -->
-   <bean id="dataSource"
-			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName"
-				value="com.mysql.jdbc.Driver" />
-			<property name="url"
-				value="jdbc:mysql://localhost:3306/auction" />
-			<property name="connectionProperties" value="characterEncoding=utf8"></property>
-			<property name="username" value="root" />
-			<property name="password" value="123456" />
-		</bean>	
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName"
+                  value="com.mysql.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/auction"/>
+        <property name="connectionProperties" value="characterEncoding=utf8"></property>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
 
     <!-- Configure the entity manager factory bean -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -50,7 +50,7 @@
 
     <bean id="savedRequestAwareAuthenticationSuccessHandler"
           class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-        <property name="targetUrlParameter" value="targetUrl" />
+        <property name="targetUrlParameter" value="targetUrl"/>
     </bean>
 
     <!--

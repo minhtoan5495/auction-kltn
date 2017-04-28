@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
@@ -14,17 +15,17 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = -2196480188211956616L;
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="category_id")
 	private String categoryId;
 
 	@Column(name="category_name")
 	private String categoryName;
 
-	@Column(name="parent_id")
-	private String parentId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="parent_id")
+	@JsonBackReference
+	private Parent parent;
 
-	//bi-directional many-to-one association to Product
 	@OneToMany(mappedBy="category", fetch=FetchType.EAGER)
 	@JsonManagedReference
 	private List<Product> products;
@@ -49,12 +50,12 @@ public class Category implements Serializable {
 		this.categoryName = categoryName;
 	}
 
-	public String getParentId() {
-		return this.parentId;
+	public Parent getParent() {
+		return parent;
 	}
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
+	public void setParent(Parent parent) {
+		this.parent = parent;
 	}
 
 	public List<Product> getProducts() {
@@ -64,19 +65,4 @@ public class Category implements Serializable {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-
-	public Product addProduct(Product product) {
-		getProducts().add(product);
-		product.setCategory(this);
-
-		return product;
-	}
-
-	public Product removeProduct(Product product) {
-		getProducts().remove(product);
-		product.setCategory(null);
-
-		return product;
-	}
-
 }

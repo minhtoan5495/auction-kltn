@@ -127,7 +127,13 @@
     <definition name="addAuction" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/addAuction.jsp"></put-attribute>
     </definition>
-    <definition name="EditAuction" extends="templateAdmin">
+    <definition name="editAuction" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/editAuction.jsp"></put-attribute>
+    </definition>
+    <definition name="manageParent" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/manageParent.jsp"></put-attribute>
+    </definition>
+    <definition name="addParent" extends="templateAdmin">
+        <put-attribute name="body" value="/view/admin/addParent.jsp"></put-attribute>
     </definition>
 </tiles-definitions>

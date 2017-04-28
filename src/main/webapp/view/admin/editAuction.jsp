@@ -11,7 +11,7 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-              Update Auction
+              Edit Auction
             </header>
             <div class="panel-body">
                 <div class="form">

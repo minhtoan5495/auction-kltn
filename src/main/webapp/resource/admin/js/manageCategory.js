@@ -17,11 +17,11 @@ var TableCategory = function () {
 
             var oTable = $('#manageCategoryTable').dataTable({
                 "aLengthMenu": [
-                    [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
+                    [10, 15, 20, -1],
+                    [10, 15, 20, "All"] // change per page values here
                 ],
                 // set the initial value
-                "iDisplayLength": 5,
+                "iDisplayLength": 10,
                 "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
@@ -74,6 +74,28 @@ var TableCategory = function () {
                 });
                 console.log(categoryId);
             }
+
+            // $('#manageCategoryTable a.edit').live('click', function (e) {
+            //     e.preventDefault();
+            //
+            //     /* Get the row as a parent of the link that was clicked on */
+            //     var nRow = $(this).parents('tr')[0];
+            //
+            //     if (nEditing !== null && nEditing != nRow) {
+            //         /* Currently editing - but not this row - restore the old before continuing to edit mode */
+            //         restoreRow(oTable, nEditing);
+            //         editRow(oTable, nRow);
+            //         nEditing = nRow;
+            //     } else if (nEditing == nRow && this.innerHTML == "Save") {
+            //         /* Editing this row and want to save it */
+            //         saveRow(oTable, nEditing);
+            //         nEditing = null;
+            //     } else {
+            //         /* No edit in progress - let's start one */
+            //         editRow(oTable, nRow);
+            //         nEditing = nRow;
+            //     }
+            // });
         }
     };
 }();

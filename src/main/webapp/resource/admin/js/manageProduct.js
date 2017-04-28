@@ -32,10 +32,26 @@ $(document).ready(function() {
      * Initialse DataTables, with no sorting on the 'details' column
      */
     var oTable = $('#manageProductTable').dataTable( {
-        "aoColumnDefs": [
-            { "bSortable": false, "aTargets": [ 0 ] }
+        "aLengthMenu": [
+            [10, 15, 20, -1],
+            [10, 15, 20, "All"] // change per page values here
         ],
-        "aaSorting": [[1, 'asc']]
+        // set the initial value
+        "iDisplayLength": 10,
+        "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page",
+            "oPaginate": {
+                "sPrevious": "Prev",
+                "sNext": "Next"
+            }
+        },
+        "aoColumnDefs": [{
+            'bSortable': false,
+            'aTargets': [0]
+        }
+        ]
     });
 
     /* Add event listener for opening and closing details

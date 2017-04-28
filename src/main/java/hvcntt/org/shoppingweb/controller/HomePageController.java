@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import hvcntt.org.shoppingweb.dao.entity.Parent;
+import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,10 +21,6 @@ import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
-import hvcntt.org.shoppingweb.service.AuctionService;
-import hvcntt.org.shoppingweb.service.CategoryService;
-import hvcntt.org.shoppingweb.service.ProductService;
-import hvcntt.org.shoppingweb.service.TransactionTypeService;
 
 @Controller
 public class HomePageController {
@@ -39,12 +37,15 @@ public class HomePageController {
     @Autowired
     AuctionService auctionService;
 
+    @Autowired
+    ParentService parentService;
+
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/home")
-    public String homePage(Model model, HttpSession session, HttpServletRequest request) {
+    public String homePage(Model model, HttpSession session) {
         @SuppressWarnings("unused")
         List<CartItem> inFo = (List<CartItem>) session.getAttribute("cart");
-        List<Category> listMenu = categoryservice.getCategoryParent();
+        List<Parent> listMenu = parentService.findAll();
         model.addAttribute("listMenu", listMenu);
         TransactionType transactionType = transactionService.findByName("Sale");
         model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
@@ -55,7 +56,7 @@ public class HomePageController {
 
     @RequestMapping(value = "/searchname")
     public String searchPage(@RequestParam("name") String name, Model model) {
-        model.addAttribute("listMenu", categoryservice.getAll());
+        model.addAttribute("listMenu", parentService.findAll());
         model.addAttribute("listProduct", productservice.findByNameContaining(name));
         model.addAttribute("message", "có " + productservice.findByNameContaining(name).size() + " sản phẩm được tìm thấy");
         return "home";

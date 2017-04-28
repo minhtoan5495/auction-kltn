@@ -8,7 +8,7 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                DataTables hidden row details example
+                Manage Invoice
             </header>
             <div class="panel-body">
                 <div class="adv-table">

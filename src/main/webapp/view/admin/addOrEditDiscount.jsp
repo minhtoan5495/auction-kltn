@@ -20,25 +20,24 @@
                         <div class="col-lg-12">
                         <div class="form-group">
                     <form:label for="usr" path="discountId">ID</form:label>
-                         <form:input type="text" class="form-control" path="discountId" disabled="true" />
                          <form:input path="discountId" type="hidden"/>
                     </div>
                             <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Discount Title</label>
+                                <label for="discountTitle" class="control-label col-lg-3">Discount Title</label>
                                 <div class="col-lg-7">
                                     <form:input path="discountTitle" class=" form-control" placeholder="Enter discount title"
                                                 id="discountTitle" name="discountTitle" type="text"/>
                                 </div>
                             </div>
                              <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Discount Content</label>
+                                <label for="discountContent" class="control-label col-lg-3">Discount Content</label>
                                 <div class="col-lg-7">
                                     <form:input path="discountContent" class=" form-control" placeholder="Enter discount content"
                                                 id="discountContent" name="discountContent" type="text"/>
                                 </div>
                             </div>
                              <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Discount Percent</label>
+                                <label for="discountPercent" class="control-label col-lg-3">Discount Percent</label>
                                 <div class="col-lg-7">
                                     <form:input path="discountPercent" class=" form-control" placeholder="Enter discount percent"
                                                 id="discountPercent" name="discountPercent" type="text"/>

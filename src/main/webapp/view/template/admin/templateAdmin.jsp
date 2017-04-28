@@ -72,30 +72,26 @@
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageInvoice.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageCategory.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAuction.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageParent.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"></script>
 <script>
     jQuery(document).ready(function () {
         TableAccount.init();
     });
-</script>
-<script>
     jQuery(document).ready(function () {
         TableCategory.init();
     });
-</script>
-<script>
     jQuery(document).ready(function () {
         TableInvoice.init();
     });
-</script>
-<script>
     jQuery(document).ready(function () {
         TableAuction.init();
     });
-</script>
-<script>
     jQuery(document).ready(function () {
         TableSupplier.init();
+    });
+    jQuery(document).ready(function () {
+        TableParent.init();
     });
 </script>
 </html>

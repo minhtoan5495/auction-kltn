@@ -134,7 +134,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findOne(productId);
         product.setCategory(categoryRepository.getOne(productDto.getCategoryId()));
         String description = productDto.getDescription();
-        if(description != null){
+        if(!description.isEmpty()){
             product.setDescription(description);
         }
         product.setCreateDate(new Date());
@@ -145,11 +145,16 @@ public class ProductServiceImpl implements ProductService {
         product.setTransactionType(transactionTypeRepository.getOne(productDto.getTransactionTypeId()));
         product.setName(productDto.getName());
         List<MultipartFile> multipartFiles = getMultipartFiles(productDto);
-        if(!multipartFiles.isEmpty()){
+        if(!multipartFiles.isEmpty() && multipartFiles.size() > 0){
             List<Image> images = getImageUrlFromMultiFile(multipartFiles, product);
-            product.setImages(images);
-            productRepository.save(product);
-            imageRepository.save(images);
+            if(!images.isEmpty()){
+                product.setImages(images);
+                productRepository.save(product);
+                imageRepository.save(images);
+            }else{
+                productRepository.save(product);
+            }
+
         }else{
             productRepository.save(product);
         }
@@ -174,11 +179,13 @@ public class ProductServiceImpl implements ProductService {
             int i = 1;
             for (MultipartFile multipartFile : multipartFiles) {
                 String fileName = multipartFile.getOriginalFilename();
-                Image image = new Image();
-                image.setImageUrl(fileName);
-                image.setImageTitle(product.getName() + " " + i);
-                image.setProduct(product);
-                images.add(image);
+                if(!fileName.isEmpty()){
+                    Image image = new Image();
+                    image.setImageUrl(fileName);
+                    image.setImageTitle(product.getName() + " " + i);
+                    image.setProduct(product);
+                    images.add(image);
+                }
                 try {
                     String targetPathToUploads =  request.getServletContext().getRealPath(UPLOAD_DIR_TARGET);
                     if(! new File(targetPathToUploads).exists())
@@ -189,8 +196,6 @@ public class ProductServiceImpl implements ProductService {
                     String filePathSrc = UPLOAD_DIR_SRC + fileName;
                     File destTarget = new File(filePathTarget);
                     File destSrc = new File(filePathSrc);
-                    System.out.println(destSrc);
-                    System.out.println(destTarget);
                     multipartFile.transferTo(destTarget);
                     multipartFile.transferTo(destSrc);
                 } catch (IOException e) {

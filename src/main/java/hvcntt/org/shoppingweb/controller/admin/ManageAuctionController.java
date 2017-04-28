@@ -55,7 +55,7 @@ public class ManageAuctionController {
 		model.addAttribute("auctionDto", new AuctionDto());
 		Auction auction=auctionService.findOne(auctionId);
 		model.addAttribute("auction", auction);
-		return "EditAuction";
+		return "editAuction";
 	}
 	@RequestMapping(value="/admin/updateAuction",method=RequestMethod.POST)
 	public String updateAuction(Model model,@ModelAttribute("auctionDto")AuctionDto auctionDto,HttpServletRequest request) throws ParseException{

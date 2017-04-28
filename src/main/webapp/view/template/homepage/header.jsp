@@ -242,7 +242,8 @@
     <div class="container no-padding">
         <div class="main_menu_bg">
             <div class="main_menu_item">
-                <a href="#" class="main_menu_item_active">Home</a>
+                <a href="#" class="main_menu_item_link"><span
+                        class="home_item">Home</span>Home</a>
             </div>
             <div class="main_menu_item">
                 <a href="#" class="main_menu_item_link">Công nghệ<span

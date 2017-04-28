@@ -28,12 +28,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/rating/rating.min.css">
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
 </head>
-<style>
-        .modal-dialog {
-            width: 600px !important;
-            margin: 50px 515px !important;
-        }
-</style>
+
 <body>
 <header>
     <tiles:insertAttribute name="header"></tiles:insertAttribute>

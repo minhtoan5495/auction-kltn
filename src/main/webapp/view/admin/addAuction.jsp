@@ -11,7 +11,7 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                Add Discount
+                Add Auction
             </header>
             <div class="panel-body">
                 <div class="form">
@@ -28,7 +28,7 @@
                                 <div class="col-lg-7">
                                     <form:input path="startTime" name="startTime" id="startTime"
                                                 class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose  start date"
+                                                type="text" placeholder="Choose start date"
                                     />
                                 </div>
                             </div>
@@ -37,12 +37,12 @@
                                 <div class="col-lg-7">
                                     <form:input path="endTime" name="endTime" id="endTime"
                                                 class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose  start date"
+                                                type="text" placeholder="Choose end date"
                                     />
                                 </div>
                             </div>
                              <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Status</label>
+                                <label for="status" class="control-label col-lg-3">Status</label>
                                 <div class="col-lg-7">
                                     <form:input path="status" class=" form-control" placeholder="Enter Auction Status"
                                                 id="status" name="status" type="text"/>

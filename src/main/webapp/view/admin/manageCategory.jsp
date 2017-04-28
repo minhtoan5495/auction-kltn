@@ -22,18 +22,19 @@
                         <tr>
                             <th hidden="hidden"></th>
                             <th>Category Name</th>
-                            <th>Parent Id</th>
+                            <th>Parent Name</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="category" items="${categories}">
+                            <input hidden value="${category.categoryId}" id="categoryId">
                             <tr class="gradeX">
                                 <td hidden="hidden">${category.categoryId}</td>
                                 <td>${category.categoryName}</td>
-                                <td>${category.parentId}</td>
-                                <td><a class="" href="${pageContext.request.contextPath }/admin/editCategory?categoryId=${category.categoryId}">Edit</a></td>
+                                <td>${category.parent.parentName}</td>
+                                <td><a class="edit" href="${pageContext.request.contextPath}/admin/editCategory?categoryId=${category.categoryId}">Edit</a></td>
                                  <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>
