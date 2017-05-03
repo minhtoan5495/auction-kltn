@@ -30,7 +30,6 @@
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resource/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resource/admin/css/mainAdmin.css" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -54,6 +53,10 @@
         src="${pageContext.request.contextPath}/resource/admin/assets/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resource/admin/assets/data-tables/DT_bootstrap.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/angular-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/respond.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-daterangepicker/moment.min.js"></script>
@@ -66,6 +69,7 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resource/admin/js/advanced-form-components.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/common-scripts.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/addDiscount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAccount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageProduct.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageSupplier.js"></script>

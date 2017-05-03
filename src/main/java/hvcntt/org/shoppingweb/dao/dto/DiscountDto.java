@@ -12,9 +12,10 @@ public class DiscountDto {
     private String startDate;
 
     private String endDate;
+
+    private String productId;
     
     public DiscountDto() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getDiscountTitle() {
@@ -57,7 +58,11 @@ public class DiscountDto {
 		this.endDate = endDate;
 	}
 
+	public String getProductId() {
+		return productId;
+	}
 
-
-    
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 }

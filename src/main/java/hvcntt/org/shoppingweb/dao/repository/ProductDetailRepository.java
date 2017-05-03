@@ -1,1 +1,0 @@
-package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.ProductDetail;import org.springframework.data.jpa.repository.JpaRepository;public interface ProductDetailRepository extends JpaRepository<ProductDetail, String> {}

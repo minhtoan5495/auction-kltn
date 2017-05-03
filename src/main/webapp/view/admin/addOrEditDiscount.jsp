@@ -15,35 +15,43 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form:form action="${pageContext.request.contextPath}/admin/saveDiscount" commandName="discount" class="cmxform form-horizontal tasi-form" id="addDiscount"
-                                method="post" >
+                    <form:form action="${pageContext.request.contextPath}/admin/saveDiscount" commandName="discount"
+                               class="cmxform form-horizontal tasi-form" id="addDiscount"
+                               method="post">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                    <form:label for="usr" path="discountId">ID</form:label>
-                         <form:input path="discountId" type="hidden"/>
-                    </div>
+                            <div class="form-group last">
+                                <label class="control-label col-md-3">Select Product</label>
+                                <div class="col-md-9">
+                                    <div ng-app="discount" ng-controller="DiscountCtrl" ng-init='init(${products})'>
+                                        <div ng-dropdown-multiselect="" options="example14data" selected-model="example14model" checkboxes="true" extra-settings="example14settings"></div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group ">
                                 <label for="discountTitle" class="control-label col-lg-3">Discount Title</label>
                                 <div class="col-lg-7">
-                                    <form:input path="discountTitle" class=" form-control" placeholder="Enter discount title"
+                                    <form:input path="discountTitle" class=" form-control"
+                                                placeholder="Enter discount title"
                                                 id="discountTitle" name="discountTitle" type="text"/>
                                 </div>
                             </div>
-                             <div class="form-group ">
+                            <div class="form-group ">
                                 <label for="discountContent" class="control-label col-lg-3">Discount Content</label>
                                 <div class="col-lg-7">
-                                    <form:input path="discountContent" class=" form-control" placeholder="Enter discount content"
+                                    <form:input path="discountContent" class=" form-control"
+                                                placeholder="Enter discount content"
                                                 id="discountContent" name="discountContent" type="text"/>
                                 </div>
                             </div>
-                             <div class="form-group ">
+                            <div class="form-group ">
                                 <label for="discountPercent" class="control-label col-lg-3">Discount Percent</label>
                                 <div class="col-lg-7">
-                                    <form:input path="discountPercent" class=" form-control" placeholder="Enter discount percent"
+                                    <form:input path="discountPercent" class=" form-control"
+                                                placeholder="Enter discount percent"
                                                 id="discountPercent" name="discountPercent" type="text"/>
                                 </div>
                             </div>
-                              <div class="form-group">
+                            <div class="form-group">
                                 <label class="control-label col-lg-3">Start Date</label>
                                 <div class="col-lg-7">
                                     <form:input path="startDate" name="startDate" id="startDate"
@@ -52,7 +60,7 @@
                                     />
                                 </div>
                             </div>
-                           <div class="form-group">
+                            <div class="form-group">
                                 <label class="control-label col-lg-3">End Date</label>
                                 <div class="col-lg-7">
                                     <form:input path="endDate" name="endDate" id="endDate"
@@ -61,12 +69,12 @@
                                     />
                                 </div>
                             </div>
-                               <div class="form-group">
+                            <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <input class="btn btn-danger" value="Save" type="submit"/>
                                 </div>
                             </div>
-                           </div>
+                        </div>
                     </form:form>
                 </div>
             </div>

@@ -60,8 +60,6 @@ public class Product implements Serializable {
 	@JsonBackReference
 	private Supplier supplier;
 
-	private String imageUrl;
-
 	@ManyToOne
 	@JoinColumn(name="transaction_type_id")
 	@JsonBackReference
@@ -70,10 +68,6 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy="product",fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private List<Rating> ratings;
-
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="product")
-	@JsonManagedReference
-	private List<ProductDetail> productDetails;
 
 	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER)
 	private List<Discount> discounts;
@@ -202,27 +196,11 @@ public class Product implements Serializable {
 		this.ratings = ratings;
 	}
 
-	public List<ProductDetail> getProductDetails() {
-		return productDetails;
-	}
-
-	public void setProductDetails(List<ProductDetail> productDetails) {
-		this.productDetails = productDetails;
-	}
-
 	public List<Discount> getDiscounts() {
 		return discounts;
 	}
 
 	public void setDiscounts(List<Discount> discounts) {
 		this.discounts = discounts;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 }

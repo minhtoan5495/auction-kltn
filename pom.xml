@@ -257,41 +257,41 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.5.1</version>
-                <executions>
-                    <execution>
-                        <id>liquibase-dbmaster-update</id>
-                        <configuration>
-                            <propertyFile>src/main/resources/database.properties
-                            </propertyFile>
-                            <changeLogFile>src/main/resources/liquibase/db.changelog-dbmaster.xml
-                            </changeLogFile>
-                            <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                        </configuration>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>liquibase-dbmaster-update-test</id>
-                        <configuration>
-                            <propertyFile>src/main/resources/liquibase/liquibase.properties
-                            </propertyFile>
-                            <changeLogFile>src/main/resources/liquibase/db.changelog-dbmaster.xml
-                            </changeLogFile>
-                            <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                        </configuration>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.liquibase</groupId>-->
+                <!--<artifactId>liquibase-maven-plugin</artifactId>-->
+                <!--<version>3.5.1</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>liquibase-dbmaster-update</id>-->
+                        <!--<configuration>-->
+                            <!--<propertyFile>src/main/resources/database.properties-->
+                            <!--</propertyFile>-->
+                            <!--<changeLogFile>src/main/resources/liquibase/db.changelog-dbmaster.xml-->
+                            <!--</changeLogFile>-->
+                            <!--<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>-->
+                        <!--</configuration>-->
+                        <!--<phase>process-resources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>update</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>liquibase-dbmaster-update-test</id>-->
+                        <!--<configuration>-->
+                            <!--<propertyFile>src/main/resources/liquibase/liquibase.properties-->
+                            <!--</propertyFile>-->
+                            <!--<changeLogFile>src/main/resources/liquibase/db.changelog-dbmaster.xml-->
+                            <!--</changeLogFile>-->
+                            <!--<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>-->
+                        <!--</configuration>-->
+                        <!--<phase>process-resources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>update</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>
