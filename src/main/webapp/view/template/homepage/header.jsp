@@ -245,90 +245,37 @@
                 <a href="#" class="main_menu_item_link"><span
                         class="home_item">Home</span>Home</a>
             </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Công nghệ<span
-                        class="laptop_item">Laptop</span></a>
-            </div>
-            <div class="main_menu_item" id="main_menu">
-                <a href="#" class="main_menu_item_link">Thời trang<span
-                        class="fashion_item">Thời trang</span></a>
-                <div class="sub_menu_bg hidden-xs" id="show_main_menu">
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
+            <c:forEach var="parent" items="${parents}">
+                <div class="main_menu_item">
+                    <a href="#" class="main_menu_item_link">${parent.parentName}</span></a>
+                    <div class="sub_menu_bg hidden-xs" id="show_main_menu">
+                        <div class="sub_menu_col">
+                            <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
+                                href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo khoác
 								nam</span></a>
-                    </div>
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
+                        </div>
+                        <div class="sub_menu_col">
+                            <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
+                                href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo khoác
 								nam</span></a>
-                    </div>
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
+                        </div>
+                        <div class="sub_menu_col">
+                            <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
+                                href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
+                            <a href="#" class="sub_menu_col_item"><span>Áo khoác
 								nam</span></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Đồng hồ<span
-                        class="watch_item">Đồng hồ</span></a>
-            </div>
-            <div class="main_menu_item" id="main_menu1">
-                <a href="#" class="main_menu_item_link">Giày dép<span
-                        class="shoe_item">Giày dép</span></a>
-                <div class="sub_menu_bg hidden-xs" id="show_main_menu1">
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                    </div>
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                    </div>
-                    <div class="sub_menu_col">
-                        <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                            href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                        <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Sắc đẹp<span
-                        class="beauty_item">Sắc đẹp</span></a>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Trang sức<span
-                        class="jewelry_item">Trang sức</span></a>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Trẻ em<span
-                        class="child_item">Trẻ em</span></a>
-            </div>
-            <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link">Liên hệ<span
-                        class="contact_item">Liên hệ</span></a>
-            </div>
+            </c:forEach>
         </div>
     </div>
     <a href="#" id="pull" class="menu_reponsive">Menu</a>

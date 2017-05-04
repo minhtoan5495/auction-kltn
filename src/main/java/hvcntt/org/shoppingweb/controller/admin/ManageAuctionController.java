@@ -1,9 +1,11 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,46 +23,52 @@ import hvcntt.org.shoppingweb.service.TransactionTypeService;
 
 @Controller
 public class ManageAuctionController {
-	@Autowired
-	AuctionService auctionService;
-	@Autowired
-	ProductService productService;
-	@Autowired 
-	TransactionTypeService transactionTypeService;
-	@RequestMapping(value="/admin/manageAuction")
-	public String getAllAuction(Model model){
-		model.addAttribute("auctions", auctionService.getAll());
-		return "manageAuction";
-	}
-	@RequestMapping(value="/admin/addAuction",method=RequestMethod.GET)
-	public String addAuction(Model model){
-		TransactionType transactionType=transactionTypeService.findByName("Auction");
-		model.addAttribute("products", productService.findByTransactionType(transactionType));
-		model.addAttribute("auction", new AuctionDto());
-		return "addAuction";
-	}
-	@RequestMapping(value="/admin/saveAuction",method=RequestMethod.POST)
-	public String saveAuction(Model model,@ModelAttribute("auction")AuctionDto auctionDto) throws ParseException{
-		auctionService.save(auctionDto);
-		return "redirect:/admin/manageAuction";
-	}
-	@RequestMapping(value="/admin/deleteAuction",method=RequestMethod.GET)
-	public void deleteAuction(Model model,@RequestParam("auctionId")String auctionId){
-		auctionService.delete(auctionId);
-	}
-	@RequestMapping(value="/admin/updateAuction",method=RequestMethod.GET)
-	public String editAuction(Model model,@RequestParam("auctionId")String auctionId){
-		TransactionType transactionType=transactionTypeService.findByName("Auction");
-		model.addAttribute("products", productService.findByTransactionType(transactionType));
-		model.addAttribute("auctionDto", new AuctionDto());
-		Auction auction=auctionService.findOne(auctionId);
-		model.addAttribute("auction", auction);
-		return "editAuction";
-	}
-	@RequestMapping(value="/admin/updateAuction",method=RequestMethod.POST)
-	public String updateAuction(Model model,@ModelAttribute("auctionDto")AuctionDto auctionDto,HttpServletRequest request) throws ParseException{
-		String auctionId=request.getParameter("auctionId");
-		auctionService.update(auctionDto, auctionId);
-		return "redirect:/admin/manageAuction";
-	}
+    @Autowired
+    AuctionService auctionService;
+    @Autowired
+    ProductService productService;
+    @Autowired
+    TransactionTypeService transactionTypeService;
+
+    @RequestMapping(value = "/admin/manageAuction")
+    public String getAllAuction(Model model) {
+        model.addAttribute("auctions", auctionService.getAll());
+        return "manageAuction";
+    }
+
+    @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
+    public String addAuction(Model model) {
+        TransactionType transactionType = transactionTypeService.findByName("Auction");
+        model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByTransactionType(transactionType)));
+        model.addAttribute("auction", new AuctionDto());
+        return "addAuction";
+    }
+
+    @RequestMapping(value = "/admin/saveAuction", method = RequestMethod.GET)
+    public void saveAuction(@RequestParam("startDate") String startDate,
+                              @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
+        auctionService.save(startDate, endDate, productIds);
+    }
+
+    @RequestMapping(value = "/admin/deleteAuction", method = RequestMethod.GET)
+    public void deleteAuction(@RequestParam("auctionId") String auctionId) {
+        auctionService.delete(auctionId);
+    }
+
+    @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.GET)
+    public String editAuction(Model model, @RequestParam("auctionId") String auctionId) {
+        TransactionType transactionType = transactionTypeService.findByName("Auction");
+        model.addAttribute("products", productService.findByTransactionType(transactionType));
+        model.addAttribute("auctionDto", new AuctionDto());
+        Auction auction = auctionService.findOne(auctionId);
+        model.addAttribute("auction", auction);
+        return "editAuction";
+    }
+
+    @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.POST)
+    public String updateAuction(@ModelAttribute("auctionDto") AuctionDto auctionDto, HttpServletRequest request) throws ParseException {
+        String auctionId = request.getParameter("auctionId");
+        auctionService.update(auctionDto, auctionId);
+        return "redirect:/admin/manageAuction";
+    }
 }

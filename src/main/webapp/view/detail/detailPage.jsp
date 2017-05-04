@@ -55,7 +55,7 @@
 									<div class="tab-pane active" id="imageContainer">
 										<div class="product-detail-image">
 											<img id="imageContainer1" name="image_main"
-												src="resource/images/product/${singleProduct.images.get(i).getImageUrl() }">
+												src="resource/images/product/${singleProduct.images.get(i).imageUrl() }">
 										</div>
 										<div class="product-detail-multi-image">
 											<div class="carousel slide multi-item-carousel"
@@ -172,7 +172,7 @@
 													<label style="color: #f37021">Kết thúc vào ngày</label>
 													<p style="font-size: 30px">
 														<fmt:formatDate
-															value="${singleProduct.auctions.get(i).getEndTime() }"
+															value="${singleProduct.auctions.get(i).endTime}"
 															pattern="dd-MM-yyyy" />
 													</p>
 													<input value="${singleProduct.auctions.get(i).endTime }"
@@ -258,7 +258,7 @@
 									<div class="tab-descript">
 										<p>${singleProduct.description }</p>
 										<img
-											src="resource/images/product/${singleProduct.images.get(i).getImageUrl() }"
+											src="resource/images/product/${singleProduct.images.get(i).imageUrl}"
 											style="width: 100%">
 									</div>
 								</div>
@@ -371,12 +371,12 @@
 												</div>
 												<div class="comment-items-time">
 													<label class="comment-items-time"><fmt:formatDate
-															value="${rating.createDate }" pattern="dd-MM-yyyy" /> at
+															value="${rating.createDate }" pattern="dd-mm-yyyy" /> at
 														<fmt:formatDate value="${rating.createDate }"
-															pattern="HH:MM:ss" /></label>
+															pattern="hh:mm:ss" /></label>
 												</div>
 												<div class="comment-items-content">
-													<label>${rating.ratingTitle  }</label><br> <label>${rating.ratingContent  }</label>
+													<h3>${rating.ratingTitle  }</h3><br> <label>${rating.ratingContent  }</label>
 												</div>
 											</div>
 										</div>

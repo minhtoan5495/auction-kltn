@@ -93,3 +93,19 @@ $(document).ready(function() {
         console.log(productId);
     }
 } );
+
+function getCategoryByParent() {
+    var parentId = $('#parent').val();
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getCategoryByParent',
+        data: "parentId=" + parentId,
+        success: function (response) {
+            var select = $('#category');
+            select.find('option').remove();
+            $.each(response, function (index, value) {
+                $('<option>').val(value.categoryId).text(value.categoryName).appendTo(select);
+            });
+        }
+    });
+}

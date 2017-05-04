@@ -88,9 +88,5 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         userRepository.save(user);
     }
-    @Override
-    public User findByUsernameAndPhoneAndEmail(String username, String phone, String email) {
-        return userRepository.findByUsernameAndPhoneAndEmail(username, phone, email);
-    }
 
 }

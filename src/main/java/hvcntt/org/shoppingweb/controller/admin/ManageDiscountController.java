@@ -1,15 +1,17 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
 import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
 
+import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 import hvcntt.org.shoppingweb.service.ProductService;
+import hvcntt.org.shoppingweb.service.TransactionTypeService;
 import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import hvcntt.org.shoppingweb.dao.dto.DiscountDto;
 import hvcntt.org.shoppingweb.dao.entity.Discount;
@@ -23,6 +25,9 @@ public class ManageDiscountController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private TransactionTypeService transactionTypeService;
+
     @RequestMapping(value = "/admin/manageDiscount")
     public String getAllDiscount(Model model) {
         model.addAttribute("discounts", discountService.getAll());
@@ -31,19 +36,21 @@ public class ManageDiscountController {
 
     @RequestMapping(value = "/admin/addDiscount", method = RequestMethod.GET)
     public String addDiscount(Model model) {
-        model.addAttribute("products", JsonUtil.convertObjectToJson(productService.getAll()));
+        TransactionType transactionType = transactionTypeService.findByName("Sale");
+        model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByProductTransactionType(transactionType)));
         model.addAttribute("discount", new Discount());
         return "addOrEditDiscount";
     }
 
-    @RequestMapping(value = "/admin/saveDiscount", method = RequestMethod.POST)
-    public String saveDiscount(Model model, @ModelAttribute("discount") DiscountDto discountDto) throws ParseException {
-        discountService.create(discountDto);
-        return "redirect:/admin/manageDiscount";
+    @RequestMapping(value = "/admin/saveDiscount", method = RequestMethod.GET)
+    public void saveDiscount(@RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
+                             @RequestParam("discountPercent") int discountPercent, @RequestParam("startDate") String startDate,
+                             @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
+        discountService.create(discountTitle, discountContent, discountPercent, startDate, endDate, productIds);
     }
 
-    @RequestMapping(value="admin/multiselect")
-    public String multiselect(){
+    @RequestMapping(value = "admin/multiselect")
+    public String multiselect() {
         return "multiselect";
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,13 +41,17 @@ public class HomePageController {
     @Autowired
     ParentService parentService;
 
+    @ModelAttribute("parents")
+    public List<Parent> parent(){
+        return parentService.findAll();
+    }
+
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/home")
     public String homePage(Model model, HttpSession session) {
         @SuppressWarnings("unused")
         List<CartItem> inFo = (List<CartItem>) session.getAttribute("cart");
-        List<Parent> listMenu = parentService.findAll();
-        model.addAttribute("listMenu", listMenu);
+        model.addAttribute("parents", parentService.findAll());
         TransactionType transactionType = transactionService.findByName("Sale");
         model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
         TransactionType transactionType2 = transactionService.findByName("Auction");
@@ -56,7 +61,7 @@ public class HomePageController {
 
     @RequestMapping(value = "/searchname")
     public String searchPage(@RequestParam("name") String name, Model model) {
-        model.addAttribute("listMenu", parentService.findAll());
+        model.addAttribute("parents", parentService.findAll());
         model.addAttribute("listProduct", productservice.findByNameContaining(name));
         model.addAttribute("message", "có " + productservice.findByNameContaining(name).size() + " sản phẩm được tìm thấy");
         return "home";

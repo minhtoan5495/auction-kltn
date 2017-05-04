@@ -1,22 +1,17 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
 import hvcntt.org.shoppingweb.dao.dto.ProductDto;
-import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.exception.ProductNotFoundException;
-import hvcntt.org.shoppingweb.service.CategoryService;
-import hvcntt.org.shoppingweb.service.ProductService;
-import hvcntt.org.shoppingweb.service.SupplierService;
-import hvcntt.org.shoppingweb.service.TransactionTypeService;
+import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * Created by toannguyen on 25/04/2017.
@@ -36,6 +31,9 @@ public class ManageProductController {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    ParentService parentService;
+
     @RequestMapping(value = "/admin/manageProduct", method = RequestMethod.GET)
     public String getAllProduct(Model model){
         model.addAttribute("products", productservice.getAll());
@@ -52,7 +50,7 @@ public class ManageProductController {
         model.addAttribute("productDto", new ProductDto());
         model.addAttribute("transactionTypes", transactionTypeService.getAll());
         model.addAttribute("suppliers", supplierService.getAll());
-        model.addAttribute("categories", categoryService.getAll());
+        model.addAttribute("parents", parentService.findAll());
         return "addProduct";
     }
 
@@ -77,5 +75,13 @@ public class ManageProductController {
         String productId = request.getParameter("productId");
         productservice.update(productDto, productId);
         return "redirect:/admin/manageProduct";
+    }
+
+    @RequestMapping(value = "/admin/getCategoryByParent", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Category> getCategoryByParent(@RequestParam(value = "parentId") String parentId){
+        Parent parent = parentService.findById(parentId);
+        List<Category> categories = categoryService.findByParent(parent);
+        return categories;
     }
 }

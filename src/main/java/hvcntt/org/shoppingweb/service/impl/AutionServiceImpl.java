@@ -27,22 +27,17 @@ public class AutionServiceImpl implements AuctionService {
 	@Autowired
 	ProductService productService;
 	@Autowired
-	ProductRepository productRepo;
+	ProductRepository productRepository;
 	@Override
 	public Auction create(Auction auction) {
-//		TransactionType transactionType=transactionTypeService.findByName("Auction");
-//		Product product=productService.findByTransactionType(transactionType);
-//		auction.setProduct(product);
 		return auctionRepository.save(auction);
 	}
 	@Override
 	public Auction findByProduct(Product product) {
-		// TODO Auto-generated method stub
 		return auctionRepository.findByProduct(product);
 	}
 	@Override
 	public List<Auction> getAll() {
-		// TODO Auto-generated method stub
 		return auctionRepository.findAll();
 	}
 	@Override
@@ -51,7 +46,7 @@ public class AutionServiceImpl implements AuctionService {
 		auction.setStatus(auctionDto.getStatus());
 		auction.setEndTime(formatStringToDate(auctionDto.getStartTime()));
 		auction.setStartTime(formatStringToDate(auctionDto.getStartTime()));
-		auction.setProduct(productRepo.getOne(auctionDto.getProductId()));
+		auction.setProduct(productRepository.getOne(auctionDto.getProductId()));
 		auctionRepository.save(auction);
 	}
 	  private Date formatStringToDate(String date) throws ParseException {
@@ -65,7 +60,6 @@ public class AutionServiceImpl implements AuctionService {
 	}
 	@Override
 	public Auction findOne(String auctionId) {
-		// TODO Auto-generated method stub
 		return auctionRepository.findOne(auctionId);
 	}
 	@Override
@@ -74,7 +68,22 @@ public class AutionServiceImpl implements AuctionService {
 		auction.setStatus(auctionDto.getStatus());
 		auction.setStartTime(formatStringToDate(auctionDto.getStartTime()));
 		auction.setEndTime(formatStringToDate(auctionDto.getEndTime()));
-		auction.setProduct(productRepo.getOne(auctionDto.getProductId()));
+		auction.setProduct(productRepository.getOne(auctionDto.getProductId()));
 		auctionRepository.save(auction);
+	}
+
+	@Override
+	public void save(String startDate, String endDate, List<String> productIds) throws ParseException {
+		for(String productId : productIds){
+			int beginIndex = productId.indexOf("productId\":\"");
+			int endIndex = productId.indexOf("\"}");
+			String productIdNew = productId.substring(beginIndex + 12, endIndex);
+			Auction auction=new Auction();
+			auction.setStatus("ĐANG ĐẤU GIÁ");
+			auction.setEndTime(formatStringToDate(startDate));
+			auction.setStartTime(formatStringToDate(endDate));
+			auction.setProduct(productRepository.getOne(productIdNew));
+			auctionRepository.save(auction);
+		}
 	}
 }

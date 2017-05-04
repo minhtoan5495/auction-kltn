@@ -12,196 +12,168 @@ import java.util.List;
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User implements Serializable {
 
-	private static final long serialVersionUID = -3939291008303869200L;
+    private static final long serialVersionUID = -3939291008303869200L;
 
-	private String username;
+    private String username;
 
-	private boolean accountNonLocked;
+    private boolean accountNonLocked;
 
-	private String address;
+    private String address;
 
-	private String passwordConfirm;
+    private String passwordConfirm;
 
-	@Temporal(TemporalType.DATE)
-	private Date birthday;
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
 
-	private String email;
+    private String email;
 
-	private String name;
+    private String name;
 
-	private String password;
+    private String password;
 
-	private String phone;
+    private String phone;
 
-	// bi-directional many-to-one association to Rating
-	private List<Rating> ratings;
+    // bi-directional many-to-one association to Rating
+    private List<Rating> ratings;
 
-	// bi-directional many-to-one association to City
-	private City city;
+    // bi-directional many-to-one association to City
+    private City city;
 
-	// bi-directional many-to-one association to District
-	private District district;
+    // bi-directional many-to-one association to District
+    private District district;
 
-	// bi-directional many-to-one association to UserAuction
-	private List<UserAuction> userAuctions;
+    // bi-directional many-to-one association to UserAuction
+    private List<UserAuction> userAuctions;
 
-	// bi-directional many-to-many association to Role
-	private List<Role> roles;
+    // bi-directional many-to-many association to Role
+    private List<Role> roles;
 
-	public User() {
-	}
+    public User() {
+    }
 
-	@Id
-	@Column(name = "username")
-	public String getUsername() {
-		return this.username;
-	}
+    @Id
+    @Column(name = "username")
+    public String getUsername() {
+        return this.username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
 
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
 
-	public String getAddress() {
-		return this.address;
-	}
+    public String getAddress() {
+        return this.address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public Date getBirthday() {
-		return this.birthday;
-	}
+    public Date getBirthday() {
+        return this.birthday;
+    }
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhone() {
-		return this.phone;
-	}
+    public String getPhone() {
+        return this.phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER)
-	@JsonManagedReference
-	public List<Rating> getRatings() {
-		return this.ratings;
-	}
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    public List<Rating> getRatings() {
+        return this.ratings;
+    }
 
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
 
-	public Rating addRating(Rating rating) {
-		getRatings().add(rating);
-		rating.setUser(this);
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    public City getCity() {
+        return this.city;
+    }
 
-		return rating;
-	}
+    public void setCity(City city) {
+        this.city = city;
+    }
 
-	public Rating removeRating(Rating rating) {
-		getRatings().remove(rating);
-		rating.setUser(null);
+    @ManyToOne
+    @JoinColumn(name = "district_id")
+    public District getDistrict() {
+        return this.district;
+    }
 
-		return rating;
-	}
+    public void setDistrict(District district) {
+        this.district = district;
+    }
 
-	@ManyToOne
-	@JoinColumn(name = "city_id")
-	public City getCity() {
-		return this.city;
-	}
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    public List<UserAuction> getUserAuctions() {
+        return this.userAuctions;
+    }
 
-	public void setCity(City city) {
-		this.city = city;
-	}
+    public void setUserAuctions(List<UserAuction> userAuctions) {
+        this.userAuctions = userAuctions;
+    }
 
-	@ManyToOne
-	@JoinColumn(name = "district_id")
-	public District getDistrict() {
-		return this.district;
-	}
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public List<Role> getRoles() {
+        return this.roles;
+    }
 
-	public void setDistrict(District district) {
-		this.district = district;
-	}
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER)
-	@JsonManagedReference
-	public List<UserAuction> getUserAuctions() {
-		return this.userAuctions;
-	}
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
 
-	public void setUserAuctions(List<UserAuction> userAuctions) {
-		this.userAuctions = userAuctions;
-	}
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
-	public UserAuction addUserAuction(UserAuction userAuction) {
-		getUserAuctions().add(userAuction);
-		userAuction.setUser(this);
-
-		return userAuction;
-	}
-
-	public UserAuction removeUserAuction(UserAuction userAuction) {
-		getUserAuctions().remove(userAuction);
-		userAuction.setUser(null);
-
-		return userAuction;
-	}
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	public List<Role> getRoles() {
-		return this.roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	@Transient
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
-	
 }

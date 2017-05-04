@@ -6,7 +6,7 @@
       href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datepicker/css/datepicker.css"/>
 <link rel="stylesheet" type="text/css"
       href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datetimepicker/css/datetimepicker.css"/>
-<section id="main-content">
+<section id="main-content" ng-app="discount">
     <section class="wrapper">
         <!-- page start-->
         <section class="panel">
@@ -15,57 +15,58 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form:form action="${pageContext.request.contextPath}/admin/saveDiscount" commandName="discount"
-                               class="cmxform form-horizontal tasi-form" id="addDiscount"
-                               method="post">
+                    <form ng-submit="submit()" ng-controller="DiscountController" ng-init='init(${products})'
+                          class="cmxform form-horizontal tasi-form" id="addDiscount"
+                          method="post">
                         <div class="col-lg-12">
                             <div class="form-group last">
                                 <label class="control-label col-md-3">Select Product</label>
-                                <div class="col-md-9">
-                                    <div ng-app="discount" ng-controller="DiscountCtrl" ng-init='init(${products})'>
-                                        <div ng-dropdown-multiselect="" options="example14data" selected-model="example14model" checkboxes="true" extra-settings="example14settings"></div>
-                                    </div>
+                                <div class="col-lg-7">
+                                    <div ng-dropdown-multiselect="" options="example14data"
+                                         selected-model="example14model" checkboxes="true"
+                                         extra-settings="example14settings"></div>
+                                    <input id="productIds" ng-model="productIds" type="text" value="{{example14model}}" hidden/>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <label for="discountTitle" class="control-label col-lg-3">Discount Title</label>
                                 <div class="col-lg-7">
-                                    <form:input path="discountTitle" class=" form-control"
-                                                placeholder="Enter discount title"
-                                                id="discountTitle" name="discountTitle" type="text"/>
+                                    <input ng-model="discountTitle" class=" form-control"
+                                           placeholder="Enter discount title"
+                                           id="discountTitle" name="discountTitle" type="text"/>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <label for="discountContent" class="control-label col-lg-3">Discount Content</label>
                                 <div class="col-lg-7">
-                                    <form:input path="discountContent" class=" form-control"
-                                                placeholder="Enter discount content"
-                                                id="discountContent" name="discountContent" type="text"/>
+                                    <input ng-model="discountContent" class=" form-control"
+                                           placeholder="Enter discount content"
+                                           id="discountContent" name="discountContent" type="text"/>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <label for="discountPercent" class="control-label col-lg-3">Discount Percent</label>
                                 <div class="col-lg-7">
-                                    <form:input path="discountPercent" class=" form-control"
-                                                placeholder="Enter discount percent"
-                                                id="discountPercent" name="discountPercent" type="text"/>
+                                    <input ng-model="discountPercent" class=" form-control"
+                                           placeholder="Enter discount percent"
+                                           id="discountPercent" name="discountPercent" type="text"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-3">Start Date</label>
                                 <div class="col-lg-7">
-                                    <form:input path="startDate" name="startDate" id="startDate"
-                                                class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose discount start date"
+                                    <input ng-model="startDate" name="startDate" id="startDate"
+                                           class="form-control form-control-inline input-medium default-date-picker"
+                                           type="text" placeholder="Choose discount start date"
                                     />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-3">End Date</label>
                                 <div class="col-lg-7">
-                                    <form:input path="endDate" name="endDate" id="endDate"
-                                                class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose discount end date"
+                                    <input ng-model="endDate" name="endDate" id="endDate"
+                                           class="form-control form-control-inline input-medium default-date-picker"
+                                           type="text" placeholder="Choose discount end date"
                                     />
                                 </div>
                             </div>
@@ -75,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form:form>
+                    </form>
                 </div>
             </div>
         </section>

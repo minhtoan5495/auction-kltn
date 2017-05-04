@@ -15,18 +15,31 @@ import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
 
-	List<Product> getAll();
-	Product findOne(String idproduct);
-	List<Product> findByNameContaining(String name);
-	void updateView(String idproduct);
-	List<Product> findByProductTransactionType(TransactionType transactionType);
-	Page<Product> findProductPaging(TransactionType transactionType,Pageable pageable);
-	List<Product> findByCategoryAndPrice(Category category,float minPrice,float maxPrice);
-	List<Product> findByCategoryAndPriceBetweenAndProductIdNotIn(Category category,float minPrice,float maxPrice,String productId);
-	Page<Product> getProductPaging(int pagenumber);
-	void deleteProduct(String productId) throws ProductNotFoundException;
+    List<Product> getAll();
+
+    Product findOne(String idproduct);
+
+    List<Product> findByNameContaining(String name);
+
+    void updateView(String idproduct);
+
+    List<Product> findByProductTransactionType(TransactionType transactionType);
+
+    Page<Product> findProductPaging(TransactionType transactionType, Pageable pageable);
+
+    List<Product> findByCategoryAndPrice(Category category, float minPrice, float maxPrice);
+
+    List<Product> findByCategoryAndPriceBetweenAndProductIdNotIn(Category category, float minPrice, float maxPrice, String productId);
+
+    Page<Product> getProductPaging(int pagenumber);
+
+    void deleteProduct(String productId) throws ProductNotFoundException;
+
     void save(ProductDto productDto) throws ParseException;
-	void update(ProductDto productDto, String productId) throws ParseException;
-//	List<Product> findByProductTransactionType(TransactionType);
-	List<Product> findByTransactionType(TransactionType transactionType);
+
+    void update(ProductDto productDto, String productId) throws ParseException;
+
+    List<Product> findByTransactionType(TransactionType transactionType);
+
+    List<Product> findByIds(List<String> productIds);
 }

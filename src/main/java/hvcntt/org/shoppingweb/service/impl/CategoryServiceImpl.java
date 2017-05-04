@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import hvcntt.org.shoppingweb.dao.dto.CategoryDto;
 import hvcntt.org.shoppingweb.dao.entity.Category;
+import hvcntt.org.shoppingweb.dao.entity.Parent;
 import hvcntt.org.shoppingweb.dao.repository.ParentRepository;
 import hvcntt.org.shoppingweb.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,11 @@ public class CategoryServiceImpl implements CategoryService {
             throw new CategoryNotFoundExeption("Category not found with id" + categoryRepository.findOne(categoryId));
         }
 
+    }
+
+    @Override
+    public List<Category> findByParent(Parent parent) {
+        return categoryRepository.findByParent(parent);
     }
 
 }

@@ -1,9 +1,10 @@
 package hvcntt.org.shoppingweb.dao.dto;
 
 
+import java.util.List;
 
 public class DiscountDto {
-	private String discountTitle;
+    private String discountTitle;
 
     private String discountContent;
 
@@ -13,56 +14,56 @@ public class DiscountDto {
 
     private String endDate;
 
-    private String productId;
-    
+    private List<String> productIds;
+
     public DiscountDto() {
-	}
+    }
 
-	public String getDiscountTitle() {
-		return discountTitle;
-	}
+    public String getDiscountTitle() {
+        return discountTitle;
+    }
 
-	public void setDiscountTitle(String discountTitle) {
-		this.discountTitle = discountTitle;
-	}
+    public void setDiscountTitle(String discountTitle) {
+        this.discountTitle = discountTitle;
+    }
 
-	public String getDiscountContent() {
-		return discountContent;
-	}
+    public String getDiscountContent() {
+        return discountContent;
+    }
 
-	public void setDiscountContent(String discountContent) {
-		this.discountContent = discountContent;
-	}
+    public void setDiscountContent(String discountContent) {
+        this.discountContent = discountContent;
+    }
 
-	public int getDiscountPercent() {
-		return discountPercent;
-	}
+    public int getDiscountPercent() {
+        return discountPercent;
+    }
 
-	public void setDiscountPercent(int discountPercent) {
-		this.discountPercent = discountPercent;
-	}
+    public void setDiscountPercent(int discountPercent) {
+        this.discountPercent = discountPercent;
+    }
 
-	public String getStartDate() {
-		return startDate;
-	}
+    public String getStartDate() {
+        return startDate;
+    }
 
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
 
-	public String getEndDate() {
-		return endDate;
-	}
+    public String getEndDate() {
+        return endDate;
+    }
 
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 
-	public String getProductId() {
-		return productId;
-	}
+    public List<String> getProductIds() {
+        return productIds;
+    }
 
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
+    public void setProductIds(List<String> productIds) {
+        this.productIds = productIds;
+    }
 }

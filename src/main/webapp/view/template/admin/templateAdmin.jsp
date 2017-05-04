@@ -56,7 +56,7 @@
 <script src="${pageContext.request.contextPath }/resource/js/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/angular-base64.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/respond.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-daterangepicker/moment.min.js"></script>
@@ -65,11 +65,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/jquery-multi-select/js/jquery.quicksearch.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/admin/assets/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resource/admin/js/advanced-form-components.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/common-scripts.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/addDiscount.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/addAuction.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAccount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageProduct.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageSupplier.js"></script>

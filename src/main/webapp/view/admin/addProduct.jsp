@@ -54,13 +54,21 @@
                                 </div>
                             </div>
                             <div class="form-group ">
+                                <label for="category" class="control-label col-lg-3">Parent</label>
+                                <div class="col-lg-5">
+                                    <select class="col-lg-9" onchange="getCategoryByParent();" style="height: 34px;" id="parent">
+                                        <option>Select parent</option>
+                                        <c:forEach var="parent" items="${parents}">
+                                            <option value="${parent.parentId}">${parent.parentName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group ">
                                 <label for="category" class="control-label col-lg-3">Category</label>
                                 <div class="col-lg-5">
                                     <form:select path="categoryId" class="col-lg-9" style="height: 34px;" id="category">
                                         <option>Select category</option>
-                                        <c:forEach var="category" items="${categories}">
-                                            <option value="${category.categoryId}">${category.categoryName}</option>
-                                        </c:forEach>
                                     </form:select>
                                 </div>
                             </div>
