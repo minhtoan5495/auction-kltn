@@ -55,7 +55,7 @@
 									<div class="tab-pane active" id="imageContainer">
 										<div class="product-detail-image">
 											<img id="imageContainer1" name="image_main"
-												src="resource/images/product/${singleProduct.images.get(i).imageUrl() }">
+												src="resource/images/product/${singleProduct.images.get(i).imageUrl }">
 										</div>
 										<div class="product-detail-multi-image">
 											<div class="carousel slide multi-item-carousel"
