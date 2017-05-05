@@ -48,4 +48,5 @@ public interface ProductService {
 	List<Product> findByTransactionType(List<Product> products,TransactionType transactionType,Sort sort);
 
     List<Product> findByIds(List<String> productIds);
+    List<Product> getHighView();
 }

@@ -27,7 +27,13 @@
 .profile-tab li {
 	margin-bottom: 0px;
 }
-
+.btn-info-product{
+	color: #333;
+    background-color: #66cccc;
+    border-color: #66cccc;
+    border-radius: 100px;
+    margin-bottom: 10px;
+}
 .profile-tab li.active a {
 	background-color: #efefef;
 	border-radius: 0;
@@ -87,12 +93,13 @@
 }
 
 .profile_body_item button {
-	border-radius: 0;
+	border-radius: 100px;
 }
 
 .profile_feedback_product {
 	padding: 10px 15px;
 	background: #eee;
+	margin-bottom: 20px;
 }
 
 .profile_body_item_order {
@@ -104,7 +111,9 @@
 	background: rgba(50, 144, 144, 0.38);
 	border: 1px solid rgba(128, 128, 128, 0.18);
 }
-
+.profile_body_item_name{
+	margin-top: 20px;
+}
 .profile_order_product button {
 	border-radius: 0;
 }

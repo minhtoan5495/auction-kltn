@@ -62,6 +62,7 @@ public class HomePageController {
         TransactionType transactionType2 = transactionService.findByName("Auction");
         model.addAttribute("listProduct2", productservice.findByProductTransactionType(transactionType2));
         model.addAttribute("listSupplier",supplierService.getAll() );
+        model.addAttribute("listProductHighView", productservice.getHighView());
         return "home";
     }
 
@@ -95,6 +96,12 @@ public class HomePageController {
     public String getPriceHigh(Model model){
     	TransactionType transactionType=transactionService.findByName("Sale");
     	model.addAttribute("listProduct", productservice.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
+    	return "resultSearch";
+    }
+    @RequestMapping(value = "/priceLowertoHigh")
+    public String getPriceLower(Model model){
+    	TransactionType transactionType=transactionService.findByName("Sale");
+    	model.addAttribute("listProduct", productservice.findByTransactionType(transactionType, new Sort(Direction.DESC, "price")));
     	return "resultSearch";
     }
 //    @RequestMapping(value = "/filterpriceHightoLower")

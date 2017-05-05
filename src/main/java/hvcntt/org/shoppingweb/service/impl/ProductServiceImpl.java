@@ -264,5 +264,11 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findByTransactionType(products, transactionType, sort);
 	}
 
+	@Override
+	public List<Product> getHighView() {
+		// TODO Auto-generated method stub
+		return productRepository.findAll(new PageRequest(0, 8,Direction.DESC,"viewNumber")).getContent();
+	}
+
 
 }

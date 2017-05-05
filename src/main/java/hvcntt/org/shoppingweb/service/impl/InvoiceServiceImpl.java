@@ -24,6 +24,7 @@ import hvcntt.org.shoppingweb.utils.LOG;
 import hvcntt.org.shoppingweb.utils.MessageUtil;
 import org.hibernate.validator.internal.util.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.Authentication;
@@ -55,7 +56,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public List<Invoice> getAll() {
-        return invoiceRepository.findAll(new Sort(Direction.DESC, "invoiceId"));
+        return invoiceRepository.findAll(new PageRequest(0, 3,Direction.DESC, "createDate")).getContent();
     }
 
     @Override

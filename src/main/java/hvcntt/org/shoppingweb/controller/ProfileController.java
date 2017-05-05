@@ -3,6 +3,8 @@ package hvcntt.org.shoppingweb.controller;
 import java.security.Principal;
 //import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.Invoice;
 import hvcntt.org.shoppingweb.dao.entity.User;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import hvcntt.org.shoppingweb.service.InvoiceDetailService;
 import hvcntt.org.shoppingweb.service.InvoiceService;
 import hvcntt.org.shoppingweb.service.InvoiceStatusService;
+import hvcntt.org.shoppingweb.service.UserAuctionService;
 import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
@@ -32,12 +35,16 @@ public class ProfileController {
     InvoiceStatusService invoiceStatusService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private UserAuctionService userAuctionService;
     @RequestMapping(value = "/profile")
     public String profile(Model model, Principal principal) throws UserNotFoundException {
         String username = principal.getName();
+        User user=userService.findByUsername(username);
         model.addAttribute("user", userService.findByUsername(username));
         model.addAttribute("invoices", invoiceService.getAll());
         model.addAttribute("ordered", invoiceService.findByUsername(username));
+        model.addAttribute("auctions", userAuctionService.findByUser(user));
         return "profile";
     }
 
@@ -62,11 +69,11 @@ public class ProfileController {
     public String resetPassword(Model model,Principal principal) throws UserNotFoundException{
     	String username=principal.getName();
     	User user=userService.findByUsername(username);
-    	model.addAttribute("model", user);
+    	model.addAttribute("user", user);
     	return "resetPassword";
     }
     @RequestMapping(value="/resetPassword",method=RequestMethod.POST)
-    public String resetPassword(Principal principal,UserDto userDto) throws UserNotFoundException{
+    public String resetPassword(Principal principal,UserDto userDto,HttpServletRequest request) throws UserNotFoundException{
     	userService.resetPassword(userDto);
     	return "redirect:/home";
     }

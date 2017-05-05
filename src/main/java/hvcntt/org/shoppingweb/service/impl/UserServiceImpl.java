@@ -94,9 +94,11 @@ public class UserServiceImpl implements UserService {
 	public void resetPassword(UserDto userDto) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        User user = userRepository.findByUsername(username);
-		user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-		userRepository.save(user);
+//        User user = userRepository.findByUsername(username);
+        String password=bCryptPasswordEncoder.encode(userDto.getPassword());
+        userRepository.updatePassword(username,  password);
 	}
+
+	
 
 }
