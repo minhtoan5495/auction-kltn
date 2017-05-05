@@ -527,7 +527,7 @@ Example:
 
 ```javascript
 $.fn.datetimepicker.dates['pt-BR'] = {
-    format: 'dd/mm/yyyy'
+    format: 'yyyy-mm-dd'
 };
 ```
 

@@ -2,11 +2,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<style>
+    .multiselect-parent{
+        width: 120px;
+    }
+    .dropdown-toggle{
+        width: 100%;
+    }
+</style>
 <link rel="stylesheet" type="text/css"
       href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datepicker/css/datepicker.css"/>
 <link rel="stylesheet" type="text/css"
       href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datetimepicker/css/datetimepicker.css"/>
-<section id="main-content" ng-app="auction">
+<section id="main-content" ng-app="productForAuction">
     <section class="wrapper">
         <!-- page start-->
         <section class="panel">
@@ -15,26 +23,21 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form ng-submit="submit()" ng-controller="AuctionController" ng-init='init(${products})'
-                               class="cmxform form-horizontal tasi-form" id="addAuction"
-                               method="post">
+                    <form ng-submit="submit()" ng-controller="ProductForAuctionController" ng-init='init(${products})'
+                          class="cmxform form-horizontal tasi-form" id="addAuction"
+                          method="post">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="control-label col-lg-3">Start Time</label>
-                                <div class="col-lg-7">
-                                    <input ng-model="startDate" name="startTime" id="startDate"
-                                                class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose start date"
-                                    />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-lg-3">End Time</label>
-                                <div class="col-lg-7">
-                                    <input ng-model="endDate" name="endTime" id="endDate"
-                                                class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose end date"
-                                    />
+                                <label class="control-label col-lg-3">Choose Time</label>
+                                <div class="col-md-4">
+                                    <div class="input-group input-large" data-date="2013-07-13"
+                                         data-date-format="yyyy-MM-dd">
+                                        <input ng-model="startDate" readonly type="text" placeholder="Choose start date" id="startDate" class="form-control dpd1"
+                                               name="startDate">
+                                        <span class="input-group-addon">To</span>
+                                        <input ng-model="endDate" readonly placeholder="Choose end date" type="text" id="endDate" class="form-control dpd2"
+                                               name="endDate">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group last">
@@ -43,7 +46,8 @@
                                     <div ng-dropdown-multiselect="" options="example14data"
                                          selected-model="example14model" checkboxes="true"
                                          extra-settings="example14settings"></div>
-                                    <input id="productIds" ng-model="productIds" type="text" value="{{example14model}}" hidden/>
+                                    <input id="productIds" ng-model="productIds" type="text" value="{{example14model}}"
+                                           hidden/>
                                 </div>
                             </div>
                             <div class="form-group">

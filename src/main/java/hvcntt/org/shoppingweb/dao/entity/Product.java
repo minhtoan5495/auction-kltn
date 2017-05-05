@@ -39,7 +39,7 @@ public class Product implements Serializable {
 	@Column(name="view_number")
 	private int viewNumber;
 
-	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="product",fetch=FetchType.EAGER)
 	private List<Auction> auctions;
 
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)

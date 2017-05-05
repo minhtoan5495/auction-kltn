@@ -29,7 +29,7 @@
     $(function () {
         $('#datetimepicker').datepicker({
             viewMode: 'years',
-            format: 'dd/mm/yyyy',
+            format: 'yyyy-mm-dd',
             autoclose: true,
             pickerPosition: "bottom-left"
         });

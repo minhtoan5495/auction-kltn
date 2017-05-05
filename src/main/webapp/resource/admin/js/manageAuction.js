@@ -2,7 +2,6 @@ var TableAuction = function () {
 
     return {
 
-        //main function to initiate the module
         init: function () {
             function restoreRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);

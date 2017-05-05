@@ -30,7 +30,7 @@ public class ManageDiscountController {
 
     @RequestMapping(value = "/admin/manageDiscount")
     public String getAllDiscount(Model model) {
-        model.addAttribute("discounts", discountService.getAll());
+        model.addAttribute("discounts", JsonUtil.convertObjectToJson(discountService.getAll()));
         return "manageDiscount";
     }
 
@@ -43,14 +43,26 @@ public class ManageDiscountController {
     }
 
     @RequestMapping(value = "/admin/saveDiscount", method = RequestMethod.GET)
-    public void saveDiscount(@RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
+    public String saveDiscount(@RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
                              @RequestParam("discountPercent") int discountPercent, @RequestParam("startDate") String startDate,
                              @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
         discountService.create(discountTitle, discountContent, discountPercent, startDate, endDate, productIds);
+        return "redirect:/admin/manageDiscount";
     }
 
-    @RequestMapping(value = "admin/multiselect")
+    @RequestMapping(value = "/admin/multiselect")
     public String multiselect() {
         return "multiselect";
+    }
+
+    @RequestMapping(value="/admin/deleteDiscount", method = RequestMethod.GET)
+    public void deleteDiscount(@RequestParam("discountId") String discountId){
+        discountService.deleteDiscount(discountId);
+    }
+
+    @RequestMapping(value = "/admin/updateDiscount", method = RequestMethod.GET)
+    public void updateDiscount(@RequestParam("discountId") String discountId, @RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
+                               @RequestParam("discountPercent") int discountPercent) throws ParseException {
+        discountService.update(discountTitle, discountContent, discountPercent, discountId);
     }
 }

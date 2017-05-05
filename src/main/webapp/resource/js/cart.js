@@ -8,6 +8,7 @@ app.controller('CartController', function ($scope, $http) {
     $scope.carts = [];
     $scope.init = function (carts) {
         $scope.carts = carts;
+        console.log($scope.carts);
     }
 
     // localStorage.setItem("carts", $scope.carts);

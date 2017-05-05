@@ -32,7 +32,7 @@ public class ManageAuctionController {
 
     @RequestMapping(value = "/admin/manageAuction")
     public String getAllAuction(Model model) {
-        model.addAttribute("auctions", auctionService.getAll());
+        model.addAttribute("auctions", JsonUtil.convertObjectToJson(auctionService.getAll()));
         return "manageAuction";
     }
 
@@ -45,9 +45,10 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/saveAuction", method = RequestMethod.GET)
-    public void saveAuction(@RequestParam("startDate") String startDate,
+    public String saveAuction(@RequestParam("startDate") String startDate,
                               @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
         auctionService.save(startDate, endDate, productIds);
+        return "redirect:/admin/manageAuction";
     }
 
     @RequestMapping(value = "/admin/deleteAuction", method = RequestMethod.GET)

@@ -25,7 +25,7 @@ public class District implements Serializable {
 	@JsonBackReference
 	private List<ShippingInfo> shippingInfos;
 
-	@ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = City.class)
 	@JoinColumn(name = "city_id")
 	@JsonManagedReference
 	private City city;

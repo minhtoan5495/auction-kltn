@@ -31,7 +31,7 @@ public class Auction implements Serializable {
 	private String status;
 
 	//bi-directional many-to-one association to Product
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="product_id")
 	@JsonBackReference
 	private Product product;
@@ -91,20 +91,6 @@ public class Auction implements Serializable {
 
 	public void setUserAuctions(List<UserAuction> userAuctions) {
 		this.userAuctions = userAuctions;
-	}
-
-	public UserAuction addUserAuction(UserAuction userAuction) {
-		getUserAuctions().add(userAuction);
-		userAuction.setAuction(this);
-
-		return userAuction;
-	}
-
-	public UserAuction removeUserAuction(UserAuction userAuction) {
-		getUserAuctions().remove(userAuction);
-		userAuction.setAuction(null);
-
-		return userAuction;
 	}
 
 }
