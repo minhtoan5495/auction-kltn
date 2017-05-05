@@ -53,7 +53,7 @@
                                         <tr>
                                             <td class="cart-product-infor"><a
                                                     href="${pageContext.request.contextPath}/detail?idproduct={{cart.product.productId}}">
-                                                <img src='${pageContext.request.contextPath}/resource/images/product/${Cart.product.imageUrl}'
+                                                <img src='${pageContext.request.contextPath}/resource/images/product/${Cart.image.imageUrl}'
                                                      style="width: 100px; height: 100px"></a></td>
                                             <td class="cart-product-infor"><label
                                                     class="cart-product-name">{{cart.product.name }}</label><br>

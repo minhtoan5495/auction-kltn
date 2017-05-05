@@ -13,6 +13,8 @@ import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -88,5 +90,13 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         userRepository.save(user);
     }
+	@Override
+	public void resetPassword(UserDto userDto) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userRepository.findByUsername(username);
+		user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+		userRepository.save(user);
+	}
 
 }

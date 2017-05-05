@@ -68,6 +68,7 @@ public class CheckoutController {
 		invoiceService.checkOut(shippingInfo, cartItems);
 		model.addAttribute("invoice", shippingInfo.getInvoice());
 		model.addAttribute("addShip", shippingInfo);
+		session.removeAttribute("carts");
 		return "checkoutSuccess";
 
 	}

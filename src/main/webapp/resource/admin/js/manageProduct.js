@@ -87,7 +87,7 @@ $(document).ready(function() {
     function deleteUser(productId) {
         $.ajax({
             type: "GET",
-            url: "/admin/deleteProduct",
+            url: "/AuctionWeb/admin/deleteProduct",
             data: "productId=" + productId,
         });
         console.log(productId);

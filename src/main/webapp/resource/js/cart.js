@@ -52,7 +52,7 @@ app.controller('CartController', function ($scope, $http) {
         }
         $scope.carts.splice( index, 1 );
         $http({
-            url: '/removeCart',
+            url: '/AuctionWeb/removeCart',
             type: 'GET',
             params: {
                 productId : cart.product.productId

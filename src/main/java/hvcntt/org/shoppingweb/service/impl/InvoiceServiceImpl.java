@@ -16,6 +16,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import hvcntt.org.shoppingweb.service.InvoiceStatusService;
 import hvcntt.org.shoppingweb.service.ShippingInfoService;
 import hvcntt.org.shoppingweb.utils.LOG;
@@ -77,6 +79,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    @Transactional
     public void checkOut(ShippingInfo shippingInfo, List<CartItem> cartItems){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();

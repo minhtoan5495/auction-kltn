@@ -49,88 +49,27 @@
 					<form action="addAuction">
 						<input value="${singleProduct.productId }" name="productId"
 							type="hidden">
-						<div class="col-sm-4">
+						<div class="col-sm-6" style="width: 40%">
 							<div class="detail-product-item">
 								<div class="tab-content">
 									<div class="tab-pane active" id="imageContainer">
-										<div class="product-detail-image">
-											<img id="imageContainer1" name="image_main"
-												src="resource/images/product/${singleProduct.images.get(i).imageUrl }">
+										<div id="examples">
+											<ul id="example3" class="etalage">
+											<c:forEach var="image" items="${image }">
+												<li><img class="etalage_thumb_image"
+													src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
+													<img class="etalage_source_image"
+													src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
+												</li>
+											</c:forEach>
+											</ul>
 										</div>
-										<div class="product-detail-multi-image">
-											<div class="carousel slide multi-item-carousel"
-												id="theCarousel">
-												<div class="carousel-inner">
-													<div class="item">
-														<div class="col-xs-4">
-															<a href="#1"><img
-																src="resource/images/product/bititshunter.jpg"
-																class="img-responsive"></a>
-														</div>
-													</div>
-													<div class="item">
-														<div class="col-xs-4">
-															<a href="#1"><img
-																src="resource/images/product/bititshunter1.jpg"
-																class="img-responsive"></a>
-														</div>
-													</div>
-													<div class="item">
-														<div class="col-xs-4">
-															<a href="#1"><img
-																src="resource/images/product/bititshunter2.jpg"
-																class="img-responsive"></a>
-														</div>
-													</div>
-													<div class="item">
-														<div class="col-xs-4">
-															<a href="#1"><img
-																src="resource/images/product/bititshunter3.jpg"
-																class="img-responsive"></a>
-														</div>
-													</div>
-													<div class="item">
-														<div class="col-xs-4">
-															<a href="#1"><img
-																src="resource/images/product/bititshunter4.jpg"
-																class="img-responsive"></a>
-														</div>
-													</div>
-													<div class="item">
-														<div class="col-xs-4">
-															<a href="#1"><img
-																src="resource/images/product/bititshunter.jpg"
-																class="img-responsive" id="imageContainer1"></a>
-														</div>
-													</div>
-													<!-- add  more items here -->
-													<!-- Example item start:  -->
 
-													<div class="item">
-														<div class="col-xs-4">
-															<a href="#1"><img
-																src="resource/images/product/bititshunter4.jpg"
-																class="img-responsive"></a>
-														</div>
-													</div>
-
-													<!--  Example item end -->
-												</div>
-												<a class="left carousel-control" href="#theCarousel"
-													data-slide="prev"><i
-													class="glyphicon glyphicon-chevron-left"
-													style="font-size: 15px; margin-top: -7px"></i></a> <a
-													class="right carousel-control" href="#theCarousel"
-													data-slide="next"><i
-													class="glyphicon glyphicon-chevron-right"
-													style="font-size: 15px; margin-top: -7px"></i></a>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-8">
+						<div class="col-sm-6" style="width: 60%">
 							<div class="detail-product-infor">
 								<h2 class="detail-product-name"
 									style="font-family: 'Bitter', serif">${singleProduct.name }</h2>
@@ -258,7 +197,7 @@
 									<div class="tab-descript">
 										<p>${singleProduct.description }</p>
 										<img
-											src="resource/images/product/${singleProduct.images.get(i).imageUrl}"
+											src="resource/images/product/${singleProduct.images.get(i).getImageUrl() }"
 											style="width: 100%">
 									</div>
 								</div>
@@ -371,12 +310,12 @@
 												</div>
 												<div class="comment-items-time">
 													<label class="comment-items-time"><fmt:formatDate
-															value="${rating.createDate }" pattern="dd-mm-yyyy" /> at
+															value="${rating.createDate }" pattern="dd-MM-yyyy" /> at
 														<fmt:formatDate value="${rating.createDate }"
-															pattern="hh:mm:ss" /></label>
+															pattern="HH:MM:ss" /></label>
 												</div>
 												<div class="comment-items-content">
-													<h3>${rating.ratingTitle  }</h3><br> <label>${rating.ratingContent  }</label>
+													<label>${rating.ratingTitle  }</label><br> <label>${rating.ratingContent  }</label>
 												</div>
 											</div>
 										</div>

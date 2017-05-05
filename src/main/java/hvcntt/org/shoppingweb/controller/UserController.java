@@ -94,10 +94,10 @@ public class UserController {
         return "redirect:/home";
     }
 
-    @RequestMapping(value = {"/forgetPassword"})
-    public String forgetPassword() {
-        return "forgetPassword";
-    }
+//    @RequestMapping(value = {"/forgetPassword"})
+//    public String forgetPassword() {
+//        return "forgetPassword";
+//    }
 
     private String getRememberMeTargetUrlFromSession(HttpServletRequest request) {
         String targetUrl = "";

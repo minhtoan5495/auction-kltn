@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.service;
 import hvcntt.org.shoppingweb.dao.dto.ProductDto;
 import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.Supplier;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 
 import java.text.ParseException;
@@ -12,6 +13,7 @@ import hvcntt.org.shoppingweb.exception.ProductNotFoundException;
 import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 public interface ProductService {
 
@@ -36,10 +38,14 @@ public interface ProductService {
     void deleteProduct(String productId) throws ProductNotFoundException;
 
     void save(ProductDto productDto) throws ParseException;
-
-    void update(ProductDto productDto, String productId) throws ParseException;
-
-    List<Product> findByTransactionType(TransactionType transactionType);
+	void update(ProductDto productDto, String productId) throws ParseException;
+//	List<Product> findByProductTransactionType(TransactionType);
+	List<Product> findByTransactionType(TransactionType transactionType);
+	List<Product> findBySupplier(Supplier supplier);
+	List<Product> getPriceHighestToLower();
+	List<Product> getPriceLowerToHighest();
+	List<Product> findByTransactionType(TransactionType transactionType,Sort sort);
+	List<Product> findByTransactionType(List<Product> products,TransactionType transactionType,Sort sort);
 
     List<Product> findByIds(List<String> productIds);
 }

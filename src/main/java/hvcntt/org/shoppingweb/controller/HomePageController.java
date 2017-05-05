@@ -10,6 +10,7 @@ import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.Supplier;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 
 @Controller
@@ -46,6 +48,9 @@ public class HomePageController {
         return parentService.findAll();
     }
 
+
+    @Autowired
+    SupplierService supplierService;
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/home")
     public String homePage(Model model, HttpSession session) {
@@ -56,6 +61,7 @@ public class HomePageController {
         model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
         TransactionType transactionType2 = transactionService.findByName("Auction");
         model.addAttribute("listProduct2", productservice.findByProductTransactionType(transactionType2));
+        model.addAttribute("listSupplier",supplierService.getAll() );
         return "home";
     }
 
@@ -64,7 +70,7 @@ public class HomePageController {
         model.addAttribute("parents", parentService.findAll());
         model.addAttribute("listProduct", productservice.findByNameContaining(name));
         model.addAttribute("message", "có " + productservice.findByNameContaining(name).size() + " sản phẩm được tìm thấy");
-        return "home";
+        return "resultSearch";
     }
 
     @RequestMapping(value = "/{pagenumber}")
@@ -78,5 +84,26 @@ public class HomePageController {
         model.addAttribute("listAuction", auctionService.getAll());
         return "home";
     }
+    @RequestMapping(value="/supplier")
+    public String getSupplier(Model model,@RequestParam("supplierId")String supplierId){
+    	Supplier supplier=supplierService.findOne(supplierId);
+    	model.addAttribute("listProduct", productservice.findBySupplier(supplier));
+    	model.addAttribute("message", "có " + productservice.findBySupplier(supplier).size() + " sản phẩm được tìm thấy");
+    	return "resultSearch";
+    }
+    @RequestMapping(value = "/priceHightoLower")
+    public String getPriceHigh(Model model){
+    	TransactionType transactionType=transactionService.findByName("Sale");
+    	model.addAttribute("listProduct", productservice.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
+    	return "resultSearch";
+    }
+//    @RequestMapping(value = "/filterpriceHightoLower")
+//    public String filterPriceHigh(Model model,HttpServletRequest request){
+//    	String name=request.getParameter("name");
+//    	List<Product> products=productservice.findByNameContaining(name);
+//    	TransactionType transactionType=transactionService.findByName("Sale");
+//    	model.addAttribute("listProduct", productservice.findByTransactionType(products, transactionType, new Sort(Direction.ASC, "price")));
+//    	return "resultSearch";
+//    }
 }
 

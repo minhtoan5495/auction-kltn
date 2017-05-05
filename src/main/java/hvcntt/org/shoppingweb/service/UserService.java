@@ -18,4 +18,5 @@ public interface UserService {
 	User findByPhone(String phone);
     void deleteUser(String username) throws UserNotFoundException;
 	void save(User user);
+	void resetPassword(UserDto userDto);
 }

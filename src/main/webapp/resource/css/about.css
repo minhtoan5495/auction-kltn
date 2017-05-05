@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+.about-content-page{
+	background: #fff;
+}
+.content-about-page-title-item{
+	font-size: 25px;
+	margin-bottom: 35px;
+}
+.about-page-service,.about-page-intro-auction,.about-page-intro-detail,.about-page-introduce{
+	margin-bottom: 35px;
+}

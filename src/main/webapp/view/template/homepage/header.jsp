@@ -22,8 +22,8 @@
                                     </a>
                                 </div>
                                 <div class="header_login_top pull-right">
-                                    <a href="#"
-                                       class="header_login_link"><i class="fa fa-lock"></i>Kiểm tra đơn hàng
+                                    <a href="${pageContext.request.contextPath }/about"
+                                       class="header_login_link"><i class="fa fa-lock"></i>Giới thiệu về chúng tôi
                                     </a>
                                 </div>
                                 <div class="header_login_top pull-right">
@@ -85,9 +85,8 @@
                                         giỏ hàng</a>
                                 </div>
                                 <div class="header_login_top pull-right hidden-xs">
-                                    <a href="#"
-                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Kiểm tra đơn
-                                        hàng</a>
+                                    <a href="${pageContext.request.contextPath }/about"
+                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Giới thiệu về chúng tôi</a>
                                 </div>
                             </div>
                         </c:if>
@@ -209,10 +208,8 @@
                                     </div>
                                     <div class="row modal-footer">
                                         <div class="col-sm-4">
-                                            <a href="${pageContext.request.contextPath }/home">
                                                 <a href="${pageContext.request.contextPath }/home"
                                                    style="text-decoration: none">TIẾP TỤC MUA HÀNG</a>
-                                            </a>
                                         </div>
                                         <div class="col-sm-4" style="margin-top: 10px">
                                             <button

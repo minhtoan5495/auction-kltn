@@ -22,16 +22,20 @@
         <put-attribute name="title" value="Home Page"></put-attribute>
         <put-attribute name="body" value="/view/home/home.jsp"></put-attribute>
     </definition>
+       <definition name="resultSearch" extends="definition">
+        <put-attribute name="title" value="Kết quả tìm thấy"></put-attribute>
+        <put-attribute name="body" value="/view/home/resultSearch.jsp"></put-attribute>
+    </definition>
     <definition name="listProduct" extends="definition">
         <put-attribute name="title" value="Home Page"></put-attribute>
         <put-attribute name="body" value="/view/searchby/listProduct.jsp"></put-attribute>
     </definition>
     <definition name="profile" extends="profilePage">
-        <put-attribute name="title" value="Profile"></put-attribute>
+        <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
     </definition>
     <definition name="orderDetail" extends="profilePage">
-        <put-attribute name="title" value="Profile"></put-attribute>
+        <put-attribute name="title" value="Hóa đơn cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/orderDetail.jsp"></put-attribute>
     </definition>
     <definition name="cart" extends="definition">
@@ -39,31 +43,39 @@
         <put-attribute name="body" value="/view/cart/cart.jsp"></put-attribute>
     </definition>
     <definition name="checkout" extends="definition">
-        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="title" value="Thông tin đặt hàng"></put-attribute>
         <put-attribute name="body" value="/view/checkout/checkout.jsp"></put-attribute>
     </definition>
     <definition name="checkoutSuccess" extends="definition">
-        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="title" value="Đặt hàng thành công"></put-attribute>
         <put-attribute name="body" value="/view/checkout/checkoutSuccess.jsp"></put-attribute>
     </definition>
     <definition name="login" extends="account">
-        <put-attribute name="title" value="Login Page"></put-attribute>
+        <put-attribute name="title" value="Đăng nhập"></put-attribute>
         <put-attribute name="body" value="/view/login--register/login.jsp"></put-attribute>
     </definition>
     <definition name="contact" extends="definition">
-        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="title" value="Liên hệ với chúng tôi"></put-attribute>
         <put-attribute name="body" value="/view/contact/contact.jsp"></put-attribute>
     </definition>
     <definition name="contactSuccess" extends="definition">
         <put-attribute name="title" value="Home Page"></put-attribute>
         <put-attribute name="body" value="/view/contact/contactSuccess.jsp"></put-attribute>
     </definition>
+    <definition name="aboutUs" extends="definition">
+        <put-attribute name="title" value="Giới thiệu về chúng tôi"></put-attribute>
+        <put-attribute name="body" value="/view/about/aboutUs.jsp"></put-attribute>
+    </definition>
     <definition name="forgetPassword" extends="definition">
         <put-attribute name="title" value="Forget Password"></put-attribute>
         <put-attribute name="body" value="/view/login--register/forgetPassword.jsp"></put-attribute>
     </definition>
+    <definition name="resetPassword" extends="definition">
+        <put-attribute name="title" value="Forget Password"></put-attribute>
+        <put-attribute name="body" value="/view/login--register/resetPassword.jsp"></put-attribute>
+    </definition>
     <definition name="register" extends="registration">
-        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="title" value="Đăng ký"></put-attribute>
         <put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
     </definition>
     <definition name="upload" extends="definition">

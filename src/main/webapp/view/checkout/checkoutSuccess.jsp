@@ -44,21 +44,21 @@
 					cảm</p>
 			</strong>
 		</div>
-		<div class="checkout_success_detail_order">
+	<%-- 	<div class="checkout_success_detail_order">
 			<label class="checkout_success_detail_order_name">Chi tiết
 				đơn hàng , bao gồm ${invoice.invoiceDetails.get(i).quantity }  sản phẩm
 				được đặt </label><br> 
 			<strong>Tên khách hàng: ${pageContext.request.userPrincipal.name}</strong>
 			<p>Đường: ${addShip.address }</p>
-		<%-- 	<p class="checkout_success_detail_order_item_district">Quận:
+			<p class="checkout_success_detail_order_item_district">Quận:
 				${addShip.district.districtName }</p>
 				<p class="checkout_success_detail_order_item_district">Quận:
-				${addShip.city.cityName }</p> --%>
+				${addShip.city.cityName }</p>
 		<c:forEach var="cart" items="${carts }">
 		<c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
 			<div class="checkout_success_detail_order_product">
 				<img
-					src="${pageContext.request.contextPath }/resource/images/product/${cart.product.imageUrl}">
+					src="${pageContext.request.contextPath }/resource/images/product/${cart.image.imageUrl}">
 				<label class="checkout_success_detail_order_product_name">${cart.product.name}
 				<p style="color: black">Số lượng:${cart.quantity } cái</p>
 				</label>
@@ -79,7 +79,7 @@
 				<p class="checkout_title_item" style="font-weight: bold;color: gray;    margin-left: -170px;">Tổng tiền thanh toán</p>
 				<p class="checkout_price_item"><fmt:formatNumber value="${s}" type="number" />đ</p>
 			</div>
-		</div>
+		</div> --%>
 	</div>
 </div>
 <!--  END CONTENT -->

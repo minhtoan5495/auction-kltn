@@ -52,9 +52,6 @@
 								<p>
 									<strong>Số điện thoại</strong>:${user.phone }
 								</p>
-								<button class="btn btn-danger btn-edit-profile">
-									<i class="fa fa-edit"></i> Cập nhật thông tin
-								</button>
 							</div>
 						</div>
 					</aside>
