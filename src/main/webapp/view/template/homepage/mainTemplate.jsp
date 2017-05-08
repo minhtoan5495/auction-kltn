@@ -67,6 +67,11 @@
 	</header>
 	<%-- <tiles:insertAttribute name="slide"></tiles:insertAttribute> --%>
 	<tiles:insertAttribute name="body"></tiles:insertAttribute>
+	<div class="scoll-item pull-right">
+		<a href="#" class="back-to-top">
+			<img class="img-scroll-item" src="${pageContext.request.contextPath }/resource/images/logo/scroll.png">
+		</a>
+	</div>
 	<footer style="margin-top: 20px;">
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</footer>
