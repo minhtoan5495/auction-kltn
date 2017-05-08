@@ -29,12 +29,16 @@ import hvcntt.org.shoppingweb.service.UserService;
 public class AuctionController {
 	@Autowired
 	ProductService productService;
+
 	@Autowired
 	AuctionService auctionService;
+
 	@Autowired
 	UserService userService;
+
 	@Autowired
 	TransactionTypeService transactionTypeService;
+
 	@Autowired
 	UserAuctionService userAuctionService;
 

@@ -129,6 +129,10 @@ body {
     float: left;
 }
 
+.main_menu_item:hover .sub_menu_bg {
+    display: block;
+}
+
 .main_menu_item a {
     text-decoration: none;
 }

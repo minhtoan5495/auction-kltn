@@ -3,17 +3,17 @@
  */
 
 $(document).ready(function () {
-    $("#main_menu").hover(function () {
-        $("#show_main_menu").stop(true, false, true).slideToggle("fast");
+    $(".main_menu").hover(function () {
+        $(".show_main_menu").stop(true, false, true).slideToggle("fast");
     });
 });
 
 
-$(document).ready(function () {
-    $("#main_menu1").hover(function () {
-        $("#show_main_menu1").stop(true, false, true).slideToggle("fast");
-    });
-});
+// $(document).ready(function () {
+//     $("#main_menu1").hover(function () {
+//         $("#show_main_menu1").stop(true, false, true).slideToggle("fast");
+//     });
+// });
 
 
 $(document).ready(function () {
@@ -185,7 +185,7 @@ $(document).ready(function(){
 		}
 			else{
 				btt.hide();
-			
+
 		}
 	});
 });

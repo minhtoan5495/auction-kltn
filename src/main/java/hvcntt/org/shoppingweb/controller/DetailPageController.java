@@ -7,28 +7,21 @@ import java.util.Set;
 //import javax.servlet.http.HttpServletRequest;
 
 import hvcntt.org.shoppingweb.dao.dto.RatingDto;
-import hvcntt.org.shoppingweb.dao.entity.Auction;
-import hvcntt.org.shoppingweb.dao.entity.Category;
-import hvcntt.org.shoppingweb.dao.entity.Image;
-import hvcntt.org.shoppingweb.dao.entity.Product;
-import hvcntt.org.shoppingweb.dao.entity.Rating;
-import hvcntt.org.shoppingweb.dao.entity.UserAuction;
-import hvcntt.org.shoppingweb.service.RatingService;
+import hvcntt.org.shoppingweb.dao.entity.*;
+import hvcntt.org.shoppingweb.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hvcntt.org.shoppingweb.service.CategoryService;
 //import hvcntt.org.shoppingweb.dao.dto.CommentDto;
 //import hvcntt.org.shoppingweb.model.Comment;
 //import hvcntt.org.shoppingweb.model.User;
-import hvcntt.org.shoppingweb.service.ImageService;
-import hvcntt.org.shoppingweb.service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
 //import hvcntt.org.shoppingweb.service.UserService;
@@ -36,16 +29,24 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class DetailPageController {
     @Autowired
-    private ImageService imageservice;
+    ImageService imageservice;
 
     @Autowired
-    private ProductService productService;
+    ProductService productService;
 
     @Autowired
-    private CategoryService categoryService;
+    CategoryService categoryService;
 
     @Autowired
-    private RatingService ratingService;
+    RatingService ratingService;
+
+    @Autowired
+    ParentService parentService;
+
+    @ModelAttribute("parents")
+    public List<Parent> parent(){
+        return parentService.findAll();
+    }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detailPage(Model model, @RequestParam("idproduct") String productId, HttpServletRequest request) {

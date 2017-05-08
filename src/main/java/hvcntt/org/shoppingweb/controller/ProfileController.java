@@ -1,46 +1,57 @@
 package hvcntt.org.shoppingweb.controller;
 
 import java.security.Principal;
+import java.util.List;
 //import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.Invoice;
+import hvcntt.org.shoppingweb.dao.entity.Parent;
 import hvcntt.org.shoppingweb.dao.entity.User;
 //import hvcntt.org.shoppingweb.dao.entity.InvoiceStatus;
 import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
+import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import hvcntt.org.shoppingweb.service.InvoiceDetailService;
-import hvcntt.org.shoppingweb.service.InvoiceService;
-import hvcntt.org.shoppingweb.service.InvoiceStatusService;
-import hvcntt.org.shoppingweb.service.UserAuctionService;
-import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class ProfileController {
     @Autowired
     InvoiceService invoiceService;
+
     @Autowired
     UserService userService;
+
     @Autowired
     InvoiceStatusService invoiceStatusService;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
     private UserAuctionService userAuctionService;
+
+    @Autowired
+    ParentService parentService;
+
+    @ModelAttribute("parents")
+    public List<Parent> parent() {
+        return parentService.findAll();
+    }
+
     @RequestMapping(value = "/profile")
     public String profile(Model model, Principal principal) throws UserNotFoundException {
         String username = principal.getName();
-        User user=userService.findByUsername(username);
+        User user = userService.findByUsername(username);
         model.addAttribute("user", userService.findByUsername(username));
         model.addAttribute("invoices", invoiceService.getAll());
         model.addAttribute("ordered", invoiceService.findByUsername(username));
@@ -65,16 +76,18 @@ public class ProfileController {
         invoiceService.save(invoice);
         return "redirect:/orderDetail?invoiceId=" + invoiceId;
     }
-    @RequestMapping(value="/resetPassword",method=RequestMethod.GET)
-    public String resetPassword(Model model,Principal principal) throws UserNotFoundException{
-    	String username=principal.getName();
-    	User user=userService.findByUsername(username);
-    	model.addAttribute("user", user);
-    	return "resetPassword";
+
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
+    public String resetPassword(Model model, Principal principal) throws UserNotFoundException {
+        String username = principal.getName();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        return "resetPassword";
     }
-    @RequestMapping(value="/resetPassword",method=RequestMethod.POST)
-    public String resetPassword(Principal principal,UserDto userDto,HttpServletRequest request) throws UserNotFoundException{
-    	userService.resetPassword(userDto);
-    	return "redirect:/home";
+
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    public String resetPassword(Principal principal, UserDto userDto, HttpServletRequest request) throws UserNotFoundException {
+        userService.resetPassword(userDto);
+        return "redirect:/home";
     }
 }

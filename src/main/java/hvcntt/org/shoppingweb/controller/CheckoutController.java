@@ -2,6 +2,7 @@ package hvcntt.org.shoppingweb.controller;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.entity.InvoiceDetail;
+import hvcntt.org.shoppingweb.dao.entity.Parent;
 import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;
 import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
@@ -13,6 +14,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,28 +22,33 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import hvcntt.org.shoppingweb.service.CityService;
-import hvcntt.org.shoppingweb.service.DistrictService;
-import hvcntt.org.shoppingweb.service.InvoiceDetailService;
-import hvcntt.org.shoppingweb.service.InvoiceService;
-import hvcntt.org.shoppingweb.service.ShippingInfoService;
-import hvcntt.org.shoppingweb.service.UserService;
-
 @Controller
 public class CheckoutController {
 
 	@Autowired
-	private UserService userService;
+	UserService userService;
+
 	@Autowired
-	private InvoiceDetailService invoiceDetailService;
+	InvoiceDetailService invoiceDetailService;
+
 	@Autowired
-	private DistrictService districtService;
+	DistrictService districtService;
+
 	@Autowired
-	private CityService cityService;
+	CityService cityService;
+
 	@Autowired
 	ShippingInfoService shippingService;
 	@Autowired
 	InvoiceService invoiceService;
+
+	@Autowired
+	ParentService parentService;
+
+	@ModelAttribute("parents")
+	public List<Parent> parent(){
+		return parentService.findAll();
+	}
 
 	@RequestMapping(value = "/checkoutSuccess", method = RequestMethod.GET)
 	public String checkoutSuccess() {

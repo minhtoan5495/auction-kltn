@@ -48,9 +48,9 @@ public class HomePageController {
         return parentService.findAll();
     }
 
-
     @Autowired
     SupplierService supplierService;
+
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/home")
     public String homePage(Model model, HttpSession session) {

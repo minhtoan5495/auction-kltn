@@ -86,7 +86,8 @@
                                 </div>
                                 <div class="header_login_top pull-right hidden-xs">
                                     <a href="${pageContext.request.contextPath }/about"
-                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Giới thiệu về chúng tôi</a>
+                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Giới thiệu về
+                                        chúng tôi</a>
                                 </div>
                             </div>
                         </c:if>
@@ -208,8 +209,8 @@
                                     </div>
                                     <div class="row modal-footer">
                                         <div class="col-sm-4">
-                                                <a href="${pageContext.request.contextPath }/home"
-                                                   style="text-decoration: none">TIẾP TỤC MUA HÀNG</a>
+                                            <a href="${pageContext.request.contextPath }/home"
+                                               style="text-decoration: none">TIẾP TỤC MUA HÀNG</a>
                                         </div>
                                         <div class="col-sm-4" style="margin-top: 10px">
                                             <button
@@ -239,40 +240,27 @@
     <div class="container no-padding">
         <div class="main_menu_bg">
             <div class="main_menu_item">
-                <a href="#" class="main_menu_item_link"><span
-                        class="home_item">Home</span>Home</a>
+                <a href="${pageContext.request.contextPath }/home" class="main_menu_item_link"><span
+                        class="home_item">Trang chủ</span>Trang chủ</a>
             </div>
             <c:forEach var="parent" items="${parents}">
                 <div class="main_menu_item">
-                    <a href="#" class="main_menu_item_link">${parent.parentName}</span></a>
-                    <div class="sub_menu_bg hidden-xs" id="show_main_menu">
-                        <div class="sub_menu_col">
-                            <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                                href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                        </div>
-                        <div class="sub_menu_col">
-                            <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                                href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                        </div>
-                        <div class="sub_menu_col">
-                            <a href="#" class="sub_menu_col_title">Thời trang nam</a> <a
-                                href="#" class="sub_menu_col_item"><span>Áo sơ mi nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo thun nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo body nam</span></a>
-                            <a href="#" class="sub_menu_col_item"><span>Áo khoác
-								nam</span></a>
-                        </div>
+                    <a href="#" class="main_menu_item_link">${parent.parentName}</a>
+                    <div class="sub_menu_bg hidden-xs">
+                        <c:forEach var="category" items="${parent.categories}">
+                            <div class="sub_menu_col">
+                                <a href="#" class="sub_menu_col_item"><span>${category.categoryName}</span></a>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </c:forEach>
+            <div class="main_menu_item">
+                <a href="${pageContext.request.contextPath }/about" class="main_menu_item_link">Giới thiệu</a>
+            </div>
+            <div class="main_menu_item">
+                <a href="${pageContext.request.contextPath }/contact" class="main_menu_item_link">Liên hệ</a>
+            </div>
         </div>
     </div>
     <a href="#" id="pull" class="menu_reponsive">Menu</a>

@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import hvcntt.org.shoppingweb.dao.entity.Parent;
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.service.ParentService;
 import hvcntt.org.shoppingweb.utils.BaseResponse;
 import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,15 @@ import hvcntt.org.shoppingweb.service.ProductService;
 public class CartPageController {
 
     @Autowired
-    private ProductService productservice;
+    ParentService parentService;
+
+    @ModelAttribute("parents")
+    public List<Parent> parent(){
+        return parentService.findAll();
+    }
+
+    @Autowired
+    ProductService productservice;
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/addCart", method = RequestMethod.GET)
