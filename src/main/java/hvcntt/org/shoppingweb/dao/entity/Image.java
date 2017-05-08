@@ -23,7 +23,7 @@ public class Image implements Serializable {
 	private String imageUrl;
 
 	//bi-directional many-to-one association to Product
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="product_id")
 	@JsonBackReference
 	private Product product;

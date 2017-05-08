@@ -20,7 +20,7 @@ public class Role implements Serializable {
 	private String roleName;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="roles")
+	@ManyToMany(mappedBy="roles", cascade = CascadeType.ALL)
 	private List<User> users;
 
 	public Role() {

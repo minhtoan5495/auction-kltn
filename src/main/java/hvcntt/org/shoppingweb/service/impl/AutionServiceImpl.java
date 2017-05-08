@@ -20,70 +20,78 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AutionServiceImpl implements AuctionService {
-	@Autowired
-	AuctionRepository auctionRepository;
-	@Autowired
-	TransactionTypeService transactionTypeService;
-	@Autowired
-	ProductService productService;
-	@Autowired
-	ProductRepository productRepository;
-	@Override
-	public Auction create(Auction auction) {
-		return auctionRepository.save(auction);
-	}
-	@Override
-	public Auction findByProduct(Product product) {
-		return auctionRepository.findByProduct(product);
-	}
-	@Override
-	public List<Auction> getAll() {
-		return auctionRepository.findAll();
-	}
-	@Override
-	public void save(AuctionDto auctionDto) throws ParseException {
-		Auction auction=new Auction();
-		auction.setStatus(auctionDto.getStatus());
-		auction.setEndTime(formatStringToDate(auctionDto.getStartTime()));
-		auction.setStartTime(formatStringToDate(auctionDto.getStartTime()));
-		auction.setProduct(productRepository.getOne(auctionDto.getProductId()));
-		auctionRepository.save(auction);
-	}
-	  private Date formatStringToDate(String date) throws ParseException {
-	        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-	        return format.parse(date);
-	    }
-	@Override
-	public void delete(String auctionId) {
-		auctionRepository.delete(auctionId);
-		
-	}
-	@Override
-	public Auction findOne(String auctionId) {
-		return auctionRepository.findOne(auctionId);
-	}
-	@Override
-	public void update(AuctionDto auctionDto, String auctionId) throws ParseException {
-		Auction auction=auctionRepository.findOne(auctionId);
-		auction.setStatus(auctionDto.getStatus());
-		auction.setStartTime(formatStringToDate(auctionDto.getStartTime()));
-		auction.setEndTime(formatStringToDate(auctionDto.getEndTime()));
-		auction.setProduct(productRepository.getOne(auctionDto.getProductId()));
-		auctionRepository.save(auction);
-	}
+    @Autowired
+    AuctionRepository auctionRepository;
+    @Autowired
+    TransactionTypeService transactionTypeService;
+    @Autowired
+    ProductService productService;
+    @Autowired
+    ProductRepository productRepository;
 
-	@Override
-	public void save(String startDate, String endDate, List<String> productIds) throws ParseException {
-		for(String productId : productIds){
-			int beginIndex = productId.indexOf("productId\":\"");
-			int endIndex = productId.indexOf("\"}");
-			String productIdNew = productId.substring(beginIndex + 12, endIndex);
-			Auction auction=new Auction();
-			auction.setStatus("ĐANG ĐẤU GIÁ");
-			auction.setEndTime(formatStringToDate(startDate));
-			auction.setStartTime(formatStringToDate(endDate));
-			auction.setProduct(productRepository.getOne(productIdNew));
-			auctionRepository.save(auction);
-		}
-	}
+    @Override
+    public Auction create(Auction auction) {
+        return auctionRepository.save(auction);
+    }
+
+    @Override
+    public Auction findByProduct(Product product) {
+        return auctionRepository.findByProduct(product);
+    }
+
+    @Override
+    public List<Auction> getAll() {
+        return auctionRepository.findAll();
+    }
+
+    @Override
+    public void save(AuctionDto auctionDto) throws ParseException {
+        Auction auction = new Auction();
+        auction.setStatus(auctionDto.getStatus());
+        auction.setEndTime(formatStringToDate(auctionDto.getStartTime()));
+        auction.setStartTime(formatStringToDate(auctionDto.getStartTime()));
+        auction.setProduct(productRepository.getOne(auctionDto.getProductId()));
+        auctionRepository.save(auction);
+    }
+
+    private Date formatStringToDate(String date) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.parse(date);
+    }
+
+    @Override
+    public void delete(String auctionId) {
+        Auction auction = auctionRepository.findOne(auctionId);
+        auctionRepository.delete(auction);
+    }
+
+    @Override
+    public Auction findOne(String auctionId) {
+        return auctionRepository.findOne(auctionId);
+    }
+
+    @Override
+    public void update(AuctionDto auctionDto, String auctionId) throws ParseException {
+        Auction auction = auctionRepository.findOne(auctionId);
+        auction.setStatus(auctionDto.getStatus());
+        auction.setStartTime(formatStringToDate(auctionDto.getStartTime()));
+        auction.setEndTime(formatStringToDate(auctionDto.getEndTime()));
+        auction.setProduct(productRepository.getOne(auctionDto.getProductId()));
+        auctionRepository.save(auction);
+    }
+
+    @Override
+    public void save(String startDate, String endDate, List<String> productIds) throws ParseException {
+        for (String productId : productIds) {
+            int beginIndex = productId.indexOf("productId\":\"");
+            int endIndex = productId.indexOf("\"}");
+            String productIdNew = productId.substring(beginIndex + 12, endIndex);
+            Auction auction = new Auction();
+            auction.setStatus("ĐANG ĐẤU GIÁ");
+            auction.setEndTime(formatStringToDate(startDate));
+            auction.setStartTime(formatStringToDate(endDate));
+            auction.setProduct(productRepository.getOne(productIdNew));
+            auctionRepository.save(auction);
+        }
+    }
 }

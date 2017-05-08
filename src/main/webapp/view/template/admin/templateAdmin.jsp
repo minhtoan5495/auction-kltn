@@ -73,6 +73,7 @@
 <script src="${pageContext.request.contextPath}/resource/admin/js/addDiscount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/addAuction.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAccount.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageDiscount.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageProduct.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageSupplier.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageInvoice.js"></script>
@@ -98,6 +99,9 @@
     });
     jQuery(document).ready(function () {
         TableParent.init();
+    });
+    jQuery(document).ready(function () {
+        TableDiscount.init();
     });
 </script>
 </html>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!-- CONTENT -->
-<div class="main-content-cart">
+<div class="main-content-cart" ng-app="cart">
     <div class="container">
         <c:choose>
             <c:when test="${empty carts }">
@@ -53,8 +53,9 @@
                                         <tr>
                                             <td class="cart-product-infor"><a
                                                     href="${pageContext.request.contextPath}/detail?idproduct={{cart.product.productId}}">
-                                                <img src='${pageContext.request.contextPath}/resource/images/product/${Cart.image.imageUrl}'
-                                                     style="width: 100px; height: 100px"></a></td>
+                                                <img src='${pageContext.request.contextPath}/resource/images/product/${Cart.product.images.get(i).imageUrl}'
+                                                     style="width: 100px; height: 100px">
+                                            </a></td>
                                             <td class="cart-product-infor"><label
                                                     class="cart-product-name">{{cart.product.name }}</label><br>
                                             <td class="cart-product-infor"><label

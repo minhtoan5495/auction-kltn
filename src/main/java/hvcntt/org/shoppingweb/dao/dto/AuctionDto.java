@@ -6,7 +6,6 @@ public class AuctionDto {
 	private String status;
 	private String productId;
 	public AuctionDto() {
-		// TODO Auto-generated constructor stub
 	}
 	public String getStartTime() {
 		return startTime;

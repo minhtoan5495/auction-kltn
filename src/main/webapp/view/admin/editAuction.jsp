@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                              <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Status</label>
+                                <label for="status" class="control-label col-lg-3">Status</label>
                                 <div class="col-lg-7">
                                     <form:input value="${auction.status}"  path="status" class=" form-control" placeholder="Enter Auction Status"
                                                 id="status" name="status" type="text"/>

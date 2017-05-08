@@ -72,6 +72,20 @@ public class DiscountServiceImpl implements DiscountService {
         discountRepository.save(discount);
     }
 
+    @Override
+    public void deleteDiscount(String discountId) {
+        discountRepository.delete(discountId);
+    }
+
+    @Override
+    public void update(String discountTitle, String discountContent, int discountPercent, String discountId) {
+        Discount discount = discountRepository.findOne(discountId);
+        discount.setDiscountContent(discountContent);
+        discount.setDiscountTitle(discountTitle);
+        discount.setDiscountPercent(discountPercent);
+        discountRepository.save(discount);
+    }
+
     private Date formatStringToDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.parse(date);
