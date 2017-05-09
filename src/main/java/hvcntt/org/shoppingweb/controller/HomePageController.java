@@ -56,10 +56,24 @@ public class HomePageController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/home")
-    public String homePage(Model model, HttpSession session) {
+    public String homePage(Model model, HttpSession session,HttpServletRequest request) {
         @SuppressWarnings("unused")
         List<CartItem> inFo = (List<CartItem>) session.getAttribute("cart");
         model.addAttribute("parents", parentService.findAll());
+        TransactionType transactionType = transactionService.findByName("Sale");
+        PagedListHolder pagedListHolder=new PagedListHolder(productservice.findByProductTransactionType(transactionType));
+        int page=ServletRequestUtils.getIntParameter(request, "p", 0);
+    	pagedListHolder.setPage(page);
+    	pagedListHolder.setPageSize(4);
+        model.addAttribute("pagedListHolder",pagedListHolder );
+        TransactionType transactionType2 = transactionService.findByName("Auction");
+        PagedListHolder pagedListHolder1=new PagedListHolder(productservice.findByProductTransactionType(transactionType2));
+        int pageAuction=ServletRequestUtils.getIntParameter(request, "page", 0);
+    	pagedListHolder1.setPage(pageAuction);
+    	pagedListHolder1.setPageSize(4);
+        model.addAttribute("pagedListHolder1",pagedListHolder1 );
+        model.addAttribute("listSupplier",supplierService.getAll() );
+        model.addAttribute("listProductHighView", productservice.getHighView());
         TransactionType transactionTypeSale = transactionService.findByName(SALE);
         model.addAttribute("productSales", productService.findByProductTransactionType(transactionTypeSale));
         TransactionType transactionTypeAuction = transactionService.findByName(AUCTION);
@@ -96,7 +110,22 @@ public class HomePageController {
         model.addAttribute("suppliers", supplierService.getAll());
         model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
         return "resultSearch";
+    @RequestMapping(value="/supplier")
+    public String getSupplier(Model model,@RequestParam("supplierId")String supplierId){
+    	Supplier supplier=supplierService.findOne(supplierId);
+    	model.addAttribute("listProduct", productservice.findBySupplier(supplier));
+    	model.addAttribute("message", "có " + productservice.findBySupplier(supplier).size() + " sản phẩm được tìm thấy");
+    	return "resultSearch";
     }
+    @RequestMapping(value = "/priceHightoLower")
+    public String getPriceHigh(Model model,HttpServletRequest request){
+    	TransactionType transactionType=transactionService.findByName("Sale");
+    	PagedListHolder pagedListHolder=new PagedListHolder(productservice.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
+        int page=ServletRequestUtils.getIntParameter(request, "p", 0);
+    	pagedListHolder.setPage(page);
+    	pagedListHolder.setPageSize(4);
+        model.addAttribute("pagedListHolder",pagedListHolder );
+    	return "resultSearch";
 
     @RequestMapping(value = "/priceHighToLower")
     public String getPriceHigh(Model model) {

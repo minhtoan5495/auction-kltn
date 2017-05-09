@@ -67,11 +67,11 @@
                                                  class="girl img-responsive" alt=""
                                                  style="width: 360px; height: 360px"/>
 
-                                        </div>
-                                    </div>
-                                </c:forEach>
+										</div>
+									</div>
+								</c:forEach>
 
-                            </div>
+							</div>
 
                             <a href="#slider-carousel"
                                class="left control-carousel hidden-xs" data-slide="prev"> <i
@@ -280,8 +280,367 @@
                                             <p class="single-product-infor-name-title">${product.name }</p>
                                         </div>
                                         <!-- 	<div class="single-product-inforsale">
+							<a href="#slider-carousel"
+								class="left control-carousel hidden-xs" data-slide="prev"> <i
+								class="fa fa-angle-left s-left"></i>
+							</a> <a href="#slider-carousel"
+								class="right control-carousel hidden-xs" data-slide="next">
+								<i class="fa fa-angle-right s-right"></i>
+							</a>
+						</div>
+
+						<div class="infor-box">
+							<div class="infor_box_inner">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="infor_box_left">
+											<div class="row">
+												<div class="col-xs-12">
+													<h4 class="infor_box_heading">ĐỔI TRẢ HÀNG</h4>
+												</div>
+											</div>
+											<h6 class="infor_text">2 ngày sau khi giao hàng nếu
+												không đúng với mẫu mã cam kết</h6>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="infor_box_left">
+											<div class="row">
+												<div class="col-xs-12">
+													<h4 class="infor_box_heading">MIỄN PHÍ GIAO HÀNG</h4>
+												</div>
+											</div>
+											<h6 class="infor_text">Miễn phí giao hàng với những hóa
+												đơn dưới 100k</h6>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="infor_box_left">
+											<div class="row">
+												<div class="col-xs-12">
+													<h4 class="infor_box_heading">HÌNH THỨC ĐẤU GIÁ</h4>
+												</div>
+											</div>
+											<h6 class="infor_text">Thủ tục đấu giá rất đơn giản</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="content-page">
+				<div class="content-page-title">
+					<h2 class="content-paget-title-item">SẢN PHẨM BÁN</h2>
+				</div>
+				<div class="search-advance-item">
+					<div class="dropdown search-supplier-item">
+						<button class="btn dropdown-toggle btn-supplier-item"
+							type="button" data-toggle="dropdown">
+							Hãng sản xuất <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu supplier-dropdown-item">
+							<c:forEach var="supplier" items="${listSupplier }">
+								<li><a
+									href="${pageContext.request.contextPath }/supplier?supplierId=${supplier.supplierId}">${supplier.supplierName}</a></li>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="dropdown search-price-item">
+						<button class="btn dropdown-toggle btn-supplier-item"
+							type="button" data-toggle="dropdown">
+							Lọc theo giá tiền <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu supplier-dropdown-item">
+							<li><a
+								href="${pageContext.request.contextPath }/priceHightoLower">Giá
+									thấp đến giá cao</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/priceLowertoHigh">Giá
+									cao đến giá thấp</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<h4>${message}</h4>
+					<c:forEach var="product" items="${pagedListHolder.pageList }">
+						<div class="col-sm-3 new-product-main">
+							<div class="new-product">
+								<div class="single-product-item">
+									<div class="single-product-image">
+										<a
+											href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><img
+											style="width: 253px; height: 250px;"
+											src="resource/images/product/${product.images.get(i).imageUrl }"></a>
+										<div class="overplay-content">
+											<ul>
+												<li><a
+													href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><i
+														class="fa fa-search"></i></a></li>
+												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+												</li>
+												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+												<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="single-product-showinfor">
+										<div class="single-product-infor-name">
+											<p class="single-product-infor-name-title">${product.name }</p>
+										</div>
+										<c:if test="${not empty (product.discounts) }">
+											<div class="single-product-inforsale">Giảm giá
+												${product.discounts.get(i).discountPercent }%</div>
+										</c:if>
+										<div class="single-product-infor-name">
+											<p>
+												<i class="glyphicon glyphicon-fire">
+													${product.viewNumber }</i> lượt xem
+											</p>
+										</div>
+										<div class="single-product-inforprice">
+											<c:choose>
+												<c:when test="${not empty(product.discounts) }">
+													<strike style="color: black"> <fmt:formatNumber
+															value="${product.price}" type="number" /> đ
+													</strike>
+												</c:when>
+												<c:otherwise>
+													<p style="color: black">
+														<fmt:formatNumber value="${product.price}" type="number" />
+														đ
+													</p>
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="single-product-inforprice">
+											<c:if test="${not empty(product.discounts)  }">
+												<p>
+													<fmt:formatNumber
+														value="${(product.price)-((product.price*product.discounts.get(i).discountPercent)/100)}"
+														type="number" />
+													đ
+												</p>
+											</c:if>
+										</div>
+										<div class="single-product-btn">
+											<input hidden value="${product.productId}" id="productId">
+											<a
+												href="${pageContext.request.contextPath }/addCart?idproduct=${product.productId}"><button
+													class="btn  btn-countdown">
+													<i class="fa fa-shopping-cart"></i> MUA NGAY
+												</button></a>
+										</div>
+										<div class="single-product-inforrating">
+											<div class="rating-box">
+												<span>(Có ${product.ratings.size() } nhận xét)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+					<jsp:useBean id="pagedListHolder" scope="request"
+						type="org.springframework.beans.support.PagedListHolder">
+					</jsp:useBean>
+					<c:url value="/home" var="pagedLink">
+						<c:param name="p" value="~"></c:param>
+					</c:url>
+					<tg:paging pagedLink="${pagedLink }"
+						pagedListHolder="${pagedListHolder }"></tg:paging>
+				</div>
+				<div class="content-page-title">
+					<h2 class="content-paget-title-item">SẢN PHẨM ĐẤU GIÁ</h2>
+				</div>
+				<div class="row">
+					<h4>${message}</h4>
+					<c:forEach var="product" items="${pagedListHolder1.pageList }">
+						<div class="col-sm-3 new-product-main">
+							<div class="new-product">
+								<div class="single-product-item">
+									<div class="single-product-image">
+										<a
+											href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><img
+											style="width: 255px; height: 250px;"
+											src="${pageContext.request.contextPath}/resource/images/product/${product.images.get(i).imageUrl }"></a>
+										<div class="overplay-content">
+											<ul>
+												<li><a href=""><i class="fa fa-search"></i></a></li>
+												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+												</li>
+												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+												<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="single-product-showinfor">
+										<div class="single-product-infor-name">
+											<p class="single-product-infor-name-title">${product.name }</p>
+										</div>
+										<!-- 	<div class="single-product-inforsale">
                                             Giảm giá 25%
                                          </div> -->
+										<div class="single-product-info-timecountdown">
+											<input value="${product.auctions.get(i).endTime }"
+												id="endTime" type="hidden">
+											<div class="single-product-info-timecountdown-title-notice">
+												<label>Ngày kết thúc</label>
+												<p>
+													<fmt:formatDate value="${product.auctions.get(i).endTime }"
+														pattern="dd-MM-yyyy hh:mm" />
+											</div>
+										</div>
+										<div class="single-product-infor-name">
+											<p>
+												<i class="glyphicon glyphicon-fire">
+													${product.viewNumber }</i> lượt xem
+											</p>
+										</div>
+										<div class="single-product-inforprice">
+											<p>
+												<fmt:formatNumber value="${product.price}" type="number" />
+												đ
+											</p>
+										</div>
+										<div class="single-product-btn" style="margin-top: -40px">
+											<a
+												href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><button
+													class="btn btn-countdown">
+													<i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
+												</button></a>
+										</div>
+										<div class="single-product-inforreview">
+											<%-- <span>(${listProduct.commentItems.size() } nhận xét)</span> --%>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+					<jsp:useBean id="pagedListHolder1" scope="request"
+						type="org.springframework.beans.support.PagedListHolder">
+					</jsp:useBean>
+					<c:url value="/home" var="pagedLink1">
+						<c:param name="page" value="~"></c:param>
+					</c:url>
+					<tg:pagingAuction pagedLink1="${pagedLink1 }"
+						pagedListHolder1="${pagedListHolder1 }"></tg:pagingAuction>
+				</div>
+				<div class="content-page-title">
+					<h2 class="content-paget-title-item">SẢN PHẨM CÓ LƯỢT XEM
+						NHIỀU NHẤT</h2>
+				</div>
+				<div class="row">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="carousel slide multi-item-carousel" id="theCarousel">
+									<div class="carousel-inner">
+										<c:forEach var="productView" items="${listProductHighView }">
+											<div class="item">
+
+												<div class="col-sm-4">
+													<div class="new-product">
+														<div class="single-product-item">
+															<div class="single-product-image">
+																<a
+																	href="${pageContext.request.contextPath }/detail?idproduct=${productView.productId}"><img
+																	style="width: 341px; height: 250px;"
+																	src="resource/images/product/${productView.images.get(i).imageUrl }"></a>
+																<div class="overplay-content">
+																	<ul>
+																		<li><a
+																			href="${pageContext.request.contextPath }/detail?idproduct=${productView.productId}"><i
+																				class="fa fa-search"></i></a></li>
+																		<li><a href="#"><i
+																				class="fa fa-shopping-cart"></i></a></li>
+																		<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+																		<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="single-product-showinfor">
+																<div class="single-product-infor-name">
+																	<p class="single-product-infor-name-title">${productView.name }</p>
+																</div>
+																<c:if test="${not empty (productView.discounts) }">
+																	<div class="single-product-inforsale">Giảm giá
+																		${productView.discounts.get(i).discountPercent }%</div>
+																</c:if>
+																<div class="single-product-infor-name">
+																	<p>
+																		<i class="glyphicon glyphicon-fire">
+																			${productView.viewNumber }</i> lượt xem
+																	</p>
+																</div>
+																<div class="single-product-inforprice">
+																	<c:choose>
+																		<c:when test="${not empty(productView.discounts) }">
+																			<strike style="color: black"> <fmt:formatNumber
+																					value="${productView.price}" type="number" /> đ
+																			</strike>
+																		</c:when>
+																		<c:otherwise>
+																			<p style="color: black">
+																				<fmt:formatNumber value="${productView.price}"
+																					type="number" />
+																				đ
+																			</p>
+																		</c:otherwise>
+																	</c:choose>
+																</div>
+																<div class="single-product-inforprice">
+																	<c:if test="${not empty(productView.discounts)  }">
+																		<p>
+																			<fmt:formatNumber
+																				value="${(productView.price)-((productView.price*productView.discounts.get(i).discountPercent)/100)}"
+																				type="number" />
+																			đ
+																		</p>
+																	</c:if>
+																</div>
+																<div class="single-product-inforsale">
+																	<input hidden value="${productView.productId}"
+																		id="productId"> <a
+																		href="${pageContext.request.contextPath }/addCart?idproduct=${productView.productId}"><button
+																			class="btn  btn-countdown">
+																			<i class="fa fa-shopping-cart"></i> MUA NGAY
+																		</button></a>
+																</div>
+																<div class="single-product-inforrating">
+																	<div class="rating-box">
+																		<span>(Có ${productView.ratings.size() } nhận
+																			xét)</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</c:forEach>
+
+										<!--  Example item end -->
+									</div>
+									<a class="left carousel-control" href="#theCarousel"
+										data-slide="prev"><i
+										class="glyphicon glyphicon-chevron-left"></i></a> <a
+										class="right carousel-control" href="#theCarousel"
+										data-slide="next"><i
+										class="glyphicon glyphicon-chevron-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
                                         <div class="single-product-info-timecountdown">
                                             <input value="${product.auctions.get(i).endTime }"
                                                    id="endTime" type="hidden">
