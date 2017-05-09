@@ -114,7 +114,7 @@ public class HomePageController {
         return "resultSearch";
     }
 
-    @RequestMapping(value = "/priceHightoLower")
+    @RequestMapping(value = "/priceHighToLower")
     public String getPriceHigh(Model model, HttpServletRequest request) {
         TransactionType transactionType = transactionService.findByName("Sale");
         PagedListHolder pagedListHolder = new PagedListHolder(productService.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));

@@ -149,10 +149,11 @@
                         </button>
                         <ul class="dropdown-menu supplier-dropdown-item">
                             <li><a
-                                    href="${pageContext.request.contextPath }/priceHightoLower">Giá
+                                    href="${pageContext.request.contextPath }/priceHighToLower">Giá
+
                                 thấp đến giá cao</a></li>
                             <li><a
-                                    href="${pageContext.request.contextPath }/priceLowertoHigh">Giá
+                                    href="${pageContext.request.contextPath }/priceLowerToHigh">Giá
                                 cao đến giá thấp</a></li>
                         </ul>
                     </div>
