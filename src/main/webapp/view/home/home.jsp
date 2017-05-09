@@ -360,108 +360,68 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                            <c:if test="${productView.transactionType.transactionTypeName eq 'Auction'}">
-                                                                <div class="single-product-showinfor">
-                                                                    <div class="single-product-infor-name">
-                                                                        <p class="single-product-infor-name-title">${productView.name }</p>
-                                                                    </div>
-                                                                    <div class="single-product-infor-name">
-                                                                        <p>
-                                                                            <i class="glyphicon glyphicon-fire">
-                                                                                    ${productView.viewNumber }</i> lượt
-                                                                            xem
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="single-product-info-timecountdown">
-                                                                        <input value="${productView.auctions.get(i).endTime }"
-                                                                               id="endTime" type="hidden">
-                                                                        <div class="single-product-info-timecountdown-title-notice">
-                                                                            <label style="font-size: 15px;">Ngày kết
-                                                                                thúc</label>
-                                                                            <p style="font-size: 12px;">
-                                                                                    <fmt:formatDate
-                                                                                            value="${productView.auctions.get(i).endTime }"
-                                                                                            pattern="dd-MM-yyyy hh:mm"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="single-product-inforsale">
-                                                                        <a href="${pageContext.request.contextPath }/detail?productId=${productView.productId}">
-                                                                            <button
-                                                                                    class="btn btn-countdown">
-                                                                                <i class="fa fa-shopping-cart"></i> XEM
-                                                                                CHI TIẾT
-                                                                            </button>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="single-product-inforrating">
-                                                                        <div class="rating-box">
-                                                                    </div>
+                                                            <div class="single-product-showinfor">
+                                                                <div class="single-product-infor-name">
+                                                                    <p class="single-product-infor-name-title">${productView.name }</p>
                                                                 </div>
-                                                            </c:if>
-                                                            <c:if test="${productView.transactionType.transactionTypeName eq 'Sale'}">
-                                                                <div class="single-product-showinfor">
-                                                                    <div class="single-product-infor-name">
-                                                                        <p class="single-product-infor-name-title">${productView.name }</p>
+                                                                <c:if test="${not empty (productView.discounts) }">
+                                                                    <div class="single-product-inforsale">Giảm giá
+                                                                            ${productView.discounts.get(i).discountPercent }%
                                                                     </div>
-                                                                    <c:if test="${not empty (productView.discounts) }">
-                                                                        <div class="single-product-inforsale">Giảm giá
-                                                                                ${productView.discounts.get(i).discountPercent }%
-                                                                        </div>
-                                                                    </c:if>
-                                                                    <div class="single-product-infor-name">
-                                                                        <p>
-                                                                            <i class="glyphicon glyphicon-fire">
-                                                                                    ${productView.viewNumber }</i> lượt
-                                                                            xem
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="single-product-inforprice">
-                                                                        <c:choose>
-                                                                            <c:when test="${not empty(productView.discounts) }">
-                                                                                <strike style="color: black">
-                                                                                    <fmt:formatNumber
-                                                                                            value="${productView.price}"
-                                                                                            type="number"/> đ
-                                                                                </strike>
-                                                                            </c:when>
-                                                                            <c:otherwise>
-                                                                                <p style="color: black">
-                                                                                    <fmt:formatNumber
-                                                                                            value="${productView.price}"
-                                                                                            type="number"/>
-                                                                                    đ
-                                                                                </p>
-                                                                            </c:otherwise>
-                                                                        </c:choose>
-                                                                    </div>
-                                                                    <div class="single-product-inforprice">
-                                                                        <c:if test="${not empty(productView.discounts)  }">
-                                                                            <p>
+                                                                </c:if>
+                                                                <div class="single-product-infor-name">
+                                                                    <p>
+                                                                        <i class="glyphicon glyphicon-fire">
+                                                                                ${productView.viewNumber }</i> lượt
+                                                                        xem
+                                                                    </p>
+                                                                </div>
+                                                                <div class="single-product-inforprice">
+                                                                    <c:choose>
+                                                                        <c:when test="${not empty(productView.discounts) }">
+                                                                            <strike style="color: black">
                                                                                 <fmt:formatNumber
-                                                                                        value="${(productView.price)-((productView.price*productView.discounts.get(i).discountPercent)/100)}"
+                                                                                        value="${productView.price}"
+                                                                                        type="number"/> đ
+                                                                            </strike>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <p style="color: black">
+                                                                                <fmt:formatNumber
+                                                                                        value="${productView.price}"
                                                                                         type="number"/>
                                                                                 đ
                                                                             </p>
-                                                                        </c:if>
-                                                                    </div>
-                                                                    <div class="single-product-inforsale">
-                                                                        <input hidden value="${productView.productId}"
-                                                                               id="productId"> <a
-                                                                            href="${pageContext.request.contextPath }/addCart?productId=${productView.productId}">
-                                                                        <button
-                                                                                class="btn btn-countdown">
-                                                                            <i class="fa fa-shopping-cart"></i> MUA NGAY
-                                                                        </button>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="single-product-inforrating">
-                                                                        <div class="rating-box">
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </div>
+                                                                <div class="single-product-inforprice">
+                                                                    <c:if test="${not empty(productView.discounts)  }">
+                                                                        <p>
+                                                                            <fmt:formatNumber
+                                                                                    value="${(productView.price)-((productView.price*productView.discounts.get(i).discountPercent)/100)}"
+                                                                                    type="number"/>
+                                                                            đ
+                                                                        </p>
+                                                                    </c:if>
+                                                                </div>
+                                                                <div class="single-product-inforsale">
+                                                                    <input hidden value="${productView.productId}"
+                                                                           id="productId"> <a
+                                                                        href="${pageContext.request.contextPath }/addCart?productId=${productView.productId}">
+                                                                    <button
+                                                                            class="btn btn-countdown">
+                                                                        <i class="fa fa-shopping-cart"></i> MUA NGAY
+                                                                    </button>
+                                                                </a>
+                                                                </div>
+                                                                <div class="single-product-inforrating">
+                                                                    <div class="rating-box">
 																		<span>(Có ${productView.ratings.size() } nhận
 																			xét)</span>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </c:if>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
