@@ -5,6 +5,7 @@
            prefix="security" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!--HEADER-->
 <div class="header_top_bg">
     <div class="container no-padding">
@@ -14,23 +15,23 @@
             <div class="col-sm-7 col-xs-4 header_account_reponsive">
                 <div class="header_top_account pull-right">
                     <ul class="nav nav-pills">
-                        <c:if test="${pageContext.request.userPrincipal.name !=null }">
+                        <c:if test="${pageContext.request.userPrincipal.name != null }">
                             <div class="header_top_account">
                                 <div class="header_login_top pull-right">
-                                    <a href="#"
-                                       class="header_login_link"><i class="fa fa-lock"></i>Chăm sóc khách hàng
-                                    </a>
+                                    <a href="${pageContext.request.contextPath}/admin"
+                                       class="header_login_link"><i class="fa fa-user"></i>Admin</a>
                                 </div>
-                                <div class="header_login_top pull-right">
-                                    <a href="${pageContext.request.contextPath }/about"
-                                       class="header_login_link"><i class="fa fa-lock"></i>Giới thiệu về chúng tôi
-                                    </a>
-                                </div>
+                            </div>
+                            <div class="header_top_account">
                                 <div class="header_login_top pull-right">
                                     <a href="${pageContext.request.contextPath}/viewCart"
                                        class="header_login_link"><i class="fa fa-lock"></i>Xem giỏ hàng</a>
                                 </div>
                             </div>
+                            <%--<sec:authentication property="principal.authorities" var="authorities" />--%>
+                            <%--<c:forEach items="${authorities}" var="authority" varStatus="vs">--%>
+                                <%--<p>${authority.authority}</p>--%>
+                            <%--</c:forEach>--%>
                             <div class="header_login pull-right">
                                 <a href="${pageContext.request.contextPath }/profile"
                                    class="header_login_link">Chào
@@ -84,19 +85,8 @@
                                        class="header_login_link"><i class="glyphicon glyphicon-shopping-cart"></i>Xem
                                         giỏ hàng</a>
                                 </div>
-                                <div class="header_login_top pull-right hidden-xs">
-                                    <a href="${pageContext.request.contextPath }/about"
-                                       class="header_login_link"><i class="glyphicon glyphicon-pencil"></i>Giới thiệu về
-                                        chúng tôi</a>
-                                </div>
                             </div>
                         </c:if>
-                        <div class="header_top_account">
-                            <div class="header_login_top pull-left">
-                                <a href="${pageContext.request.contextPath}/admin"
-                                   class="header_login_link"><i class="fa fa-user"></i>Admin</a>
-                            </div>
-                        </div>
                     </ul>
                 </div>
             </div>
@@ -114,7 +104,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="header_search">
-                    <form action="${pageContext.request.contextPath }/searchname">
+                    <form action="${pageContext.request.contextPath }/searchName">
                         <div class="input-group input_find">
                             <input type="text" class="form-control"
                                    placeholder="Search for..." name="name" style="height: 38px"> <span

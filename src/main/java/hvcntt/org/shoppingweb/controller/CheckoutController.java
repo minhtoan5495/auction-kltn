@@ -29,16 +29,11 @@ public class CheckoutController {
 	UserService userService;
 
 	@Autowired
-	InvoiceDetailService invoiceDetailService;
-
-	@Autowired
 	DistrictService districtService;
 
 	@Autowired
 	CityService cityService;
 
-	@Autowired
-	ShippingInfoService shippingService;
 	@Autowired
 	InvoiceService invoiceService;
 

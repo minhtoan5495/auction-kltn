@@ -7,7 +7,7 @@
         <put-attribute name="body" value=""></put-attribute>
         <put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
     </definition>
-    <definition name="account" template="/view/template/account/mainAcount.jsp">
+    <definition name="account" template="/view/template/account/mainAccount.jsp">
         <put-attribute name="body" value=""></put-attribute>
     </definition>
     <definition name="registration" template="/view/template/account/mainRegister.jsp">
@@ -24,11 +24,7 @@
     </definition>
        <definition name="resultSearch" extends="definition">
         <put-attribute name="title" value="Kết quả tìm thấy"></put-attribute>
-        <put-attribute name="body" value="/view/home/resultSearch.jsp"></put-attribute>
-    </definition>
-    <definition name="listProduct" extends="definition">
-        <put-attribute name="title" value="Home Page"></put-attribute>
-        <put-attribute name="body" value="/view/searchby/listProduct.jsp"></put-attribute>
+        <put-attribute name="body" value="/view/searchby/resultSearch.jsp"></put-attribute>
     </definition>
     <definition name="profile" extends="profilePage">
         <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
@@ -59,7 +55,7 @@
         <put-attribute name="body" value="/view/contact/contact.jsp"></put-attribute>
     </definition>
     <definition name="contactSuccess" extends="definition">
-        <put-attribute name="title" value="Home Page"></put-attribute>
+        <put-attribute name="title" value="Contact Success"></put-attribute>
         <put-attribute name="body" value="/view/contact/contactSuccess.jsp"></put-attribute>
     </definition>
     <definition name="aboutUs" extends="definition">
@@ -71,24 +67,21 @@
         <put-attribute name="body" value="/view/login--register/forgetPassword.jsp"></put-attribute>
     </definition>
     <definition name="resetPassword" extends="definition">
-        <put-attribute name="title" value="Forget Password"></put-attribute>
+        <put-attribute name="title" value="Reset Password"></put-attribute>
         <put-attribute name="body" value="/view/login--register/resetPassword.jsp"></put-attribute>
     </definition>
     <definition name="register" extends="registration">
         <put-attribute name="title" value="Đăng ký"></put-attribute>
         <put-attribute name="body" value="/view/login--register/register.jsp"></put-attribute>
     </definition>
-    <definition name="upload" extends="definition">
-        <put-attribute name="title" value="Profile"></put-attribute>
-        <put-attribute name="body" value="/view/upload/upload.jsp"></put-attribute>
-    </definition>
-    <definition name="success" extends="definition">
-        <put-attribute name="title" value="Profile"></put-attribute>
-        <put-attribute name="body" value="/view/upload/success.jsp"></put-attribute>
-    </definition>
     <definition name="detailPage" extends="definition">
         <put-attribute name="title" value="Chi tiết sản phẩm"></put-attribute>
         <put-attribute name="body" value="/view/detail/detailPage.jsp"></put-attribute>
+    </definition>
+    <!--error -->
+    <definition name="/deny" extends="definition">
+        <put-attribute name="title" value="Error"></put-attribute>
+        <put-attribute name="body" value="/view/error/deny.jsp"></put-attribute>
     </definition>
     <!--admin template-->
     <definition name="templateAdmin" template="/view/template/admin/templateAdmin.jsp">
@@ -98,57 +91,74 @@
         <put-attribute name="footer" value="/view/template/admin/footer.jsp"></put-attribute>
     </definition>
     <definition name="manageAccount" extends="templateAdmin">
+        <put-attribute name="title" value="Manage Account"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageAccount.jsp"></put-attribute>
     </definition>
     <definition name="manageProduct" extends="templateAdmin">
+        <put-attribute name="title" value="Manage Product"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageProduct.jsp"></put-attribute>
     </definition>
     <definition name="addProduct" extends="templateAdmin">
+        <put-attribute name="title" value="Add Product"></put-attribute>
         <put-attribute name="body" value="/view/admin/addProduct.jsp"></put-attribute>
     </definition>
     <definition name="editProduct" extends="templateAdmin">
+        <put-attribute name="title" value="Edit Product"></put-attribute>
         <put-attribute name="body" value="/view/admin/editProduct.jsp"></put-attribute>
     </definition>
      <definition name="manageCategory" extends="templateAdmin">
+         <put-attribute name="title" value="Manage Category"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageCategory.jsp"></put-attribute>
     </definition>
     <definition name="addOrEditCategory" extends="templateAdmin">
+        <put-attribute name="title" value="Add/Edit Category"></put-attribute>
         <put-attribute name="body" value="/view/admin/addOrEditCategory.jsp"></put-attribute>
     </definition>
     <definition name="manageSupplier" extends="templateAdmin">
+        <put-attribute name="title" value="Manage Supplier"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageSupplier.jsp"></put-attribute>
     </definition>
     <definition name="addOrEditSupplier" extends="templateAdmin">
+        <put-attribute name="title" value="Add/Edit Supplier"></put-attribute>
         <put-attribute name="body" value="/view/admin/addOrEditSupplier.jsp"></put-attribute>
     </definition>
        <definition name="manageInvoice" extends="templateAdmin">
+           <put-attribute name="title" value="Manage Invoice"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageInvoice.jsp"></put-attribute>
     </definition>
      <definition name="invoiceDetail" extends="templateAdmin">
+         <put-attribute name="title" value="Invoice Detail"></put-attribute>
         <put-attribute name="body" value="/view/admin/invoiceDetail.jsp"></put-attribute>
     </definition>
     <definition name="manageDiscount" extends="templateAdmin">
+        <put-attribute name="title" value="Manage Discount"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageDiscount.jsp"></put-attribute>
     </definition>
     <definition name="addOrEditDiscount" extends="templateAdmin">
+        <put-attribute name="title" value="Add/Edit Discount"></put-attribute>
         <put-attribute name="body" value="/view/admin/addOrEditDiscount.jsp"></put-attribute>
     </definition>
     <definition name="multiselect" extends="templateAdmin">
         <put-attribute name="body" value="/view/admin/multiselect.tmpl.jsp"></put-attribute>
     </definition>
     <definition name="manageAuction" extends="templateAdmin">
+        <put-attribute name="title" value="Manage Auction"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageAuction.jsp"></put-attribute>
     </definition>
     <definition name="addAuction" extends="templateAdmin">
+        <put-attribute name="title" value="Add Auction"></put-attribute>
         <put-attribute name="body" value="/view/admin/addAuction.jsp"></put-attribute>
     </definition>
     <definition name="editAuction" extends="templateAdmin">
+        <put-attribute name="title" value="Update Auction"></put-attribute>
         <put-attribute name="body" value="/view/admin/editAuction.jsp"></put-attribute>
     </definition>
     <definition name="manageParent" extends="templateAdmin">
+        <put-attribute name="title" value="Manage Parent"></put-attribute>
         <put-attribute name="body" value="/view/admin/manageParent.jsp"></put-attribute>
     </definition>
     <definition name="addParent" extends="templateAdmin">
+        <put-attribute name="title" value="Add Parent"></put-attribute>
         <put-attribute name="body" value="/view/admin/addParent.jsp"></put-attribute>
     </definition>
 </tiles-definitions>

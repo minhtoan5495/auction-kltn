@@ -37,13 +37,10 @@ public class AuctionController {
 	UserService userService;
 
 	@Autowired
-	TransactionTypeService transactionTypeService;
-
-	@Autowired
 	UserAuctionService userAuctionService;
 
 	@RequestMapping(value = "/addAuction")
-	public String doAuction(Model model, Principal principal,
+	public String doAuction(Principal principal,
 			HttpServletRequest request) throws UserNotFoundException, ParseException {
 		String productId = request.getParameter("productId");
 		Product product = productService.findOne(productId);
@@ -55,12 +52,12 @@ public class AuctionController {
 		userAuction.setUser(user);
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-		String bidtime = sdf.format(c.getTime());
-		userAuction.setBidtime(sdf.parse(bidtime));
+		String bidTime = sdf.format(c.getTime());
+		userAuction.setBidtime(sdf.parse(bidTime));
 		String price = request.getParameter("price");
 		userAuction.setPrice(Double.parseDouble(price));
 		userAuctionService.create(userAuction);
-		return "redirect:/detail?idproduct=" + productId;
+		return "redirect:/detail?idProduct=" + productId;
 
 	}
 }

@@ -34,15 +34,15 @@ public class CartPageController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/addCart", method = RequestMethod.GET)
-    public String cartPage(@RequestParam("idproduct") String idproduct, HttpSession session, Model model) {
-        Product product = productservice.findOne(idproduct);
+    public String cartPage(@RequestParam("productId") String productId, HttpSession session, Model model) {
+        Product product = productservice.findOne(productId);
         List<CartItem> cartItems = new ArrayList<>();
         if (session.getAttribute("carts") == null) {
             cartItems.add(new CartItem(1, product, product.getImages().get(0)));
             session.setAttribute("carts", cartItems);
         } else {
             cartItems = (List<CartItem>) session.getAttribute("carts");
-            int index = isExist(idproduct, session);
+            int index = isExist(productId, session);
             if (index == -1) {
                 cartItems.add(new CartItem(1, product, product.getImages().get(0)));
             } else {
@@ -55,11 +55,11 @@ public class CartPageController {
         return "cart";
     }
 
-    private int isExist(String idproduct, HttpSession session) {
+    private int isExist(String idProduct, HttpSession session) {
         @SuppressWarnings("unchecked")
         List<CartItem> items = (List<CartItem>) session.getAttribute("carts");
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getProduct().getProductId().equals(idproduct)) {
+            if (items.get(i).getProduct().getProductId().equals(idProduct)) {
                 return i;
             }
         }

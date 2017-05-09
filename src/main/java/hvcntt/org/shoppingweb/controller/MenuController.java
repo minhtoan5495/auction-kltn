@@ -18,22 +18,24 @@ import java.util.List;
 @Controller
 public class MenuController {
 
-	@Autowired
-	ParentService parentService;
+    @Autowired
+    ParentService parentService;
 
-	@ModelAttribute("parents")
-	public List<Parent> parent(){
-		return parentService.findAll();
-	}
+    public static final String MESSAGE_RESULT = " sản phẩm được tìm thấy";
 
-	@Autowired
-	private CategoryService categoryservice;
+    @ModelAttribute("parents")
+    public List<Parent> parent() {
+        return parentService.findAll();
+    }
 
-	@RequestMapping(value="/category")
-	public String findByCategory(@RequestParam("idcategory")String idcategory, Model model){
-		Category category = categoryservice.findOne(idcategory);
-		model.addAttribute("listProduct", category);
-		model.addAttribute("message","có "+ category.getProducts().size()+" sản phẩm được tìm thấy");
-		return "listProduct";
-	}
+    @Autowired
+    private CategoryService categoryservice;
+
+    @RequestMapping(value = "/category")
+    public String findByCategory(@RequestParam("categoryId") String categoryId, Model model) {
+        Category category = categoryservice.findOne(categoryId);
+        model.addAttribute("category", category);
+        model.addAttribute("message", "có " + category.getProducts().size() + MESSAGE_RESULT);
+        return "listProduct";
+    }
 }

@@ -35,10 +35,7 @@ public class ProfileController {
     InvoiceStatusService invoiceStatusService;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    private UserAuctionService userAuctionService;
+    UserAuctionService userAuctionService;
 
     @Autowired
     ParentService parentService;
@@ -86,7 +83,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public String resetPassword(Principal principal, UserDto userDto, HttpServletRequest request) throws UserNotFoundException {
+    public String resetPassword(UserDto userDto) throws UserNotFoundException {
         userService.resetPassword(userDto);
         return "redirect:/home";
     }

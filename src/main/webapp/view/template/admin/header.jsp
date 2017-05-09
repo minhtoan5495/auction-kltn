@@ -225,7 +225,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="${pageContext.request.contextPath}/resource/admin/img/avatar1_small.jpg">
-                    <span class="username">Jhon Doue</span>
+                    <span class="username">${pageContext.request.userPrincipal.name}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
@@ -233,7 +233,15 @@
                     <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
                     <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
-                    <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                    <li>
+                        <form id="logoutForm" method="POST"
+                              action="${pageContext.request.contextPath}/logout">
+                            <input type="hidden" name="${_csrf.parameterName}"
+                                   value="${_csrf.token}"/>
+                        </form>
+                    </li>
+                    <li><a class="personal-profile"
+                           onclick="document.forms['logoutForm'].submit()"><i class="icon-key"></i> Log Out</a></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->

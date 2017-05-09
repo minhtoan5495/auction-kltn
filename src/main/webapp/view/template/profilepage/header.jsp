@@ -102,7 +102,7 @@
 			</div>
 			<div class="col-sm-6">
 				<div class="header_search">
-					<form action="${pageContext.request.contextPath }/searchname">
+					<form action="${pageContext.request.contextPath }/searchName">
 						<div class="input-group input_find">
 							<input type="text" class="form-control"
 								placeholder="Search for..." name="name" style="height: 38px"> <span

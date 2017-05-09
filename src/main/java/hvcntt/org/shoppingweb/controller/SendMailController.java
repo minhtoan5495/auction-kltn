@@ -62,6 +62,6 @@ public class SendMailController {
 			model.addAttribute("error", ex.getMessage());
 			return "contact";
 		}
-		return "contactsuccess";
+		return "contactSuccess";
 	}
 }

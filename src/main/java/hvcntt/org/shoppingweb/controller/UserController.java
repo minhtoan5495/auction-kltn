@@ -31,13 +31,23 @@ import java.util.Date;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Autowired
-    private SecurityService securityService;
+    SecurityService securityService;
 
     @Autowired
-    private CityService cityService;
+    CityService cityService;
+
+    public static final String MESSAGE_ERROR = "Tên tài khoản hoặc mật khẩu không đúng";
+
+    public static final String CONFIRM_PASSWORD_ERROR = "Nhập lại mật khẩu không đúng";
+
+    public static final String USERNAME_ERROR = "Tên tài khoản đã tồn tại";
+
+    public static final String PHONE_ERROR = "Số điện thoại đã được đăng kí";
+
+    public static final String EMAIL_ERROR = "Email đã có tài khoản đăng kí";
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
@@ -47,7 +57,7 @@ public class UserController {
         model.addAttribute("userModel", new UserDto());
         ModelAndView modelAndView = new ModelAndView();
         if (error != null) {
-            model.addAttribute("error", "Tên tài khoản hoặc mật khẩu không đúng");
+            model.addAttribute("error", MESSAGE_ERROR);
             String targetUrl = getRememberMeTargetUrlFromSession(request);
             if (StringUtils.hasText(targetUrl)) {
                 modelAndView.addObject("targetUrl", targetUrl);
@@ -74,19 +84,19 @@ public class UserController {
             return "register";
         }
         if (!userDto.getConfirmPassword().equals(userDto.getPassword())) {
-            model.addAttribute("error", "Nhập lại mật khẩu không đúng");
+            model.addAttribute("error", CONFIRM_PASSWORD_ERROR);
             return "register";
         }
         if (userService.findByUsername(userDto.getUsername()) != null) {
-            model.addAttribute("error", "Tên tài khoản đã tồn tại");
+            model.addAttribute("error", USERNAME_ERROR);
             return "register";
         }
         if (userService.findByEmail(userDto.getEmail()) != null) {
-            model.addAttribute("error", "Email đã có tài khoản đăng kí");
+            model.addAttribute("error", EMAIL_ERROR);
             return "register";
         }
         if (userService.findByPhone(userDto.getPhone()) != null) {
-            model.addAttribute("error", "Số điện thoại đã được đăng kí");
+            model.addAttribute("error", PHONE_ERROR);
             return "register";
         }
         userService.save(userDto);

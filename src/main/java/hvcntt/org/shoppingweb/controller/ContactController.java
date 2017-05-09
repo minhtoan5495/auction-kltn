@@ -11,15 +11,16 @@ import java.util.List;
 
 @Controller
 public class ContactController {
-	@Autowired
-	ParentService parentService;
+    @Autowired
+    ParentService parentService;
 
-	@ModelAttribute("parents")
-	public List<Parent> parent(){
-		return parentService.findAll();
-	}
-	@RequestMapping(value="/contact")
-	public String contactPage(){
-		return "contact";
-	}
+    @ModelAttribute("parents")
+    public List<Parent> parent() {
+        return parentService.findAll();
+    }
+
+    @RequestMapping(value = "/contact")
+    public String contactPage() {
+        return "contact";
+    }
 }

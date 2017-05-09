@@ -1,4 +1,5 @@
 package hvcntt.org.shoppingweb.controller;
+
 import java.util.HashSet;
 //import java.security.Principal;
 import java.util.List;
@@ -24,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 //import hvcntt.org.shoppingweb.model.User;
 
 import javax.servlet.http.HttpServletRequest;
-//import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class DetailPageController {
@@ -44,42 +44,42 @@ public class DetailPageController {
     ParentService parentService;
 
     @ModelAttribute("parents")
-    public List<Parent> parent(){
+    public List<Parent> parent() {
         return parentService.findAll();
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public String detailPage(Model model, @RequestParam("idproduct") String productId, HttpServletRequest request) {
+    public String detailPage(Model model, @RequestParam("productId") String productId) {
         Product product = productService.findOne(productId);
         if (existId(productId)) {
             productService.updateView(productId);
         }
-        Category category=categoryService.findOne(product.getCategory().getCategoryId());
-        List<Product> getRelateProduct=productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice()-10000), (product.getPrice()+10000), product.getProductId());
-        model.addAttribute("getRelateProduct", getRelateProduct);
+        Category category = categoryService.findOne(product.getCategory().getCategoryId());
+        List<Product> getRelateProducts = productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice() - 10000), (product.getPrice() + 10000), product.getProductId());
+        model.addAttribute("getRelateProducts", getRelateProducts);
         List<Image> imgs = imageservice.findByProduct(product);
         int rating = getAverage(product.getRatings());
         model.addAttribute("ratingNumber", rating);
         model.addAttribute("ratingDto", new RatingDto());
         model.addAttribute("image", imgs);
-        Set<UserAuction> userAuctions  = new HashSet<>();
+        Set<UserAuction> userAuctions = new HashSet<>();
         List<Auction> auctions = product.getAuctions();
-        for(Auction auction : auctions){
-        	if(auction.getStatus().equals("Đang đấu giá") && auction.getProduct().getProductId().equals(productId)){
-        		userAuctions.addAll(auction.getUserAuctions());
-        	}
+        for (Auction auction : auctions) {
+            if (auction.getStatus().equals("Đang đấu giá") && auction.getProduct().getProductId().equals(productId)) {
+                userAuctions.addAll(auction.getUserAuctions());
+            }
         }
-        model.addAttribute("userAuctions",userAuctions);
-        model.addAttribute("singleProduct", product);
-        model.addAttribute("ratings",ratingService.getByProduct(product));
+        model.addAttribute("userAuctions", userAuctions);
+        model.addAttribute("product", product);
+        model.addAttribute("ratings", ratingService.getByProduct(product));
         return "detailPage";
     }
 
     private int getAverage(List<Rating> ratings) {
         int ratingTotal = 0;
-        if(ratings.size() == 0){
+        if (ratings.size() == 0) {
             return ratingTotal;
-        }else {
+        } else {
             for (Rating rating : ratings
                     ) {
                 ratingTotal += rating.getRating();
@@ -89,20 +89,13 @@ public class DetailPageController {
         }
     }
 
-    private boolean existId(String idproduct) {
+    private boolean existId(String productId) {
         List<Product> listP = productService.getAll();
         for (int i = 0; i < listP.size(); i++) {
-            if (listP.get(i).getProductId().equals(idproduct)) {
+            if (listP.get(i).getProductId().equals(productId)) {
                 return true;
             }
         }
         return false;
     }
-
-//    private void setRememberMeTargetUrlToSession(HttpServletRequest request, String productId) {
-//        HttpSession session = request.getSession(false);
-//        if (session != null) {
-//            session.setAttribute("targetUrl", "/rating/" + productId);
-//        }
-//    }
 }

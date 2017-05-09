@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:security="http://www.springframework.org/schema/security"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/security
-		http://www.springframework.org/schema/security/spring-security.xsd">
+		http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <http auto-config="true">
-        <csrf/>
-        <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
-       <!--  <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN,ROLE_EMPLOYEE')" /> -->
-        <intercept-url pattern="/checkout" access="hasAnyRole('ROLE_ADMIN,ROLE_USER')" />
-        <intercept-url pattern="/rating/*" access="hasAnyRole('ROLE_ADMIN,ROLE_USER')" />
-        <intercept-url pattern="/profile" access="hasAnyRole('ROLE_USER')" />
-        <form-login login-page="/login" username-parameter="username" password-parameter="password"
+    <security:http auto-config="false" use-expressions="true">
+        <security:intercept-url pattern="/" access="permitAll"/>
+        <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')"/>
+        <security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')"/>
+        <security:intercept-url pattern="/checkout" access="isAuthenticated()" />
+        <security:intercept-url pattern="/rating/*" access="isAuthenticated()" />
+        <security:intercept-url pattern="/profile" access="isAuthenticated()" />
+        <security:form-login login-page="/login" username-parameter="username" password-parameter="password"
                     login-processing-url="/j_spring_security_check"
                     authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler"
                     authentication-failure-handler-ref="loginFailureHandler"
                     authentication-failure-url="/login?error"
                     default-target-url="/"
         />
-        <remember-me key="uniqueAndSecret" token-validity-seconds="86400"/>
-        <logout logout-success-url="/login?logout"/>
-        <access-denied-handler error-page="/403"/>
-    </http>
+        <security:access-denied-handler error-page="/deny"/>
+        <security:remember-me key="uniqueAndSecret" token-validity-seconds="86400"/>
+        <security:logout logout-success-url="/login?logout"/>
+    </security:http>
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsServiceImpl">

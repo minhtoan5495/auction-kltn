@@ -38,15 +38,24 @@ public interface ProductService {
     void deleteProduct(String productId) throws ProductNotFoundException;
 
     void save(ProductDto productDto) throws ParseException;
-	void update(ProductDto productDto, String productId) throws ParseException;
-//	List<Product> findByProductTransactionType(TransactionType);
-	List<Product> findByTransactionType(TransactionType transactionType);
-	List<Product> findBySupplier(Supplier supplier);
-	List<Product> getPriceHighestToLower();
-	List<Product> getPriceLowerToHighest();
-	List<Product> findByTransactionType(TransactionType transactionType,Sort sort);
-	List<Product> findByTransactionType(List<Product> products,TransactionType transactionType,Sort sort);
+
+    void update(ProductDto productDto, String productId) throws ParseException;
+
+    List<Product> findByTransactionType(TransactionType transactionType);
+
+    List<Product> findBySupplier(Supplier supplier);
+
+    List<Product> getPriceHighestToLower();
+
+    List<Product> getPriceLowerToHighest();
+
+    List<Product> findByTransactionType(TransactionType transactionType, Sort sort);
+
+    List<Product> findByTransactionType(List<Product> products, TransactionType transactionType, Sort sort);
 
     List<Product> findByIds(List<String> productIds);
+
     List<Product> getHighView();
+
+    List<Product> findByCategory(String categoryId);
 }

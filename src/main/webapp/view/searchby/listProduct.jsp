@@ -11,16 +11,16 @@
                         <p style="font-size: 15px;font-weight: bold;">${message}</p>
                     </div>
                     <div class="row">
-                     <c:forEach var="listProduct" items="${listProduct.listProduct }">
+                     <c:forEach var="product" items="${category.products }">
                         <div class="col-sm-3">
                             <div class="new-product">
                                 <div class="single-product-item">
                                     <div class="single-product-image">
-                                        <a href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.idproduct}"><img src="resource/images/banner/${listProduct.image }"></a>
+                                        <a href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img src="resource/images/banner/${product.images.get(i).imageUrl }"></a>
                                         <div class="overplay-content">
                                             <ul>
                                                 <li>
-                                                    <a href="${pageContext.request.contextPath }/detail?idproduct=${listProduct.idproduct}"><i class="fa fa-search"></i></a>
+                                                    <a href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><i class="fa fa-search"></i></a>
                                                 </li>
                                                 <li>
                                                     <a href="#"><i class="fa fa-shopping-cart"></i></a>
@@ -36,19 +36,19 @@
                                     </div>
                                      <div class="single-product-showinfor">
                                         <div class="single-product-infor-name">
-                                            <p>${listProduct.name }</p>
+                                            <p>${product.name }</p>
                                         </div>
                                         <div class="single-product-infor-name">
-                                            <p><i class="glyphicon glyphicon-fire"> ${listProduct.view }</i> lượt xem</p>
+                                            <p><i class="glyphicon glyphicon-fire"> ${product.viewNumber }</i> lượt xem</p>
                                         </div>
                                         <div class="single-product-inforprice">
-                                            <p><fmt:formatNumber value="${listProduct.price}" type="number" />đ</p>
+                                            <p><fmt:formatNumber value="${product.price}" type="number" />đ</p>
                                          </div>
                                         <div class="single-product-inforsale">
                                             <button class="btn btn-success btn-countdown">20:17:80</button>
                                          </div>
                                          <div class="single-product-inforreview">
-                                             <span>(${listProduct.commentItems.size() } nhận xét)</span>
+                                             <span>(${product.ratings.size() } nhận xét)</span>
                                          </div>
                                          <div class="single-product-inforrating">
                                              <div class="rating-box">

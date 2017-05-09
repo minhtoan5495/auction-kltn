@@ -29,13 +29,13 @@ import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 public class HomePageController {
 
     @Autowired
-    CategoryService categoryservice;
-
-    @Autowired
-    ProductService productservice;
+    ProductService productService;
 
     @Autowired
     TransactionTypeService transactionService;
+
+    @Autowired
+    SupplierService supplierService;
 
     @Autowired
     AuctionService auctionService;
@@ -43,13 +43,16 @@ public class HomePageController {
     @Autowired
     ParentService parentService;
 
+    public static final String SALE = "Sale";
+
+    public static final String AUCTION = "Auction";
+
+    public static final String MESSAGE_RESULT = " sản phẩm được tìm thấy";
+
     @ModelAttribute("parents")
-    public List<Parent> parent(){
+    public List<Parent> parent() {
         return parentService.findAll();
     }
-
-    @Autowired
-    SupplierService supplierService;
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/home")
@@ -57,59 +60,65 @@ public class HomePageController {
         @SuppressWarnings("unused")
         List<CartItem> inFo = (List<CartItem>) session.getAttribute("cart");
         model.addAttribute("parents", parentService.findAll());
-        TransactionType transactionType = transactionService.findByName("Sale");
-        model.addAttribute("listProduct", productservice.findByProductTransactionType(transactionType));
-        TransactionType transactionType2 = transactionService.findByName("Auction");
-        model.addAttribute("listProduct2", productservice.findByProductTransactionType(transactionType2));
-        model.addAttribute("listSupplier",supplierService.getAll() );
-        model.addAttribute("listProductHighView", productservice.getHighView());
+        TransactionType transactionTypeSale = transactionService.findByName(SALE);
+        model.addAttribute("productSales", productService.findByProductTransactionType(transactionTypeSale));
+        TransactionType transactionTypeAuction = transactionService.findByName(AUCTION);
+        model.addAttribute("productAuctions", productService.findByProductTransactionType(transactionTypeAuction));
+        model.addAttribute("suppliers", supplierService.getAll());
+        model.addAttribute("productHighViews", productService.getHighView());
         return "home";
     }
 
-    @RequestMapping(value = "/searchname")
+    @RequestMapping(value = "/searchName")
     public String searchPage(@RequestParam("name") String name, Model model) {
         model.addAttribute("parents", parentService.findAll());
-        model.addAttribute("listProduct", productservice.findByNameContaining(name));
-        model.addAttribute("message", "có " + productservice.findByNameContaining(name).size() + " sản phẩm được tìm thấy");
+        model.addAttribute("products", productService.findByNameContaining(name));
+        model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
         return "resultSearch";
     }
 
-    @RequestMapping(value = "/{pagenumber}")
-    public String getPaging(@PathVariable int pagenumber, Model model) {
-        TransactionType transactionType = transactionService.findByName("Sale");
-        Page<Product> pageProduct = productservice.findProductPaging(transactionType, new PageRequest(pagenumber, 4, Direction.ASC, "price"));
+    @RequestMapping(value = "/{pageNumber}")
+    public String getPaging(@PathVariable int pageNumber, Model model) {
+        TransactionType transactionType = transactionService.findByName(SALE);
+        Page<Product> pageProduct = productService.findProductPaging(transactionType, new PageRequest(pageNumber, 4, Direction.ASC, "price"));
         List<Product> stackProduct = pageProduct.getContent();
         int totalPage = pageProduct.getTotalPages();
         model.addAttribute("totalPage", totalPage);
-        model.addAttribute("listProduct", stackProduct);
-        model.addAttribute("listAuction", auctionService.getAll());
+        model.addAttribute("products", stackProduct);
+        model.addAttribute("auctions", auctionService.getAll());
         return "home";
     }
-    @RequestMapping(value="/supplier")
-    public String getSupplier(Model model,@RequestParam("supplierId")String supplierId){
-    	Supplier supplier=supplierService.findOne(supplierId);
-    	model.addAttribute("listProduct", productservice.findBySupplier(supplier));
-    	model.addAttribute("message", "có " + productservice.findBySupplier(supplier).size() + " sản phẩm được tìm thấy");
-    	return "resultSearch";
+
+    @RequestMapping(value = "/supplier")
+    public String getSupplier(Model model, @RequestParam("supplierId") String supplierId) {
+        Supplier supplier = supplierService.findOne(supplierId);
+        model.addAttribute("products", productService.findBySupplier(supplier));
+        model.addAttribute("suppliers", supplierService.getAll());
+        model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
+        return "resultSearch";
     }
-    @RequestMapping(value = "/priceHightoLower")
-    public String getPriceHigh(Model model){
-    	TransactionType transactionType=transactionService.findByName("Sale");
-    	model.addAttribute("listProduct", productservice.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
-    	return "resultSearch";
+
+    @RequestMapping(value = "/priceHighToLower")
+    public String getPriceHigh(Model model) {
+        TransactionType transactionType = transactionService.findByName(SALE);
+        model.addAttribute("suppliers", supplierService.getAll());
+        model.addAttribute("products", productService.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
+        return "resultSearch";
     }
-    @RequestMapping(value = "/priceLowertoHigh")
-    public String getPriceLower(Model model){
-    	TransactionType transactionType=transactionService.findByName("Sale");
-    	model.addAttribute("listProduct", productservice.findByTransactionType(transactionType, new Sort(Direction.DESC, "price")));
-    	return "resultSearch";
+
+    @RequestMapping(value = "/priceLowerToHigh")
+    public String getPriceLower(Model model) {
+        TransactionType transactionType = transactionService.findByName(SALE);
+        model.addAttribute("suppliers", supplierService.getAll());
+        model.addAttribute("products", productService.findByTransactionType(transactionType, new Sort(Direction.DESC, "price")));
+        return "resultSearch";
     }
-//    @RequestMapping(value = "/filterpriceHightoLower")
+//    @RequestMapping(value = "/filterPriceHighToLower")
 //    public String filterPriceHigh(Model model,HttpServletRequest request){
 //    	String name=request.getParameter("name");
-//    	List<Product> products=productservice.findByNameContaining(name);
+//    	List<Product> products=productService.findByNameContaining(name);
 //    	TransactionType transactionType=transactionService.findByName("Sale");
-//    	model.addAttribute("listProduct", productservice.findByTransactionType(products, transactionType, new Sort(Direction.ASC, "price")));
+//    	model.addAttribute("listProduct", productService.findByTransactionType(products, transactionType, new Sort(Direction.ASC, "price")));
 //    	return "resultSearch";
 //    }
 }

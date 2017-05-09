@@ -25,8 +25,10 @@ import hvcntt.org.shoppingweb.service.TransactionTypeService;
 public class ManageAuctionController {
     @Autowired
     AuctionService auctionService;
+
     @Autowired
     ProductService productService;
+
     @Autowired
     TransactionTypeService transactionTypeService;
 

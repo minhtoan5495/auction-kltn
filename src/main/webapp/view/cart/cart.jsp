@@ -13,9 +13,7 @@
                         <div class="content-cart-menu">
                             <h4>Không có sản phẩm nào trong giỏ hàng</h4>
                             <a href="${pageContext.request.contextPath }/home">
-                                <button>Tiếp
-                                    tục mua hàng
-                                </button>
+                                <button>Tiếp tục mua hàng</button>
                             </a>
                         </div>
                     </div>
@@ -47,13 +45,13 @@
                                         <th class="cart-product-item"></th>
                                     </tr>
                                     </thead>
-                                    <c:forEach var="Cart" items="${carts}">
+                                    <c:forEach var="cartItem" items="${carts}">
                                         <%--<c:set var="s" value="${s + cart.product.price*cart.quantity}"></c:set>--%>
                                         <tbody class="table_body_cart" ng-repeat="cart in carts">
                                         <tr>
                                             <td class="cart-product-infor"><a
-                                                    href="${pageContext.request.contextPath}/detail?idproduct={{cart.product.productId}}">
-                                                <img src='${pageContext.request.contextPath}/resource/images/product/${Cart.product.images.get(i).imageUrl}'
+                                                    href="${pageContext.request.contextPath}/detail?productId={{cart.product.productId}}">
+                                                <img src='${pageContext.request.contextPath}/resource/images/product/${cartItem.product.images.get(i).imageUrl}'
                                                      style="width: 100px; height: 100px">
                                             </a></td>
                                             <td class="cart-product-infor"><label

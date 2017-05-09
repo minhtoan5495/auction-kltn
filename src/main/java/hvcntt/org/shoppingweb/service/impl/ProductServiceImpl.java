@@ -236,39 +236,39 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> findBySupplier(Supplier supplier) {
-		// TODO Auto-generated method stub
 		return productRepository.findBySupplier(supplier);
 	}
 
 	@Override
 	public List<Product> getPriceHighestToLower() {
-		// TODO Auto-generated method stub
 		return productRepository.findAll(new Sort(Direction.ASC, "price"));
 	}
 
 	@Override
 	public List<Product> getPriceLowerToHighest() {
-		// TODO Auto-generated method stub
 		return productRepository.findAll(new Sort(Direction.DESC, "price"));
 	}
 
 	@Override
 	public List<Product> findByTransactionType(TransactionType transactionType, Sort sort) {
-		// TODO Auto-generated method stub
 		return productRepository.findByTransactionType(transactionType, sort);
 	}
 
 	@Override
 	public List<Product> findByTransactionType(List<Product> products, TransactionType transactionType, Sort sort) {
-		// TODO Auto-generated method stub
 		return productRepository.findByTransactionType(products, transactionType, sort);
 	}
 
 	@Override
 	public List<Product> getHighView() {
-		// TODO Auto-generated method stub
 		return productRepository.findAll(new PageRequest(0, 8,Direction.DESC,"viewNumber")).getContent();
 	}
+
+    @Override
+    public List<Product> findByCategory(String categoryId) {
+        Category category = categoryRepository.findOne(categoryId);
+        return productRepository.findByCategory(category);
+    }
 
 
 }

@@ -35,20 +35,20 @@ public class RatingController {
     @Autowired
     private RatingService ratingService;
 
-    @RequestMapping(value = "/rating/{idproduct}", method = RequestMethod.POST)
-    public String createComment(@PathVariable("idproduct") String productId,
+    @RequestMapping(value = "/rating/{productId}", method = RequestMethod.POST)
+    public String createComment(@PathVariable("productId") String productId,
                                 @ModelAttribute RatingDto ratingDto, Principal principal) throws UserNotFoundException {
         Product product = productService.findOne(productId);
         String username = principal.getName();
         User user = userService.findByUsername(username);
         ratingService.save(ratingDto, product, user);
-        return "redirect:/detail?idproduct=" + productId;
+        return "redirect:/detail?productId=" + productId;
     }
 
-    @RequestMapping(value = "/rating/{idproduct}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rating/{productId}", method = RequestMethod.GET)
     @Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-    public String comment(@PathVariable("idproduct") String productId,
+    public String comment(@PathVariable("productId") String productId,
                                 @ModelAttribute RatingDto ratingDto) throws UserNotFoundException {
-        return "redirect:/detail?idproduct=" + productId;
+        return "redirect:/detail?productId=" + productId;
     }
 }

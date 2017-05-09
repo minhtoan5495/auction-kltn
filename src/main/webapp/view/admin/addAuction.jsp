@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <input class="btn btn-danger" value="Save" type="submit"/>
+                                    <input href="/admin/manageAuction" class="btn btn-danger" value="Save" type="submit"/>
                                 </div>
                             </div>
                         </div>
