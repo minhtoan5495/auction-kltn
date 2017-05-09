@@ -363,12 +363,12 @@
 							<h3>Sản phẩm liên quan</h3>
 						</div>
 						<div class="product-detail-relate-item-stack">
-							<c:forEach var="productRelate" items="${getRelateProducts }">
+							<c:forEach var="productRelate" items="${relateProducts }">
 								<div class="new-product" style="margin-bottom: 5px">
 									<div class="single-product-item">
 										<div class="single-product-image">
 											<a href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}"><img
-												src="resource/images/product/${productRelate.images.get(i).imageUrl }"></a>
+												src="resource/images/product/${productRelate.images.get(i).imageUrl }" style="width: 253px; height: 300px;"></a>
 											<div class="overplay-content">
 												<ul>
 													<li><a href=""><i class="fa fa-search"></i></a></li>

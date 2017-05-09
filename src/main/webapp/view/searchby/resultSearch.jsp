@@ -1,6 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <!-- CONTENT-->
 <div class="content-page">
     <div class="container">
@@ -163,21 +165,14 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        <c:url value="/" var="page"></c:url>
-                        <c:if test="${totalPage > 0}">
-                            <ul class="pagination" style="float: right">
-                                <li><a href="#" aria-label="Previous"> <span
-                                        aria-hidden="true">&laquo;</span>
-                                </a></li>
-                                <c:forEach var="i" begin="1" end="${totalPage - i}">
-                                    <li><a href="${page }${i}"> <c:out value="${i}"></c:out>
-                                    </a></li>
-                                </c:forEach>
-                                <li><a href="#" aria-label="Next"> <span
-                                        aria-hidden="true">&raquo;</span>
-                                </a></li>
-                            </ul>
-                        </c:if>
+                        <jsp:useBean id="pagedListHolder" scope="request"
+                                     type="org.springframework.beans.support.PagedListHolder">
+                        </jsp:useBean>
+                        <c:url value="/priceHightoLower" var="pagedLink">
+                            <c:param name="p" value="~"></c:param>
+                        </c:url>
+                        <tg:paging pagedLink="${pagedLink }"
+                                   pagedListHolder="${pagedListHolder }"></tg:paging>
                     </c:if>
                     <c:if test="${empty products}">
                         <div class="col-sm-4"></div>

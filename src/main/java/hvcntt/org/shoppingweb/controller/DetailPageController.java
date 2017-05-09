@@ -55,13 +55,13 @@ public class DetailPageController {
             productService.updateView(productId);
         }
         Category category = categoryService.findOne(product.getCategory().getCategoryId());
-        List<Product> getRelateProducts = productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice() - 10000), (product.getPrice() + 10000), product.getProductId());
-        model.addAttribute("getRelateProducts", getRelateProducts);
-        List<Image> imgs = imageservice.findByProduct(product);
+        List<Product> relateProducts = productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice() - 10000), (product.getPrice() + 10000), product.getProductId());
+        model.addAttribute("relateProducts", relateProducts);
+        List<Image> images = imageservice.findByProduct(product);
         int rating = getAverage(product.getRatings());
         model.addAttribute("ratingNumber", rating);
         model.addAttribute("ratingDto", new RatingDto());
-        model.addAttribute("image", imgs);
+        model.addAttribute("image", images);
         Set<UserAuction> userAuctions = new HashSet<>();
         List<Auction> auctions = product.getAuctions();
         for (Auction auction : auctions) {
