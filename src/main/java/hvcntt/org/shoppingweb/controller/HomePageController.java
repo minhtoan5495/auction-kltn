@@ -83,18 +83,6 @@ public class HomePageController {
         model.addAttribute("message", "có " + productservice.findByNameContaining(name).size() + " sản phẩm được tìm thấy");
         return "resultSearch";
     }
-
-    @RequestMapping(value = "/{pagenumber}")
-    public String getPaging(@PathVariable int pagenumber, Model model) {
-        TransactionType transactionType = transactionService.findByName("Sale");
-        Page<Product> pageProduct = productservice.findProductPaging(transactionType, new PageRequest(pagenumber, 4, Direction.ASC, "price"));
-        List<Product> stackProduct = pageProduct.getContent();
-        int totalPage = pageProduct.getTotalPages();
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("listProduct", stackProduct);
-        model.addAttribute("listAuction", auctionService.getAll());
-        return "home";
-    }
     @RequestMapping(value="/supplier")
     public String getSupplier(Model model,@RequestParam("supplierId")String supplierId){
     	Supplier supplier=supplierService.findOne(supplierId);
@@ -103,32 +91,19 @@ public class HomePageController {
     	return "resultSearch";
     }
     @RequestMapping(value = "/priceHightoLower")
-    public String getPriceHigh(Model model){
+    public String getPriceHigh(Model model,HttpServletRequest request){
     	TransactionType transactionType=transactionService.findByName("Sale");
-    	model.addAttribute("listProduct", productservice.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
+    	PagedListHolder pagedListHolder=new PagedListHolder(productservice.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
+        int page=ServletRequestUtils.getIntParameter(request, "p", 0);
+    	pagedListHolder.setPage(page);
+    	pagedListHolder.setPageSize(4);
+        model.addAttribute("pagedListHolder",pagedListHolder );
     	return "resultSearch";
     }
     @RequestMapping(value = "/priceLowertoHigh")
     public String getPriceLower(Model model){
     	TransactionType transactionType=transactionService.findByName("Sale");
     	model.addAttribute("listProduct", productservice.findByTransactionType(transactionType, new Sort(Direction.DESC, "price")));
-    	return "resultSearch";
-    }
-//  @RequestMapping(value = "/filterpriceHightoLower")
-//  public String filterPriceHigh(Model model,HttpServletRequest request){
-//  	String name=request.getParameter("name");
-//  	List<Product> products=productservice.findByNameContaining(name);
-//  	TransactionType transactionType=transactionService.findByName("Sale");
-//  	model.addAttribute("listProduct", productservice.findByTransactionType(products, transactionType, new Sort(Direction.ASC, "price")));
-//  	return "resultSearch";
-//  }
-    @RequestMapping(value = "/list")
-    public String filterPriceHigh(Model model,HttpServletRequest request){
-    	PagedListHolder pagedListHolder=new PagedListHolder(productservice.getAll());
-    	int page=ServletRequestUtils.getIntParameter(request, "p", 0);
-    	pagedListHolder.setPage(page);
-    	pagedListHolder.setPageSize(4);
-    	model.addAttribute("pagedListHolder", pagedListHolder);
     	return "resultSearch";
     }
 }

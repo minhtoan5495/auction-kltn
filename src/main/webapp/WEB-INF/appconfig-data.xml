@@ -20,7 +20,7 @@
                   value="jdbc:mysql://localhost:3306/auction"/>
         <property name="connectionProperties" value="characterEncoding=utf8"></property>
         <property name="username" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value="123456"/>
     </bean>
 
     <!-- Configure the entity manager factory bean -->

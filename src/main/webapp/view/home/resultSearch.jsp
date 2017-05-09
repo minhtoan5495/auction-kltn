@@ -1,16 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <!--    CONTENT-->
 <div class="content-page">
 	<div class="container">
-	<jsp:useBean id="pagedListHolder" scope="request" type="org.springframework.beans.support.PagedListHolder">	</jsp:useBean>
-		<c:url value="/list" var="pagedLink">
-			<c:param name="p" value="~"></c:param>
-		</c:url>
-	<tg:paging pagedLink="${pagedLink }" pagedListHolder="${pagedListHolder }"></tg:paging>
 		<div class="row">
 			<div class="content-page">
 				<div class="row">
@@ -21,7 +16,9 @@
 							Lọc theo giá tiền <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu supplier-dropdown-item">
-							<li><a href="${pageContext.request.contextPath }/filterpriceHightoLower">Giá cao đến giá thấp</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/filterpriceHightoLower">Giá
+									cao đến giá thấp</a></li>
 							<li><a href="#">Giá thấp đến giá cao</a></li>
 						</ul>
 					</div>
@@ -103,19 +100,14 @@
 							</div>
 						</div>
 					</c:forEach>
-					<c:url value="/" var="page"></c:url>
-					<ul class="pagination" style="float: right">
-						<li><a href="#" aria-label="Previous"> <span
-								aria-hidden="true">&laquo;</span>
-						</a></li>
-						<c:forEach var="i" begin="0" end="${totalPage -i}">
-							<li><a href="${page }${i}"> <c:out value="${i }"></c:out>
-							</a></li>
-						</c:forEach>
-						<li><a href="#" aria-label="Next"> <span
-								aria-hidden="true">&raquo;</span>
-						</a></li>
-					</ul>
+					<jsp:useBean id="pagedListHolder" scope="request"
+						type="org.springframework.beans.support.PagedListHolder">
+					</jsp:useBean>
+					<c:url value="/priceHightoLower" var="pagedLink">
+						<c:param name="p" value="~"></c:param>
+					</c:url>
+					<tg:paging pagedLink="${pagedLink }"
+						pagedListHolder="${pagedListHolder }"></tg:paging>
 				</div>
 			</div>
 		</div>

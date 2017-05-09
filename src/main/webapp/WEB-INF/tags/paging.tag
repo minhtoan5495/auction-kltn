@@ -12,7 +12,7 @@
 	src="${pageContext.request.contextPath }/resource/js/bootstrap.min.js"></script>
 
 <c:if test="${pagedListHolder.pageCount > 1 }">
-	<ul class="pagination">
+	<ul class="pagination pull-right">
 		<c:if test="${!pagedListHolder.firstPage}">
 			<li class="previous"><a
 				href="<%=StringUtils.replace(pagedLink, "~", String.valueOf(pagedListHolder.getPage() - 1))%>"><</a></li>
