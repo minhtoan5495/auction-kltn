@@ -86,9 +86,13 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/searchName")
-    public String searchPage(@RequestParam("name") String name, Model model) {
+    public String searchPage(@RequestParam("name") String name, Model model,HttpServletRequest request) {
         model.addAttribute("parents", parentService.findAll());
-        model.addAttribute("products", productService.findByNameContaining(name));
+        PagedListHolder pagedListHolder = new PagedListHolder(productService.findByNameContaining(name));
+        int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+        pagedListHolder.setPage(page);
+        pagedListHolder.setPageSize(4);
+        model.addAttribute("pagedListHolder", pagedListHolder);
         model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
         return "resultSearch";
     }
@@ -116,8 +120,7 @@ public class HomePageController {
 
     @RequestMapping(value = "/priceHighToLower")
     public String getPriceHigh(Model model, HttpServletRequest request) {
-        TransactionType transactionType = transactionService.findByName("Sale");
-        PagedListHolder pagedListHolder = new PagedListHolder(productService.findByTransactionType(transactionType, new Sort(Direction.ASC, "price")));
+        PagedListHolder pagedListHolder = new PagedListHolder(productService.getPriceLowerToHighest());
         int page = ServletRequestUtils.getIntParameter(request, "p", 0);
         pagedListHolder.setPage(page);
         pagedListHolder.setPageSize(4);
@@ -126,10 +129,12 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/priceLowerToHigh")
-    public String getPriceLower(Model model) {
-        TransactionType transactionType = transactionService.findByName(SALE);
-        model.addAttribute("suppliers", supplierService.getAll());
-        model.addAttribute("products", productService.findByTransactionType(transactionType, new Sort(Direction.DESC, "price")));
+    public String getPriceLower(Model model,HttpServletRequest request) {
+    	  PagedListHolder pagedListHolder = new PagedListHolder(productService.getPriceHighestToLower());
+          int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+          pagedListHolder.setPage(page);
+          pagedListHolder.setPageSize(4);
+          model.addAttribute("pagedListHolder", pagedListHolder);
         return "resultSearch";
     }
 }

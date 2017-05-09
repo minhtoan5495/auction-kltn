@@ -1018,3 +1018,42 @@ h1 {
 .carousel-control.left {
     background-image: none;
 }
+.box-product-view{
+padding: 10px;
+background: #eee;
+}
+.hgroup {
+  margin-bottom: 30px;
+  border-bottom: 3px solid #7d5858;
+}
+
+.hgroup h1 {
+  display: inline;
+}
+
+.nav-carousel {
+  float: right;
+  margin-top: -10px;
+}
+
+.slides {
+  background: #fff;
+  list-style: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.h-product {
+  background: #eee;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  margin-right: 20px;
+}
+
+.h-product:nth-child(odd) {
+  background-color: #ddd;
+}

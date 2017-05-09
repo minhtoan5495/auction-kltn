@@ -116,6 +116,7 @@
 	src="${pageContext.request.contextPath }/resource/js/detailPage.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/cart.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/simplegallery.min.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/jquery.flexslider-min.js"></script>
 <script>
     //    jQuery(document).ready(function () {
     //        TableCart.init();
@@ -164,5 +165,24 @@ zoomWindowFadeOut: 750
 			zoom_easing : false
 		});
 	});
+</script>
+<script>$(window).on('load', function() {
+
+$('.carousel').each(function() {
+
+    $(this).flexslider({
+    animation: 'slide',
+    customDirectionNav: $(this).find('.nav-carousel a'),
+		controlNav: false,
+		animationLoop: false,
+		slideshow: false,
+		itemWidth: 250,
+		itemMargin: 25,
+		minItems: 1,
+		maxItems: 5
+	});
+});
+});
+//# sourceURL=pen.js
 </script>
 </html>
