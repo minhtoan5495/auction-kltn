@@ -901,7 +901,6 @@ ul > li {
 }
 
 .single-product-inforsale {
-    margin-top: -35px;
     float: right;
     background: #D4232B;
     color: white;
@@ -921,7 +920,10 @@ ul > li {
     font-weight: 700;
 
 }
-
+.single-product-btn{
+	background: #D4232B;
+	float: right;
+}
 .single-product-inforreview {
     float: right;
 }

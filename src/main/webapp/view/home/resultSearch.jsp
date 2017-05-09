@@ -1,9 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <!--    CONTENT-->
 <div class="content-page">
 	<div class="container">
+	<jsp:useBean id="pagedListHolder" scope="request" type="org.springframework.beans.support.PagedListHolder">	</jsp:useBean>
+		<c:url value="/list" var="pagedLink">
+			<c:param name="p" value="~"></c:param>
+		</c:url>
+	<tg:paging pagedLink="${pagedLink }" pagedListHolder="${pagedListHolder }"></tg:paging>
 		<div class="row">
 			<div class="content-page">
 				<div class="row">
@@ -18,7 +25,7 @@
 							<li><a href="#">Giá thấp đến giá cao</a></li>
 						</ul>
 					</div>
-					<c:forEach var="product" items="${listProduct }">
+					<c:forEach var="product" items="${pagedListHolder.pageList }">
 						<div class="col-sm-3 new-product-main">
 							<div class="new-product">
 								<div class="single-product-item">
