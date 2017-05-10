@@ -11,16 +11,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CityServiceImpl implements CityService {
-	@Autowired
-	CityRepository cityRepository;
-	@Override
-	public List<City> getAll() {
-		return cityRepository.findAll();
-	}
 
-	@Override
-	public City findById(String cityId) {
-		return cityRepository.findOne(cityId);
-	}
+    @Autowired
+    CityRepository cityRepository;
+
+    @Override
+    public List<City> getAll() {
+        return cityRepository.findAll();
+    }
+
+    @Override
+    public City findById(String cityId) {
+        return cityRepository.findOne(cityId);
+    }
 
 }

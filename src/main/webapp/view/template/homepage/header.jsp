@@ -16,12 +16,14 @@
                 <div class="header_top_account pull-right">
                     <ul class="nav nav-pills">
                         <c:if test="${pageContext.request.userPrincipal.name != null }">
-                            <div class="header_top_account">
-                                <div class="header_login_top pull-right">
-                                    <a href="${pageContext.request.contextPath}/admin"
-                                       class="header_login_link"><i class="fa fa-user"></i>Admin</a>
+                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EMPLOYEE')">
+                                <div class="header_top_account">
+                                    <div class="header_login_top pull-right">
+                                        <a href="${pageContext.request.contextPath}/admin"
+                                           class="header_login_link"><i class="fa fa-user"></i>Admin</a>
+                                    </div>
                                 </div>
-                            </div>
+                            </sec:authorize>
                             <div class="header_top_account">
                                 <div class="header_login_top pull-right">
                                     <a href="${pageContext.request.contextPath}/viewCart"
@@ -30,42 +32,35 @@
                             </div>
                             <%--<sec:authentication property="principal.authorities" var="authorities" />--%>
                             <%--<c:forEach items="${authorities}" var="authority" varStatus="vs">--%>
-                                <%--<p>${authority.authority}</p>--%>
+                            <%--<p>${authority.authority}</p>--%>
                             <%--</c:forEach>--%>
-                            <div class="header_login pull-right">
-                                <a href="${pageContext.request.contextPath }/profile"
+                            <div class="header_login pull-left">
+                                <a href="#"
                                    class="header_login_link">Chào
-                                        ${pageContext.request.userPrincipal.name}</a>
-
-                                <li class="dropdown"><a href="#"
-                                                        class="dropdown-toggle user_avat_toggle" data-toggle="dropdown">
-                                    <img alt="" src="resource/images/avatar/google_avatar.png"
-                                         height="27" width="27" data-ytimg="1"
-                                         aria-hidden="true"
-                                         style="margin-top: -60px; margin-left: -6px">
+                                        ${pageContext.request.userPrincipal.name},</a>
+                            </div>
+                            <div class="header_login pull-right">
+                                <a class="header_login_link"
+                                   href="${pageContext.request.contextPath }/profile">Trang
+                                    cá nhân</a>
+                            </div>
+                            <div class="header_login pull-right">
+                                <<a class="header_login_link"
+                                    href=""> Cài đặt</a>
+                            </div>
+                            <div class="header_login pull-right">
+                                <a>
+                                    <form id="logoutForm" method="POST"
+                                          action="${pageContext.request.contextPath}/logout">
+                                        <input type="hidden" name="${_csrf.parameterName}"
+                                               value="${_csrf.token}"/>
+                                    </form>
                                 </a>
-                                    <ul class="dropdown-menu item-settings">
-                                        <security:authorize access="isAuthenticated()">
-                                            <li
-                                                    class="${current=='profile' ? 'active' : ''} personal-setting"><a
-                                                    class="personal-profile"
-                                                    href="${pageContext.request.contextPath }/profile">Trang
-                                                cá nhân</a></li>
-                                        </security:authorize>
-                                        <li class="personal-setting"><a class="personal-profile"
-                                                                        href=""> Cài đặt</a></li>
-                                        <li>
-                                            <form id="logoutForm" method="POST"
-                                                  action="${pageContext.request.contextPath}/logout">
-                                                <input type="hidden" name="${_csrf.parameterName}"
-                                                       value="${_csrf.token}"/>
-                                            </form>
-                                        </li>
-                                        <li class="personal-setting"><a class="personal-profile"
-                                                                        onclick="document.forms['logoutForm'].submit()">Đăng
-                                            xuất</a></li>
-                                    </ul>
-                                </li>
+                            </div>
+                            <div class="header_login pull-right">
+                                <a class="header_login_link"
+                                   onclick="document.forms['logoutForm'].submit()">Đăng
+                                    xuất</a></a>
                             </div>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal.name == null }">

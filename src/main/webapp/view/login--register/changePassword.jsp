@@ -4,7 +4,7 @@
 <link href="${pageContext.request.contextPath }/resource/css/login.css" rel="stylesheet">
 <!-- START CONTENT -->
 <div class="form-login">
-    <c:url value="/login" var="loginUrl"/>
+    <c:url value="/j_spring_security_check" var="loginUrl"/>
     <div class="form-avatar">
         <img alt=""
              src="${pageContext.request.contextPath }/resource/images/avatar/icon-lg-register-blue1.png">
@@ -12,14 +12,6 @@
     <c:if test="${not empty error }">
         <div class="error_check">
                 ${error}
-        </div>
-        <c:if test="${error eq 'expired'}">
-            <a href="${pageContext.request.contextPath }/activeAccount?username=${username}" style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Kích hoạt ngay ..</a>
-        </c:if>
-    </c:if>
-    <c:if test="${not empty message }">
-        <div class="error_check">
-                ${message}
         </div>
     </c:if>
     <section class="form_login">
@@ -53,11 +45,14 @@
                     </div>
                 </div>
             </div>
-            <a href="#" style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Quên mật khẩu
+            <a href="#"
+               style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Quên mật khẩu
             </a>
-            <p class="error-msg" style="color: red; margin-top: 50px; display: none">Wrongcredentials</p>
+            <p class="error-msg"
+               style="color: red; margin-top: 50px; display: none">Wrong
+                credentials</p>
             <div class="form_check">
-                <input type="checkbox"><span style="color: #fff">Ghi nhớ</span>
+                <input type="checkbox"> <span style="color: #fff">Ghi nhớ</span>
             </div>
             <div class="form_submit">
                 <input type="submit" value="Đăng nhập" name="login" id="login">

@@ -86,8 +86,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden"
-                               name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <input type="hidden" name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
                         <div class="contact-item-by">
                             <h2 class="contact-item-by-title">Liên hệ trực tiếp với chúng tôi</h2>
                             <p class="contact-item-by-phone">Đặt hàng: 01665102292</p>

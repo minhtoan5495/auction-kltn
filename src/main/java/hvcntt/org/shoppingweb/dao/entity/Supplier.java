@@ -14,7 +14,6 @@ public class Supplier implements Serializable {
 	private static final long serialVersionUID = 3069622884326217400L;
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="supplier_id")
 	private String supplierId;
 

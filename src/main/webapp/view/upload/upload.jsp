@@ -10,8 +10,8 @@
 <div align="center">
         <h1>Spring MVC - Hibernate File Upload to Database Demo</h1>
         <form method="post" action="upload?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
-           <input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
+            <input type="hidden" name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
             <table border="0">
                 <tr>
                     <td>Pick file #1:</td>

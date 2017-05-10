@@ -48,8 +48,8 @@
                                                 name="username"
                                                 path="username"></form:input>
                                     <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </span>
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
                                 </div>
                             </div>
                             <div class="error">
@@ -59,14 +59,33 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
+                                    <form:input data-validation="custom"
+                                                data-validation-regexp="^[a-zA-Z0-9.*]{3,}.@[a-z*]{3,}\.[a-z]{3,}$"
+                                                data-validation-error-msg="Vui lòng nhập đúng email"
+                                                class="input" type="text" placeholder="Email" id="email" name="email"
+                                                path="email"></form:input>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="error">
+                                <form:errors path="email" cssClass="error"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form_input_register">
+                            <div class="form-group">
+                                <div class='input-group'>
                                     <form:input data-validation="required length" data-validation-length="6-20"
                                                 data-validation-error-msg="Mật khẩu phải lớn hơn 6 kí tự"
                                                 class="input" type="password" placeholder="Mật khẩu" id="password"
                                                 name="password"
                                                 path="password"></form:input>
                                     <span class="input-group-addon" id="passwordIcon">
-                            <span class="glyphicon glyphicon-lock"></span>
-                        </span>
+                                        <span class="glyphicon glyphicon-lock"></span>
+                                    </span>
                                 </div>
                             </div>
                             <div class="error">
@@ -91,31 +110,13 @@
                                 <form:errors path="confirmPassword" cssClass="error"/>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form_input_register">
-                            <div class="form-group">
-                                <div class='input-group'>
-                                    <form:input data-validation="custom"
-                                                data-validation-regexp="^[a-zA-Z0-9.*]{3,}.@[a-z*]{3,}\.[a-z]{3,}$"
-                                                data-validation-error-msg="Vui lòng nhập đúng email"
-                                                class="input" type="text" placeholder="Email" id="email" name="email"
-                                                path="email"></form:input>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-envelope"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="error">
-                                <form:errors path="email" cssClass="error"/>
-                            </div>
-                        </div>
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
                                     <form:input data-validation="required length" data-validation-length="10-11"
                                                 data-validation-error-msg="Bạn chưa nhập số điện thoại"
-                                                class="input" onkeyup="validate()" type="text" placeholder="Số điện thoại" id="phone"
+                                                class="input" onkeyup="validate()" type="text"
+                                                placeholder="Số điện thoại" id="phone"
                                                 name="phone"
                                                 path="phone"></form:input>
                                     <span class="input-group-addon">
@@ -127,41 +128,41 @@
                                 <form:errors path="phone" cssClass="error"/>
                             </div>
                         </div>
-                        <div class="form_input_register">
-                            <div class="form-group">
-                                <div class='input-group'>
-                                    <form:input data-validation="required"
-                                                data-validation-error-msg="Bạn chưa nhập địa chỉ "
-                                                class="input" type="text" placeholder="Địa chỉ" id="address"
-                                                name="address"
-                                                path="address"></form:input>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-home"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="error">
-                                <form:errors path="address" cssClass="error"/>
-                            </div>
-                        </div>
-                        <div class="form_input_register">
-                            <div class="form-group">
-                                <div class='input-group date' id='datetimepicker'>
-                                    <form:input data-validation="required"
-                                                data-validation-error-msg="Bạn chưa chọn ngày sinh "
-                                                class="input" type="text" placeholder="Chọn ngày sinh của bạn"
-                                                id="birthday"
-                                                name="birthday"
-                                                path="birthday"></form:input>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="error">
-                                <form:errors path="birthday" cssClass="error"/>
-                            </div>
-                        </div>
+                            <%--<div class="form_input_register">--%>
+                            <%--<div class="form-group">--%>
+                            <%--<div class='input-group'>--%>
+                            <%--<form:input data-validation="required"--%>
+                            <%--data-validation-error-msg="Bạn chưa nhập địa chỉ "--%>
+                            <%--class="input" type="text" placeholder="Địa chỉ" id="address"--%>
+                            <%--name="address"--%>
+                            <%--path="address"></form:input>--%>
+                            <%--<span class="input-group-addon">--%>
+                            <%--<span class="glyphicon glyphicon-home"></span>--%>
+                            <%--</span>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="error">--%>
+                            <%--<form:errors path="address" cssClass="error"/>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form_input_register">--%>
+                            <%--<div class="form-group">--%>
+                            <%--<div class='input-group date' id='datetimepicker'>--%>
+                            <%--<form:input data-validation="required"--%>
+                            <%--data-validation-error-msg="Bạn chưa chọn ngày sinh "--%>
+                            <%--class="input" type="text" placeholder="Chọn ngày sinh của bạn"--%>
+                            <%--id="birthday"--%>
+                            <%--name="birthday"--%>
+                            <%--path="birthday"></form:input>--%>
+                            <%--<span class="input-group-addon">--%>
+                            <%--<span class="glyphicon glyphicon-calendar"></span>--%>
+                            <%--</span>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="error">--%>
+                            <%--<form:errors path="birthday" cssClass="error"/>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
                     </div>
                     <div class="row">
                         <div class="col-sm-2"></div>

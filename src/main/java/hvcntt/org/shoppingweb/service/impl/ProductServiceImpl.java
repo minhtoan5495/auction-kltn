@@ -29,6 +29,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,8 +71,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findOne(String idproduct) {
-        return productRepository.findOne(idproduct);
+    public Product findOne(String productId) {
+        return productRepository.findOne(productId);
     }
 
     @Override
@@ -78,8 +81,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateView(String idproduct) {
-        productRepository.updateView(idproduct);
+    public void updateView(String productId) {
+        productRepository.updateView(productId);
     }
 
     @Override
@@ -99,12 +102,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> getProductPaging(int pagenumber) {
-        PageRequest request = new PageRequest(pagenumber - 1, PAGE_SIZE);
+    public Page<Product> getProductPaging(int pageNumber) {
+        PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE);
         return productRepository.findAll(request);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void deleteProduct(String productId) throws ProductNotFoundException {
         if (productRepository.getOne(productId) != null) {
             productRepository.delete(productId);
@@ -114,6 +118,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(ProductDto productDto) throws ParseException {
         Product product = new Product();
         product.setCategory(categoryRepository.getOne(productDto.getCategoryId()));
@@ -133,6 +138,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void update(ProductDto productDto, String productId) throws ParseException {
         Product product = productRepository.findOne(productId);
         product.setCategory(categoryRepository.getOne(productDto.getCategoryId()));

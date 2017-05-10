@@ -9,18 +9,20 @@ import org.springframework.stereotype.Service;
 import hvcntt.org.shoppingweb.dao.entity.District;
 import hvcntt.org.shoppingweb.dao.repository.DistrictRepository;
 import hvcntt.org.shoppingweb.service.DistrictService;
-@Service
-public class DistrictImp implements DistrictService{
-	@Autowired
-	DistrictRepository districtRepository;
-	@Override
-	public List<District> getAll() {
-		return districtRepository.findAll();
-	}
 
-	@Override
-	public List<District> findByCity(City city) {
-		return districtRepository.findByCity(city);
-	}
+@Service
+public class DistrictServiceImp implements DistrictService {
+    @Autowired
+    DistrictRepository districtRepository;
+
+    @Override
+    public List<District> getAll() {
+        return districtRepository.findAll();
+    }
+
+    @Override
+    public List<District> findByCity(City city) {
+        return districtRepository.findByCity(city);
+    }
 
 }

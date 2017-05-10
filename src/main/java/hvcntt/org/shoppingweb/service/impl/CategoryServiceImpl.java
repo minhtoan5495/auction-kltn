@@ -2,8 +2,6 @@ package hvcntt.org.shoppingweb.service.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import hvcntt.org.shoppingweb.dao.dto.CategoryDto;
 import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Parent;
@@ -14,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import hvcntt.org.shoppingweb.dao.repository.CategoryRepository;
 import hvcntt.org.shoppingweb.exception.CategoryNotFoundExeption;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -30,8 +31,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category findOne(String idcategory) {
-        return categoryRepository.findOne(idcategory);
+    public Category findOne(String categoryId) {
+        return categoryRepository.findOne(categoryId);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(CategoryDto categoryDto) {
         Category category;
         if(categoryDto.getCategoryId() != ""){
@@ -55,7 +56,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void delete(String categoryId) throws CategoryNotFoundExeption {
         if (categoryRepository.findOne(categoryId) != null) {
             categoryRepository.delete(categoryId);

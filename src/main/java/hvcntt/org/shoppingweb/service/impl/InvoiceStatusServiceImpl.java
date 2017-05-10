@@ -23,9 +23,9 @@ public class InvoiceStatusServiceImpl implements InvoiceStatusService {
     @Override
     public InvoiceStatus findByName(String name) throws InvoiceStatusNotFoundException {
         InvoiceStatus invoiceStatus = invoiceStatusRepository.findByInvoiceStatusName(name);
-        if(invoiceStatus == null){
+        if (invoiceStatus == null) {
             throw new InvoiceStatusNotFoundException("Status not found with name : " + name);
-        }else{
+        } else {
             return invoiceStatusRepository.findByInvoiceStatusName(name);
         }
     }

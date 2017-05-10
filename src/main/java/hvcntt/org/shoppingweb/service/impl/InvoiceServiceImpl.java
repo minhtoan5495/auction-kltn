@@ -3,33 +3,29 @@ package hvcntt.org.shoppingweb.service.impl;
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.dao.repository.InvoiceRepository;
-import hvcntt.org.shoppingweb.dao.repository.ShippingInfoRepository;
 import hvcntt.org.shoppingweb.dao.repository.UserRepository;
 import hvcntt.org.shoppingweb.exception.InvoiceException;
 import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
 import hvcntt.org.shoppingweb.service.InvoiceDetailService;
 import hvcntt.org.shoppingweb.service.InvoiceService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 import hvcntt.org.shoppingweb.service.InvoiceStatusService;
 import hvcntt.org.shoppingweb.service.ShippingInfoService;
 import hvcntt.org.shoppingweb.utils.LOG;
 import hvcntt.org.shoppingweb.utils.MessageUtil;
-import org.hibernate.validator.internal.util.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -50,6 +46,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     InvoiceStatusService invoiceStatusService;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public Invoice create(Invoice invoice) {
         return invoiceRepository.save(invoice);
     }
@@ -60,6 +57,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public Invoice save(Invoice invoice) {
         return invoiceRepository.save(invoice);
     }
@@ -70,6 +68,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void delete(String invoiceId) {
         invoiceRepository.delete(invoiceId);
     }
@@ -80,7 +79,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void checkOut(ShippingInfo shippingInfo, List<CartItem> cartItems){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();

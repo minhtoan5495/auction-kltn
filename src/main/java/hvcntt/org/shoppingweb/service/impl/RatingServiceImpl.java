@@ -5,10 +5,12 @@ import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.Rating;
 import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.dao.repository.RatingRepository;
-import hvcntt.org.shoppingweb.service.AuctionService;
 import hvcntt.org.shoppingweb.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +22,7 @@ public class RatingServiceImpl implements RatingService {
     private RatingRepository ratingRepository;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(RatingDto ratingDto, Product product, User user) {
         Rating rating = convertDtoToEntity(ratingDto, product, user);
         ratingRepository.save(rating);

@@ -4,8 +4,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.Role;
 import hvcntt.org.shoppingweb.dao.entity.User;
@@ -20,25 +18,29 @@ import org.springframework.stereotype.Service;
 
 import hvcntt.org.shoppingweb.dao.repository.RoleRepository;
 import hvcntt.org.shoppingweb.dao.repository.UserRepository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    RoleRepository roleRepository;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(UserDto userDto) throws RoleNotFoundException, ParseException {
         User user = convertUserModelToUser(userDto);
         userRepository.save(user);
     }
+
     private User convertUserModelToUser(UserDto userDto) throws RoleNotFoundException, ParseException {
         Role role = roleRepository.findByRoleName("ROLE_USER");
         if (role == null) {
@@ -49,11 +51,10 @@ public class UserServiceImpl implements UserService {
         user.setName(userDto.getName());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setUsername(userDto.getUsername());
-        user.setAddress(userDto.getAddress());
         user.setPhone(userDto.getPhone());
         user.setEmail(userDto.getEmail());
-        user.setBirthday(userDto.getBirthday());
         user.setAccountNonLocked(true);
+        user.setActive(false);
         roles.add(role);
         user.setRoles(roles);
         return user;
@@ -80,25 +81,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void deleteUser(String username) throws UserNotFoundException {
-        if(userRepository.findOne(username) != null){
+        if (userRepository.findOne(username) != null) {
             userRepository.delete(username);
         }
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(User user) {
         userRepository.save(user);
     }
-	@Override
-	public void resetPassword(UserDto userDto) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
+    public void resetPassword(UserDto userDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 //        User user = userRepository.findByUsername(username);
-        String password=bCryptPasswordEncoder.encode(userDto.getPassword());
-        userRepository.updatePassword(username,  password);
-	}
+        String password = bCryptPasswordEncoder.encode(userDto.getPassword());
+        userRepository.updatePassword(username, password);
+    }
 
-	
 
 }

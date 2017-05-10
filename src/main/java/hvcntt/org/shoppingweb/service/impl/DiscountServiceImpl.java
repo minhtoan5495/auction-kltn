@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import hvcntt.org.shoppingweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DiscountServiceImpl implements DiscountService {
@@ -33,6 +34,7 @@ public class DiscountServiceImpl implements DiscountService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(Discount discount) {
         discountRepository.save(discount);
     }

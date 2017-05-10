@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User userEntity = null;
+		User userEntity;
 		userEntity = userRepository.findByUsername(username);
 		if (userEntity == null)
 			throw new UsernameNotFoundException("No such user: " + username);

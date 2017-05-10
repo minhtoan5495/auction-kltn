@@ -23,7 +23,7 @@ public class UserAttemptsServiceImpl implements UserAttemptsService {
 	private UserRepository userRepository;
 
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
+	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public void insertAttempts(String username) {
 		UserAttempt userAttempt = new UserAttempt(username, 1, new Date());
 		userAttempt.setUserAttemptsId(UUID.randomUUID().toString());
@@ -31,38 +31,36 @@ public class UserAttemptsServiceImpl implements UserAttemptsService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
+	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public void updateAttempts(String username) {
 		userAttemptsRepository.updateAttempts(username);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
+	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public void save(UserAttempt userAttempt) {
 		userAttemptsRepository.save(userAttempt);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
+	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public void lockUser(String username) {
 		userRepository.updateLocked(username, false);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
+	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public void resetAttempts(String username) {
 		userRepository.updateLocked(username, true);
 		userAttemptsRepository.resetAttempts(username);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
 	public UserAttempt getAttemptsEntity(String name) {
 		return userAttemptsRepository.findByUsername(name);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT, readOnly = false)
 	public int getCountAttempts(String username) {
 		return userAttemptsRepository.getOne(username).getAttempts();
 	}

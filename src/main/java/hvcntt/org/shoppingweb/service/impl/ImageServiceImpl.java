@@ -14,17 +14,15 @@ import hvcntt.org.shoppingweb.dao.repository.ImageRepository;
 public class ImageServiceImpl implements ImageService {
 
 	@Autowired
-	private ImageRepository imagerepo;
+	private ImageRepository imageRepository;
 
 	@Override
 	public List<Image> getAll() {
-		// TODO Auto-generated method stub
-		return imagerepo.findAll();
+		return imageRepository.findAll();
 	}
 	@Override
 	public List<Image> findByProduct(Product product) {
-		// TODO Auto-generated method stub
-		return imagerepo.findByProduct(product);
+		return imageRepository.findByProduct(product);
 	}
 
 }

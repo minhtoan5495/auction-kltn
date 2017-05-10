@@ -33,6 +33,8 @@ public class User implements Serializable {
 
     private String phone;
 
+    private boolean active;
+
     // bi-directional many-to-one association to Rating
     private List<Rating> ratings;
 
@@ -176,4 +178,11 @@ public class User implements Serializable {
         this.passwordConfirm = passwordConfirm;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

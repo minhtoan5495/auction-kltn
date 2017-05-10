@@ -6,6 +6,9 @@ import hvcntt.org.shoppingweb.service.InvoiceDetailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InvoiceDetailServiceImpl implements InvoiceDetailService {
@@ -13,6 +16,7 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
     InvoiceDetailRepository invoiceDetailRepository;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public InvoiceDetail save(InvoiceDetail invoiceDetail) {
         return invoiceDetailRepository.save(invoiceDetail);
     }

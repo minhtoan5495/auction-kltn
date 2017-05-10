@@ -21,30 +21,16 @@ public class UserDto implements Serializable {
     @Size(min = 6, max = 12)
     private String username;
 
-    @NotBlank
-    private String address;
-
     private String confirmPassword;
 
     @Email
     private String email;
-
-    @NotNull
-    private Date birthday;
 
     @Size(max = 20, min = 6)
     private String password;
 
     @Phone
     private String phone;
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 
     public UserDto() {
     }
@@ -57,20 +43,10 @@ public class UserDto implements Serializable {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public UserDto(String name, String username, String address, String email, Date birthday, String password, String phone) {
+    public UserDto(String name, String username, String email, String password, String phone) {
         this.name = name;
         this.username = username;
-        this.address = address;
         this.email = email;
-        this.birthday = birthday;
         this.password = password;
         this.phone = phone;
     }

@@ -5,6 +5,9 @@ import hvcntt.org.shoppingweb.dao.repository.ParentRepository;
 import hvcntt.org.shoppingweb.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,11 +31,13 @@ public class ParentServiceImpl implements ParentService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void saveParent(Parent parent) {
         parentRepository.save(parent);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void delete(Parent parent) {
         parentRepository.delete(parent);
     }

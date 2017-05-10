@@ -68,7 +68,7 @@
     </definition>
     <definition name="resetPassword" extends="definition">
         <put-attribute name="title" value="Reset Password"></put-attribute>
-        <put-attribute name="body" value="/view/login--register/resetPassword.jsp"></put-attribute>
+        <put-attribute name="body" value="/view/login--register/changePassword.jsp"></put-attribute>
     </definition>
     <definition name="register" extends="registration">
         <put-attribute name="title" value="Đăng ký"></put-attribute>

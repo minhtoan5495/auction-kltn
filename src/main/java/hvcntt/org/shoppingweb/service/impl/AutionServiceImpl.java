@@ -17,15 +17,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AutionServiceImpl implements AuctionService {
     @Autowired
     AuctionRepository auctionRepository;
-    @Autowired
-    TransactionTypeService transactionTypeService;
-    @Autowired
-    ProductService productService;
+
     @Autowired
     ProductRepository productRepository;
 
@@ -45,6 +45,7 @@ public class AutionServiceImpl implements AuctionService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(AuctionDto auctionDto) throws ParseException {
         Auction auction = new Auction();
         auction.setStatus(auctionDto.getStatus());
@@ -60,6 +61,7 @@ public class AutionServiceImpl implements AuctionService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void delete(String auctionId) {
         Auction auction = auctionRepository.findOne(auctionId);
         auctionRepository.delete(auction);
@@ -71,6 +73,7 @@ public class AutionServiceImpl implements AuctionService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void update(AuctionDto auctionDto, String auctionId) throws ParseException {
         Auction auction = auctionRepository.findOne(auctionId);
         auction.setStatus(auctionDto.getStatus());
@@ -81,6 +84,7 @@ public class AutionServiceImpl implements AuctionService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(String startDate, String endDate, List<String> productIds) throws ParseException {
         for (String productId : productIds) {
             int beginIndex = productId.indexOf("productId\":\"");
