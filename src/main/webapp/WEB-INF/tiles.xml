@@ -30,6 +30,11 @@
         <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
     </definition>
+    <definition name="changePassword" extends="profilePage">
+        <put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
+        <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
+        <put-attribute name="body" value="/view/profile/changePassword.jsp"></put-attribute>
+    </definition>
     <definition name="orderDetail" extends="profilePage">
         <put-attribute name="title" value="Hóa đơn cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/orderDetail.jsp"></put-attribute>

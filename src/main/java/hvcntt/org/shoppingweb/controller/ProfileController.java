@@ -87,4 +87,9 @@ public class ProfileController {
         userService.resetPassword(userDto);
         return "redirect:/home";
     }
+
+    @RequestMapping(value="/changePassword", method = RequestMethod.GET)
+    public String changePassword(){
+        return "changePassword";
+    }
 }
