@@ -89,7 +89,7 @@ public class UserController {
             }else if(error.equals("expired")){
                 model.addAttribute("error", EXPIRED);
                 model.addAttribute("username" , username);
-            }else{
+            }else if(error.equals("userInvalid")){
                 model.addAttribute("error", USER_INVALID);
             }
             String targetUrl = getRememberMeTargetUrlFromSession(request);
@@ -111,9 +111,11 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, Model model) throws UserNotFoundException {
         User user = userService.findByUsername(username);
-        if (!user.isActive()) {
+        if (user != null && !user.isActive()) {
             return "redirect:/login?error="+"userNonActive";
-        } else {
+        } else if (user == null){
+            return "redirect:/login?error="+"userInvalid";
+        }else{
             securityService.autoLogin(username, password);
             return "redirect:/";
         }
