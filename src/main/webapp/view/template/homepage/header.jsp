@@ -45,7 +45,7 @@
                                     cá nhân</a>
                             </div>
                             <div class="header_login pull-right">
-                                <<a class="header_login_link"
+                                <a class="header_login_link"
                                     href=""> Cài đặt</a>
                             </div>
                             <div class="header_login pull-right">
@@ -60,7 +60,7 @@
                             <div class="header_login pull-right">
                                 <a class="header_login_link"
                                    onclick="document.forms['logoutForm'].submit()">Đăng
-                                    xuất</a></a>
+                                    xuất</a>
                             </div>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal.name == null }">
