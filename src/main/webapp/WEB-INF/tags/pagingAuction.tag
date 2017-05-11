@@ -27,10 +27,10 @@
 			end="${pagedListHolder1.lastLinkedPage }" var="i">
 			<c:choose>
 				<c:when test="${pagedListHolder1.page ==i }">
-					<li class="active"><a href="#">${i+1 }</a></li>
+					<li class="active"><a href="#" class="paging-first">${i+1 }</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a
+					<li><a class="paging-link-item"
 						href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(jspContext.getAttribute("i")))%>">${i+1 }</a></li>
 				</c:otherwise>
 			</c:choose>
@@ -41,12 +41,12 @@
 		</c:if>
 		<c:if
 			test="${pagedListHolder1.lastLinkedPage < pagedListHolder1.pageCount - 1 }">
-			<li><a
+			<li><a class="paging-link-item"
 				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(pagedListHolder1.getPageCount() - 1))%>">${pagedListHolder1.pageCount }</a></li>
 		</c:if>
 		<c:if test="${!pagedListHolder1.lastPage }">
-			<li class="next"><a
-				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(pagedListHolder1.getPage() + 1))%>">></a></li>
+			<li class="next"><a class="paging-link-item"
+				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(pagedListHolder1.getPage() + 1))%>" style="border-radius: 100px"><i class="glyphicon glyphicon-play"></i></a></li>
 		</c:if>
 	</ul>
 </c:if>

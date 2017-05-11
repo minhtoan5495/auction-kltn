@@ -9,8 +9,9 @@
 		<jsp:useBean id="pagedListHolder" scope="request"
 			type="org.springframework.beans.support.PagedListHolder">
 		</jsp:useBean>
-		<c:url value="/priceHighToLower" var="pagedLink">
+		<c:url value="/searchname" var="pagedLink">
 			<c:param name="p" value="~"></c:param>
+			<c:param name="name" value="${param.name }"></c:param>
 		</c:url>
 		<tg:paging pagedLink="${pagedLink }"
 			pagedListHolder="${pagedListHolder }"></tg:paging>

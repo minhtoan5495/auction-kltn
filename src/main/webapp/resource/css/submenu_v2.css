@@ -109,7 +109,7 @@ body {
     background: #11252f;
     height: 50px;
     width: 100%;
-    z-index: 100;
+    z-index: 95;
     position: relative;
     border-bottom: 3px solid #111;
 }

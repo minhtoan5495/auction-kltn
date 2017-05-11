@@ -7,154 +7,132 @@
 	<div class="container">
 		<div class="row">
 			<div class="container slide-show">
-				<div class="row">
-					<div>
-						<div id="slider-carousel" class="carousel slide slide-show-item"
-							data-ride="carousel">
-							<ol class="carousel-indicators">
-								<li data-target="#slider-carousel" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#slider-carousel" data-slide-to="1"></li>
-								<li data-target="#slider-carousel" data-slide-to="2"></li>
-							</ol>
+				<div id="myCarousel" class="carousel slide slide-show-item"
+					data-ride="carousel">
 
-							<div class="carousel-inner">
-								<div class="item">
-									<div class="col-sm-6">
-										<h1>
-											<span>Auction</span>-Sale
-										</h1>
-										<h2>Giày thể thao nam Biti's Hunter Liteknit II DS1252
-											(Đen)</h2>
-										<div class="item-slide-product-description">
-											<p>Công nghệ quai dệt Litekit Ở phiên bản mới của Hunter,
-												Biti's đã thay thế chất liệu Air Mesh cũ bằng công nghệ mới
-												có tên gọi Liteknit. Đây là công nghệ dệt để tạo nên phần
-												thân của giày với nhiều lỗ thoáng khí, tăng sự thoải mái và
-												dễ chịu cho người mang. Ngoài ra, cải tiến này còn giúp cho
-												việc vệ sinh đôi giày trở nên dễ dàng và thuận tiện hơn.</p>
-										</div>
-										<a href="#">
-											<button type="button" class="btn btn-default get">Chi
-												tiết</button>
-										</a>
-									</div>
-									<div class="col-sm-6">
-										<img src="resource/images/slideImage/bititshunter.png"
-											class="girl img-responsive" alt=""
-											style="width: 360px; height: 360px" />
-									</div>
-								</div>
-								<c:forEach var="auction" items="${productAuctions }">
-									<div class="item">
-										<div class="col-sm-6">
-											<h1>
-												<span>Aution</span>-Sale
-											</h1>
-											<h2>${auction.name }</h2>
-											<div class="item-slide-product-description">
-												<p>${auction.description }</p>
-											</div>
-											<a href="#">
-												<button type="button" class="btn btn-default get">Chi
-													tiết</button>
-											</a>
-										</div>
-										<div class="col-sm-6">
-											<img src="resource/images/slideImage/bititshunter1.png"
-												class="girl img-responsive" alt=""
-												style="width: 360px; height: 360px" />
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
 
-										</div>
-									</div>
-								</c:forEach>
-
-							</div>
-
-							<a href="#slider-carousel"
-								class="left control-carousel hidden-xs" data-slide="prev"> <i
-								class="fa fa-angle-left s-left"></i>
-							</a> <a href="#slider-carousel"
-								class="right control-carousel hidden-xs" data-slide="next">
-								<i class="fa fa-angle-right s-right"></i>
-							</a>
-						</div>
-						<div class="infor-box">
-							<div class="infor_box_inner">
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="infor_box_left">
-											<div class="row">
-												<div class="col-xs-12">
-													<h4 class="infor_box_heading">ĐỔI TRẢ HÀNG</h4>
-												</div>
-											</div>
-											<h6 class="infor_text">2 ngày sau khi giao hàng nếu
-												không đúng với mẫu mã cam kết</h6>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="infor_box_left">
-											<div class="row">
-												<div class="col-xs-12">
-													<h4 class="infor_box_heading">MIỄN PHÍ GIAO HÀNG</h4>
-												</div>
-											</div>
-											<h6 class="infor_text">Miễn phí giao hàng với những hóa
-												đơn dưới 100k</h6>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="infor_box_left">
-											<div class="row">
-												<div class="col-xs-12">
-													<h4 class="infor_box_heading">HÌNH THỨC ĐẤU GIÁ</h4>
-												</div>
-											</div>
-											<h6 class="infor_text">Thủ tục đấu giá rất đơn giản</h6>
-										</div>
-									</div>
+						<div class="item active">
+							<div class="col-sm-6">
+								<h2>Chính sách đổi trả</h2>
+								<div class="item-slide-product-description">
+									<p>Hệ thống cam kết bán hàng nguyên mới và đảm bảo đúng
+										chất lượng của nhà sản xuất. Đồng thời, sản phẩm mà khách hàng
+										nhận được phải nguyên vẹn, hoạt động tốt và đúng với các thông
+										tin mô tả trên website.</p>
+									<p>Nếu sản phẩm quý khách nhận được không đúng với cam kết
+										trên, quý khách vui lòng thông báo ngay cho hệ thống trong
+										vòng 48 giờ kể từ thời điểm nhận hàng.</p>
+									<p>Hệ thống xin từ chối hỗ trợ mọi khiếu nại về tình trạng
+										ngoại quan của sản phẩm trong trường hợp quý khách thông báo
+										cho hệ thống sau thời gian này..</p>
 								</div>
 							</div>
+							<div class="col-sm-6">
+								<img src="resource/images/banner/doitrahang.png"
+									class="girl img-responsive" alt=""
+									style="width: 360px; height: 360px" />
+							</div>
 						</div>
+						<!-- End Item -->
+
+						<div class="item">
+							<div class="col-sm-6">
+								<h2>Miễn phí giao hàng</h2>
+								<div class="item-slide-product-description">
+									<p>Dịch vụ “Miễn phí giao hàng Nhanh toàn quốc 1-2 ngày" áp
+										dụng đơn giản cho tất cả các đơn hàng sau:</p>
+									<p>+Từ 300.000 đối với đơn hàng chuyển đến TPHCM</p>
+									<p>+Từ 500.000 đối với đơn hàng chuyển đến tất cả các tỉnh,
+										thành phố khác tại Việt Nam bao gồm tất cả sản phẩm có bán tại
+										hệ thống…</p>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<img src="resource/images/banner/giao-hang.png"
+									class="girl img-responsive" alt=""
+									style="width: 360px; height: 360px" />
+							</div>
+						</div>
+						<!-- End Item -->
+
+						<div class="item">
+							<div class="col-sm-6">
+								<h2>Hình thức đấu giá đơn giản</h2>
+								<div class="item-slide-product-description">
+									<p>Hệ thống ngoài việc bán hàng trực tuyến còn là một hệ
+										thống đấu giá trực tuyến được xây dựng với mong muốn đem đến
+										một trải nghiệm mua sắm đặc biệt và thú vị cho người Việt Nam.</p>
+									<p>Đến với hệ thống chúng tôi là để khám phá sự độc đáo và
+										trải nghiệm cảm giác chiến thắng để sở hữu sản phẩm thực sự
+										dành cho bạn. Chúng luôn tin rằng các giá trị của sản phẩm
+										phải thực sự do bạn quyết định, chính vì vậy đấu giá trực
+										tuyến sẽ là phương thức đơn giản nhất để định giá sản phẩm
+										theo cách của riêng bạn.</p>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<img src="resource/images/banner/daugia.png"
+									class="girl img-responsive" alt=""
+									style="width: 360px; height: 360px" />
+							</div>
+						</div>
+						<!-- End Item -->
+
+						<div class="item">
+							<div class="col-sm-6">
+								<h2>Dịch vụ chăm sóc khách hàng</h2>
+								<div class="item-slide-product-description">
+									<p>Đối với bất kỳ câu hỏi hoặc phản hồi của bạn, vui lòng
+										liên hệ với dịch vụ khách hàng của chúng tôi tại đây. Chúng
+										tôi sẽ cố gắng đáp ứng yêu cầu của bạn trong vòng 24 giờ..</p>
+									<p>Liên hệ chúng tôi</p>
+									<p>+Email: saleauction@gmail.com</p>
+									<p>+SĐT: 01223456789</p>
+									<p>+Facebook: www.facebook.com/saleauctiongroup</p>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<img src="resource/images/banner/cskh.png"
+									class="girl img-responsive" alt=""
+									style="width: 360px; height: 360px; border-radius: 70px;" />
+							</div>
+						</div>
+						<!-- End Item -->
+
 					</div>
+					<!-- End Carousel Inner -->
+
+
+					<ul class="nav nav-pills nav-justified nav-slide-info">
+						<li data-target="#myCarousel" data-slide-to="0"
+							class="active nav-slide-info-item"><a href="#"
+							class="nav-slide-info-item-link">CHÍNH SÁCH ĐỔI TRẢ<small>2
+									ngày sau khi giao nếu không đúng mẫu mã cam kết</small></a></li>
+						<li data-target="#myCarousel" data-slide-to="1"
+							class="nav-slide-info-item"><a href="#"
+							class="nav-slide-info-item-link">MIỄN PHÍ GIAO HÀNG<small>Miễn
+									phí giao hàng với những hóa đơn được cập nhật trên </small></a></li>
+						<li data-target="#myCarousel" data-slide-to="2"
+							class="nav-slide-info-item"><a href="#"
+							class="nav-slide-info-item-link">HÌNH THỨC ĐẤU GIÁ ĐƠN GIẢN<small>Thủ
+									tục đấu giá đơn giản </small></a></li>
+						<li data-target="#myCarousel" data-slide-to="3"
+							class="nav-slide-info-item"><a href="#"
+							class="nav-slide-info-item-link">CHĂM SÓC KHÁCH HÀNG<small>Dịch
+									vụ chăm sóc khách hàng luôn hỗ trợ trong 24h </small></a></li>
+					</ul>
+
+
 				</div>
+				<!-- End Carousel -->
 			</div>
 		</div>
 		<div class="row">
 			<div class="content-page">
 				<div class="content-page-title">
 					<h2 class="content-paget-title-item">SẢN PHẨM BÁN</h2>
-				</div>
-				<div class="search-advance-item">
-					<div class="dropdown search-supplier-item">
-						<button class="btn dropdown-toggle btn-supplier-item"
-							type="button" data-toggle="dropdown">
-							Hãng sản xuất <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu supplier-dropdown-item">
-							<c:forEach var="supplier" items="${suppliers }">
-								<li><a
-									href="${pageContext.request.contextPath }/supplier?supplierId=${supplier.supplierId}">${supplier.supplierName}</a>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
-					<div class="dropdown search-price-item">
-						<button class="btn dropdown-toggle btn-supplier-item"
-							type="button" data-toggle="dropdown">
-							Lọc theo giá tiền <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu supplier-dropdown-item">
-							<li><a
-								href="${pageContext.request.contextPath }/priceHighToLower">Giá
-
-									thấp đến giá cao</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/priceLowerToHigh">Giá
-									cao đến giá thấp</a></li>
-						</ul>
-					</div>
 				</div>
 				<div class="row">
 					<h4>${message}</h4>
@@ -438,6 +416,20 @@
 
 						</div>
 
+					</div>
+				</div>
+				<div class="row main-content-page-supplier">
+					<div class="content-page-supplier">
+						<h4>Thương hiệu nổi tiếng</h4>
+						<div class="content-page-supplier-logo-item">
+							<c:forEach var="sup" items="${suppliers }">
+								<div class="col-sm-2">
+									<a href="${pageContext.request.contextPath }/supplier?supplierId=${sup.supplierId}"><img
+										src="${pageContext.request.contextPath }/resource/images/supplier/${sup.logo}"
+										style="width: 100px; height: 100px; margin-top: 30px;margin-bottom: 30px"></a>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>

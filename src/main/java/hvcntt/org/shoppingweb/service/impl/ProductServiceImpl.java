@@ -246,16 +246,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getPriceHighestToLower() {
-		return productRepository.findAll(new Sort(Direction.ASC, "price"));
-	}
-
-	@Override
-	public List<Product> getPriceLowerToHighest() {
-		return productRepository.findAll(new Sort(Direction.DESC, "price"));
-	}
-
-	@Override
 	public List<Product> findByTransactionType(TransactionType transactionType, Sort sort) {
 		return productRepository.findByTransactionType(transactionType, sort);
 	}

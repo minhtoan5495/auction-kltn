@@ -86,7 +86,8 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/searchName")
-    public String searchPage(@RequestParam("name") String name, Model model,HttpServletRequest request) {
+    public String searchPage(Model model,HttpServletRequest request) {
+    	String name = request.getParameter("name");
         model.addAttribute("parents", parentService.findAll());
         PagedListHolder pagedListHolder = new PagedListHolder(productService.findByNameContaining(name));
         int page = ServletRequestUtils.getIntParameter(request, "p", 0);
@@ -96,45 +97,15 @@ public class HomePageController {
         model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
         return "resultSearch";
     }
-
-    @RequestMapping(value = "/{pageNumber}")
-    public String getPaging(@PathVariable int pageNumber, Model model) {
-        TransactionType transactionType = transactionService.findByName(SALE);
-        Page<Product> pageProduct = productService.findProductPaging(transactionType, new PageRequest(pageNumber, 4, Direction.ASC, "price"));
-        List<Product> stackProduct = pageProduct.getContent();
-        int totalPage = pageProduct.getTotalPages();
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("products", stackProduct);
-        model.addAttribute("auctions", auctionService.getAll());
-        return "home";
-    }
-
     @RequestMapping(value = "/supplier")
-    public String getSupplier(Model model, @RequestParam("supplierId") String supplierId) {
+    public String getSupplier(Model model, @RequestParam("supplierId") String supplierId,HttpServletRequest request) {
         Supplier supplier = supplierService.findOne(supplierId);
-        model.addAttribute("products", productService.findBySupplier(supplier));
-        model.addAttribute("suppliers", supplierService.getAll());
-        model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
-        return "resultSearch";
-    }
-
-    @RequestMapping(value = "/priceHighToLower")
-    public String getPriceHigh(Model model, HttpServletRequest request) {
-        PagedListHolder pagedListHolder = new PagedListHolder(productService.getPriceLowerToHighest());
+        PagedListHolder pagedListHolder = new PagedListHolder(productService.findBySupplier(supplier));
         int page = ServletRequestUtils.getIntParameter(request, "p", 0);
         pagedListHolder.setPage(page);
         pagedListHolder.setPageSize(4);
         model.addAttribute("pagedListHolder", pagedListHolder);
-        return "resultSearch";
-    }
-
-    @RequestMapping(value = "/priceLowerToHigh")
-    public String getPriceLower(Model model,HttpServletRequest request) {
-    	  PagedListHolder pagedListHolder = new PagedListHolder(productService.getPriceHighestToLower());
-          int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-          pagedListHolder.setPage(page);
-          pagedListHolder.setPageSize(4);
-          model.addAttribute("pagedListHolder", pagedListHolder);
+        model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
         return "resultSearch";
     }
 }

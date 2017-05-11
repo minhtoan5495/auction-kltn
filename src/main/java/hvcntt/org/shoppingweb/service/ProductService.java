@@ -45,10 +45,6 @@ public interface ProductService {
 
     List<Product> findBySupplier(Supplier supplier);
 
-    List<Product> getPriceHighestToLower();
-
-    List<Product> getPriceLowerToHighest();
-
     List<Product> findByTransactionType(TransactionType transactionType, Sort sort);
 
     List<Product> findByTransactionType(List<Product> products, TransactionType transactionType, Sort sort);

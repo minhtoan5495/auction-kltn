@@ -24,7 +24,8 @@ public class Supplier implements Serializable {
 	@OneToMany(mappedBy="supplier", fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private List<Product> products;
-
+	@Column(name="logo")
+	private String logo;
 	public Supplier() {
 		setSupplierId(UUID.randomUUID().toString());
 	}
@@ -65,6 +66,14 @@ public class Supplier implements Serializable {
 		product.setSupplier(null);
 
 		return product;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 
 }

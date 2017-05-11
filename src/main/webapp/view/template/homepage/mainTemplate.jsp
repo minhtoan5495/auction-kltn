@@ -61,7 +61,7 @@
 	rel="stylesheet">
 </head>
 
-<body>
+<body style="font-family:Oxygen,Helvetica,sans-serif;">
 	<header>
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</header>
