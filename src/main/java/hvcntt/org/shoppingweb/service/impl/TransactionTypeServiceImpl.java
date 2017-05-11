@@ -25,4 +25,9 @@ public class TransactionTypeServiceImpl implements TransactionTypeService {
 		return transactionTypeRepository.findAll();
 	}
 
+	@Override
+	public TransactionType findById(String transactionTypeId) {
+		return transactionTypeRepository.getOne(transactionTypeId);
+	}
+
 }

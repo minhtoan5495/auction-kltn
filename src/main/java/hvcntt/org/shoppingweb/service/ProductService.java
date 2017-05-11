@@ -19,11 +19,11 @@ public interface ProductService {
 
     List<Product> getAll();
 
-    Product findOne(String idproduct);
+    Product findOne(String productId);
 
     List<Product> findByNameContaining(String name);
 
-    void updateView(String idproduct);
+    void updateView(String productId);
 
     List<Product> findByProductTransactionType(TransactionType transactionType);
 

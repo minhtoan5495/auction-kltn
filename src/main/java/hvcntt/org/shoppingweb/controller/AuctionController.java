@@ -57,7 +57,7 @@ public class AuctionController {
 		String price = request.getParameter("price");
 		userAuction.setPrice(Double.parseDouble(price));
 		userAuctionService.create(userAuction);
-		return "redirect:/detail?idProduct=" + productId;
+		return "redirect:/detail?productId=" + productId;
 
 	}
 }

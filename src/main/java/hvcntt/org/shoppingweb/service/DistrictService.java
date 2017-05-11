@@ -9,4 +9,6 @@ public interface DistrictService {
 	List<District> getAll();
 
 	List<District> findByCity(City city);
+
+	District findById(String districtId);
 }

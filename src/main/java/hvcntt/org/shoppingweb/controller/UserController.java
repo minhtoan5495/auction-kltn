@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -46,6 +46,9 @@ public class UserController {
     @Autowired
     JavaMailSender mailSender;
 
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private static final String USER_INVALID = "Tên tài khoản hoặc mật khẩu không đúng !";
 
     private static final String USER_NON_ACTIVE = "Tài khoản chưa được kích hoạt !";
@@ -62,17 +65,17 @@ public class UserController {
 
     private static final String EXPIRED = "Link đã hết hạn !";
 
-    private final String PROTOCOL = "http://";
+    private static final String PROTOCOL = "http://";
 
-    private final String TOKEN_PARAMETER = "&token=";
+    private static final String TOKEN_PARAMETER = "&token=";
 
-    private final String MAIL_SUBJECT = "Kích hoạt tài khoản";
+    private static final String MAIL_SUBJECT = "Kích hoạt tài khoản";
 
-    private final String USERNAME_PARAMETER = "username=";
+    private static final String USERNAME_PARAMETER = "username=";
 
-    private final String URL = "/verifyAccount?";
+    private static final String URL = "/verifyAccount?";
 
-    private final String CONTENT = "Truy cập vào link bên dưới để kích hoạt tài khoản của bản." + "\n" + "Lưu ý: link chỉ có giới hạn trong vòng 1 ngày ! \r\n";
+    private static final String CONTENT = "Truy cập vào link bên dưới để kích hoạt tài khoản của bản." + "\n" + "Lưu ý: link chỉ có giới hạn trong vòng 1 ngày ! \r\n";
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
@@ -84,12 +87,14 @@ public class UserController {
         model.addAttribute("userModel", new UserDto());
         ModelAndView modelAndView = new ModelAndView();
         if (error != null) {
-            if(error.equals("userNonActive")){
+            if (error.equals("userNonActive")) {
                 model.addAttribute("error", USER_NON_ACTIVE);
-            }else if(error.equals("expired")){
+            }
+            if (error.equals("expired")) {
                 model.addAttribute("error", EXPIRED);
-                model.addAttribute("username" , username);
-            }else if(error.equals("userInvalid")){
+                model.addAttribute("username", username);
+            }
+            if (error.equals("userInvalid")) {
                 model.addAttribute("error", USER_INVALID);
             }
             String targetUrl = getRememberMeTargetUrlFromSession(request);
@@ -98,27 +103,36 @@ public class UserController {
                 modelAndView.addObject("home", true);
             }
         }
-        if(message != null){
-            model.addAttribute("message", VERIFY_MESSAGE);
+        if (message != null) {
+            if (message.equals("active")) {
+                model.addAttribute("message", VERIFY_MESSAGE);
+            }
+            if (message.equals("changePassword")) {
+                model.addAttribute("message", "Thay đổi password thành công." + "\nVui lòng đăng nhập lại !");
+            }
         }
         if (logout != null) {
-            model.addAttribute("message", "Successfully !!");
+            model.addAttribute("message", "Đăng xuất thành công !!");
         }
         modelAndView.setViewName("login");
         return modelAndView;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, Model model) throws UserNotFoundException {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password) throws UserNotFoundException {
         User user = userService.findByUsername(username);
-        if (user != null && !user.isActive()) {
-            return "redirect:/login?error="+"userNonActive";
-        } else if (user == null){
-            return "redirect:/login?error="+"userInvalid";
-        }else{
-            securityService.autoLogin(username, password);
-            return "redirect:/";
+        if (user == null) {
+            return "redirect:/login?error=" + "userInvalid";
+        } else{
+            if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
+                return "redirect:/login?error=" + "userInvalid";
+            }
+            if (!user.isActive()) {
+                return "redirect:/login?error=" + "userNonActive";
+            }
         }
+        securityService.autoLogin(username, password);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -153,7 +167,7 @@ public class UserController {
         final String token = UUID.randomUUID().toString();
         tokenToVerifyEmailService.createTokenForUser(userDto.getUsername(), token);
         mailSender.send(constructResetTokenEmail(getAppUrl(request), token, userDto));
-        return "redirect:/login?message="+"success";
+        return "redirect:/login?message=active";
     }
 
     @RequestMapping(value = "/activeAccount", method = RequestMethod.GET)
@@ -165,7 +179,7 @@ public class UserController {
         final String token = UUID.randomUUID().toString();
         tokenToVerifyEmailService.createTokenForUser(username, token);
         mailSender.send(constructResetTokenEmail(getAppUrl(request), token, userDto));
-        return "";
+        return "redirect:/login?message=active";
     }
 
     @RequestMapping(value = "/verifyAccount", method = RequestMethod.GET)
@@ -173,9 +187,9 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         boolean checkToken = tokenToVerifyEmailService.validateToken(username, token);
         if (!checkToken) {
-            modelAndView.setViewName("redirect:/login?error=expired&username="+username);
+            modelAndView.setViewName("redirect:/login?error=expired&username=" + username);
             return modelAndView;
-        }else{
+        } else {
             User user = userService.findByUsername(username);
             user.setActive(true);
             userService.save(user);

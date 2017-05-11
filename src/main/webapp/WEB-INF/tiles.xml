@@ -35,6 +35,11 @@
         <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/changePassword.jsp"></put-attribute>
     </definition>
+    <definition name="updateProfile" extends="profilePage">
+        <put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
+        <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
+        <put-attribute name="body" value="/view/profile/updateProfile.jsp"></put-attribute>
+    </definition>
     <definition name="orderDetail" extends="profilePage">
         <put-attribute name="title" value="Hóa đơn cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/orderDetail.jsp"></put-attribute>
@@ -70,10 +75,6 @@
     <definition name="forgetPassword" extends="definition">
         <put-attribute name="title" value="Forget Password"></put-attribute>
         <put-attribute name="body" value="/view/login--register/forgetPassword.jsp"></put-attribute>
-    </definition>
-    <definition name="resetPassword" extends="definition">
-        <put-attribute name="title" value="Reset Password"></put-attribute>
-        <put-attribute name="body" value="/view/login--register/changePassword.jsp"></put-attribute>
     </definition>
     <definition name="register" extends="registration">
         <put-attribute name="title" value="Đăng ký"></put-attribute>

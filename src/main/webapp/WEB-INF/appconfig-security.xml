@@ -17,6 +17,8 @@
         <security:intercept-url pattern="/checkout" access="isAuthenticated()" />
         <security:intercept-url pattern="/rating/*" access="isAuthenticated()" />
         <security:intercept-url pattern="/profile" access="isAuthenticated()" />
+        <security:intercept-url pattern="/updateProfile" access="isAuthenticated()" />
+        <security:intercept-url pattern="/changePassword" access="isAuthenticated()" />
         <security:form-login login-page="/login" username-parameter="username" password-parameter="password"
                     login-processing-url="/j_spring_security_check"
                     authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler"

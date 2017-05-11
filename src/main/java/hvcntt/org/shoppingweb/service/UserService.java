@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.service;
 import java.text.ParseException;
 import java.util.List;
 
+import hvcntt.org.shoppingweb.dao.dto.ProfileDto;
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
@@ -18,5 +19,5 @@ public interface UserService {
 	User findByPhone(String phone);
     void deleteUser(String username) throws UserNotFoundException;
 	void save(User user);
-	void resetPassword(UserDto userDto);
+    void changePassword(User user, String newPassword);
 }

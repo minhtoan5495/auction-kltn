@@ -39,7 +39,10 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
-    public String addAuction(Model model) {
+    public String addAuction(@RequestParam(value = "message", required = false) String message, Model model) {
+        if(message != null){
+            model.addAttribute("message", "Bạn vừa tạo sản phẩm là đấu giá nên bạn phải tạo phiên đấu giá cho nó !");
+        }
         TransactionType transactionType = transactionTypeService.findByName("Auction");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByTransactionType(transactionType)));
         model.addAttribute("auction", new AuctionDto());

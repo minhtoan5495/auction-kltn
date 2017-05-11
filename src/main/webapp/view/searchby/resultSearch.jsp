@@ -37,13 +37,13 @@
 								<div class="single-product-item">
 									<div class="single-product-image">
 										<a
-											href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><img
+											href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img
 											style="width: 253px; height: 250px;"
 											src="resource/images/product/${product.images.get(i).imageUrl }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
-													href="${pageContext.request.contextPath }/detail?idproduct=${product.productId}"><i
+													href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><i
 														class="fa fa-search"></i></a></li>
 												<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
 												</li>

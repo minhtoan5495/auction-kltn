@@ -16,6 +16,11 @@
       href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datetimepicker/css/datetimepicker.css"/>
 <section id="main-content" ng-app="productForAuction">
     <section class="wrapper">
+        <c:if test="${not empty message }">
+            <div class="alert alert-warning">
+                    ${message}
+            </div>
+        </c:if>
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">

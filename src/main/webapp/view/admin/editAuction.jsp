@@ -35,7 +35,7 @@
                                 <div class="col-lg-7">
                                     <form:input path="endTime" name="endTime" id="endTime" value="${auction.endTime}"
                                                 class="form-control form-control-inline input-medium default-date-picker"
-                                                type="text" placeholder="Choose  start date"
+                                                type="text" placeholder="Choose end date"
                                     />
                                 </div>
                             </div>

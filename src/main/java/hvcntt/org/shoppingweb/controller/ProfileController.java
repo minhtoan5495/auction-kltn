@@ -1,27 +1,32 @@
 package hvcntt.org.shoppingweb.controller;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 //import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import hvcntt.org.shoppingweb.dao.dto.ProfileDto;
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
-import hvcntt.org.shoppingweb.dao.entity.Invoice;
-import hvcntt.org.shoppingweb.dao.entity.Parent;
-import hvcntt.org.shoppingweb.dao.entity.User;
+import hvcntt.org.shoppingweb.dao.entity.*;
 //import hvcntt.org.shoppingweb.dao.entity.InvoiceStatus;
 import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProfileController {
@@ -39,6 +44,16 @@ public class ProfileController {
 
     @Autowired
     ParentService parentService;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    CityService cityService;
+
+    @Autowired
+    DistrictService districtService;
+
 
     @ModelAttribute("parents")
     public List<Parent> parent() {
@@ -74,22 +89,89 @@ public class ProfileController {
         return "redirect:/orderDetail?invoiceId=" + invoiceId;
     }
 
-    @RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
-    public String resetPassword(Model model, Principal principal) throws UserNotFoundException {
-        String username = principal.getName();
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    public String resetPassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
+                                @RequestParam("confirmPassword") String confirmPassword,
+                                HttpServletRequest request, HttpServletResponse response) throws UserNotFoundException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
         User user = userService.findByUsername(username);
-        model.addAttribute("user", user);
-        return "resetPassword";
-    }
-
-    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public String resetPassword(UserDto userDto) throws UserNotFoundException {
-        userService.resetPassword(userDto);
-        return "redirect:/home";
+        if(oldPassword.equals("") || newPassword.equals("")){
+            return "redirect:/changePassword?error=invalid";
+        }
+        if(!bCryptPasswordEncoder.matches(oldPassword, user.getPassword())){
+            return "redirect:/changePassword?error=oldPasswordInvalid";
+        }
+        if(!confirmPassword.equals(newPassword)){
+            return "redirect:/changePassword?error=confirmInvalid";
+        } else {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+            userService.changePassword(user, newPassword);
+            return "redirect:/login?message=changePassword";
+        }
     }
 
     @RequestMapping(value="/changePassword", method = RequestMethod.GET)
-    public String changePassword(){
+    public String changePassword(@RequestParam(value = "error", required = false) String error, Model model){
+        if(error != null){
+            if(error.equals("confirmInvalid")){
+                model.addAttribute("error", "Nhập lại mật khẩu không đúng !");
+            }
+            if(error.equals("invalid")){
+                model.addAttribute("error", "Vui lòng nhập đầy đủ thông tin !");
+            }
+            if(error.equals("oldPasswordInvalid")){
+                model.addAttribute("error", "Bạn nhập sai mật khẩu hiện tại !");
+            }
+        }
         return "changePassword";
+    }
+    @RequestMapping(value="/updateProfile", method = RequestMethod.GET)
+    public String updateProfile(Model model) throws UserNotFoundException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        model.addAttribute("profileDto", new ProfileDto());
+        model.addAttribute("cities", cityService.getAll());
+        return "updateProfile";
+    }
+
+    @RequestMapping(value="/updateProfile", method = RequestMethod.POST)
+    public String saveProfile(@ModelAttribute ProfileDto profileDto, HttpServletRequest request) throws UserNotFoundException, ParseException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userService.findByUsername(username);
+        String date = request.getParameter("date");
+        Date birthday = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+        profileDto.setBirthday(birthday);
+        profileDto.setCityId(request.getParameter("cityId"));
+        profileDto.setDistrictId(request.getParameter("districtId"));
+        setInfoFromProfileToUser(user, profileDto);
+        userService.save(user);
+        return "redirect:/profile";
+    }
+
+    private void setInfoFromProfileToUser(User user, ProfileDto profileDto) {
+        user.setName(profileDto.getName());
+        user.setCity(cityService.findById(profileDto.getCityId()));
+        user.setDistrict(districtService.findById(profileDto.getDistrictId()));
+        user.setBirthday(profileDto.getBirthday());
+        user.setAddress(profileDto.getAddress());
+        user.setPhone(profileDto.getPhone());
+    }
+
+    @RequestMapping(value = "/getDistrict", method = RequestMethod.GET)
+    public @ResponseBody
+    List<District> getDistrict(@RequestParam(value = "cityId") String cityId){
+        City city = cityService.findById(cityId);
+        return districtService.findByCity(city);
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 }

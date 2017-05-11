@@ -55,11 +55,11 @@ public class CartPageController {
         return "cart";
     }
 
-    private int isExist(String idProduct, HttpSession session) {
+    private int isExist(String productId, HttpSession session) {
         @SuppressWarnings("unchecked")
         List<CartItem> items = (List<CartItem>) session.getAttribute("carts");
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getProduct().getProductId().equals(idProduct)) {
+            if (items.get(i).getProduct().getProductId().equals(productId)) {
                 return i;
             }
         }

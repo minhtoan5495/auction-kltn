@@ -18,7 +18,7 @@
         </c:if>
     </c:if>
     <c:if test="${not empty message }">
-        <div class="error_check">
+        <div class="alert alert-success">
                 ${message}
         </div>
     </c:if>

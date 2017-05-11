@@ -9,6 +9,16 @@ body {
     background-size: cover;
 }
 
+.message_check {
+    padding: 10px;
+    border: 1px solid transparent;
+    color: #1526ff;
+    background-color: #23f254;
+    border-color: #1ceb4c;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
 .form-login {
     background: rgba(10, 240, 255, 0.08);
     width: 350px;

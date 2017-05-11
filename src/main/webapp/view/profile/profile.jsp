@@ -12,7 +12,6 @@
                                 <img alt="" src="http://bootdey.com/img/Content/avatar/avatar1.png">
                             </div>
                             <div class="profile-infor">
-                                <p class="profile-infor-name" style="text-align: center;">${user.username }</p>
                                 <label>Thông tin cá nhân</label>
                                 <p>
                                     <strong>Họ và tên</strong>: ${user.name}
@@ -25,8 +24,18 @@
                                         <strong>Địa chỉ</strong>: ${user.address }
                                     </p>
                                 </c:if>
+                                <c:if test="${not empty user.district}">
+                                    <p><strong>Quận</strong>: ${user.district.districtName }</p>
+                                </c:if>
+                                <c:if test="${not empty user.city}">
+                                    <p><strong>Thành phố</strong>: ${user.city.cityName }</p>
+                                </c:if>
                                 <p>
                                     <strong>Số điện thoại</strong>: ${user.phone }
+                                </p>
+                                <p>
+                                    <strong>Ngày sinh</strong>: <fmt:formatDate value="${user.birthday }"
+                                                                                pattern="dd-MM-yyyy"/>
                                 </p>
                             </div>
                         </div>
@@ -47,38 +56,20 @@
                             </ul>
                             <div class="tab-content main_content_profile">
                                 <div id="home" class="tab-pane fade in active" style="margin-top: 10px">
-                                    <h4>Quản lý tài khoản</h4>
                                     <div class="row">
+                                        <div class="col-sm-2"></div>
                                         <div class="col-sm-4">
                                             <div class="profile_info_item">
                                                 <h4>Thông tin cá nhân</h4>
-                                                <p>${pageContext.request.userPrincipal.name }</p>
-                                                <p>${user.email }</p>
-                                                <p>${user.phone }</p>
                                                 <a href="${pageContext.request.contextPath }/changePassword">Thay đổi mật khẩu</a><br> <a href="#">Thay đổi
                                                 Email</a>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="profile_info_item">
-                                                <h4>Thông tin địa chỉ giao hàng</h4>
-                                                <p>${user.name }</p>
-                                                <c:if test="${not empty user.city}">
-                                                    <p>${user.district.districtName }</p>
-                                                    <p>${user.city.cityName }</p>
-                                                </c:if>
-                                                <c:if test="${empty user.city}">
-                                                    <p>Bạn chưa thêm địa chỉ ! </p>
-                                                </c:if>
-                                                <br>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="profile_info_item">
-                                                <button class="btn btn-danger btn-edit-profile">
+                                                <a href="${pageContext.request.contextPath }/updateProfile" type="submit" class="btn btn-danger btn-edit-profile">
                                                     <i class="fa fa-edit"></i> Cập nhật thông tin
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 profile_item_order_home">
@@ -97,7 +88,7 @@
                                                         <tr>
                                                                 <%--  <td class="hidden">${invoice.invoiceId }</td> --%>
                                                             <td><fmt:formatDate value="${invoice.createDate }"
-                                                                                pattern="dd-MM-yyyy"/></td>
+                                                                                pattern="yyyy-MM-dd"/></td>
                                                             <td><fmt:formatNumber
                                                                     value="${invoice.invoiceDetails.get(i).product.price}"
                                                                     type="number"/> đ

@@ -128,41 +128,6 @@
                                 <form:errors path="phone" cssClass="error"/>
                             </div>
                         </div>
-                            <%--<div class="form_input_register">--%>
-                            <%--<div class="form-group">--%>
-                            <%--<div class='input-group'>--%>
-                            <%--<form:input data-validation="required"--%>
-                            <%--data-validation-error-msg="Bạn chưa nhập địa chỉ "--%>
-                            <%--class="input" type="text" placeholder="Địa chỉ" id="address"--%>
-                            <%--name="address"--%>
-                            <%--path="address"></form:input>--%>
-                            <%--<span class="input-group-addon">--%>
-                            <%--<span class="glyphicon glyphicon-home"></span>--%>
-                            <%--</span>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <%--<div class="error">--%>
-                            <%--<form:errors path="address" cssClass="error"/>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <%--<div class="form_input_register">--%>
-                            <%--<div class="form-group">--%>
-                            <%--<div class='input-group date' id='datetimepicker'>--%>
-                            <%--<form:input data-validation="required"--%>
-                            <%--data-validation-error-msg="Bạn chưa chọn ngày sinh "--%>
-                            <%--class="input" type="text" placeholder="Chọn ngày sinh của bạn"--%>
-                            <%--id="birthday"--%>
-                            <%--name="birthday"--%>
-                            <%--path="birthday"></form:input>--%>
-                            <%--<span class="input-group-addon">--%>
-                            <%--<span class="glyphicon glyphicon-calendar"></span>--%>
-                            <%--</span>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <%--<div class="error">--%>
-                            <%--<form:errors path="birthday" cssClass="error"/>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
                     </div>
                     <div class="row">
                         <div class="col-sm-2"></div>

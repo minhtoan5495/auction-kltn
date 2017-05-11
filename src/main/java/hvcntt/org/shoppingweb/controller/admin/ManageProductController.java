@@ -67,7 +67,13 @@ public class ManageProductController {
     @RequestMapping(value = "/admin/saveProduct", method = RequestMethod.POST)
     public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto) throws ParseException {
         productservice.save(productDto);
-        return "redirect:/admin/manageProduct";
+        TransactionType transactionType = transactionTypeService.findById(productDto.getTransactionTypeId());
+        if(transactionType.getTransactionTypeName().equals("Sale")){
+            return "redirect:/admin/manageProduct";
+        }else{
+            return "redirect:/admin/addAuction?message=required";
+        }
+
     }
 
     @RequestMapping(value = "/admin/updateProduct", method = RequestMethod.POST)

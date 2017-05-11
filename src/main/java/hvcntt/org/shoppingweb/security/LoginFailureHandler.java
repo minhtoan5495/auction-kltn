@@ -20,10 +20,10 @@ import java.text.SimpleDateFormat;
 public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Autowired
-    private UserAttemptsService userAttemptsService;
+    UserAttemptsService userAttemptsService;
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,

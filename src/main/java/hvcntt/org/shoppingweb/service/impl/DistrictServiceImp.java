@@ -25,4 +25,9 @@ public class DistrictServiceImp implements DistrictService {
         return districtRepository.findByCity(city);
     }
 
+    @Override
+    public District findById(String districtId) {
+        return districtRepository.findOne(districtId);
+    }
+
 }
