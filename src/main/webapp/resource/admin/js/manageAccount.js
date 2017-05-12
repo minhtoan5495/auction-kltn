@@ -11,7 +11,6 @@ var TableAccount = function () {
                 for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
                     oTable.fnUpdate(aData[i], nRow, i, false);
                 }
-
                 oTable.fnDraw();
             }
 

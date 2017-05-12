@@ -86,9 +86,8 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/searchName")
-    public String searchPage(Model model,HttpServletRequest request) {
+    public String searchPage(Model model, HttpServletRequest request) {
     	String name = request.getParameter("name");
-        model.addAttribute("parents", parentService.findAll());
         PagedListHolder pagedListHolder = new PagedListHolder(productService.findByNameContaining(name));
         int page = ServletRequestUtils.getIntParameter(request, "p", 0);
         pagedListHolder.setPage(page);

@@ -48,22 +48,22 @@ public class ProductServiceImpl implements ProductService {
     private String UPLOAD_DIR_SRC;
 
     @Autowired
-    private HttpServletRequest request;
+    HttpServletRequest request;
 
     @Autowired
-    private ImageRepository imageRepository;
+    ImageRepository imageRepository;
 
     @Autowired
-    private ProductRepository productRepository;
+    ProductRepository productRepository;
 
     @Autowired
-    private TransactionTypeRepository transactionTypeRepository;
+    TransactionTypeRepository transactionTypeRepository;
 
     @Autowired
-    private SupplierRepository supplierRepository;
+    SupplierRepository supplierRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
     @Override
     public List<Product> getAll() {

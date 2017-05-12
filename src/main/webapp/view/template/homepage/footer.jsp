@@ -82,16 +82,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <div class="store-information">
-                                    <h2>Địa chỉ cửa hàng</h2>
-                                    <ul>
-                                        <div class="footer-map">
-                                            <img src="resource/images/banner/map.png" style="width:100%">
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

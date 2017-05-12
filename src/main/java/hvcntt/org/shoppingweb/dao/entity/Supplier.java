@@ -9,71 +9,72 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "supplier")
-@NamedQuery(name="Supplier.findAll", query="SELECT s FROM Supplier s")
+@NamedQuery(name = "Supplier.findAll", query = "SELECT s FROM Supplier s")
 public class Supplier implements Serializable {
-	private static final long serialVersionUID = 3069622884326217400L;
+    private static final long serialVersionUID = 3069622884326217400L;
 
-	@Id
-	@Column(name="supplier_id")
-	private String supplierId;
+    @Id
+    @Column(name = "supplier_id")
+    private String supplierId;
 
-	@Column(name="supplier_name")
-	private String supplierName;
+    @Column(name = "supplier_name")
+    private String supplierName;
 
-	//bi-directional many-to-one association to Product
-	@OneToMany(mappedBy="supplier", fetch = FetchType.EAGER)
-	@JsonManagedReference
-	private List<Product> products;
-	@Column(name="logo")
-	private String logo;
-	public Supplier() {
-		setSupplierId(UUID.randomUUID().toString());
-	}
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Product> products;
 
-	public String getSupplierId() {
-		return this.supplierId;
-	}
+    @Column(name = "logo")
+    private String logo;
 
-	public void setSupplierId(String supplierId) {
-		this.supplierId = supplierId;
-	}
+    public Supplier() {
+        setSupplierId(UUID.randomUUID().toString());
+    }
 
-	public String getSupplierName() {
-		return this.supplierName;
-	}
+    public String getSupplierId() {
+        return this.supplierId;
+    }
 
-	public void setSupplierName(String supplierName) {
-		this.supplierName = supplierName;
-	}
+    public void setSupplierId(String supplierId) {
+        this.supplierId = supplierId;
+    }
 
-	public List<Product> getProducts() {
-		return this.products;
-	}
+    public String getSupplierName() {
+        return this.supplierName;
+    }
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
 
-	public Product addProduct(Product product) {
-		getProducts().add(product);
-		product.setSupplier(this);
+    public List<Product> getProducts() {
+        return this.products;
+    }
 
-		return product;
-	}
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
-	public Product removeProduct(Product product) {
-		getProducts().remove(product);
-		product.setSupplier(null);
+    public Product addProduct(Product product) {
+        getProducts().add(product);
+        product.setSupplier(this);
 
-		return product;
-	}
+        return product;
+    }
 
-	public String getLogo() {
-		return logo;
-	}
+    public Product removeProduct(Product product) {
+        getProducts().remove(product);
+        product.setSupplier(null);
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
+        return product;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
 }

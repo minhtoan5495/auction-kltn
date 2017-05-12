@@ -29,7 +29,7 @@ public class MenuController {
     }
 
     @Autowired
-    private CategoryService categoryservice;
+    CategoryService categoryservice;
 
     @RequestMapping(value = "/category")
     public String findByCategory(@RequestParam("categoryId") String categoryId, Model model) {

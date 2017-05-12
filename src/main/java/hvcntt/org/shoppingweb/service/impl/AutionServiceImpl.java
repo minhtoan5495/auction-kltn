@@ -98,4 +98,9 @@ public class AutionServiceImpl implements AuctionService {
             auctionRepository.save(auction);
         }
     }
+
+    @Override
+    public void save(Auction auction) {
+        auctionRepository.save(auction);
+    }
 }

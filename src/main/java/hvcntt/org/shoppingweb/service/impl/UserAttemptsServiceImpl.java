@@ -17,10 +17,10 @@ import java.util.UUID;
 public class UserAttemptsServiceImpl implements UserAttemptsService {
 
 	@Autowired
-	private UserAttemptsRepository userAttemptsRepository;
+	UserAttemptsRepository userAttemptsRepository;
 
 	@Autowired
-	private UserRepository userRepository;
+	UserRepository userRepository;
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)

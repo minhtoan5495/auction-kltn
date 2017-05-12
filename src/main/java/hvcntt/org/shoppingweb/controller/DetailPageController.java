@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class DetailPageController {
+
     @Autowired
     ImageService imageservice;
 

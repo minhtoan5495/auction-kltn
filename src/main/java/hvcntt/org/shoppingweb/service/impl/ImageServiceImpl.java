@@ -14,7 +14,7 @@ import hvcntt.org.shoppingweb.dao.repository.ImageRepository;
 public class ImageServiceImpl implements ImageService {
 
 	@Autowired
-	private ImageRepository imageRepository;
+	ImageRepository imageRepository;
 
 	@Override
 	public List<Image> getAll() {

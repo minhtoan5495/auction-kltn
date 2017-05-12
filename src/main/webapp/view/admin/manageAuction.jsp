@@ -34,8 +34,8 @@
                         <tbody >
                             <tr ng-repeat="auction in auctions" class="">
                                 <td hidden="hidden">{{auction.auctionId}}</td>
-                                <td>{{auction.startTime | date:'yyyy-MM-dd'}}</td>
-                                <td>{{auction.endTime | date:'yyyy-MM-dd'}}</td>
+                                <td>{{auction.startTime | date:'hh:mm - yyyy-MM-dd'}}</td>
+                                <td>{{auction.endTime | date:'hh:mm - yyyy-MM-dd'}}</td>
                                 <td>{{auction.status}}</td>
                                 <td>{{auction.product.name}}</td>
                                 <td><a class="" href="${pageContext.request.contextPath }/admin/updateAuction?auctionId={{auction.auctionId}}">Edit</a></td>

@@ -94,6 +94,7 @@
                             <p class="contact-item-by-phone">Chăm sóc khách hàng: 01665102292</p>
                             <p class="contact-item-by-phone">Đổi trả sản phẩm: 01665102292</p>
                         </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.103893178673!2d108.18011541633761!3d16.06009764534645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421904eb5b76d3%3A0x12df94ed735ea070!2zMzcgTmd1eeG7hW4gUGjGsOG7m2MgTmd1ecOqbiwgQW4gS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1494576939594" width="700" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </form>
                 </div>
             </div>

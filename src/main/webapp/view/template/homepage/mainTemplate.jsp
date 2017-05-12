@@ -60,8 +60,7 @@
     <link href="${pageContext.request.contextPath }/resource/css/simplegallery.demo1.min.css"
           rel="stylesheet">
 </head>
-
-<body>
+<body style="font-family:Oxygen,Helvetica,sans-serif;">
 <header>
     <tiles:insertAttribute name="header"></tiles:insertAttribute>
 </header>
@@ -75,20 +74,6 @@
 <footer style="margin-top: 20px;">
     <tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </footer>
-<body style="font-family:Oxygen,Helvetica,sans-serif;">
-	<header>
-		<tiles:insertAttribute name="header"></tiles:insertAttribute>
-	</header>
-	<%-- <tiles:insertAttribute name="slide"></tiles:insertAttribute> --%>
-	<tiles:insertAttribute name="body"></tiles:insertAttribute>
-	<div class="scoll-item pull-right">
-		<a href="#" class="back-to-top">
-			<img class="img-scroll-item" src="${pageContext.request.contextPath }/resource/images/logo/scroll.png">
-		</a>
-	</div>
-	<footer style="margin-top: 20px;">
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-	</footer>
 </body>
 <script
         src="${pageContext.request.contextPath}/resource/admin/js/jquery.js"></script>

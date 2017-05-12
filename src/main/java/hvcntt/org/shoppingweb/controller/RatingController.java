@@ -27,13 +27,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RatingController {
 
     @Autowired
-    private ProductService productService;
+    ProductService productService;
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Autowired
-    private RatingService ratingService;
+    RatingService ratingService;
 
     @RequestMapping(value = "/rating/{productId}", method = RequestMethod.POST)
     public String createComment(@PathVariable("productId") String productId,

@@ -1,10 +1,12 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +43,7 @@ public class ManageAuctionController {
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
     public String addAuction(@RequestParam(value = "message", required = false) String message, Model model) {
         if(message != null){
-            model.addAttribute("message", "Bạn vừa tạo sản phẩm là đấu giá nên bạn phải tạo phiên đấu giá cho nó !");
+            model.addAttribute("message", "Bạn vừa tạo sản phẩm là đấu giá nên bạn cần tạo phiên đấu giá cho nó !");
         }
         TransactionType transactionType = transactionTypeService.findByName("Auction");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByTransactionType(transactionType)));
@@ -52,7 +54,16 @@ public class ManageAuctionController {
     @RequestMapping(value = "/admin/saveAuction", method = RequestMethod.GET)
     public String saveAuction(@RequestParam("startDate") String startDate,
                               @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
-        auctionService.save(startDate, endDate, productIds);
+        for (Product product: productService.findByIds(productIds)) {
+            Auction auction = auctionService.findByProduct(product);
+            if(auction != null){
+                auction.setEndTime(new SimpleDateFormat("hh:ii - yyyy-MM-dd ").parse(endDate));
+                auction.setStartTime(new SimpleDateFormat("hh:ii - yyyy-MM-dd").parse(startDate));
+                auctionService.save(auction);
+            }else{
+                auctionService.save(startDate, endDate, productIds);
+            }
+        }
         return "redirect:/admin/manageAuction";
     }
 

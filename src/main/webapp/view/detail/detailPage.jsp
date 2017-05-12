@@ -21,7 +21,7 @@
 				<a href="#" class="main_header_detail_item_link"> > </a>
 			</div>
 			<div class="main_header_detail_item">
-				<a href="#" class="main_header_detail_item_link">${product.category.categoryName }</a>
+				<a href="${pageContext.request.contextPath }/productByCategory/${product.category.categoryId}" class="main_header_detail_item_link">${product.category.categoryName }</a>
 			</div>
 			<div class="main_header_detail_item">
 				<a href="#" class="main_header_detail_item_link"> > </a>

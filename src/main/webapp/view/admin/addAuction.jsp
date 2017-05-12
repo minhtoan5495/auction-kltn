@@ -35,8 +35,8 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-3">Choose Time</label>
                                 <div class="col-md-4">
-                                    <div class="input-group input-large" data-date="2013-07-13"
-                                         data-date-format="yyyy-MM-dd">
+                                    <div class="input-group input-large" data-date=""
+                                         data-date-format="hh:ii - yyyy-mm-dd">
                                         <input ng-model="startDate" readonly type="text" placeholder="Choose start date" id="startDate" class="form-control dpd1"
                                                name="startDate">
                                         <span class="input-group-addon">To</span>

@@ -23,10 +23,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	private static Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
 	@Autowired
-	private UserRepository userRepository;
+	UserRepository userRepository;
 
 	@Autowired
-	private UserAttemptsService userAttemptsService;
+	UserAttemptsService userAttemptsService;
 
 	@Override
 	@Transactional(readOnly=true)

@@ -20,13 +20,13 @@ import hvcntt.org.shoppingweb.service.DiscountService;
 @Controller
 public class ManageDiscountController {
     @Autowired
-    private DiscountService discountService;
+    DiscountService discountService;
 
     @Autowired
-    private ProductService productService;
+    ProductService productService;
 
     @Autowired
-    private TransactionTypeService transactionTypeService;
+    TransactionTypeService transactionTypeService;
 
     @RequestMapping(value = "/admin/manageDiscount")
     public String getAllDiscount(Model model) {

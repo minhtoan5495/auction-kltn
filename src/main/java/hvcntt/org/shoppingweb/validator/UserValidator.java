@@ -15,7 +15,7 @@ import hvcntt.org.shoppingweb.service.UserService;
 public class UserValidator implements Validator {
 
 	@Autowired
-	private UserService userService;
+	UserService userService;
 
 	public boolean supports(Class<?> aClass) {
         return User.class.equals(aClass);

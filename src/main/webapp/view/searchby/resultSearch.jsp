@@ -39,7 +39,7 @@
 										<a
 											href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img
 											style="width: 253px; height: 250px;"
-											src="resource/images/product/${product.images.get(i).imageUrl }"></a>
+											src="${pageContext.request.contextPath }/resource/images/product/${product.images.get(i).imageUrl }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
@@ -126,14 +126,6 @@
 							</div>
 						</div>
 					</c:forEach>
-					<%-- <jsp:useBean id="pagedListHolder1" scope="request"
-						type="org.springframework.beans.support.PagedListHolder">
-					</jsp:useBean>
-					<c:url value="/home" var="pagedLink1">
-						<c:param name="page" value="~"></c:param>
-					</c:url>
-					<tg:pagingAuction pagedLink1="${pagedLink1 }"
-						pagedListHolder1="${pagedListHolder1 }"></tg:pagingAuction> --%>
 				</div>
 			</div>
 		</div>

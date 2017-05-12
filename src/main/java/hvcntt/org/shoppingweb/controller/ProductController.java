@@ -1,14 +1,19 @@
 package hvcntt.org.shoppingweb.controller;
 
+import hvcntt.org.shoppingweb.dao.entity.Parent;
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.TransactionType;
+import hvcntt.org.shoppingweb.service.ParentService;
 import hvcntt.org.shoppingweb.service.ProductService;
+import hvcntt.org.shoppingweb.service.TransactionTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -18,11 +23,40 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
+    ParentService parentService;
+
+    @Autowired
     ProductService productService;
 
-    @RequestMapping(value = "/productByCategory", method = RequestMethod.GET)
-    public String findProductByCategory(@RequestParam(value = "categoryId") String categoryId, Model model){
+    @Autowired
+    TransactionTypeService transactionTypeService;
+
+    @ModelAttribute("parents")
+    public List<Parent> parent() {
+        return parentService.findAll();
+    }
+
+    @RequestMapping(value = "/productByCategory/{categoryId}", method = RequestMethod.GET)
+    public String findProductByCategory(@PathVariable String categoryId, Model model, HttpServletRequest request){
         List<Product> products = productService.findByCategory(categoryId);
+        PagedListHolder pagedListHolder = new PagedListHolder(products);
+        int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+        pagedListHolder.setPage(page);
+        pagedListHolder.setPageSize(4);
+        model.addAttribute("pagedListHolder", pagedListHolder);
+        model.addAttribute("products", products);
+        return "resultSearch";
+    }
+
+    @RequestMapping(value = "/productByTypeAuction", method = RequestMethod.GET)
+    public String productByTypeAuction(Model model, HttpServletRequest request){
+        TransactionType transactionType = transactionTypeService.findByName("Auction");
+        List<Product> products = productService.findByProductTransactionType(transactionType);
+        PagedListHolder pagedListHolder = new PagedListHolder(products);
+        int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+        pagedListHolder.setPage(page);
+        pagedListHolder.setPageSize(4);
+        model.addAttribute("pagedListHolder", pagedListHolder);
         model.addAttribute("products", products);
         return "resultSearch";
     }

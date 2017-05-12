@@ -6,7 +6,7 @@
     $(function(){
         window.prettyPrint && prettyPrint();
         $('.default-date-picker').datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'yyyy-MM-dd HH:MM:SS',
             autoclose: true,
             todayBtn: true,
         });
@@ -77,7 +77,7 @@ $(".form_datetime-component").datetimepicker({
 });
 
 $(".form_datetime-adv").datetimepicker({
-    format: "dd MM yyyy - hh:ii",
+    format: "hh:ii - yyyy-mm-dd",
     autoclose: true,
     todayBtn: true,
     startDate: "2013-02-14 10:00",

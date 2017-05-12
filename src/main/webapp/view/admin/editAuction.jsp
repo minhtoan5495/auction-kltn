@@ -25,7 +25,7 @@
                                 <label class="control-label col-lg-3">Start Time</label>
                                 <div class="col-lg-7">
                                     <form:input path="startTime" name="startTime" id="startTime" value="${auction.startTime}"
-                                                class="form-control form-control-inline input-medium default-date-picker"
+                                                class="form-control form-control-inline input-medium form_datetime-adv"
                                                 type="text" placeholder="Choose  start date"
                                     />
                                 </div>
@@ -34,7 +34,7 @@
                                 <label class="control-label col-lg-3">End Time</label>
                                 <div class="col-lg-7">
                                     <form:input path="endTime" name="endTime" id="endTime" value="${auction.endTime}"
-                                                class="form-control form-control-inline input-medium default-date-picker"
+                                                class="form-control form-control-inline input-medium form_datetime-adv"
                                                 type="text" placeholder="Choose end date"
                                     />
                                 </div>

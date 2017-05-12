@@ -23,10 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DiscountServiceImpl implements DiscountService {
     @Autowired
-    private DiscountRepository discountRepository;
+    DiscountRepository discountRepository;
 
     @Autowired
-    private ProductService productService;
+    ProductService productService;
 
     @Override
     public List<Discount> getAll() {
