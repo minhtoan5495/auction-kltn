@@ -308,7 +308,19 @@ div.etalage_description.rtl {
     direction: rtl;
     text-align: right
 }
-
+.detail-win-item{
+	text-align: center;
+}
+.detail-win-item img{
+	padding: 10px;
+}
+.detail-win-title{
+	color: rgb(61, 255, 0);
+}
+.detail-user-win{
+	font-size: 30px;
+	color: #ff8300;
+}
 @-webkit-keyframes color-change {
     0% {
         color: red;

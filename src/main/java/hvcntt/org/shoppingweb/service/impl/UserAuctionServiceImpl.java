@@ -3,6 +3,8 @@ package hvcntt.org.shoppingweb.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import hvcntt.org.shoppingweb.dao.entity.Auction;
@@ -29,5 +31,11 @@ public class UserAuctionServiceImpl implements UserAuctionService {
     public List<Auction> findByUser(User user) {
         return userAuctionRepository.findByUser(user);
     }
+
+	@Override
+	public List<UserAuction> findByAuction(Auction auction) {
+		// TODO Auto-generated method stub
+		return userAuctionRepository.findByAuction(auction,new PageRequest(0, 1,Direction.DESC,"price")).getContent();
+	}
 
 }

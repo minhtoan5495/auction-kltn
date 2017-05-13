@@ -17,7 +17,7 @@ $(document).ready(function() {
      */
     var nCloneTh = document.createElement( 'th' );
     var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="/resource/admin/assets/advanced-datatable/details_open.png">';
+    nCloneTd.innerHTML = '<img src="/AuctionWeb/resource/admin/assets/advanced-datatable/details_open.png">';
     nCloneTd.className = "center";
 
     $('#manageProductTable thead tr').each( function () {

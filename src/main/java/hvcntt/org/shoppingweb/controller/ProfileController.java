@@ -131,6 +131,7 @@ public class ProfileController {
         model.addAttribute("user", user);
         model.addAttribute("profileDto", new ProfileDto());
         model.addAttribute("cities", cityService.getAll());
+        model.addAttribute("districts", districtService.getAll());
         return "updateProfile";
     }
 

@@ -19,19 +19,9 @@
 			<div class="content-page">
 				<div class="row">
 					<h4 style="margin-left: 15px">${message}</h4>
-					<div class="dropdown search-price-item">
-						<button class="btn dropdown-toggle btn-supplier-item"
-							type="button" data-toggle="dropdown">
-							Lọc theo giá tiền <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu supplier-dropdown-item">
-							<li><a
-								href="${pageContext.request.contextPath }/filterpriceHightoLower">Giá
-									cao đến giá thấp</a></li>
-							<li><a href="#">Giá thấp đến giá cao</a></li>
-						</ul>
-					</div>
 					<c:forEach var="product" items="${pagedListHolder.pageList }">
+						<jsp:useBean id="currentDate" type="java.util.Date" scope="request"></jsp:useBean>
+						<fmt:formatDate var="now" value="${currentDate}" pattern="yyyy-MM-dd"/> 
 						<div class="col-sm-3 new-product-main">
 							<div class="new-product">
 								<div class="single-product-item">
@@ -57,8 +47,10 @@
 											<p class="single-product-infor-name-title">${product.name }</p>
 										</div>
 										<c:if test="${not empty (product.discounts) }">
+											<c:if test="${product.discounts.get(i).endDate >= now }">
 											<div class="single-product-inforsale">Giảm giá
 												${product.discounts.get(i).discountPercent }%</div>
+										</c:if>
 										</c:if>
 										<div class="single-product-infor-name">
 											<p>
@@ -68,7 +60,7 @@
 										</div>
 										<div class="single-product-inforprice">
 											<c:choose>
-												<c:when test="${not empty(product.discounts) }">
+												<c:when test="${not empty(product.discounts) and product.discounts.get(i).endDate >= now }">
 													<strike style="color: black"> <fmt:formatNumber
 															value="${product.price}" type="number" /> đ
 													</strike>
@@ -82,7 +74,7 @@
 											</c:choose>
 										</div>
 										<div class="single-product-inforprice">
-											<c:if test="${not empty(product.discounts)  }">
+											<c:if test="${not empty(product.discounts) and product.discounts.get(i).endDate >= now  }">
 												<p>
 													<fmt:formatNumber
 														value="${(product.price)-((product.price*product.discounts.get(i).discountPercent)/100)}"
@@ -91,31 +83,27 @@
 												</p>
 											</c:if>
 										</div>
-										<c:choose>
-											<c:when
-												test="${product.transactionType.transactionTypeId==2 }">
-												<div class="single-product-inforsale">
-													<input hidden value="${product.productId}"
-														id="productId"> <a
-														href="${pageContext.request.contextPath }/addCart?productId=${product.productId}">
-														<button class="btn btn-countdown">
-															<i class="fa fa-shopping-cart"></i> MUA NGAY
-														</button>
-													</a>
-												</div>
+										<div class="single-product-btn">
+											<input hidden value="${product.productId}" id="productId">
+											<c:choose>
+											<c:when test="${product.transactionType.transactionTypeId==2 }">
+											<a
+												href="${pageContext.request.contextPath }/addCart?productId=${product.productId}">
+												<button class="btn  btn-countdown">
+													<i class="fa fa-shopping-cart"></i> MUA NGAY
+												</button>
+											</a>
 											</c:when>
 											<c:otherwise>
-												<div class="single-product-inforsale">
-													<input hidden value="${product.productId}"
-														id="productId"> <a
-														href="${pageContext.request.contextPath }/detail?productId=${product.productId}">
-														<button class="btn btn-countdown">
-															<i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
-														</button>
-													</a>
-												</div>
+											<a
+												href="${pageContext.request.contextPath }/detail?productId=${product.productId}">
+												<button class="btn  btn-countdown">
+													<i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
+												</button>
+											</a>
 											</c:otherwise>
-										</c:choose>
+											</c:choose>
+										</div>
 										<div class="single-product-inforrating">
 											<div class="rating-box">
 												<span>(Có ${product.ratings.size() } nhận xét)</span>

@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.controller;
 
+import java.util.Date;
 import java.util.HashSet;
 //import java.security.Principal;
 import java.util.List;
@@ -12,6 +13,9 @@ import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,7 +47,10 @@ public class DetailPageController {
 
     @Autowired
     ParentService parentService;
-
+    @Autowired
+    AuctionService auctionService;
+    @Autowired
+    UserAuctionService userAuctionService;
     @ModelAttribute("parents")
     public List<Parent> parent() {
         return parentService.findAll();
@@ -58,6 +65,9 @@ public class DetailPageController {
         Category category = categoryService.findOne(product.getCategory().getCategoryId());
         List<Product> relateProducts = productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice() - 10000), (product.getPrice() + 10000), product.getProductId());
         model.addAttribute("relateProducts", relateProducts);
+        Auction auctionN=auctionService.findByProduct(product);
+        List<UserAuction> liUserAuctions=userAuctionService.findByAuction(auctionN);
+        model.addAttribute("liUserAuctions", liUserAuctions);
         List<Image> images = imageservice.findByProduct(product);
         int rating = getAverage(product.getRatings());
         model.addAttribute("ratingNumber", rating);
@@ -73,6 +83,8 @@ public class DetailPageController {
         model.addAttribute("userAuctions", userAuctions);
         model.addAttribute("product", product);
         model.addAttribute("ratings", ratingService.getByProduct(product));
+        Date currentDate=new Date();
+        model.addAttribute("currentDate", currentDate);
         return "detailPage";
     }
 

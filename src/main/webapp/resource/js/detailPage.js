@@ -28,7 +28,7 @@ function initializeClock(id, endtime) {
         minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
         secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-        if (t.total <= 0) {
+        if (t.total < 0) {
             clearInterval(timeinterval);
             document.getElementById("demo").innerHTML = "PHIÊN ĐẤU GIÁ ĐÃ KẾT THÚC !";
             $('#countDownAuction').remove();

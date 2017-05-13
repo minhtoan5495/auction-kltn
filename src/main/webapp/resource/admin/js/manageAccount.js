@@ -82,7 +82,7 @@ var TableAccount = function () {
             function deleteUser(username) {
                 $.ajax({
                     type: "GET",
-                    url: "/admin/deleteAccount",
+                    url: "/AuctionWeb/admin/deleteAccount",
                     data: "username=" + username,
                 });
                 console.log(username);

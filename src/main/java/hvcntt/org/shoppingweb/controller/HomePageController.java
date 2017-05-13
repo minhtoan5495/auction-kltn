@@ -1,5 +1,8 @@
 package hvcntt.org.shoppingweb.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,6 +85,8 @@ public class HomePageController {
         model.addAttribute("productAuctions", productService.findByProductTransactionType(transactionTypeAuction));
         model.addAttribute("suppliers", supplierService.getAll());
         model.addAttribute("productHighViews", productService.getHighView());
+        Date currentDate=new Date();
+        model.addAttribute("currentDate", currentDate);
         return "home";
     }
 
@@ -94,6 +99,8 @@ public class HomePageController {
         pagedListHolder.setPageSize(4);
         model.addAttribute("pagedListHolder", pagedListHolder);
         model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
+        Date currentDate=new Date();
+        model.addAttribute("currentDate", currentDate);
         return "resultSearch";
     }
     @RequestMapping(value = "/supplier")

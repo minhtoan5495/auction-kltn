@@ -137,6 +137,8 @@
 				<div class="row">
 					<h4>${message}</h4>
 					<c:forEach var="product" items="${pagedListHolder.pageList }">
+					<jsp:useBean id="currentDate" type="java.util.Date" scope="request"></jsp:useBean>
+						<fmt:formatDate var="now" value="${currentDate}" pattern="yyyy-MM-dd"/> 
 						<div class="col-sm-3 new-product-main">
 							<div class="new-product">
 								<div class="single-product-item">
@@ -162,8 +164,10 @@
 											<p class="single-product-infor-name-title">${product.name }</p>
 										</div>
 										<c:if test="${not empty (product.discounts) }">
+											<c:if test="${product.discounts.get(i).endDate >= now }">
 											<div class="single-product-inforsale">Giảm giá
 												${product.discounts.get(i).discountPercent }%</div>
+										</c:if>
 										</c:if>
 										<div class="single-product-infor-name">
 											<p>
@@ -173,7 +177,7 @@
 										</div>
 										<div class="single-product-inforprice">
 											<c:choose>
-												<c:when test="${not empty(product.discounts) }">
+												<c:when test="${not empty(product.discounts) and product.discounts.get(i).endDate >= now }">
 													<strike style="color: black"> <fmt:formatNumber
 															value="${product.price}" type="number" /> đ
 													</strike>
@@ -187,7 +191,7 @@
 											</c:choose>
 										</div>
 										<div class="single-product-inforprice">
-											<c:if test="${not empty(product.discounts)  }">
+											<c:if test="${not empty(product.discounts) and product.discounts.get(i).endDate >= now  }">
 												<p>
 													<fmt:formatNumber
 														value="${(product.price)-((product.price*product.discounts.get(i).discountPercent)/100)}"
@@ -342,41 +346,42 @@
 														<p class="single-product-infor-name-title">${productView.name }</p>
 													</div>
 													<c:if test="${not empty (productView.discounts) }">
-														<div class="single-product-inforsale">Giảm giá
-															${productView.discounts.get(i).discountPercent }%</div>
-													</c:if>
-													<div class="single-product-infor-name">
-														<p>
-															<i class="glyphicon glyphicon-fire">
-																${productView.viewNumber }</i> lượt xem
-														</p>
-													</div>
-													<div class="single-product-inforprice">
-														<c:choose>
-															<c:when test="${not empty(productView.discounts) }">
-																<strike style="color: black"> <fmt:formatNumber
-																		value="${productView.price}" type="number" /> đ
-																</strike>
-															</c:when>
-															<c:otherwise>
-																<p style="color: black">
-																	<fmt:formatNumber value="${productView.price}"
-																		type="number" />
-																	đ
-																</p>
-															</c:otherwise>
-														</c:choose>
-													</div>
-													<div class="single-product-inforprice">
-														<c:if test="${not empty(productView.discounts)  }">
-															<p>
-																<fmt:formatNumber
-																	value="${(productView.price)-((productView.price*productView.discounts.get(i).discountPercent)/100)}"
-																	type="number" />
-																đ
-															</p>
-														</c:if>
-													</div>
+											<c:if test="${productView.discounts.get(i).endDate >= now }">
+											<div class="single-product-inforsale">Giảm giá
+												${productView.discounts.get(i).discountPercent }%</div>
+										</c:if>
+										</c:if>
+										<div class="single-product-infor-name">
+											<p>
+												<i class="glyphicon glyphicon-fire">
+													${productView.viewNumber }</i> lượt xem
+											</p>
+										</div>
+										<div class="single-product-inforprice">
+											<c:choose>
+												<c:when test="${not empty(productView.discounts) and productView.discounts.get(i).endDate >= now }">
+													<strike style="color: black"> <fmt:formatNumber
+															value="${productView.price}" type="number" /> đ
+													</strike>
+												</c:when>
+												<c:otherwise>
+													<p style="color: black">
+														<fmt:formatNumber value="${productView.price}" type="number" />
+														đ
+													</p>
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="single-product-inforprice">
+											<c:if test="${not empty(productView.discounts) and productView.discounts.get(i).endDate >= now  }">
+												<p>
+													<fmt:formatNumber
+														value="${(productView.price)-((productView.price*productView.discounts.get(i).discountPercent)/100)}"
+														type="number" />
+													đ
+												</p>
+											</c:if>
+										</div>
 													<c:choose>
 														<c:when
 															test="${productView.transactionType.transactionTypeId==2 }">

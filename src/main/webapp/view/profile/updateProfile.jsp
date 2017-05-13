@@ -72,21 +72,21 @@
                                     <div class="input-group">
                                         <label for="name" class="control-label">Họ Tên</label>
                                         <form:input path="name" class="form-control" name="name" id="name" type="text"
-                                                    value="${user.name}"/>
+                                                    value="${user.name}" require="true"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <label for="phone" class="control-label">Số điện thoại</label>
-                                        <form:input path="phone" onkeyup="validate()" class="form-control" name="phone"
-                                                    id="phone" type="text"
+                                        <form:input path="phone" onkeyup="validate()" class="form-control" name="phone" require="true"
+                                                    id="phone" type="number"
                                                     value="${user.phone}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <label for="address" class="control-label">Địa chỉ cụ thể</label>
-                                        <form:input path="address" class="form-control" name="address" id="address"
+                                        <form:input path="address" class="form-control" name="address" id="address" require="true"
                                                     type="text"
                                                     value="${user.address}"/>
                                     </div>
@@ -96,7 +96,7 @@
                                         <label class="control-label" for="date">Ngày sinh</label>
                                         <input class="form-control" name="date" value="<fmt:formatDate value="${user.birthday }"
                                                                                 pattern="yyyy-MM-dd"/>"
-                                               type="text"/>
+                                               type="text" require="true"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -116,6 +116,10 @@
                                         <label for="districtId" class="control-label">Quận</label>
                                         <select class="form-control" name="districtId"
                                                 id="districtId">
+                                            <option>Select district</option>
+                                            <c:forEach var="district" items="${districts}">
+                                                <option value="${district.districtId}">${district.districtName}</option>
+                                            </c:forEach>    
                                         </select>
                                     </div>
                                 </div>

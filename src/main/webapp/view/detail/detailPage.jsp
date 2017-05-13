@@ -21,7 +21,7 @@
 				<a href="#" class="main_header_detail_item_link"> > </a>
 			</div>
 			<div class="main_header_detail_item">
-				<a href="${pageContext.request.contextPath }/productByCategory/${product.category.categoryId}" class="main_header_detail_item_link">${product.category.categoryName }</a>
+				<a href="#" class="main_header_detail_item_link">${product.category.categoryName }</a>
 			</div>
 			<div class="main_header_detail_item">
 				<a href="#" class="main_header_detail_item_link"> > </a>
@@ -45,8 +45,11 @@
 				</p>
 			</div>
 			<div class="col-sm-9">
+				<jsp:useBean id="currentDate" type="java.util.Date" scope="request"></jsp:useBean>
+				<fmt:formatDate var="now" value="${currentDate}"
+					pattern="yyyy-MM-dd" />
 				<div class="row">
-					<form action="addAuction">
+					<form action="${pageContext.request.contextPath }/addAuction">
 						<input value="${product.productId }" name="productId"
 							type="hidden">
 						<div class="col-sm-6" style="width: 40%">
@@ -55,13 +58,13 @@
 									<div class="tab-pane active" id="imageContainer">
 										<div id="examples">
 											<ul id="example3" class="etalage">
-											<c:forEach var="image" items="${image }">
-												<li><img class="etalage_thumb_image"
-													src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
-													<img class="etalage_source_image"
-													src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
-												</li>
-											</c:forEach>
+												<c:forEach var="image" items="${image }">
+													<li><img class="etalage_thumb_image"
+														src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
+														<img class="etalage_source_image"
+														src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
+													</li>
+												</c:forEach>
 											</ul>
 										</div>
 
@@ -88,10 +91,6 @@
 										Lượt xem : ${product.viewNumber}</label>
 									<p>(Còn lại ${product.stockQuantity} sản phẩm)</p>
 								</div>
-								<div class="product-detail-color">
-									<%--<p><i class="glyphicon glyphicon-ok"></i>Màu sắc ${product.productDetails.get(i).color }</p>--%>
-									<%--<p><i class="glyphicon glyphicon-ok"></i>Kích cỡ ${product.productDetails.get(i).size }</p>--%>
-								</div>
 								<div class="product-detail-price">
 									<h2>
 										<fmt:formatNumber value="${product.price}" type="number" />
@@ -103,62 +102,98 @@
 								</div>
 								<div class="box-detail-information">
 									<form class="form-detail-information">
-										<c:if
-											test="${product.transactionType.transactionTypeId == 1}">
-											<p id="demo" style="text-align: center;"></p>
-											<div id="countDownAuction">
-												<div class="form-detail-size">
-													<label style="color: #f37021">Kết thúc vào ngày</label>
-													<p style="font-size: 30px">
-														<fmt:formatDate
-															value="${product.auctions.get(i).endTime}"
-															pattern="dd-MM-yyyy" />
-													</p>
-													<input value="${product.auctions.get(i).endTime }"
-														id="endTime" type="hidden"> <label>Thời
-														gian còn lại</label>
-													<div class="form-detail-timecountdown">
-														<div id="clockdiv">
-															<div>
-																<span class="days"></span>
-																<div class="smalltext">Days</div>
-															</div>
-															<div>
-																<span class="hours"></span>
-																<div class="smalltext">Hours</div>
-															</div>
-															<div>
-																<span class="minutes"></span>
-																<div class="smalltext">Minutes</div>
-															</div>
-															<div>
-																<span class="seconds"></span>
-																<div class="smalltext">Seconds</div>
+										<c:choose>
+											<c:when
+												test="${product.transactionType.transactionTypeId == 1 and product.auctions.get(i).endTime >=now}">
+												<p id="demo" style="text-align: center;"></p>
+												<div id="countDownAuction">
+													<div class="form-detail-size">
+														<label style="color: #f37021">Kết thúc vào ngày</label>
+														<p style="font-size: 30px">
+															<fmt:formatDate
+																value="${product.auctions.get(i).endTime}"
+																pattern="dd-MM-yyyy" />
+														</p>
+														<input value="${product.auctions.get(i).endTime }"
+															id="endTime" type="hidden"> <label>Thời
+															gian còn lại</label>
+														<div class="form-detail-timecountdown">
+															<div id="clockdiv">
+																<div>
+																	<span class="days"></span>
+																	<div class="smalltext">Days</div>
+																</div>
+																<div>
+																	<span class="hours"></span>
+																	<div class="smalltext">Hours</div>
+																</div>
+																<div>
+																	<span class="minutes"></span>
+																	<div class="smalltext">Minutes</div>
+																</div>
+																<div>
+																	<span class="seconds"></span>
+																	<div class="smalltext">Seconds</div>
+																</div>
 															</div>
 														</div>
 													</div>
-												</div>
-												<div class="form-detail-quantity">
-													<label>Giá đấu:</label> <input
-														class="form-control input-field" type="text" id="price"
-														name="price">
-
-												</div>
-											</div>
-										</c:if>
-										<div class="form-detail-addcart">
-											<c:choose>
-												<c:when
-													test="${product.transactionType.transactionTypeId == 1 }">
-													<div class="submit-button" id="buttonAuction">
-														<button type="submit">
-															<img class="" src="resource/css/images/icon-title.png">ĐẤU
-															GIÁ
-														</button>
+													<div class="form-detail-quantity">
+														<label>Giá đấu:</label> <input
+															class="form-control input-field" type="text" id=""
+															 name="price">
 
 													</div>
-												</c:when>
-												<c:otherwise>
+													<c:choose>
+                                <c:when test="${pageContext.request.userPrincipal==null }">
+                                    <div class="submit-button">
+                                        <button class="btn btn-danger review_item"
+                                                id="review_item_toggle" data-toggle="modal"
+                                                data-target="#myModal">ĐẤU GIÁ
+                                        </button>
+                                    </div>
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content-order">
+                                                <div class="modal-header">
+                                                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                                                    <div class="alert alert-success">
+                                                        <strong>Cảnh báo!</strong> Bạn phải đăng nhập mới được đấu giá
+                                                        sản phẩm này
+                                                    </div>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <a href="${pageContext.request.contextPath }/login">
+                                                        <button
+                                                                class="btn btn-danger btn-modal-comment">Đăng
+                                                            nhập tại đây
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary"
+                                                            data-dismiss="modal" style="border-radius: 0">X
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="submit-button">
+                                            <button type="submit"
+                                                    class="btn btn-danger review_item">ĐẤU GIÁ
+                                            </button>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<c:if
+													test="${ product.transactionType.transactionTypeId == 2  }">
 													<div class="submit-button">
 														<a
 															href="${pageContext.request.contextPath }/addCart?productId=${product.productId}"
@@ -167,13 +202,63 @@
 														</span>
 														</a>
 													</div>
-												</c:otherwise>
-											</c:choose>
-										</div>
+												</c:if>
+												<c:if
+													test="${ product.transactionType.transactionTypeId == 1 and product.auctions.get(i).endTime <=now}">
+													<div class="row">
+														<div class="col-sm-3"></div>
+														<div class="col-sm-5">
+															<div class="detail-win-item">
+																<h3 class="detail-win-title">Chúc mừng</h3>
+																<img alt=""
+																	src="${pageContext.request.contextPath }/resource/images/banner/winner.png">
+																<c:forEach var="userAuctionWin"
+																	items="${liUserAuctions }">
+																	<h4 class="detail-user-win">${userAuctionWin.user.username}</h4>
+																	<h5>Giá đấu cao nhất</h5>
+																	<h4 class="detail-user-win"
+																		style="color: rgb(61, 255, 0);">
+																		<fmt:formatNumber value="${userAuctionWin.price}"
+																			type="number" />
+																		đ
+																	</h4>
+																</c:forEach>
+																<p>Thời gian kết thúc</p>
+																<p>
+																	<fmt:formatDate
+																		value="${product.auctions.get(i).endTime}"
+																		pattern="dd-MM-yyyy HH:mm:ss" />
+																</p>
+															</div>
+														</div>
+													</div>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
 										<p>
 											<br>
 										</p>
 									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6" style="width: 40%">
+							<div class="detail-product-item">
+								<div class="tab-content">
+									<div class="tab-pane active" id="imageContainer">
+										<div id="examples">
+											<ul id="example3" class="etalage">
+												<c:forEach var="image" items="${image }">
+													<li><img class="etalage_thumb_image"
+														src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
+														<img class="etalage_source_image"
+														src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
+													</li>
+												</c:forEach>
+											</ul>
+										</div>
+
+									</div>
 								</div>
 							</div>
 						</div>
@@ -358,65 +443,71 @@
 							</div>
 						</div>
 					</c:if>
-					<div class="product-detail-relate">
-						<div class="product-detail-relate-item-title">
-							<h3>Sản phẩm liên quan</h3>
-						</div>
-						<div class="product-detail-relate-item-stack">
-							<c:forEach var="productRelate" items="${relateProducts }">
-								<div class="new-product" style="margin-bottom: 5px">
-									<div class="single-product-item">
-										<div class="single-product-image">
-											<a href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}"><img
-												src="resource/images/product/${productRelate.images.get(i).imageUrl }" style="width: 253px; height: 300px;"></a>
-											<div class="overplay-content">
-												<ul>
-													<li><a href=""><i class="fa fa-search"></i></a></li>
-													<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</li>
-													<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-													<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-												</ul>
+					<c:if test="${not empty relateProducts }">
+						<div class="product-detail-relate">
+							<div class="product-detail-relate-item-title">
+								<h3>Sản phẩm liên quan</h3>
+							</div>
+							<div class="product-detail-relate-item-stack">
+								<c:forEach var="productRelate" items="${relateProducts }">
+									<div class="new-product" style="margin-bottom: 5px">
+										<div class="single-product-item">
+											<div class="single-product-image">
+												<a
+													href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}"><img
+													src="resource/images/product/${productRelate.images.get(i).imageUrl }"
+													style="width: 253px; height: 300px;"></a>
+												<div class="overplay-content">
+													<ul>
+														<li><a href=""><i class="fa fa-search"></i></a></li>
+														<li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+														</li>
+														<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+														<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+													</ul>
+												</div>
 											</div>
-										</div>
-										<div class="single-product-showinfor">
-											<div class="single-product-infor-name">
-												<p class="single-product-infor-name-title">${productRelate.name }</p>
-											</div>
-											<!-- 	<div class="single-product-inforsale">
+											<div class="single-product-showinfor">
+												<div class="single-product-infor-name">
+													<p class="single-product-infor-name-title">${productRelate.name }</p>
+												</div>
+												<!-- 	<div class="single-product-inforsale">
                                                 Giảm giá 25%
                                              </div> -->
-											<div class="single-product-inforprice">
-												<p>
-													<fmt:formatNumber value="${productRelate.price }"
-														type="number" />
-													đ
-												</p>
-											</div>
-											<div class="single-product-inforsale">
-												<a href="${pageContext.request.contextPath }/addCart?productId=${productRelate.productId}">
-													<button class="btn btn-success btn-countdown">
-														<i class="fa fa-shopping-cart"></i> MUA NGAY
-													</button>
-												</a>
-											</div>
-											<div class="single-product-inforrating">
-												<div class="rating-box">
-													<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-														class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-														class="fa fa-star-half-empty" style="color: gray"></i> <br>
-													<span>(Có ${productRelate.ratings.size()} nhận xét)</span>
+												<div class="single-product-inforprice">
+													<p>
+														<fmt:formatNumber value="${productRelate.price }"
+															type="number" />
+														đ
+													</p>
+												</div>
+												<div class="single-product-inforsale">
+													<a
+														href="${pageContext.request.contextPath }/addCart?productId=${productRelate.productId}">
+														<button class="btn btn-success btn-countdown">
+															<i class="fa fa-shopping-cart"></i> MUA NGAY
+														</button>
+													</a>
+												</div>
+												<div class="single-product-inforrating">
+													<div class="rating-box">
+														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+															class="fa fa-star-half-empty" style="color: gray"></i> <br>
+														<span>(Có ${productRelate.ratings.size()} nhận xét)</span>
 
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</c:forEach>
+								</c:forEach>
+							</div>
 						</div>
-					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </section>
