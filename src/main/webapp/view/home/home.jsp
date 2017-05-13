@@ -163,11 +163,9 @@
 										<div class="single-product-infor-name">
 											<p class="single-product-infor-name-title">${product.name }</p>
 										</div>
-										<c:if test="${not empty (product.discounts) }">
-											<c:if test="${product.discounts.get(i).endDate >= now }">
+									<c:if test="${not empty (product.discounts) and  product.discounts.get(i).endDate >= now }">
 											<div class="single-product-inforsale">Giảm giá
 												${product.discounts.get(i).discountPercent }%</div>
-										</c:if>
 										</c:if>
 										<div class="single-product-infor-name">
 											<p>
@@ -345,11 +343,9 @@
 													<div class="single-product-infor-name">
 														<p class="single-product-infor-name-title">${productView.name }</p>
 													</div>
-													<c:if test="${not empty (productView.discounts) }">
-											<c:if test="${productView.discounts.get(i).endDate >= now }">
+													<c:if test="${not empty (productView.discounts) and productView.discounts.get(i).endDate >= now  }">
 											<div class="single-product-inforsale">Giảm giá
 												${productView.discounts.get(i).discountPercent }%</div>
-										</c:if>
 										</c:if>
 										<div class="single-product-infor-name">
 											<p>

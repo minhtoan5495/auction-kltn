@@ -654,6 +654,7 @@ ul > li {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     margin: 5px 0 15px;
+    padding: 5px;
 }
 
 .product-detail-price h2 {

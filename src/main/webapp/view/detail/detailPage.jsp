@@ -91,11 +91,42 @@
 										Lượt xem : ${product.viewNumber}</label>
 									<p>(Còn lại ${product.stockQuantity} sản phẩm)</p>
 								</div>
+									<div class="single-product-infor-name">
+											<p>
+												<i class="glyphicon glyphicon-fire">
+													${product.viewNumber }</i> lượt xem
+											</p>
+										</div>
 								<div class="product-detail-price">
+									<c:if test="${not empty (product.discounts) and  product.discounts.get(i).endDate >= now }">
+											<div class="detail-product-inforsale">Giảm giá
+												${product.discounts.get(i).discountPercent }%</div><br>
+										</c:if>
+										<div class="single-product-inforprice">
+											<c:choose>
+												<c:when test="${not empty(product.discounts) and product.discounts.get(i).endDate >= now }">
+													<strike style="color: black"> <fmt:formatNumber
+															value="${product.price}" type="number" /> đ
+													</strike>
+												</c:when>
+												<c:otherwise>
 									<h2>
 										<fmt:formatNumber value="${product.price}" type="number" />
 										đ
 									</h2>
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="single-product-inforprice">
+											<c:if test="${not empty(product.discounts) and product.discounts.get(i).endDate >= now  }">
+												<p>
+													<fmt:formatNumber
+														value="${(product.price)-((product.price*product.discounts.get(i).discountPercent)/100)}"
+														type="number" />
+													đ
+												</p>
+											</c:if>
+										</div>
 								</div>
 								<div class="product-detail-description">
 									<p>${product.description }</p>
@@ -468,37 +499,75 @@
 												</div>
 											</div>
 											<div class="single-product-showinfor">
-												<div class="single-product-infor-name">
-													<p class="single-product-infor-name-title">${productRelate.name }</p>
-												</div>
-												<!-- 	<div class="single-product-inforsale">
-                                                Giảm giá 25%
-                                             </div> -->
-												<div class="single-product-inforprice">
-													<p>
-														<fmt:formatNumber value="${productRelate.price }"
-															type="number" />
+													<div class="single-product-infor-name">
+														<p class="single-product-infor-name-title">${productRelate.name }</p>
+													</div>
+													<c:if test="${not empty (productRelate.discounts) }">
+											<c:if test="${productRelate.discounts.get(i).endDate >= now }">
+											<div class="single-product-inforsale">Giảm giá
+												${productRelate.discounts.get(i).discountPercent }%</div>
+										</c:if>
+										</c:if>
+										<div class="single-product-infor-name">
+											<p>
+												<i class="glyphicon glyphicon-fire">
+													${productRelate.viewNumber }</i> lượt xem
+											</p>
+										</div>
+										<div class="single-product-inforprice">
+											<c:choose>
+												<c:when test="${not empty(productRelate.discounts) and productRelate.discounts.get(i).endDate >= now }">
+													<strike style="color: black"> <fmt:formatNumber
+															value="${productRelate.price}" type="number" /> đ
+													</strike>
+												</c:when>
+												<c:otherwise>
+													<p style="color: black">
+														<fmt:formatNumber value="${productRelate.price}" type="number" />
 														đ
 													</p>
-												</div>
-												<div class="single-product-inforsale">
-													<a
-														href="${pageContext.request.contextPath }/addCart?productId=${productRelate.productId}">
-														<button class="btn btn-success btn-countdown">
-															<i class="fa fa-shopping-cart"></i> MUA NGAY
-														</button>
-													</a>
-												</div>
-												<div class="single-product-inforrating">
-													<div class="rating-box">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star-half-empty" style="color: gray"></i> <br>
-														<span>(Có ${productRelate.ratings.size()} nhận xét)</span>
-
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="single-product-inforprice">
+											<c:if test="${not empty(productRelate.discounts) and productRelate.discounts.get(i).endDate >= now  }">
+												<p>
+													<fmt:formatNumber
+														value="${(productRelate.price)-((productRelate.price*productRelate.discounts.get(i).discountPercent)/100)}"
+														type="number" />
+													đ
+												</p>
+											</c:if>
+										</div>
+																	<input hidden value="${productRelate.productId}"
+																	id="productId">
+													<c:choose>
+														<c:when
+															test="${productRelate.transactionType.transactionTypeId==2 }">
+															<div class="single-product-inforsale"> <a
+																	href="${pageContext.request.contextPath }/addCart?productId=${productRelate.productId}">
+																	<button class="btn btn-countdown">
+																		<i class="fa fa-shopping-cart"></i> MUA NGAY
+																	</button>
+																</a>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="single-product-inforsale"><a
+																	href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}">
+																	<button class="btn btn-countdown">
+																		<i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
+																	</button>
+																</a>
+															</div>
+														</c:otherwise>
+													</c:choose>
+													<div class="single-product-inforrating">
+														<div class="rating-box">
+															<span>(Có ${productRelate.ratings.size() } nhận xét)</span>
+														</div>
 													</div>
 												</div>
-											</div>
 										</div>
 									</div>
 								</c:forEach>
