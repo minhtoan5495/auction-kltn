@@ -31,7 +31,7 @@ var TableAccount = function () {
                 function editAccount() {
                     $.ajax({
                         type: "GET",
-                        url: "/admin/editAccount",
+                        url: "/AuctionWeb/admin/editAccount",
                         data: "username=" + oTable.fnGetData(nRow)[1] +
                         "&role=" + jqInputs[5].value
                     });

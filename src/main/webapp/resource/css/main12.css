@@ -1031,6 +1031,10 @@ h1 {
 .box-product-view{
 padding: 10px;
 background: #eee;
+margin-left: 15px;
+}
+.main-content-page-supplier{
+	margin-left: 15px;
 }
 .hgroup {
   margin-bottom: 30px;

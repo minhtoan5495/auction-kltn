@@ -22,6 +22,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
@@ -93,11 +94,8 @@ public class HomePageController {
     @RequestMapping(value = "/searchName")
     public String searchPage(Model model, HttpServletRequest request) {
     	String name = request.getParameter("name");
-        PagedListHolder pagedListHolder = new PagedListHolder(productService.findByNameContaining(name));
-        int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-        pagedListHolder.setPage(page);
-        pagedListHolder.setPageSize(4);
-        model.addAttribute("pagedListHolder", pagedListHolder);
+        List<Product> pagedListHolder = productService.findByNameContaining(name);
+        model.addAttribute("resultList", pagedListHolder);
         model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
         Date currentDate=new Date();
         model.addAttribute("currentDate", currentDate);
@@ -106,12 +104,9 @@ public class HomePageController {
     @RequestMapping(value = "/supplier")
     public String getSupplier(Model model, @RequestParam("supplierId") String supplierId,HttpServletRequest request) {
         Supplier supplier = supplierService.findOne(supplierId);
-        PagedListHolder pagedListHolder = new PagedListHolder(productService.findBySupplier(supplier));
-        int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-        pagedListHolder.setPage(page);
-        pagedListHolder.setPageSize(4);
+        List<Product> pagedListHolder = productService.findBySupplier(supplier);
         model.addAttribute("pagedListHolder", pagedListHolder);
-        model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
+        model.addAttribute("messagresultListe", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
         return "resultSearch";
     }
 }
