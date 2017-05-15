@@ -11,10 +11,7 @@ import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import hvcntt.org.shoppingweb.dao.dto.AuctionDto;
 import hvcntt.org.shoppingweb.dao.entity.Auction;
@@ -35,15 +32,21 @@ public class ManageAuctionController {
     TransactionTypeService transactionTypeService;
 
     @RequestMapping(value = "/admin/manageAuction")
-    public String getAllAuction(Model model) {
+    public String getAllAuction(Model model, @RequestParam(value = "message", required = false) String message) {
+        if("createAuction".equals(message)){
+            model.addAttribute("message", "Created auction success !!");
+        }
+        if("updateAuction".equals(message)){
+            model.addAttribute("message", "Updated auction success !!");
+        }
         model.addAttribute("auctions", JsonUtil.convertObjectToJson(auctionService.getAll()));
         return "manageAuction";
     }
 
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
     public String addAuction(@RequestParam(value = "message", required = false) String message, Model model) {
-        if(message != null){
-            model.addAttribute("message", "Bạn vừa tạo sản phẩm là đấu giá nên bạn cần tạo phiên đấu giá cho nó !");
+        if("requiredAuction".equals(message)){
+            model.addAttribute("message", "Let's create the auction for product that you're just created !!");
         }
         TransactionType transactionType = transactionTypeService.findByName("Auction");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByTransactionType(transactionType)));
@@ -64,12 +67,13 @@ public class ManageAuctionController {
                 auctionService.save(startDate, endDate, productIds);
             }
         }
-        return "redirect:/admin/manageAuction";
+        return "redirect:/admin/manageAuction?message=createAuction";
     }
 
     @RequestMapping(value = "/admin/deleteAuction", method = RequestMethod.GET)
-    public void deleteAuction(@RequestParam("auctionId") String auctionId) {
+    public @ResponseBody String deleteAuction(@RequestParam("auctionId") String auctionId) {
         auctionService.delete(auctionId);
+        return "Deleted auction with id " + auctionId + " success !!";
     }
 
     @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.GET)
@@ -86,6 +90,6 @@ public class ManageAuctionController {
     public String updateAuction(@ModelAttribute("auctionDto") AuctionDto auctionDto, HttpServletRequest request) throws ParseException {
         String auctionId = request.getParameter("auctionId");
         auctionService.update(auctionDto, auctionId);
-        return "redirect:/admin/manageAuction";
+        return "redirect:/admin/manageAuction?message=updateAuction";
     }
 }

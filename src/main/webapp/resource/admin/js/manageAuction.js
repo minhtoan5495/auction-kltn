@@ -70,6 +70,13 @@ var TableAuction = function () {
                     type: "GET",
                     url: "/admin/deleteAuction",
                     data: "auctionId=" + auctionId,
+                    success : function (response) {
+                        $('#message').html(response.toString());
+                        $('#message').show();
+                        setTimeout(function() {
+                            $("#message").hide('blind', {}, 500)
+                        }, 1000);
+                    }
                 });
                 console.log(auctionId);
             }

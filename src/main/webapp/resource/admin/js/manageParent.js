@@ -37,7 +37,14 @@ var TableParent = function () {
                         type: "GET",
                         url: "/admin/updateParent",
                         data: "parentId=" + oTable.fnGetData(nRow)[0] +
-                        "&parentName=" + jqInputs[0].value
+                        "&parentName=" + jqInputs[0].value,
+                        success : function (response) {
+                            $('#message').html(response);
+                            $('#message').show();
+                            setTimeout(function() {
+                                $("#message").hide('blind', {}, 500)
+                            }, 1000);
+                        }
                     });
                 }
                 editParent();
@@ -88,6 +95,13 @@ var TableParent = function () {
                     type: "GET",
                     url: "/admin/deleteParent",
                     data: "parentId=" + parentId,
+                    success : function (response) {
+                        $('#message').html(response);
+                        $('#message').show();
+                        setTimeout(function() {
+                            $("#message").hide('blind', {}, 500)
+                        }, 1000);
+                    }
                 });
                 console.log(parentId);
             }

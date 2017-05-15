@@ -56,13 +56,15 @@ public class ManageDiscountController {
     }
 
     @RequestMapping(value="/admin/deleteDiscount", method = RequestMethod.GET)
-    public void deleteDiscount(@RequestParam("discountId") String discountId){
+    public @ResponseBody String deleteDiscount(@RequestParam("discountId") String discountId){
         discountService.deleteDiscount(discountId);
+        return "Deleted discount with id " + discountId + " success !!";
     }
 
     @RequestMapping(value = "/admin/updateDiscount", method = RequestMethod.GET)
-    public void updateDiscount(@RequestParam("discountId") String discountId, @RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
+    public @ResponseBody String updateDiscount(@RequestParam("discountId") String discountId, @RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
                                @RequestParam("discountPercent") int discountPercent) throws ParseException {
         discountService.update(discountTitle, discountContent, discountPercent, discountId);
+        return "Updated discount with id " + discountId + " success !!";
     }
 }

@@ -1,7 +1,6 @@
 var TableSupplier = function () {
 
     return {
-
         //main function to initiate the module
         init: function () {
             function restoreRow(oTable, nRow) {
@@ -71,6 +70,13 @@ var TableSupplier = function () {
                     type: "GET",
                     url: "/admin/deleteSupplier",
                     data: "supplierId=" + supplierId,
+                    success : function (response) {
+                        $('#message').html(response);
+                        $('#message').show();
+                        setTimeout(function() {
+                            $("#message").hide('blind', {}, 500)
+                        }, 1000);
+                    }
                 });
                 console.log(supplierId);
             }

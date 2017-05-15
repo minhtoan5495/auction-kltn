@@ -10,7 +10,7 @@
              src="${pageContext.request.contextPath }/resource/images/avatar/icon-lg-register-blue1.png">
     </div>
     <c:if test="${not empty error }">
-        <div class="error_check">
+        <div class="error_check" id="error">
                 ${error}
         </div>
         <c:if test="${error eq 'expired'}">
@@ -18,7 +18,7 @@
         </c:if>
     </c:if>
     <c:if test="${not empty message }">
-        <div class="alert alert-success">
+        <div class="alert alert-success" id="message">
                 ${message}
         </div>
     </c:if>

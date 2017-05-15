@@ -5,10 +5,7 @@ import hvcntt.org.shoppingweb.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.exception.CategoryNotFoundExeption;
@@ -23,7 +20,10 @@ public class ManageCategoryController {
     ParentService parentService;
 
     @RequestMapping(value = "/admin/manageCategory")
-    public String getAllCategory(Model model) {
+    public String getAllCategory(Model model, @RequestParam(value = "message", required = false) String message) {
+        if("saveCategory".equals(message)){
+            model.addAttribute("message", "Saved category successfully !!");
+        }
         model.addAttribute("categories", categoryService.getAll());
         return "manageCategory";
     }
@@ -36,14 +36,20 @@ public class ManageCategoryController {
     }
 
     @RequestMapping(value = "/admin/saveCategory", method = RequestMethod.POST)
-    public String addedCategory(@ModelAttribute("categoryDto") CategoryDto categoryDto) {
+    public String addCategory(@ModelAttribute("categoryDto") CategoryDto categoryDto) {
         categoryService.save(categoryDto);
-        return "redirect:/admin/manageCategory";
+        return "redirect:/admin/manageCategory?message=saveCategory";
     }
 
     @RequestMapping(value = "/admin/deleteCategory", method = RequestMethod.GET)
-    public void deleteCategory(@RequestParam("categoryId") String categoryId) throws CategoryNotFoundExeption {
-        categoryService.delete(categoryId);
+    public @ResponseBody String deleteCategory(@RequestParam("categoryId") String categoryId) throws CategoryNotFoundExeption {
+        Category category = categoryService.findOne(categoryId);
+        if(category != null){
+            categoryService.delete(category);
+        }else {
+            throw new CategoryNotFoundExeption("Category not found with id " + categoryId);
+        }
+        return "Deleted category with id : " + categoryId + " !!";
     }
 
     @RequestMapping(value = "/admin/editCategory", method = RequestMethod.GET)

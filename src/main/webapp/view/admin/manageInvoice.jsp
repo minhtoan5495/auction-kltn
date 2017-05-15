@@ -14,6 +14,11 @@
                 <div class="adv-table">
                     <div class="btn-group">
                     </div>
+                    <c:if test="${not empty message }">
+                        <div class="alert alert-success" id="message">
+                                ${message}
+                        </div>
+                    </c:if>
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageInvoiceTable">
                         <thead>
                         <tr>

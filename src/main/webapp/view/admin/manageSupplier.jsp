@@ -17,6 +17,11 @@
                             Add New Supplier
                         </a>
                     </div>
+                    <c:if test="${not empty message }">
+                        <div class="alert alert-success" id="message">
+                                ${message}
+                        </div>
+                    </c:if>
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageSupplierTable">
                         <thead>
                         <tr>

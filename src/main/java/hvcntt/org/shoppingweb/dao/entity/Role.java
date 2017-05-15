@@ -12,7 +12,6 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = -6709780121872199840L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="role_id")
 	private String roleId=UUID.randomUUID().toString();
 
@@ -20,7 +19,7 @@ public class Role implements Serializable {
 	private String roleName;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="roles", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="roles")
 	private List<User> users;
 
 	public Role() {

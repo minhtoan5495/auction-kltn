@@ -159,7 +159,7 @@ public class User implements Serializable {
         this.userAuctions = userAuctions;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public List<Role> getRoles() {
         return this.roles;

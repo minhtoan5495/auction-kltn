@@ -71,31 +71,21 @@ var TableCategory = function () {
                     type: "GET",
                     url: "/admin/deleteCategory",
                     data: "categoryId=" + categoryId,
+                    success : function (response) {
+                        $('#message').html(response);
+                        $('#message').show();
+                        setTimeout(function() {
+                            $("#message").hide('blind', {}, 500)
+                        }, 1000);
+                    }
                 });
                 console.log(categoryId);
             }
-
-            // $('#manageCategoryTable a.edit').live('click', function (e) {
-            //     e.preventDefault();
-            //
-            //     /* Get the row as a parent of the link that was clicked on */
-            //     var nRow = $(this).parents('tr')[0];
-            //
-            //     if (nEditing !== null && nEditing != nRow) {
-            //         /* Currently editing - but not this row - restore the old before continuing to edit mode */
-            //         restoreRow(oTable, nEditing);
-            //         editRow(oTable, nRow);
-            //         nEditing = nRow;
-            //     } else if (nEditing == nRow && this.innerHTML == "Save") {
-            //         /* Editing this row and want to save it */
-            //         saveRow(oTable, nEditing);
-            //         nEditing = null;
-            //     } else {
-            //         /* No edit in progress - let's start one */
-            //         editRow(oTable, nRow);
-            //         nEditing = nRow;
-            //     }
-            // });
         }
     };
 }();
+$(function() {
+    setTimeout(function() {
+        $("#message").hide('blind', {}, 500)
+    }, 1000);
+});

@@ -71,6 +71,13 @@ var TableInvoice = function () {
                     type: "GET",
                     url: "/admin/deleteInvoice",
                     data: "invoiceId=" + invoiceId,
+                    success : function (response) {
+                        $('#message').html(response);
+                        $('#message').show();
+                        setTimeout(function() {
+                            $("#message").hide('blind', {}, 500)
+                        }, 1000);
+                    }
                 });
                 console.log(invoiceId);
             }

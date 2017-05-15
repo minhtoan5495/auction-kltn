@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.service.InvoiceService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ManageInvoiceController {
@@ -23,8 +24,9 @@ public class ManageInvoiceController {
 		return "invoiceDetail";
 	}
 	@RequestMapping(value="/admin/deleteInvoice")
-	public String deleteInvoice(Model model,@RequestParam("invoiceId")String invoiceId){
+	public @ResponseBody String
+	deleteInvoice(@RequestParam("invoiceId")String invoiceId){
 		invoiceService.delete(invoiceId);
-		return "redirect:/admin/manageInvoice";
+		return "Deleted invoice with id : " + invoiceId + " !!";
 	}
 }

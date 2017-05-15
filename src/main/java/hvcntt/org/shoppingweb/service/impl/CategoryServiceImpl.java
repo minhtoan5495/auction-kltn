@@ -57,13 +57,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
-    public void delete(String categoryId) throws CategoryNotFoundExeption {
-        if (categoryRepository.findOne(categoryId) != null) {
-            categoryRepository.delete(categoryId);
-        } else {
-            throw new CategoryNotFoundExeption("Category not found with id" + categoryRepository.findOne(categoryId));
-        }
-
+    public void delete(Category category) throws CategoryNotFoundExeption {
+        categoryRepository.delete(category);
     }
 
     @Override

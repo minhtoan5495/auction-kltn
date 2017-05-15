@@ -13,7 +13,6 @@ public class TransactionType implements Serializable {
 	private static final long serialVersionUID = -5589411774527453288L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="transaction_type_id")
 	private String transactionTypeId;
 

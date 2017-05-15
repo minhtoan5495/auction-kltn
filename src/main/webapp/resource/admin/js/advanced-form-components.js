@@ -6,7 +6,7 @@
     $(function(){
         window.prettyPrint && prettyPrint();
         $('.default-date-picker').datepicker({
-            format: 'yyyy-MM-dd HH:MM:SS',
+            format: 'yyyy-mm-dd',
             autoclose: true,
             todayBtn: true,
         });

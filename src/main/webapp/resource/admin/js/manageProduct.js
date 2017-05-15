@@ -17,7 +17,7 @@ $(document).ready(function() {
      */
     var nCloneTh = document.createElement( 'th' );
     var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="/AuctionWeb/resource/admin/assets/advanced-datatable/details_open.png">';
+    nCloneTd.innerHTML = '<img src="/resource/admin/assets/advanced-datatable/details_open.png">';
     nCloneTd.className = "center";
 
     $('#manageProductTable thead tr').each( function () {
@@ -89,6 +89,13 @@ $(document).ready(function() {
             type: "GET",
             url: "/admin/deleteProduct",
             data: "productId=" + productId,
+            success : function (response) {
+                $('#message').html(response);
+                $('#message').show();
+                setTimeout(function() {
+                    $("#message").hide('blind', {}, 500)
+                }, 1000);
+            }
         });
         console.log(productId);
     }

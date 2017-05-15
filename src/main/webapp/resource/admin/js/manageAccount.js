@@ -31,9 +31,9 @@ var TableAccount = function () {
                 function editAccount() {
                     $.ajax({
                         type: "GET",
-                        url: "/AuctionWeb/admin/editAccount",
+                        url: "/admin/editAccount",
                         data: "username=" + oTable.fnGetData(nRow)[1] +
-                        "&role=" + jqInputs[5].value
+                        "&role=" + jqInputs[0].value
                     });
                 }
                 editAccount();
@@ -82,8 +82,15 @@ var TableAccount = function () {
             function deleteUser(username) {
                 $.ajax({
                     type: "GET",
-                    url: "/AuctionWeb/admin/deleteAccount",
+                    url: "/admin/deleteAccount",
                     data: "username=" + username,
+                    success : function (response) {
+                        $('#message').html(response.toString());
+                        $('#message').show();
+                        setTimeout(function() {
+                            $("#message").hide('blind', {}, 500)
+                        }, 1000);
+                    }
                 });
                 console.log(username);
             }

@@ -17,7 +17,7 @@ public interface CategoryService {
 
     void save(CategoryDto categoryDto);
 
-    void delete(String categoryId) throws CategoryNotFoundExeption;
+    void delete(Category category) throws CategoryNotFoundExeption;
 
     List<Category> findByParent(Parent parent);
 }

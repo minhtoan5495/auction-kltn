@@ -19,6 +19,11 @@
                         </div>
                     </div>
                     <div class="space15"></div>
+                    <c:if test="${not empty message }">
+                        <div class="alert alert-success" id="message">
+                                ${message}
+                        </div>
+                    </c:if>
                     <table class="table table-striped table-hover table-bordered" id="manageAuctionTable">
                         <thead>
                         <tr>

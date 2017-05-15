@@ -38,8 +38,8 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
-	public void delete(String supplyId) {
-		supplierRepository.delete(supplyId);
+	public void delete(Supplier supplier) {
+		supplierRepository.delete(supplier);
 		
 	}
 }

@@ -70,7 +70,14 @@ var TableDiscount = function () {
                 $.ajax({
                     type: "GET",
                     url: "/admin/deleteDiscount",
-                    data: "discountId=" + discountId
+                    data: "discountId=" + discountId,
+                    success : function (response) {
+                        $('#message').html(response);
+                        $('#message').show();
+                        setTimeout(function() {
+                            $("#message").hide('blind', {}, 500)
+                        }, 1000);
+                    }
                 });
                 console.log(discountId);
             }
@@ -102,7 +109,14 @@ var TableDiscount = function () {
                         data: "discountId=" + oTable.fnGetData(nRow)[0] +
                         "&discountTitle=" + jqInputs[0].value +
                         "&discountContent=" + jqInputs[1].value +
-                        "&discountPercent=" + jqInputs[2].value
+                        "&discountPercent=" + jqInputs[2].value,
+                        success : function (response) {
+                            $('#message').html(response);
+                            $('#message').show();
+                            setTimeout(function() {
+                                $("#message").hide('blind', {}, 500)
+                            }, 1000);
+                        }
                     });
                 }
                 editAccount();
