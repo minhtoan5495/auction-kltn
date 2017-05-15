@@ -52,7 +52,26 @@
 .content-result-page .grid .new-product-main .single-product-btn {
 	margin-top: -25px
 }
+
+.content-result-page .list .new-product-main .single-product-inforsale {
+	background: #D4232B;
+	color: white;
+	width: 25%;
+	float: inherit;
+}
+
+.grid, .list {
+	margin-right: 10px;
+	background: #fff;
+	border: #fff;
+}
+
+.sort-field-item {
+	height: 33px;
+	width: 135px;
+}
 </style>
+<!-- -->
 <div class="content-page">
 	<div class="container content-result-page">
 		<h4>${message}</h4>
@@ -63,8 +82,20 @@
 					style="color: rgba(0, 159, 255, 0.59); font-size: 20px;"></i>
 			</button>
 			<button class="list">
-				<i class="glyphicon glyphicon-th-list"style="color: rgba(0, 159, 255, 0.59); font-size: 20px;"></i>
+				<i class="glyphicon glyphicon-th-list"
+					style="color: rgba(0, 159, 255, 0.59); font-size: 20px;"></i>
 			</button>
+			<div class="resul-filter-item">
+				<form action="searchNameBySort">
+					<select name="sortby" class="sort-field-item">
+						<option value="NONE">--- Lọc theo mẫu ---</option>
+						<option value="desc">Giá thấp đến cao</option>
+						<option value="asc">Giá thấp đến cao</option>
+						<option value="discount">Giảm giá</option>
+					</select> <input type="hidden" name="name" value="${name}" /> <input
+						type="submit" value="Lọc">
+				</form>
+			</div>
 		</div>
 		<div class="content-page">
 			<div class="row">
@@ -80,7 +111,7 @@
 									<div class="single-product-image">
 										<a
 											href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img
-											style="width: 253px; height: 250px;"
+											style="width: 253px; height: 330px;"
 											src="${pageContext.request.contextPath }/resource/images/product/${product.images.get(i).imageUrl }"></a>
 										<div class="overplay-content">
 											<ul>

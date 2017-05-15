@@ -1,7 +1,4 @@
 package hvcntt.org.shoppingweb.controller;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,21 +9,13 @@ import hvcntt.org.shoppingweb.dao.entity.Parent;
 import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
-import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.Supplier;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
@@ -60,7 +49,7 @@ public class HomePageController {
         return parentService.findAll();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @RequestMapping(value = "/home")
     public String homePage(Model model, HttpSession session, HttpServletRequest request) {
         @SuppressWarnings("unused")
@@ -94,19 +83,41 @@ public class HomePageController {
     @RequestMapping(value = "/searchName")
     public String searchPage(Model model, HttpServletRequest request) {
     	String name = request.getParameter("name");
-        List<Product> pagedListHolder = productService.findByNameContaining(name);
-        model.addAttribute("resultList", pagedListHolder);
+        List<Product> listProductByName = productService.findByNameContaining(name);
+        model.addAttribute("resultList", listProductByName);
         model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
         Date currentDate=new Date();
         model.addAttribute("currentDate", currentDate);
+        model.addAttribute("name", name);
         return "resultSearch";
     }
+    
+    @RequestMapping(value = "/searchNameBySort")
+    public String searchPageSort(Model model,@RequestParam("name") String name
+    		, @RequestParam("sortby")String sortBy) {
+    	if(sortBy.equals("desc")){
+    		List<Product> listProductPriceDesc = productService.findByContainingnameAndDescPrice(name);
+    		model.addAttribute("resultList", listProductPriceDesc);
+    	}
+    	if(sortBy.equals("asc")){
+    		List<Product> listProductPriceAsc = productService.findByContainingnameAndAscPrice(name);
+    		model.addAttribute("resultList", listProductPriceAsc);
+    	}
+    	Date currentDate=new Date();
+        model.addAttribute("currentDate", currentDate);
+        model.addAttribute("name", name);
+        model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);;
+        return "resultSearch";
+    }
+    
     @RequestMapping(value = "/supplier")
     public String getSupplier(Model model, @RequestParam("supplierId") String supplierId,HttpServletRequest request) {
         Supplier supplier = supplierService.findOne(supplierId);
-        List<Product> pagedListHolder = productService.findBySupplier(supplier);
-        model.addAttribute("pagedListHolder", pagedListHolder);
+        List<Product> listProductSuppliers = productService.findBySupplier(supplier);
+        model.addAttribute("resultList", listProductSuppliers);
         model.addAttribute("messagresultListe", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
+        Date currentDate=new Date();
+        model.addAttribute("currentDate", currentDate);
         return "resultSearch";
     }
 }

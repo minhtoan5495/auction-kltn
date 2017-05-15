@@ -266,5 +266,17 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByCategory(category);
     }
 
+	@Override
+	public List<Product> findByContainingnameAndDescPrice(String name) {
+		// TODO Auto-generated method stub
+		return productRepository.findByNameContainingOrderByPriceDesc(name);
+	}
+
+	@Override
+	public List<Product> findByContainingnameAndAscPrice(String name) {
+		// TODO Auto-generated method stub
+		return productRepository.findByNameContainingOrderByPriceAsc(name);
+	}
+
 
 }

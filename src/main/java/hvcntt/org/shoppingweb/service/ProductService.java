@@ -54,4 +54,6 @@ public interface ProductService {
     List<Product> getHighView();
 
     List<Product> findByCategory(String categoryId);
+    List<Product> findByContainingnameAndDescPrice(String name);
+    List<Product> findByContainingnameAndAscPrice(String name);
 }
