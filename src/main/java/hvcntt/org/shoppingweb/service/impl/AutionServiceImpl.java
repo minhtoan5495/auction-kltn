@@ -87,14 +87,15 @@ public class AutionServiceImpl implements AuctionService {
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void save(String startDate, String endDate, List<String> productIds) throws ParseException {
         for (String productId : productIds) {
-            int beginIndex = productId.indexOf("productId\":\"");
-            int endIndex = productId.indexOf("\"}");
-            String productIdNew = productId.substring(beginIndex + 12, endIndex);
+            Auction findAuctionByProductAndStatus = auctionRepository.findByProductAndStatus(productRepository.findOne(productId), "ĐANG ĐẤU GIÁ");
+            if(findAuctionByProductAndStatus != null){
+                findAuctionByProductAndStatus.setStatus("ĐÃ KẾT THÚC");
+            }
             Auction auction = new Auction();
             auction.setStatus("ĐANG ĐẤU GIÁ");
-            auction.setEndTime(formatStringToDate(startDate));
-            auction.setStartTime(formatStringToDate(endDate));
-            auction.setProduct(productRepository.getOne(productIdNew));
+            auction.setEndTime(formatStringToDate(endDate));
+            auction.setStartTime(formatStringToDate(startDate));
+            auction.setProduct(productRepository.getOne(productId));
             auctionRepository.save(auction);
         }
     }

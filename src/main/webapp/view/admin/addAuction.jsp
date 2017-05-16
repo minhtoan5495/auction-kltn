@@ -3,10 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <style>
-    .multiselect-parent{
+    .multiselect-parent {
         width: 120px;
     }
-    .dropdown-toggle{
+
+    .dropdown-toggle {
         width: 100%;
     }
 </style>
@@ -16,11 +17,6 @@
       href="${pageContext.request.contextPath}/resource/admin/assets/bootstrap-datetimepicker/css/datetimepicker.css"/>
 <section id="main-content" ng-app="productForAuction">
     <section class="wrapper">
-        <c:if test="${not empty message }">
-            <div class="alert alert-warning">
-                    ${message}
-            </div>
-        </c:if>
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
@@ -28,7 +24,7 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form ng-submit="submit()" ng-controller="ProductForAuctionController" ng-init='init(${products})'
+                    <form ng-controller="ProductForAuctionController" ng-init='init(${products})'
                           class="cmxform form-horizontal tasi-form" id="addAuction"
                           method="post">
                         <div class="col-lg-12">
@@ -36,11 +32,13 @@
                                 <label class="control-label col-lg-3">Choose Time</label>
                                 <div class="col-md-4">
                                     <div class="input-group input-large" data-date=""
-                                         data-date-format="hh:ii - yyyy-mm-dd">
-                                        <input ng-model="startDate" readonly type="text" placeholder="Choose start date" id="startDate" class="form-control dpd1"
+                                         data-date-format="yyyy-mm-dd">
+                                        <input ng-model="startDate" readonly type="text" placeholder="Choose start date"
+                                               id="startDate" class="form-control dpd1"
                                                name="startDate">
                                         <span class="input-group-addon">To</span>
-                                        <input ng-model="endDate" readonly placeholder="Choose end date" type="text" id="endDate" class="form-control dpd2"
+                                        <input ng-model="endDate" readonly placeholder="Choose end date" type="text"
+                                               id="endDate" class="form-control dpd2"
                                                name="endDate">
                                     </div>
                                 </div>
@@ -57,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <input href="/admin/manageAuction" class="btn btn-danger" value="Save" type="submit"/>
+                                    <input onclick="addAuction()" class="btn btn-danger" value="Save" type="submit"/>
                                 </div>
                             </div>
                         </div>

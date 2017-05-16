@@ -12,7 +12,7 @@ import java.util.UUID;
 @Table(name="user_auction")
 @NamedQuery(name="UserAuction.findAll", query="SELECT u FROM UserAuction u")
 public class UserAuction implements Serializable {
-	private static final long serialVersionUID = -6386595161965771905L;
+	private static final long serialVersionUID = -768991191761744887L;
 
 	@Id
 	@Column(name="user_auction_id")
@@ -79,4 +79,18 @@ public class UserAuction implements Serializable {
 		this.user = user;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		UserAuction that = (UserAuction) o;
+
+		return user.equals(that.user);
+	}
+
+	@Override
+	public int hashCode() {
+		return user.hashCode();
+	}
 }

@@ -76,7 +76,7 @@ public class DetailPageController {
         Set<UserAuction> userAuctions = new HashSet<>();
         List<Auction> auctions = product.getAuctions();
         for (Auction auction : auctions) {
-            if (auction.getStatus().equals("Đang đấu giá") && auction.getProduct().getProductId().equals(productId)) {
+            if (auction.getStatus().equals("ĐANG ĐẤU GIÁ") && auction.getProduct().getProductId().equals(productId)) {
                 userAuctions.addAll(auction.getUserAuctions());
             }
         }

@@ -3,7 +3,7 @@
         <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
     </div>
     <!--logo start-->
-    <a href="${pageContext.request.contextPath}/admin" class="logo">Flat<span>lab</span></a>
+    <a href="${pageContext.request.contextPath}/admin" class="logo">Auction<span>shop</span></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -230,7 +230,7 @@
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
-                    <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
+                    <li><a href="${pageContext.request.contextPath}/profile"><i class=" icon-suitcase"></i>Profile</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
                     <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
                     <li>

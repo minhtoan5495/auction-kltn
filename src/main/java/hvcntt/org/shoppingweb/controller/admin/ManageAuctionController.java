@@ -2,6 +2,7 @@ package hvcntt.org.shoppingweb.controller.admin;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,19 +34,17 @@ public class ManageAuctionController {
 
     @RequestMapping(value = "/admin/manageAuction")
     public String getAllAuction(Model model, @RequestParam(value = "message", required = false) String message) {
-        if("createAuction".equals(message)){
-            model.addAttribute("message", "Created auction success !!");
+        if ("saveSuccess".equals(message)) {
+            model.addAttribute("message", "Saved auction successfully !!");
         }
-        if("updateAuction".equals(message)){
-            model.addAttribute("message", "Updated auction success !!");
-        }
-        model.addAttribute("auctions", JsonUtil.convertObjectToJson(auctionService.getAll()));
+        List<Auction> auctions = auctionService.getAll();
+        model.addAttribute("auctions", auctions);
         return "manageAuction";
     }
 
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
     public String addAuction(@RequestParam(value = "message", required = false) String message, Model model) {
-        if("requiredAuction".equals(message)){
+        if ("requiredAuction".equals(message)) {
             model.addAttribute("message", "Let's create the auction for product that you're just created !!");
         }
         TransactionType transactionType = transactionTypeService.findByName("Auction");
@@ -55,41 +54,34 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/saveAuction", method = RequestMethod.GET)
-    public String saveAuction(@RequestParam("startDate") String startDate,
-                              @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
-        for (Product product: productService.findByIds(productIds)) {
-            Auction auction = auctionService.findByProduct(product);
-            if(auction != null){
-                auction.setEndTime(new SimpleDateFormat("hh:ii - yyyy-MM-dd ").parse(endDate));
-                auction.setStartTime(new SimpleDateFormat("hh:ii - yyyy-MM-dd").parse(startDate));
-                auctionService.save(auction);
-            }else{
-                auctionService.save(startDate, endDate, productIds);
-            }
-        }
-        return "redirect:/admin/manageAuction?message=createAuction";
+    public @ResponseBody
+    String saveAuction(@RequestParam("startDate") String startDate,
+                       @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
+        auctionService.save(startDate, endDate, productIds);
+        return "saveSuccess";
     }
 
     @RequestMapping(value = "/admin/deleteAuction", method = RequestMethod.GET)
-    public @ResponseBody String deleteAuction(@RequestParam("auctionId") String auctionId) {
+    public @ResponseBody
+    String deleteAuction(@RequestParam("auctionId") String auctionId) {
         auctionService.delete(auctionId);
         return "Deleted auction with id " + auctionId + " success !!";
     }
 
-    @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.GET)
-    public String editAuction(Model model, @RequestParam("auctionId") String auctionId) {
-        TransactionType transactionType = transactionTypeService.findByName("Auction");
-        model.addAttribute("products", productService.findByTransactionType(transactionType));
-        model.addAttribute("auctionDto", new AuctionDto());
-        Auction auction = auctionService.findOne(auctionId);
-        model.addAttribute("auction", auction);
-        return "editAuction";
-    }
-
-    @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.POST)
-    public String updateAuction(@ModelAttribute("auctionDto") AuctionDto auctionDto, HttpServletRequest request) throws ParseException {
-        String auctionId = request.getParameter("auctionId");
-        auctionService.update(auctionDto, auctionId);
-        return "redirect:/admin/manageAuction?message=updateAuction";
-    }
+//    @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.GET)
+//    public String editAuction(Model model, @RequestParam("auctionId") String auctionId) {
+//        TransactionType transactionType = transactionTypeService.findByName("Auction");
+//        model.addAttribute("products", productService.findByTransactionType(transactionType));
+//        model.addAttribute("auctionDto", new AuctionDto());
+//        Auction auction = auctionService.findOne(auctionId);
+//        model.addAttribute("auction", auction);
+//        return "editAuction";
+//    }
+//
+//    @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.POST)
+//    public String updateAuction(@ModelAttribute("auctionDto") AuctionDto auctionDto, HttpServletRequest request) throws ParseException {
+//        String auctionId = request.getParameter("auctionId");
+//        auctionService.update(auctionDto, auctionId);
+//        return "redirect:/admin/manageAuction?message=updateAuction";
+//    }
 }

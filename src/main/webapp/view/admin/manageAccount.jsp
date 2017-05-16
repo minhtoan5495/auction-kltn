@@ -51,7 +51,7 @@
                                                     value="${user.birthday}"/></td>
                                 <td>${user.phone}</td>
                                 <td><c:forEach var="role" items="${user.roles}">${role.roleName}  </c:forEach></td>
-                                <td><a class="edit" href="javascript:;">Edit</a></td>
+                                <td><a class="" href="${pageContext.request.contextPath }/admin/editRole?username=${user.username}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                             <c:set var="i" value="${i+1}"/>

@@ -4,41 +4,6 @@ var TableAccount = function () {
 
         //main function to initiate the module
         init: function () {
-            function restoreRow(oTable, nRow) {
-                var aData = oTable.fnGetData(nRow);
-                var jqTds = $('>td', nRow);
-
-                for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
-                    oTable.fnUpdate(aData[i], nRow, i, false);
-                }
-                oTable.fnDraw();
-            }
-
-            function editRow(oTable, nRow) {
-                var aData = oTable.fnGetData(nRow);
-                var jqTds = $('>td', nRow);
-                jqTds[9].innerHTML = '<input type="text" class="form-control small" value="' + aData[9] + '">';
-                jqTds[10].innerHTML = '<a class="edit" href="">Save</a>';
-                jqTds[11].innerHTML = '<a class="cancel" href="">Cancel</a>';
-            }
-
-            function saveRow(oTable, nRow) {
-                var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 9, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 11, false);
-                oTable.fnDraw();
-                function editAccount() {
-                    $.ajax({
-                        type: "GET",
-                        url: "/admin/editAccount",
-                        data: "username=" + oTable.fnGetData(nRow)[1] +
-                        "&role=" + jqInputs[0].value
-                    });
-                }
-                editAccount();
-            }
-
             var oTable = $('#manageAccountTable').dataTable({
                 "aLengthMenu": [
                     [10, 15, 20, -1],
@@ -64,8 +29,6 @@ var TableAccount = function () {
 
             jQuery('#editable-sample_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
             jQuery('#editable-sample_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-
-            var nEditing = null;
 
             $('#manageAccountTable a.delete').live('click', function (e) {
                 e.preventDefault();
@@ -94,39 +57,6 @@ var TableAccount = function () {
                 });
                 console.log(username);
             }
-
-            $('#manageAccountTable a.cancel').live('click', function (e) {
-                e.preventDefault();
-                if ($(this).attr("data-mode") == "new") {
-                    var nRow = $(this).parents('tr')[0];
-                    oTable.fnDeleteRow(nRow);
-                } else {
-                    restoreRow(oTable, nEditing);
-                    nEditing = null;
-                }
-            });
-
-            $('#manageAccountTable a.edit').live('click', function (e) {
-                e.preventDefault();
-
-                /* Get the row as a parent of the link that was clicked on */
-                var nRow = $(this).parents('tr')[0];
-
-                if (nEditing !== null && nEditing != nRow) {
-                    /* Currently editing - but not this row - restore the old before continuing to edit mode */
-                    restoreRow(oTable, nEditing);
-                    editRow(oTable, nRow);
-                    nEditing = nRow;
-                } else if (nEditing == nRow && this.innerHTML == "Save") {
-                    /* Editing this row and want to save it */
-                    saveRow(oTable, nEditing);
-                    nEditing = null;
-                } else {
-                    /* No edit in progress - let's start one */
-                    editRow(oTable, nRow);
-                    nEditing = nRow;
-                }
-            });
         }
     };
 }();

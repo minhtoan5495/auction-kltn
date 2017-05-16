@@ -176,19 +176,19 @@
                                                      style="border: 1px solid gray; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
                                                     <div class="col-sm-3">
                                                         <img alt=""
-                                                             src="${pageContext.request.contextPath }/resource/images/product/${auction.auction.product.images.get(i).getImageUrl()}">
+                                                             src="${pageContext.request.contextPath }/resource/images/product/${auction.product.images.get(i).getImageUrl()}">
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <strong> ${auction.auction.product.name}
+                                                        <strong> ${auction.product.name}
                                                         </strong><br>
                                                         <label class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                                value="${auction.auction.startTime}" pattern="dd-MM-yyyy"/>
+                                                                value="${auction.startTime}" pattern="dd-MM-yyyy"/>
                                                             <p style="color: #59b210; font-weight: 400">Ngày kết thúc
                                                                 <fmt:formatDate
-                                                                        value="${auction.auction.endTime}" pattern="dd-MM-yyyy"/></p>
+                                                                        value="${auction.endTime}" pattern="dd-MM-yyyy"/></p>
                                                             <p style="color: #ff4f4f; font-weight: 400">
                                                                 Giá tiền:
-                                                                <fmt:formatNumber value="${auction.auction.product.price}" type="number"/>
+                                                                <fmt:formatNumber value="${auction.product.price}" type="number"/>
                                                                 đ
                                                             </p>
 

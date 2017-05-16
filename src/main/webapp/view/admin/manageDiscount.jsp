@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<section id="main-content" ng-app="discount">
+<section id="main-content">
     <section class="wrapper">
         <!-- page start-->
         <section class="panel">
@@ -11,7 +11,7 @@
                 Manage Discount
             </header>
             <div class="panel-body">
-                <div class="adv-table editable-table" ng-controller="DiscountController" ng-init='init(${discounts})'>
+                <div class="adv-table editable-table">
                     <div class="btn-group">
                         <a href="${pageContext.request.contextPath}/admin/addDiscount" type="button" id="addNewDiscount"
                            class="btn green">
@@ -34,24 +34,22 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Show</th>
-                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <%--<c:forEach var="discount" items="${discounts}">--%>
-                            <tr ng-repeat="discount in discounts">
-                                <td hidden="hidden">{{discount.discountId}}</td>
-                                <td>{{discount.discountTitle}}</td>
-                                <td>{{discount.discountContent}}</td>
-                                <td>{{discount.discountPercent}}</td>
-                                <td>{{discount.startDate | date:'yyyy-MM-dd'}}</td>
-                                <td>{{discount.endDate | date:'yyyy-MM-dd'}}</td>
-                                <td><a class="" href="${pageContext.request.contextPath}/admin/">Show</a></td>
-                                <td><a class="edit" href="javascript:;">Edit</a></td>
+                        <c:forEach items="${discounts}" var="discount">
+                            <tr class="">
+                                <td hidden="hidden">${discount.discountId}</td>
+                                <td>${discount.discountTitle}</td>
+                                <td>${discount.discountContent}</td>
+                                <td>${discount.discountPercent}</td>
+                                <td><fmt:formatDate value="${discount.startDate}" pattern="hh:mm yyyy-MM-dd"/> </td>
+                                <td><fmt:formatDate value="${discount.endDate}" pattern="hh:mm yyyy-MM-dd"/></td>
+                                <td><a href="${pageContext.request.contextPath}/admin/discountDetail?discountId=${discount.discountId}">Show</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
-                        <%--</c:forEach>--%>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

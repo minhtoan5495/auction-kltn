@@ -4,17 +4,6 @@ var TableInvoice = function () {
 
         //main function to initiate the module
         init: function () {
-            function restoreRow(oTable, nRow) {
-                var aData = oTable.fnGetData(nRow);
-                var jqTds = $('>td', nRow);
-
-                for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
-                    oTable.fnUpdate(aData[i], nRow, i, false);
-                }
-
-                oTable.fnDraw();
-            }
-
             var oTable = $('#manageInvoiceTable').dataTable({
                 "aLengthMenu": [
                     [10, 15, 20, -1],
@@ -44,16 +33,6 @@ var TableInvoice = function () {
             var nEditing = null;
 
 
-            $('#manageInvoiceTable a.cancel').live('click', function (e) {
-                e.preventDefault();
-                if ($(this).attr("data-mode") == "new") {
-                    var nRow = $(this).parents('tr')[0];
-                    oTable.fnDeleteRow(nRow);
-                } else {
-                    restoreRow(oTable, nEditing);
-                    nEditing = null;
-                }
-            });
             $('#manageInvoiceTable a.delete').live('click', function (e) {
                 e.preventDefault();
                 var nRow = $(this).parents('tr')[0];

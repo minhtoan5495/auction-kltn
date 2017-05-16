@@ -11,28 +11,30 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                Add Parent
+                Update Parent
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form:form action="${pageContext.request.contextPath}/admin/saveParent" commandName="parent" class="cmxform form-horizontal tasi-form" id="addSupplier"
-                                method="post" >
+                    <form:form action="${pageContext.request.contextPath}/admin/saveParent" commandName="parent"
+                               class="cmxform form-horizontal tasi-form" id="addSupplier"
+                               method="post">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                    </div>
+                            <div class="form-group">
+                                <form:input path="parentId" type="hidden"/>
+                            </div>
                             <div class="form-group ">
-                                <label for="parentName" class="control-label col-lg-3">Supplier name</label>
+                                <label for="parentName" class="control-label col-lg-3">Parent name</label>
                                 <div class="col-lg-7">
                                     <form:input path="parentName" class=" form-control" placeholder="Enter parent name"
                                                 id="parentName" name="parentName" type="text"/>
                                 </div>
                             </div>
-                               <div class="form-group">
+                            <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <input class="btn btn-danger" value="Save" type="submit"/>
                                 </div>
                             </div>
-                           </div>
+                        </div>
                     </form:form>
                 </div>
             </div>

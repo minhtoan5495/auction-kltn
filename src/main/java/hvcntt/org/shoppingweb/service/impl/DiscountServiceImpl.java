@@ -62,14 +62,10 @@ public class DiscountServiceImpl implements DiscountService {
         discount.setDiscountPercent(discountPercent);
         discount.setStartDate(formatStringToDate(startDate));
         discount.setEndDate(formatStringToDate(endDate));
-        List<String> productIdsNew = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
         for(String productId : productIds){
-            int beginIndex = productId.indexOf("productId\":\"");
-            int endIndex = productId.indexOf("\"}");
-            String productIdNew = productId.substring(beginIndex + 12, endIndex);
-            productIdsNew.add(productIdNew);
+            products.add(productService.findOne(productId));
         }
-        List<Product> products = productService.findByIds(productIdsNew);
         discount.setProducts(products);
         discountRepository.save(discount);
     }
@@ -86,6 +82,11 @@ public class DiscountServiceImpl implements DiscountService {
         discount.setDiscountTitle(discountTitle);
         discount.setDiscountPercent(discountPercent);
         discountRepository.save(discount);
+    }
+
+    @Override
+    public Discount findByDiscountId(String discountId) {
+        return discountRepository.findOne(discountId);
     }
 
     private Date formatStringToDate(String date) throws ParseException {

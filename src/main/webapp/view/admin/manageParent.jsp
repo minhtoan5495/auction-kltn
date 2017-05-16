@@ -36,7 +36,7 @@
                             <tr class="gradeX">
                                 <td hidden="hidden">${parent.parentId}</td>
                                 <td>${parent.parentName}</td>
-                                <td><a class="edit" href="javascript:;">Edit</a></td>
+                                <td><a class="" href="${pageContext.request.contextPath }/admin/editParent?parentId=${parent.parentId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>

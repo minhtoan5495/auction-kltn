@@ -1,4 +1,5 @@
 package hvcntt.org.shoppingweb.controller;
+
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class HomePageController {
         return parentService.findAll();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @RequestMapping(value = "/home")
     public String homePage(Model model, HttpSession session, HttpServletRequest request) {
         @SuppressWarnings("unused")
@@ -75,48 +76,49 @@ public class HomePageController {
         model.addAttribute("productAuctions", productService.findByProductTransactionType(transactionTypeAuction));
         model.addAttribute("suppliers", supplierService.getAll());
         model.addAttribute("productHighViews", productService.getHighView());
-        Date currentDate=new Date();
+        Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         return "home";
     }
 
     @RequestMapping(value = "/searchName")
     public String searchPage(Model model, HttpServletRequest request) {
-    	String name = request.getParameter("name");
+        String name = request.getParameter("name");
         List<Product> listProductByName = productService.findByNameContaining(name);
         model.addAttribute("resultList", listProductByName);
         model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
-        Date currentDate=new Date();
+        Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("name", name);
         return "resultSearch";
     }
-    
+
     @RequestMapping(value = "/searchNameBySort")
-    public String searchPageSort(Model model,@RequestParam("name") String name
-    		, @RequestParam("sortby")String sortBy) {
-    	if(sortBy.equals("desc")){
-    		List<Product> listProductPriceDesc = productService.findByContainingnameAndDescPrice(name);
-    		model.addAttribute("resultList", listProductPriceDesc);
-    	}
-    	if(sortBy.equals("asc")){
-    		List<Product> listProductPriceAsc = productService.findByContainingnameAndAscPrice(name);
-    		model.addAttribute("resultList", listProductPriceAsc);
-    	}
-    	Date currentDate=new Date();
+    public String searchPageSort(Model model, @RequestParam("name") String name
+            , @RequestParam("sortby") String sortBy) {
+        if (sortBy.equals("desc")) {
+            List<Product> listProductPriceDesc = productService.findByContainingnameAndDescPrice(name);
+            model.addAttribute("resultList", listProductPriceDesc);
+        }
+        if (sortBy.equals("asc")) {
+            List<Product> listProductPriceAsc = productService.findByContainingnameAndAscPrice(name);
+            model.addAttribute("resultList", listProductPriceAsc);
+        }
+        Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("name", name);
-        model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);;
+        model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
+        ;
         return "resultSearch";
     }
-    
+
     @RequestMapping(value = "/supplier")
-    public String getSupplier(Model model, @RequestParam("supplierId") String supplierId,HttpServletRequest request) {
+    public String getSupplier(Model model, @RequestParam("supplierId") String supplierId, HttpServletRequest request) {
         Supplier supplier = supplierService.findOne(supplierId);
         List<Product> listProductSuppliers = productService.findBySupplier(supplier);
         model.addAttribute("resultList", listProductSuppliers);
         model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
-        Date currentDate=new Date();
+        Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         return "resultSearch";
     }

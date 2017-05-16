@@ -33,7 +33,7 @@ public class ManageParentController {
     @RequestMapping(value = "/admin/addParent", method = RequestMethod.GET)
     public String addParent(Model model){
         model.addAttribute("parent", new Parent());
-        return "addParent";
+        return "addOrEditParent";
     }
 
     @RequestMapping(value = "/admin/saveParent", method = RequestMethod.POST)
@@ -43,11 +43,10 @@ public class ManageParentController {
     }
 
     @RequestMapping(value = "/admin/updateParent", method = RequestMethod.GET)
-    public void updateParent(@RequestParam("parentId") String parentId, @RequestParam("parentName") String parentName, Model model){
-        Parent parent = parentService.findById(parentId);
-        parent.setParentName(parentName);
+    public String updateParent(@ModelAttribute Parent parent, Model model){
         parentService.saveParent(parent);
-        model.addAttribute("message","Updated parent with id : " + parentId + " !!");
+        model.addAttribute("message","Updated parent with id : " + parent.getParentId() + " !!");
+        return "redirect:/admin/manageParent?message=saveSuccess&&parentId=" + parent.getParentId();
     }
 
     @RequestMapping(value = "/admin/deleteParent", method = RequestMethod.GET)
@@ -57,4 +56,9 @@ public class ManageParentController {
         model.addAttribute("message","Deleted parent with id : " + parentId + " !!");
     }
 
+    @RequestMapping(value = "/admin/editParent", method = RequestMethod.GET)
+    public String editParent(@RequestParam(value = "parentId") String parentId, Model model){
+        model.addAttribute(parentService.findById(parentId));
+        return "addOrEditParent";
+    }
 }

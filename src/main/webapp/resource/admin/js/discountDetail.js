@@ -1,13 +1,11 @@
 /**
- * Created by toannguyen on 28/04/2017.
+ * Created by toannguyen on 16/05/2017.
  */
-var TableParent = function () {
-
+var TableDiscountDetail = function () {
     return {
-
         //main function to initiate the module
         init: function () {
-            var oTable = $('#manageParentTable').dataTable({
+            var oTable = $('#discountDetailTable').dataTable({
                 "aLengthMenu": [
                     [10, 15, 20, -1],
                     [10, 15, 20, "All"] // change per page values here
@@ -33,32 +31,27 @@ var TableParent = function () {
             jQuery('#editable-sample_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
             jQuery('#editable-sample_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 
-            $('#manageParentTable a.delete').live('click', function (e) {
+
+            $('#discountDetailTable a.delete').live('click', function (e) {
                 e.preventDefault();
                 var nRow = $(this).parents('tr')[0];
                 var aData = oTable.fnGetData(nRow);
-                var parentId = aData[0];
-                if (confirm("Are you sure to delete this row  with parent : " + aData[1]) == false) {
+                var productId = aData[1];
+                var discountId = aData[0];
+                if (confirm("Are you sure to delete this row  with productId : " + productId) == false) {
                     return;
                 }
-                deleteParent(parentId);
+                deleteProductInDiscount(productId, discountId);
                 oTable.fnDeleteRow(nRow);
             });
 
-            function deleteParent(parentId) {
+            function deleteProductInDiscount(productId, discountId) {
                 $.ajax({
                     type: "GET",
-                    url: "/admin/deleteParent",
-                    data: "parentId=" + parentId,
-                    success : function (response) {
-                        $('#message').html(response);
-                        $('#message').show();
-                        setTimeout(function() {
-                            $("#message").hide('blind', {}, 500)
-                        }, 1000);
-                    }
+                    url: "/admin/deleteProductInDiscount",
+                    data: "productId=" + productId +
+                        "&discountId=" + discountId,
                 });
-                console.log(parentId);
             }
         }
     };

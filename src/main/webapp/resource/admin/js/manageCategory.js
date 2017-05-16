@@ -4,17 +4,6 @@ var TableCategory = function () {
 
         //main function to initiate the module
         init: function () {
-            function restoreRow(oTable, nRow) {
-                var aData = oTable.fnGetData(nRow);
-                var jqTds = $('>td', nRow);
-
-                for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
-                    oTable.fnUpdate(aData[i], nRow, i, false);
-                }
-
-                oTable.fnDraw();
-            }
-
             var oTable = $('#manageCategoryTable').dataTable({
                 "aLengthMenu": [
                     [10, 15, 20, -1],
@@ -44,16 +33,6 @@ var TableCategory = function () {
             var nEditing = null;
 
 
-            $('#manageCategoryTable a.cancel').live('click', function (e) {
-                e.preventDefault();
-                if ($(this).attr("data-mode") == "new") {
-                    var nRow = $(this).parents('tr')[0];
-                    oTable.fnDeleteRow(nRow);
-                } else {
-                    restoreRow(oTable, nEditing);
-                    nEditing = null;
-                }
-            });
             $('#manageCategoryTable a.delete').live('click', function (e) {
                 e.preventDefault();
                 var nRow = $(this).parents('tr')[0];

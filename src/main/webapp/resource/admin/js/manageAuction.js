@@ -75,7 +75,7 @@ var TableAuction = function () {
                         $('#message').show();
                         setTimeout(function() {
                             $("#message").hide('blind', {}, 500)
-                        }, 1000);
+                        }, 3000);
                     }
                 });
                 console.log(auctionId);

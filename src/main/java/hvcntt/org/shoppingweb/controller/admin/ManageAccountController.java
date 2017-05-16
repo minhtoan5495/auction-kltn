@@ -48,11 +48,14 @@ public class ManageAccountController {
 	}
 
 	@RequestMapping("/admin/manageAccount")
-	public String listAllAccount(Model model){
+	public String listAllAccount(Model model, @RequestParam(value = "message", required = false) String message){
+		if("saveSuccess".equals(message)){
+			model.addAttribute("message", "Saved user successfully !!");
+		}
+		if("deleteSuccess".equals(message)){
+			model.addAttribute("message", "Deleted user successfully !!");
+		}
 		List<User> users = userService.getAll();
-		model.addAttribute("roles", roleRepository.findAll());
-		model.addAttribute("cities", cityService.getAll());
-		model.addAttribute("userDto", new UserDto());
 		model.addAttribute("users", users);
 		return "manageAccount";
 	}
@@ -70,14 +73,28 @@ public class ManageAccountController {
 		return "Deleted success username : " + username;
 	}
 
-	@RequestMapping(value = "/admin/editAccount", method = RequestMethod.GET, produces = "application/x-www-form-urlencoded;charset=UTF-8")
-	public @ResponseBody String editAccount(HttpServletRequest request) throws ParseException, UserAlreadyExistsException, RoleNotFoundException, UserNotFoundException {
+	@RequestMapping(value = "/admin/updateRole", method = RequestMethod.POST)
+	public String editAccount(HttpServletRequest request) throws ParseException, UserAlreadyExistsException, RoleNotFoundException, UserNotFoundException {
 		User user = userService.findByUsername(request.getParameter("username"));
-		String role = request.getParameter("role");
+		String[] roleIds = request.getParameterValues("roleId");
 		List<Role> roles = new ArrayList<>();
-		roles.add(roleRepository.findByRoleName(role));
+		for (String roleId : roleIds){
+			roles.add(roleRepository.findOne(roleId));
+		}
 		user.setRoles(roles);
 		userService.save(user);
-		return  "Updated role for " + user.getUsername() + " success !!";
+		return  "redirect:/admin/manageAccount?message=saveSuccess";
+	}
+
+	@RequestMapping(value = "/admin/editRole", method = RequestMethod.GET)
+	public String editRole(@RequestParam("username") String username, Model model) throws UserNotFoundException {
+		model.addAttribute("user", userService.findByUsername(username));
+		model.addAttribute("roles", roleRepository.findAll());
+		return "updateRole";
+	}
+
+	@RequestMapping(value = "/deny")
+	public String deny(){
+		return "deny";
 	}
 }

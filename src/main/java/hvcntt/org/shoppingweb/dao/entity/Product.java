@@ -203,4 +203,19 @@ public class Product implements Serializable {
 	public void setDiscounts(List<Discount> discounts) {
 		this.discounts = discounts;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Product product = (Product) o;
+
+		return productId != null ? productId.equals(product.productId) : product.productId == null;
+	}
+
+	@Override
+	public int hashCode() {
+		return productId != null ? productId.hashCode() : 0;
+	}
 }

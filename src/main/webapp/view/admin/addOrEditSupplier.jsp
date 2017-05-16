@@ -20,7 +20,6 @@
                                method="post">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <form:label for="usr" path="supplierId">ID</form:label>
                                 <form:input path="supplierId" type="hidden"/>
                             </div>
                             <div class="form-group ">

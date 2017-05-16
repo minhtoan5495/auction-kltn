@@ -31,7 +31,7 @@ public class Auction implements Serializable {
 	private String status;
 
 	//bi-directional many-to-one association to Product
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="product_id")
 	@JsonBackReference
 	private Product product;
