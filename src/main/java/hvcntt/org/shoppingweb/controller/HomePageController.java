@@ -115,7 +115,7 @@ public class HomePageController {
         Supplier supplier = supplierService.findOne(supplierId);
         List<Product> listProductSuppliers = productService.findBySupplier(supplier);
         model.addAttribute("resultList", listProductSuppliers);
-        model.addAttribute("messagresultListe", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
+        model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
         Date currentDate=new Date();
         model.addAttribute("currentDate", currentDate);
         return "resultSearch";

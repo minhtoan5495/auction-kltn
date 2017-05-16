@@ -14,6 +14,8 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,12 +54,9 @@ public class ProductController {
     public String productByTypeAuction(Model model, HttpServletRequest request){
         TransactionType transactionType = transactionTypeService.findByName("Auction");
         List<Product> products = productService.findByProductTransactionType(transactionType);
-        PagedListHolder pagedListHolder = new PagedListHolder(products);
-        int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-        pagedListHolder.setPage(page);
-        pagedListHolder.setPageSize(4);
-        model.addAttribute("pagedListHolder", pagedListHolder);
-        model.addAttribute("products", products);
+        model.addAttribute("resultList", products);
+        Date currentDate=new Date();
+        model.addAttribute("currentDate", currentDate);
         return "resultSearch";
     }
 }

@@ -31,6 +31,8 @@
 </footer>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script
+        src="${pageContext.request.contextPath }/resource/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"

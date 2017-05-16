@@ -235,7 +235,7 @@
 													</div>
 												</c:if>
 												<c:if
-													test="${ product.transactionType.transactionTypeId == 1 and product.auctions.get(i).endTime <=now}">
+													test="${ product.transactionType.transactionTypeId == 1 and product.auctions.get(i).endTime <=now and not empty liUserAuctions}">
 													<div class="row">
 														<div class="col-sm-3"></div>
 														<div class="col-sm-5">
@@ -254,6 +254,23 @@
 																		đ
 																	</h4>
 																</c:forEach>
+																<p>Thời gian kết thúc</p>
+																<p>
+																	<fmt:formatDate
+																		value="${product.auctions.get(i).endTime}"
+																		pattern="dd-MM-yyyy HH:mm:ss" />
+																</p>
+															</div>
+														</div>
+													</div>
+												</c:if>
+												<c:if test="${empty liUserAuctions}">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="detail-win-item">
+																<h3 class="detail-win-title">Phiên đấu giá đã kết thúc và không ai đấu giá cho sản phẩm này</h3>
+																<img alt=""
+																	src="${pageContext.request.contextPath }/resource/images/banner/cancelled.png">
 																<p>Thời gian kết thúc</p>
 																<p>
 																	<fmt:formatDate

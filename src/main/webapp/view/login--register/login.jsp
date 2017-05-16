@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Quên mật khẩu
+            <a href="${pageContext.request.contextPath }/changePassword" style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Đổi mật khẩu
             </a>
             <p class="error-msg" style="color: red; margin-top: 50px; display: none">Wrongcredentials</p>
             <div class="form_check">
