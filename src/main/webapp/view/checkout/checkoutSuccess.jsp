@@ -44,42 +44,9 @@
 					cảm</p>
 			</strong>
 		</div>
-	<%-- 	<div class="checkout_success_detail_order">
-			<label class="checkout_success_detail_order_name">Chi tiết
-				đơn hàng , bao gồm ${invoice.invoiceDetails.get(i).quantity }  sản phẩm
-				được đặt </label><br> 
-			<strong>Tên khách hàng: ${pageContext.request.userPrincipal.name}</strong>
-			<p>Đường: ${addShip.address }</p>
-			<p class="checkout_success_detail_order_item_district">Quận:
-				${addShip.district.districtName }</p>
-				<p class="checkout_success_detail_order_item_district">Quận:
-				${addShip.city.cityName }</p>
-		<c:forEach var="cart" items="${carts }">
-		<c:set var="s" value="${s+cart.product.price*cart.quantity }"></c:set>
-			<div class="checkout_success_detail_order_product">
-				<img
-					src="${pageContext.request.contextPath }/resource/images/product/${cart.image.imageUrl}">
-				<label class="checkout_success_detail_order_product_name">${cart.product.name}
-				<p style="color: black">Số lượng:${cart.quantity } cái</p>
-				</label>
-				 <label class="checkout_success_detail_order_delivery">Giao hàng <fmt:formatDate value="${invoice.createDate }"
-										pattern="dd-MM-yyyy" /> đến <fmt:formatDate value="${invoice.shipDate }"
-										pattern="dd-MM-yyyy" /></label>
-				<div class="checkout_success_detail_order_price pull-right">
-					<label><fmt:formatNumber value="${cart.quantity * cart.product.price}" type="number" />đ</label>
-				</div>
-			</div>
-				</c:forEach>
-			<div class="checkout_success_detail_order_product_total pull-right">
-				<p class="checkout_title_item">Tạm tính</p>
-				<p class="checkout_price_item"><fmt:formatNumber value="${s}" type="number" />đ</p>
-				<p class="checkout_title_item"
-					style="color: #0ca70e; font-weight: bold;">Phí ship</p>
-				<p class="checkout_price_item" style="color: #0ca70e; ">15,000đ</p>
-				<p class="checkout_title_item" style="font-weight: bold;color: gray;    margin-left: -170px;">Tổng tiền thanh toán</p>
-				<p class="checkout_price_item"><fmt:formatNumber value="${s}" type="number" />đ</p>
-			</div>
-		</div> --%>
+		<div class="checkout_success_notification">
+			<img alt="" src="${pageContext.request.contextPath }/resource/images/banner/congrulation.png">
+		</div>
 	</div>
 </div>
 <!--  END CONTENT -->

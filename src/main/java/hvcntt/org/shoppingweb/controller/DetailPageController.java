@@ -85,6 +85,7 @@ public class DetailPageController {
             model.addAttribute("ratingDto", new RatingDto());
             model.addAttribute("image", images);
             model.addAttribute("ratings", ratingService.getByProduct(product));
+            model.addAttribute("product", product);
             Date currentDate = new Date();
             model.addAttribute("currentDate", currentDate);
         }else{

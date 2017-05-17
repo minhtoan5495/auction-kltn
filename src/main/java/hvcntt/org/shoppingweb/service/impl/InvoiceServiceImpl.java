@@ -110,4 +110,10 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
     }
 
+	@Override
+	public List<Invoice> findByOrderByCreateDateDesc() {
+		// TODO Auto-generated method stub
+		return invoiceRepository.findByOrderByCreateDateDesc();
+	}
+
 }

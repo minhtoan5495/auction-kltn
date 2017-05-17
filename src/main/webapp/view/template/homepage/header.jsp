@@ -15,7 +15,7 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-7 col-xs-4 header_account_reponsive">
                 <div class="header_top_account pull-right">
-                    <ul class="nav nav-pills">
+                    <ul class="">
                         <c:if test="${pageContext.request.userPrincipal.name != null }">
                             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EMPLOYEE')">
                                 <div class="header_top_account">

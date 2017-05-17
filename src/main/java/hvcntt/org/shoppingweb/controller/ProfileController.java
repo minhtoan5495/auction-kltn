@@ -65,6 +65,8 @@ public class ProfileController {
         model.addAttribute("invoices", invoiceService.getAll());
         model.addAttribute("ordered", invoiceService.findByUsername(username));
         model.addAttribute("auctions", userAuctionService.findByUser(user));
+        Date currentDate=new Date();
+        model.addAttribute("currentDate", currentDate);
         return "profile";
     }
 
@@ -89,10 +91,11 @@ public class ProfileController {
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
     public String resetPassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
                                 @RequestParam("confirmPassword") String confirmPassword,
-                                HttpServletRequest request, HttpServletResponse response) throws UserNotFoundException {
+                                HttpServletRequest request, HttpServletResponse response,Model model) throws UserNotFoundException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
         if(oldPassword.equals("") || newPassword.equals("")){
             return "redirect:/changePassword?error=invalid";
         }

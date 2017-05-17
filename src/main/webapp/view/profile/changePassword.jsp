@@ -35,9 +35,6 @@
         font-size: 12px;
     }
 </style>
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-2">
             <div class="panel panel-info" style="margin-top: 30px;">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -101,6 +98,3 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-</div>

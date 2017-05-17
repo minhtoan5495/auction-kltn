@@ -50,15 +50,6 @@
 												<div class="panel-body"
 													id="panel_checkout_order_toggle_body">
 													<form>
-														<div class="input address_input">
-															<div class="address_input_title">
-																<label class="address_input_label">Họ và tên</label>
-															</div>
-															<div class="address_input_field">
-																<input type="text" class="address_field_input"
-																	placeholder="Họ & tên">
-															</div>
-														</div>
 														<div class="input address_select">
 															<div class="address_input_title">
 																<label class="address_input_label">Thành phố</label>
@@ -89,18 +80,6 @@
 																</form:select>
 															</div>
 														</div>
-														<div class="input address_select">
-															<div class="address_input_title">
-																<label class="address_input_label">Phường xã</label>
-															</div>
-															<div class="address_input_field">
-																<select class="address_field_select">
-																	<option>Hồ Chí Minh</option>
-																	<option>Đà Nẵng</option>
-																	<option>Hà Nội</option>
-																</select>
-															</div>
-														</div>
 														<div class="input address_input">
 															<div class="address_input_title">
 																<label class="address_input_label">Địa chỉ cụ
@@ -112,15 +91,6 @@
 																	path="address"></form:input>
 															</div>
 														</div>
-														<div class="input address_input">
-															<div class="address_input_title">
-																<label class="address_input_label">Số điện thoại</label>
-															</div>
-															<div class="address_input_field">
-																<input class="address_field_input" type="text"
-																	placeholder="Sđt">
-															</div>
-														</div>
 													</form>
 												</div>
 											</div>
@@ -129,22 +99,22 @@
 													<div class="checkout-type-item-title">
 														<label>Thông tin giao hàng</label>
 													</div>
-													<div class="checkout-type-item-input">
-														<input type="checkbox">
+													<div class="about-page-introduce">
+														<p>Tùy vào khu vực nhận hàng và tình trạng sản phẩm
+															của cửa hàng mà chúng tôi có thể giao hàng theo các ngày
+															khác nhau nhưng đảm bảo sẽ giao hàng một cách sớm nhất có
+															thể.Mong nhận được tất cả sự thông cảm từ quý khách hàng.</p>
 													</div>
 													<div class="checkout-type-item-info">
-														<p>Giao hàng bình thường</p>
-														<p>Từ ngày 00 đến ngày 00 tháng 00 năm 0000</p>
+														<label>Giao hàng bình thường</label>
+														<p>Từ ngày đặt hàng đến 3 ngày sau</p>
 													</div>
 													<p style="margin: 0 0 -10px;">
 														<br>
 													</p>
-													<div class="checkout-type-item-input">
-														<input type="checkbox">
-													</div>
 													<div class="checkout-type-item-info">
-														<p>Giao hàng bình thường</p>
-														<p>Từ ngày 00 đến ngày 00 tháng 00 năm 0000</p>
+														<label>Giao hàng đặc biệt</label>
+														<p>Từ ngày đặt hàng đến 5 ngày sau</p>
 													</div>
 												</div>
 											</div>
@@ -223,7 +193,7 @@
 							</div>
 						</div>
 						<button class="btn btn-danger review_item" id="review_item_toggle"
-							data-toggle="modal" data-target="#myModal">Xác nhận</button>
+							data-toggle="modal" data-target="#myModal" style="margin-left: 15px">Xác nhận</button>
 						<div class="modal fade" id="myModal" role="dialog">
 							<div class="modal-dialog">
 								<!-- Modal content-->
@@ -238,40 +208,46 @@
 										</div>
 									</div>
 									<div class="modal-body">
-									 <c:forEach var="cart" items="${carts }" varStatus="cartCount">
-                                            <div class="col-sm-3">
-                                                <div class="cart_modal_img">
-                                                    <img alt=""
-                                                         src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).imageUrl}">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <label>Tên sản phẩm</label>
-                                                        <p>${cart.product.name}</p>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <label>Số lượng</label>
-                                                        <p>${cart.quantity } cái</p>
+										<c:forEach var="cart" items="${carts }" varStatus="cartCount">
+											<div class="col-sm-3">
+												<div class="cart_modal_img">
+													<img alt=""
+														src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).imageUrl}">
+												</div>
+											</div>
+											<div class="col-sm-9">
+												<div class="row">
+													<div class="col-sm-3">
+														<label>Tên sản phẩm</label>
+														<p>${cart.product.name}</p>
+													</div>
+													<div class="col-sm-3">
+														<label>Số lượng</label>
+														<p>${cart.quantity }cái</p>
 
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <label>Giá</label>
-                                                        <p><fmt:formatNumber
-                                                                value="${cart.product.price}" type="number"/>đ</p>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <label>Thành tiền</label>
-                                                        <p><fmt:formatNumber
-                                                                value="${cart.product.price * cart.quantity}"
-                                                                type="number"/>đ</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </c:forEach>
-											<button type="submit" class="btn btn-danger btn-modal-comment">Xác
-												nhận tại đây</button>
+													</div>
+													<div class="col-sm-3">
+														<label>Giá</label>
+														<p>
+															<fmt:formatNumber value="${cart.product.price}"
+																type="number" />
+															đ
+														</p>
+													</div>
+													<div class="col-sm-3">
+														<label>Thành tiền</label>
+														<p>
+															<fmt:formatNumber
+																value="${cart.product.price * cart.quantity}"
+																type="number" />
+															đ
+														</p>
+													</div>
+												</div>
+											</div>
+										</c:forEach>
+										<button type="submit" class="btn btn-danger btn-modal-comment">Xác
+											nhận tại đây</button>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
