@@ -22,41 +22,41 @@
                         <div class="col-lg-2"></div>
                         <div class="col-lg-8">
                             <div class="form-group ">
-                                <label for="name" class="control-label col-lg-3">Product name</label>
+                                <label for="name" class="control-label col-lg-3">Product name <span style="color: red">(*)</span></label>
                                 <div class="col-lg-9">
-                                    <form:input path="name" class=" form-control" placeholder="Enter product name"
+                                    <form:input path="name" class=" form-control" required="true" placeholder="Enter product name"
                                                 id="name" name="name" type="text"/>
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="price" class="control-label col-lg-3">Price</label>
+                                <label for="price" class="control-label col-lg-3">Price <span style="color: red">(*)</span></label>
                                 <div class="col-lg-9">
-                                    <form:input path="price" class="form-control" min="0"
+                                    <form:input path="price" class="form-control" required="true" min="0"
                                                 placeholder="Enter product price" id="price" name="price"
                                                 type="number"/>
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="quantity" class="control-label col-lg-3">Quantity</label>
+                                <label for="quantity" class="control-label col-lg-3">Quantity <span style="color: red">(*)</span></label>
                                 <div class="col-lg-9">
-                                    <form:input path="stockQuantity" class="form-control" min="0"
+                                    <form:input path="stockQuantity" class="form-control" required="true" min="0"
                                                 placeholder="Enter product quantity" id="quantity" name="quantity"
                                                 type="number"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-lg-3">Manufacture Date</label>
+                                <label class="control-label col-lg-3">Manufacture Date <span style="color: red">(*)</span></label>
                                 <div class="col-lg-9">
-                                    <form:input path="manufactureDate" name="manufactureDate" id="manufactureDate"
+                                    <form:input path="manufactureDate" name="manufactureDate" required="true" id="manufactureDate"
                                                 class="form-control form-control-inline input-medium default-date-picker"
                                                 type="text" placeholder="Choose product manufacture date"
                                     />
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="category" class="control-label col-lg-3">Parent</label>
+                                <label for="category" class="control-label col-lg-3">Parent <span style="color: red">(*)</span></label>
                                 <div class="col-lg-5">
-                                    <select class="col-lg-9" onchange="getCategoryByParent();" style="height: 34px;" id="parent">
+                                    <select class="col-lg-9" required="true" onchange="getCategoryByParent();" style="height: 34px;" id="parent">
                                         <option>Select parent</option>
                                         <c:forEach var="parent" items="${parents}">
                                             <option value="${parent.parentId}">${parent.parentName}</option>
@@ -65,17 +65,17 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="category" class="control-label col-lg-3">Category</label>
+                                <label for="category" class="control-label col-lg-3">Category <span style="color: red">(*)</span></label>
                                 <div class="col-lg-5">
-                                    <form:select path="categoryId" class="col-lg-9" style="height: 34px;" id="category">
+                                    <form:select path="categoryId" required="true" class="col-lg-9" style="height: 34px;" id="category">
                                         <option>Select category</option>
                                     </form:select>
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="supplier" class="control-label col-lg-3">Supplier</label>
+                                <label for="supplier" class="control-label col-lg-3">Supplier <span style="color: red">(*)</span></label>
                                 <div class="col-lg-5">
-                                    <form:select path="supplierId" class="col-lg-9" style="height: 34px;" id="supplier">
+                                    <form:select path="supplierId" required="true" class="col-lg-9" style="height: 34px;" id="supplier">
                                         <option>Select supplier</option>
                                         <c:forEach var="supplier" items="${suppliers}">
                                             <option value="${supplier.supplierId}">${supplier.supplierName}</option>
@@ -85,9 +85,9 @@
                             </div>
                             <div class="form-group ">
                                 <label for="transactionType" style="height: 34px;"
-                                       class="control-label col-lg-3">Transaction Type</label>
+                                       class="control-label col-lg-3">Transaction Type <span style="color: red">(*)</span></label>
                                 <div class="col-lg-5">
-                                    <form:select path="transactionTypeId" class="col-lg-9" style="height: 34px;"
+                                    <form:select path="transactionTypeId" required="true" class="col-lg-9" style="height: 34px;"
                                                  id="transactionType">
                                         <option>Select transaction type</option>
                                         <c:forEach var="transactionType" items="${transactionTypes}">
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="form-group last">
-                                <label class="control-label col-lg-3">Image Upload</label>
+                                <label class="control-label col-lg-3">Image Upload <span style="color: red">(*)</span></label>
                                 <div class="col-md-3">
                                     <div class="fileupload fileupload-new" data-provides="fileupload">
                                         <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
@@ -111,7 +111,7 @@
                                                    <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
                                                    <span class="fileupload-exists"><i
                                                            class="icon-undo"></i> Change</span>
-                                                   <form:input path="image1" type="file" class="default"/>
+                                                   <form:input required="true" accept="image/gif, image/jpeg, image/png" path="image1" type="file" class="default"/>
                                                    </span>
                                             <a href="#" class="btn btn-danger fileupload-exists"
                                                data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
@@ -131,7 +131,7 @@
                                                    <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
                                                    <span class="fileupload-exists"><i
                                                            class="icon-undo"></i> Change</span>
-                                                   <form:input path="image2" type="file" class="default"/>
+                                                   <form:input required="true" path="image2" accept="image/gif, image/jpeg, image/png" type="file" class="default"/>
                                                    </span>
                                             <a href="#" class="btn btn-danger fileupload-exists"
                                                data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
@@ -151,7 +151,7 @@
                                                    <span class="fileupload-new"><i class="icon-paper-clip"></i> Select image</span>
                                                    <span class="fileupload-exists"><i
                                                            class="icon-undo"></i> Change</span>
-                                                   <form:input path="image3" type="file" class="default"/>
+                                                   <form:input required="true" path="image3" accept="image/gif, image/jpeg, image/png" type="file" class="default"/>
                                                    </span>
                                             <a href="#" class="btn btn-danger fileupload-exists"
                                                data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
@@ -160,10 +160,10 @@
                                 </div>
                             </div>
                             <div class="form-group last">
-                                <label class="control-label col-lg-3">Description</label>
+                                <label class="control-label col-lg-3">Description <span style="color: red">(*)</span></label>
                                 <div class="col-lg-9">
                                     <form:textarea path="description" class="form-control ckeditor" name="editor"
-                                                   rows="6"></form:textarea>
+                                                   rows="6"/>
                                 </div>
                             </div>
                             <div class="form-group">

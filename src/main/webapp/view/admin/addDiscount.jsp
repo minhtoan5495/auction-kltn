@@ -22,13 +22,18 @@
                 Add Discount
             </header>
             <div class="panel-body">
+                <c:if test="${not empty error }">
+                    <div class="alert alert-danger" id="message">
+                            ${error}
+                    </div>
+                </c:if>
                 <div class="form">
                     <form ng-controller="ProductForDiscountController" ng-init='init(${products})'
                           class="cmxform form-horizontal tasi-form" id="addDiscount"
                           method="post">
                         <div class="col-lg-12">
                             <div class="form-group last">
-                                <label class="control-label col-md-3">Select Product</label>
+                                <label class="control-label col-md-3">Select Product <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <div ng-dropdown-multiselect="" options="example14data"
                                          selected-model="example14model" checkboxes="true"
@@ -38,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="discountTitle" class="control-label col-lg-3">Discount Title</label>
+                                <label for="discountTitle" class="control-label col-lg-3">Discount Title <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <input ng-model="discountTitle" class=" form-control"
                                            placeholder="Enter discount title"
@@ -46,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="discountContent" class="control-label col-lg-3">Discount Content</label>
+                                <label for="discountContent" class="control-label col-lg-3">Discount Content <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <input ng-model="discountContent" class=" form-control"
                                            placeholder="Enter discount content"
@@ -54,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="discountPercent" class="control-label col-lg-3">Discount Percent</label>
+                                <label for="discountPercent" class="control-label col-lg-3">Discount Percent <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <input ng-model="discountPercent" class=" form-control"
                                            placeholder="Enter discount percent"
@@ -62,13 +67,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-lg-3">Choose Date</label>
+                                <label class="control-label col-lg-3">Choose Date <span style="color: red">(*)</span></label>
                                 <div class="col-md-4">
-                                    <div class="input-group input-large" data-date="2013-07-13"
-                                         data-date-format="yyyy-MM-dd">
-                                        <input ng-model="startDate" readonly placeholder="Choose start date" type="text" id="startDate" class="form-control dpd1" name="startDate">
+                                    <div class="input-group input-large">
+                                        <input ng-model="startDate" readonly placeholder="Choose start date" type="text" id="startDate" class="form-control" name="startDate">
                                         <span class="input-group-addon">To</span>
-                                        <input ng-model="endDate" readonly placeholder="Choose end date" type="text" id="endDate" class="form-control dpd2" name="endDate">
+                                        <input ng-model="endDate" readonly placeholder="Choose end date" type="text" id="endDate" class="form-control" name="endDate">
                                     </div>
                                 </div>
                             </div>

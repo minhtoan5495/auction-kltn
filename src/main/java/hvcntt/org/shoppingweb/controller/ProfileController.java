@@ -83,7 +83,7 @@ public class ProfileController {
     @RequestMapping("/cancelOrder")
     public String cancelOrder(@RequestParam("invoiceId") String invoiceId) throws InvoiceStatusNotFoundException {
         Invoice invoice = invoiceService.findOne(invoiceId);
-        invoice.setInvoiceStatus(invoiceStatusService.findByName("Đã hủy đơn hàng"));
+        invoice.setInvoiceStatus(invoiceStatusService.findByName("CANCELED"));
         invoiceService.save(invoice);
         return "redirect:/orderDetail?invoiceId=" + invoiceId;
     }

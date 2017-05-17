@@ -27,13 +27,11 @@ public class SupplierServiceImpl implements SupplierService {
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
 	public void save(Supplier supplier) {
 		supplierRepository.save(supplier);
-		
 	}
 
 	@Override
 	public Supplier findOne(String supplyId) {
 		return supplierRepository.findOne(supplyId);
-		
 	}
 
 	@Override
@@ -41,5 +39,10 @@ public class SupplierServiceImpl implements SupplierService {
 	public void delete(Supplier supplier) {
 		supplierRepository.delete(supplier);
 		
+	}
+
+	@Override
+	public Supplier findBySupplierName(String supplierName) {
+		return supplierRepository.findBySupplierName(supplierName);
 	}
 }

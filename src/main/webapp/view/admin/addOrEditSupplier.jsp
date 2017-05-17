@@ -23,7 +23,7 @@
                                 <form:input path="supplierId" type="hidden"/>
                             </div>
                             <div class="form-group ">
-                                <label for="supplierName" class="control-label col-lg-3">Supplier name</label>
+                                <label for="supplierName" class="control-label col-lg-3">Supplier name <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <form:input path="supplierName" class=" form-control"
                                                 placeholder="Enter supplier name"

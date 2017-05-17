@@ -15,4 +15,6 @@ public interface ParentService {
     void saveParent(Parent parent);
 
     void delete(Parent parent);
+
+    Parent findByParentName(String parentName);
 }

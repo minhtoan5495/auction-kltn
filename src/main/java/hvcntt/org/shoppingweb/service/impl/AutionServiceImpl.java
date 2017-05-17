@@ -56,7 +56,7 @@ public class AutionServiceImpl implements AuctionService {
     }
 
     private Date formatStringToDate(String date) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm - yyyy-MM-dd");
         return format.parse(date);
     }
 
@@ -74,12 +74,13 @@ public class AutionServiceImpl implements AuctionService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
-    public void update(AuctionDto auctionDto, String auctionId) throws ParseException {
+    public void update(String auctionId, String auctionStatus) throws ParseException {
         Auction auction = auctionRepository.findOne(auctionId);
-        auction.setStatus(auctionDto.getStatus());
-        auction.setStartTime(formatStringToDate(auctionDto.getStartTime()));
-        auction.setEndTime(formatStringToDate(auctionDto.getEndTime()));
-        auction.setProduct(productRepository.getOne(auctionDto.getProductId()));
+        Auction findAuctionByProductAndStatus = auctionRepository.findByProductAndStatus(productRepository.findOne(auction.getProduct().getProductId()), "ĐANG ĐẤU GIÁ");
+        if(findAuctionByProductAndStatus != null){
+            findAuctionByProductAndStatus.setStatus("ĐÃ KẾT THÚC");
+        }
+        auction.setStatus(auctionStatus);
         auctionRepository.save(auction);
     }
 

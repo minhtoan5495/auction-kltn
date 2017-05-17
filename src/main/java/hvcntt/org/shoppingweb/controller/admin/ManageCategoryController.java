@@ -29,7 +29,16 @@ public class ManageCategoryController {
     }
 
     @RequestMapping(value = "/admin/addCategory", method = RequestMethod.GET)
-    public String addCategory(Model model) {
+    public String addCategory(Model model, @RequestParam(value = "message", required = false) String message) {
+        if("invalidName".equals(message)){
+            model.addAttribute("error", "Category name is exist !!");
+        }
+        if("nullName".equals(message)){
+            model.addAttribute("error", "Category name is null !!");
+        }
+        if("nullParent".equals(message)){
+            model.addAttribute("error", "Please select parent for category than you want to create !!");
+        }
         model.addAttribute("categoryDto", new CategoryDto());
         model.addAttribute("parents", parentService.findAll());
         return "addOrEditCategory";
@@ -37,6 +46,15 @@ public class ManageCategoryController {
 
     @RequestMapping(value = "/admin/saveCategory", method = RequestMethod.POST)
     public String addCategory(@ModelAttribute("categoryDto") CategoryDto categoryDto) {
+        if(categoryDto.getCategoryName().isEmpty()){
+            return "redirect:/admin/addCategory?message=nullName";
+        }
+        if(categoryDto.getParentId().equals("")){
+            return "redirect:/admin/addCategory?message=nullParent";
+        }
+        if(categoryService.findByCategoryName(categoryDto.getCategoryName()) != null){
+            return "redirect:/admin/addCategory?message=invalidName";
+        }
         categoryService.save(categoryDto);
         return "redirect:/admin/manageCategory?message=saveCategory";
     }

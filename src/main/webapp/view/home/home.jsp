@@ -160,6 +160,11 @@
 		</div>
 		<div class="row">
 			<div class="content-page">
+				<c:if test="${not empty message }">
+					<div class="alert alert-success" style="text-align: center;" id="message">
+							${message}
+					</div>
+				</c:if>
 				<div class="content-page-title">
 					<h2 class="content-paget-title-item">SẢN PHẨM BÁN</h2>
 				</div>

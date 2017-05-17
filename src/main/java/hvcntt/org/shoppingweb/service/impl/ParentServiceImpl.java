@@ -41,4 +41,9 @@ public class ParentServiceImpl implements ParentService {
     public void delete(Parent parent) {
         parentRepository.delete(parent);
     }
+
+    @Override
+    public Parent findByParentName(String parentName) {
+        return parentRepository.findByParentName(parentName);
+    }
 }

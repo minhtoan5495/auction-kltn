@@ -1,6 +1,7 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import hvcntt.org.shoppingweb.dao.entity.Product;
@@ -38,7 +39,13 @@ public class ManageDiscountController {
     }
 
     @RequestMapping(value = "/admin/addDiscount", method = RequestMethod.GET)
-    public String addDiscount(Model model) {
+    public String addDiscount(@RequestParam(value = "message", required = false) String message, Model model) {
+        if ("invalidForm".equals(message)) {
+            model.addAttribute("error", "All field is required !!");
+        }
+        if ("invalidDate".equals(message)) {
+            model.addAttribute("error", "The start date can't less than today and the end date can't great than the start date !!");
+        }
         TransactionType transactionType = transactionTypeService.findByName("Sale");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByProductTransactionType(transactionType)));
         model.addAttribute("discount", new Discount());
@@ -49,8 +56,16 @@ public class ManageDiscountController {
     public @ResponseBody String saveDiscount(@RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
                              @RequestParam("discountPercent") int discountPercent, @RequestParam("startDate") String startDate,
                              @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
+        if (formatStringToDate(startDate).before(new Date()) || formatStringToDate(endDate).before(formatStringToDate(startDate))){
+            return "invalidDate";
+        }
         discountService.create(discountTitle, discountContent, discountPercent, startDate, endDate, productIds);
         return "saveSuccess";
+    }
+
+    private Date formatStringToDate(String date) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm - yyyy-MM-dd");
+        return format.parse(date);
     }
 
     @RequestMapping(value = "/admin/multiselect")
@@ -63,13 +78,6 @@ public class ManageDiscountController {
         discountService.deleteDiscount(discountId);
         return "Deleted discount with id " + discountId + " success !!";
     }
-//
-//    @RequestMapping(value = "/admin/updateDiscount", method = RequestMethod.GET)
-//    public @ResponseBody String updateDiscount(@RequestParam("discountId") String discountId, @RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
-//                               @RequestParam("discountPercent") int discountPercent) throws ParseException {
-//        discountService.update(discountTitle, discountContent, discountPercent, discountId);
-//        return "Updated discount with id " + discountId + " success !!";
-//    }
 
     @RequestMapping(value = "/admin/discountDetail", method = RequestMethod.GET)
     public String discountDetail(@RequestParam(value = "discountId") String discountId, Model model){

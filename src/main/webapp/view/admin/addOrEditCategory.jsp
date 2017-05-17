@@ -16,6 +16,11 @@
                 Add Category
             </header>
             <div class="panel-body">
+                <c:if test="${not empty error }">
+                    <div class="alert alert-danger" id="message">
+                            ${error}
+                    </div>
+                </c:if>
                 <div class="form">
                     <form:form action="${pageContext.request.contextPath}/admin/saveCategory" commandName="categoryDto"
                                class="cmxform form-horizontal tasi-form" id="addCategory"
@@ -23,7 +28,7 @@
                         <div class="col-lg-12">
                             <form:input path="categoryId" value="${category.categoryId}" hidden="hidden"/>
                             <div class="form-group">
-                                <label for="categoryName" class="control-label col-lg-3">Category name</label>
+                                <label for="categoryName" class="control-label col-lg-3">Category name <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <form:input path="categoryName" class=" form-control" value="${category.categoryName}"
                                                 placeholder="Enter category name"
@@ -31,10 +36,10 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="parentId" class="control-label col-lg-3">Parent Name</label>
+                                <label for="parentId" class="control-label col-lg-3">Parent Name <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
-                                    <form:select path="parentId" class="col-lg-5" id="parentId">
-                                        <option>Select category</option>
+                                    <form:select path="parentId" class="col-lg-5" id="parentId" style="height: 34px;">
+                                        <option value="">Select category</option>
                                         <c:forEach var="parent" items="${parents}">
                                             <c:if test="${parent.parentName eq category.parent.parentName}">
                                                 <option value="${parent.parentId}"

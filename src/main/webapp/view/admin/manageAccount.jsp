@@ -12,13 +12,11 @@
             <div class="panel-body">
                 <div class="adv-table editable-table ">
                     <div class="space15"></div>
-                    <div class="btn-group pull-left">
-                        <c:if test="${not empty message }">
-                            <div class="alert alert-success" id="message">
-                                    ${message}
-                            </div>
-                        </c:if>
-                    </div>
+                    <c:if test="${not empty message }">
+                        <div class="alert alert-success" id="message">
+                                ${message}
+                        </div>
+                    </c:if>
                     <table class="table table-striped table-hover table-bordered" id="manageAccountTable">
                         <thead>
                         <tr>
@@ -51,7 +49,9 @@
                                                     value="${user.birthday}"/></td>
                                 <td>${user.phone}</td>
                                 <td><c:forEach var="role" items="${user.roles}">${role.roleName}  </c:forEach></td>
-                                <td><a class="" href="${pageContext.request.contextPath }/admin/editRole?username=${user.username}">Edit</a></td>
+                                <td><a class=""
+                                       href="${pageContext.request.contextPath }/admin/editRole?username=${user.username}">Edit</a>
+                                </td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                             <c:set var="i" value="${i+1}"/>

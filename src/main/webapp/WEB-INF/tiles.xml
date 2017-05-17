@@ -175,6 +175,10 @@
         <put-attribute name="title" value="Update Role"></put-attribute>
         <put-attribute name="body" value="/view/admin/updateRole.jsp"></put-attribute>
     </definition>
+    <definition name="editInvoice" extends="templateAdmin">
+        <put-attribute name="title" value="Update InvoiceStatus"></put-attribute>
+        <put-attribute name="body" value="/view/admin/editInvoice.jsp"></put-attribute>
+    </definition>
     <definition name="deny" extends="templateAdmin">
         <put-attribute name="body" value="/view/error/deny.jsp"></put-attribute>
     </definition>

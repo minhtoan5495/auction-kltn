@@ -112,8 +112,15 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Override
 	public List<Invoice> findByOrderByCreateDateDesc() {
-		// TODO Auto-generated method stub
 		return invoiceRepository.findByOrderByCreateDateDesc();
 	}
+
+    @Override
+    public void save(String invoiceId, String invoiceStatusId) throws InvoiceStatusNotFoundException {
+        Invoice invoice = invoiceRepository.findOne(invoiceId);
+        InvoiceStatus invoiceStatusModel = invoiceStatusService.findByInvoiceStatusId(invoiceStatusId);
+        invoice.setInvoiceStatus(invoiceStatusModel);
+        invoiceRepository.save(invoice);
+    }
 
 }

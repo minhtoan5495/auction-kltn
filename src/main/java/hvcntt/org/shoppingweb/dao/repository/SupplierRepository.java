@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Supplier;import org.springframework.data.jpa.repository.JpaRepository;public interface SupplierRepository extends JpaRepository<Supplier, String> {}
+package hvcntt.org.shoppingweb.dao.repository;import hvcntt.org.shoppingweb.dao.entity.Supplier;import org.springframework.data.jpa.repository.JpaRepository;public interface SupplierRepository extends JpaRepository<Supplier, String> {    Supplier findBySupplierName(String supplierName);}

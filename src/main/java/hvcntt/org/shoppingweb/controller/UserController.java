@@ -132,7 +132,7 @@ public class UserController {
             }
         }
         securityService.autoLogin(username, password);
-        return "redirect:/";
+        return "redirect:/home?message=loginSuccess";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)

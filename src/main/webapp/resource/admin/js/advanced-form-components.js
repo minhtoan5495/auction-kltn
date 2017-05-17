@@ -23,7 +23,7 @@
                 } else {
                     $('.alert').hide();
                     startDate = new Date(ev.date);
-                    $('#startDate').text($('.dp4').data('date'));
+                    $('.startDate').text($('.dp4').data('date'));
                 }
                 $('.dp4').datepicker('hide');
             });
@@ -90,30 +90,6 @@ $(".form_datetime-meridian").datetimepicker({
     autoclose: true,
     todayBtn: true
 });
-
-//datetime picker end
-
-//timepicker start
-$('.timepicker-default').timepicker();
-
-
-$('.timepicker-24').timepicker({
-    autoclose: true,
-    minuteStep: 1,
-    showSeconds: true,
-    showMeridian: false
-});
-
-//timepicker end
-
-//colorpicker start
-
-$('.colorpicker-default').colorpicker({
-    format: 'hex'
-});
-$('.colorpicker-rgba').colorpicker();
-
-//colorpicker end
 
 //multiselect start
 

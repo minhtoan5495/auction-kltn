@@ -38,6 +38,12 @@ public class ManageParentController {
 
     @RequestMapping(value = "/admin/saveParent", method = RequestMethod.POST)
     public String saveParent(@ModelAttribute Parent parent){
+        if(parent.getParentName().isEmpty()){
+            return "redirect:/admin/addParent?message=nullName";
+        }
+        if(parentService.findByParentName(parent.getParentName()) != null){
+            return "redirect:/admin/addParent?message=invalidName";
+        }
         parentService.saveParent(parent);
         return "redirect:/admin/manageParent?message=saveSuccess&&parentId=" + parent.getParentId();
     }

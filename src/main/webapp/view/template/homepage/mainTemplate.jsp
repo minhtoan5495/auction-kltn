@@ -79,6 +79,7 @@
         src="${pageContext.request.contextPath}/resource/admin/js/jquery.js"></script>
 <script
         src="${pageContext.request.contextPath }/resource/js/jquery-1.8.3.min.js"></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 <script
         src="${pageContext.request.contextPath }/resource/js/jquery.elevatezoom.js"></script>
 <script
@@ -185,13 +186,13 @@
 //# sourceURL=pen.js
 </script>
 <script type="text/javascript">
-$('button').on('click',function(e) {
-    if ($(this).hasClass('list')) {
-        $('.container ul').removeClass('grid').addClass('list');
-    }
-    else if($(this).hasClass('grid')) {
-        $('.container ul').removeClass('list').addClass('grid');
-    }
-});
+    $('button').on('click', function (e) {
+        if ($(this).hasClass('list')) {
+            $('.container ul').removeClass('grid').addClass('list');
+        }
+        else if ($(this).hasClass('grid')) {
+            $('.container ul').removeClass('list').addClass('grid');
+        }
+    });
 </script>
 </html>

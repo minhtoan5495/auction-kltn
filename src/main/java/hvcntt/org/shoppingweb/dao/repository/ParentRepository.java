@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by toannguyen on 28/04/2017.
  */
 public interface ParentRepository extends JpaRepository<Parent, String> {
+    Parent findByParentName(String parentName);
 }
+

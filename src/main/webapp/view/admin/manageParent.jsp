@@ -14,7 +14,7 @@
                 <div class="adv-table">
                     <div class="btn-group">
                         <a href="${pageContext.request.contextPath }/admin/addParent" type="button" id="addNewParent" class="btn green">
-                            Add New Supplier
+                            Add New Parent
                         </a>
                     </div>
                     <c:if test="${not empty message }">

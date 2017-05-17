@@ -29,13 +29,25 @@ public class ManageSupplierController {
     }
 
     @RequestMapping(value = "/admin/addSupplier", method = RequestMethod.GET)
-    public String addSupplier(Model model) {
+    public String addSupplier(Model model, @RequestParam(value = "message", required = false) String message) {
+        if("invalidName".equals(message)){
+            model.addAttribute("error", "Supplier name is exist !!");
+        }
+        if("nullName".equals(message)){
+            model.addAttribute("error", "Supplier name is null !!");
+        }
         model.addAttribute("supplier", new Supplier());
         return "addOrEditSupplier";
     }
 
     @RequestMapping(value = "/admin/saveSupplier", method = RequestMethod.POST)
     public String addSupplier(@ModelAttribute("supplier") Supplier supplier) {
+        if(supplier.getSupplierName().isEmpty()){
+            return "redirect:/admin/addSupplier?message=nullName";
+        }
+        if(supplierService.findBySupplierName(supplier.getSupplierName()) != null){
+            return "redirect:/admin/addSupplier?message=invalidName";
+        }
         supplierService.save(supplier);
         return "redirect:/admin/manageSupplier?message=saveSupplier&supplierId=" + supplier.getSupplierId();
     }

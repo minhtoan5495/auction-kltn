@@ -23,7 +23,7 @@
                                 <form:input path="parentId" type="hidden"/>
                             </div>
                             <div class="form-group ">
-                                <label for="parentName" class="control-label col-lg-3">Parent name</label>
+                                <label for="parentName" class="control-label col-lg-3">Parent name <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <form:input path="parentName" class=" form-control" placeholder="Enter parent name"
                                                 id="parentName" name="parentName" type="text"/>

@@ -22,24 +22,20 @@
                                value="${_csrf.token}"/>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <input value="${auction.auctionId}" name="auctionId" id="auctionId" type="hidden">
+                                <input value="${invoice.invoiceId}" name="auctionId" id="auctionId" type="hidden">
                             </div>
                             <div class="form-group ">
                                 <label class="control-label col-lg-3">Status <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <select id="auctionStatus" name="auctionStatus" style="height: 34px;">
-                                        <c:if test="${auction.status eq 'ĐANG ĐẤU GIÁ'}">
-                                            <option value="ĐANG ĐẤU GIÁ" selected>ĐANG ĐẤU GIÁ</option>
-                                        </c:if>
-                                        <c:if test="${auction.status ne 'ĐANG ĐẤU GIÁ'}">
-                                            <option value="ĐANG ĐẤU GIÁ">ĐANG ĐẤU GIÁ</option>
-                                        </c:if>
-                                        <c:if test="${auction.status eq 'ĐÃ KẾT THÚC'}">
-                                            <option value="ĐÃ KẾT THÚC" selected>ĐÃ KẾT THÚC</option>
-                                        </c:if>
-                                        <c:if test="${auction.status ne 'ĐÃ KẾT THÚC'}">
-                                            <option value="ĐÃ KẾT THÚC">ĐÃ KẾT THÚC</option>
-                                        </c:if>
+                                        <c:forEach var="invoiceStatus" items="${invoiceStatus}">
+                                            <c:if test="${invoiceStatus.invoiceStatusName eq invoice.invoiceStatus.invoiceStatusName}">
+                                                <option value="${invoiceStatus.invoiceStatusId}" name="invoiceStatusId" selected>${invoiceStatus.invoiceStatusName}</option>
+                                            </c:if>
+                                            <c:if test="${invoiceStatus.invoiceStatusName ne invoice.invoiceStatus.invoiceStatusName}">
+                                                <option value="${invoiceStatus.invoiceStatusId}" name="invoiceStatusId">${invoiceStatus.invoiceStatusName}</option>
+                                            </c:if>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -49,8 +45,8 @@
                                 <input class="btn btn-danger" value="Save" type="submit"/>
                             </div>
                         </div>
-                </form>
-            </div>
+                    </form>
+                </div>
             </div>
         </section>
         <!-- page end-->

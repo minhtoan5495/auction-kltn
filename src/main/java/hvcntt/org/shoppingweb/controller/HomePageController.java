@@ -35,9 +35,6 @@ public class HomePageController {
     SupplierService supplierService;
 
     @Autowired
-    AuctionService auctionService;
-
-    @Autowired
     ParentService parentService;
 
     public static final String SALE = "Sale";
@@ -53,7 +50,10 @@ public class HomePageController {
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @RequestMapping(value = "/home")
-    public String homePage(Model model, HttpSession session, HttpServletRequest request) {
+    public String homePage(Model model, HttpSession session, HttpServletRequest request, @RequestParam(value = "message", required = false) String message) {
+        if("loginSuccess".equals(message)){
+            model.addAttribute("message", "Đăng nhập thành công");
+        }
         @SuppressWarnings("unused")
         List<CartItem> inFo = (List<CartItem>) session.getAttribute("cart");
         model.addAttribute("parents", parentService.findAll());

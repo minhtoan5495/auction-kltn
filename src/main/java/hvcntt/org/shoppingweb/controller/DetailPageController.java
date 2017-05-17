@@ -51,7 +51,6 @@ public class DetailPageController {
     AuctionService auctionService;
     @Autowired
     UserAuctionService userAuctionService;
-
     @ModelAttribute("parents")
     public List<Parent> parent() {
         return parentService.findAll();
@@ -71,14 +70,12 @@ public class DetailPageController {
                     userAuctions.addAll(auction.getUserAuctions());
                     model.addAttribute("product", product);
                     model.addAttribute("userAuctions", userAuctions);
+                    model.addAttribute("liUserAuctions", auction.getUserAuctions());
                 }
             }
             Category category = categoryService.findOne(product.getCategory().getCategoryId());
             List<Product> relateProducts = productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice() - 10000), (product.getPrice() + 10000), product.getProductId());
             model.addAttribute("relateProducts", relateProducts);
-            Auction auctionN = auctionService.findByProduct(product);
-            List<UserAuction> liUserAuctions = userAuctionService.findByAuction(auctionN);
-            model.addAttribute("liUserAuctions", liUserAuctions);
             List<Image> images = imageservice.findByProduct(product);
             int rating = getAverage(product.getRatings());
             model.addAttribute("ratingNumber", rating);

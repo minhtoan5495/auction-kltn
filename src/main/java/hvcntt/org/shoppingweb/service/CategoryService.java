@@ -20,4 +20,6 @@ public interface CategoryService {
     void delete(Category category) throws CategoryNotFoundExeption;
 
     List<Category> findByParent(Parent parent);
+
+    Category findByCategoryName(String categoryName);
 }

@@ -33,6 +33,7 @@
                             <th>End Time</th>
                             <th>Status</th>
                             <th>Product</th>
+                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
@@ -40,10 +41,11 @@
                         <c:forEach items="${auctions}" var="auction">
                             <tr class="">
                                 <td hidden="hidden">${auction.auctionId}</td>
-                                <td><fmt:formatDate value="${auction.startTime}" pattern="hh:mm yyyy-MM-dd"/> </td>
-                                <td><fmt:formatDate value="${auction.endTime}" pattern="hh:mm yyyy-MM-dd"/></td>
+                                <td><fmt:formatDate value="${auction.startTime}" pattern="HH:mm yyyy-MM-dd"/> </td>
+                                <td><fmt:formatDate value="${auction.endTime}" pattern="HH:mm yyyy-MM-dd"/></td>
                                 <td>${auction.status}</td>
                                 <td>${auction.product.name}</td>
+                                <td><a class="" href="${pageContext.request.contextPath }/admin/updateAuction?auctionId=${auction.auctionId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>

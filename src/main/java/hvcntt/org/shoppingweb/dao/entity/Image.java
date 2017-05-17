@@ -64,4 +64,18 @@ public class Image implements Serializable {
 		this.product = product;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Image image = (Image) o;
+
+		return imageId != null ? imageId.equals(image.imageId) : image.imageId == null;
+	}
+
+	@Override
+	public int hashCode() {
+		return imageId != null ? imageId.hashCode() : 0;
+	}
 }

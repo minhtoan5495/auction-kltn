@@ -77,6 +77,9 @@ public class ManageAccountController {
 	public String editAccount(HttpServletRequest request) throws ParseException, UserAlreadyExistsException, RoleNotFoundException, UserNotFoundException {
 		User user = userService.findByUsername(request.getParameter("username"));
 		String[] roleIds = request.getParameterValues("roleId");
+		if(roleIds == null){
+			return  "redirect:/admin/editRole?username="+user.getUsername() + "&message=invalidInput";
+		}
 		List<Role> roles = new ArrayList<>();
 		for (String roleId : roleIds){
 			roles.add(roleRepository.findOne(roleId));
@@ -87,7 +90,10 @@ public class ManageAccountController {
 	}
 
 	@RequestMapping(value = "/admin/editRole", method = RequestMethod.GET)
-	public String editRole(@RequestParam("username") String username, Model model) throws UserNotFoundException {
+	public String editRole(@RequestParam("username") String username, Model model, @RequestParam(value = "message", required = false) String message) throws UserNotFoundException {
+		if("invalidInput".equals(message)){
+			model.addAttribute("error", "Please select one in roles !!");
+		}
 		model.addAttribute("user", userService.findByUsername(username));
 		model.addAttribute("roles", roleRepository.findAll());
 		return "updateRole";

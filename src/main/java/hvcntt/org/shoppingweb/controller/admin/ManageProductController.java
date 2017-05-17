@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by toannguyen on 25/04/2017.
@@ -68,7 +71,11 @@ public class ManageProductController {
         model.addAttribute("transactionTypes", transactionTypeService.getAll());
         model.addAttribute("suppliers", supplierService.getAll());
         model.addAttribute("categories", categoryService.getAll());
-        model.addAttribute("product", productservice.findOne(productId));
+        Product product = productservice.findOne(productId);
+        model.addAttribute("product", product);
+        Set<Image> images = new HashSet<>();
+        images.addAll(product.getImages());
+        model.addAttribute("images",new ArrayList<>(images));
         return "editProduct";
     }
 
@@ -87,6 +94,8 @@ public class ManageProductController {
     @RequestMapping(value = "/admin/updateProduct", method = RequestMethod.POST)
     public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto, HttpServletRequest request) throws ParseException {
         String productId = request.getParameter("productId");
+        String description = request.getParameter("description");
+        productDto.setDescription(description);
         productservice.update(productDto, productId);
         return "redirect:/admin/manageProduct?message=updateSuccess&productId=" + productDto.getName();
     }

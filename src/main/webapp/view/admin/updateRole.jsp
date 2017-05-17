@@ -10,6 +10,11 @@
                 Update Role For ${user.username}
             </header>
             <div class="panel-body">
+                <c:if test="${not empty error }">
+                    <div class="alert alert-danger" id="message">
+                            ${error}
+                    </div>
+                </c:if>
                 <div class="form">
                     <form action="${pageContext.request.contextPath}/admin/updateRole"
                           class="cmxform form-horizontal tasi-form"
@@ -21,7 +26,7 @@
                                 <input hidden name="username" value="${user.username}"/>
                             </div>
                             <div class="form-group ">
-                                <label for="role" class="control-label col-lg-3">Select role name</label>
+                                <label for="role" class="control-label col-lg-3">Select role name <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <c:forEach var="role" items="${roles}">
                                         <div class="checkbox">

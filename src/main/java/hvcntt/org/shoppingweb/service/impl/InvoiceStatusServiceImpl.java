@@ -30,4 +30,9 @@ public class InvoiceStatusServiceImpl implements InvoiceStatusService {
         }
     }
 
+    @Override
+    public InvoiceStatus findByInvoiceStatusId(String invoiceStatusId) {
+        return invoiceStatusRepository.findOne(invoiceStatusId);
+    }
+
 }

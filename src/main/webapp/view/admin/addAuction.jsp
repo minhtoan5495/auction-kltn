@@ -23,28 +23,37 @@
                 Add Auction
             </header>
             <div class="panel-body">
+                <c:if test="${not empty message }">
+                    <div class="alert alert-warning" id="message">
+                            ${message}
+                    </div>
+                </c:if>
+                <c:if test="${not empty error }">
+                    <div class="alert alert-danger" id="message">
+                            ${error}
+                    </div>
+                </c:if>
                 <div class="form">
                     <form ng-controller="ProductForAuctionController" ng-init='init(${products})'
                           class="cmxform form-horizontal tasi-form" id="addAuction"
                           method="post">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="control-label col-lg-3">Choose Time</label>
+                                <label class="control-label col-lg-3">Choose Time <span style="color: red">(*)</span></label>
                                 <div class="col-md-4">
-                                    <div class="input-group input-large" data-date=""
-                                         data-date-format="yyyy-mm-dd">
+                                    <div class="input-group input-large">
                                         <input ng-model="startDate" readonly type="text" placeholder="Choose start date"
-                                               id="startDate" class="form-control dpd1"
+                                               id="startDate" class="form-control"
                                                name="startDate">
                                         <span class="input-group-addon">To</span>
                                         <input ng-model="endDate" readonly placeholder="Choose end date" type="text"
-                                               id="endDate" class="form-control dpd2"
+                                               id="endDate" class="form-control"
                                                name="endDate">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group last">
-                                <label class="control-label col-md-3">Select Product</label>
+                                <label class="control-label col-md-3">Select Product <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
                                     <div ng-dropdown-multiselect="" options="example14data"
                                          selected-model="example14model" checkboxes="true"

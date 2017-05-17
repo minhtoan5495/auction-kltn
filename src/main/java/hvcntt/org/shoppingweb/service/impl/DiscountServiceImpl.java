@@ -90,7 +90,7 @@ public class DiscountServiceImpl implements DiscountService {
     }
 
     private Date formatStringToDate(String date) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm - yyyy-MM-dd");
         return format.parse(date);
     }
 }
