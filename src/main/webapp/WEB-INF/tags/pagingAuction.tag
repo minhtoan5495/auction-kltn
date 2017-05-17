@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@ tag import="org.springframework.util.StringUtils"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ attribute name="pagedListHolder1" required="true"
+<%@ attribute name="productAuctionPage" required="true"
 	type="org.springframework.beans.support.PagedListHolder"%>
 <%@ attribute name="pagedLink1" required="true" type="java.lang.String"%>
 <link rel="stylesheet"
@@ -11,22 +11,22 @@
 <script
 	src="${pageContext.request.contextPath }/resource/js/bootstrap.min.js"></script>
 
-<c:if test="${pagedListHolder1.pageCount > 1 }">
+<c:if test="${productAuctionPage.pageCount > 1 }">
 	<ul class="pagination pull-right">
-		<c:if test="${!pagedListHolder1.firstPage}">
+		<c:if test="${!productAuctionPage.firstPage}">
 			<li class="previous"><a
-				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(pagedListHolder1.getPage() - 1))%>"><</a></li>
+				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(productAuctionPage.getPage() - 1))%>"><</a></li>
 		</c:if>
-		<c:if test="${pagedListHolder1.firstLinkedPage > 0}">
+		<c:if test="${productAuctionPage.firstLinkedPage > 0}">
 			<li><a href="<%=StringUtils.replace(pagedLink1, "~", "0")%>">1</a></li>
 		</c:if>
-		<c:if test="${pagedListHolder1.firstLinkedPage > 1}">
+		<c:if test="${productAuctionPage.firstLinkedPage > 1}">
 			<li><span class="pagingDots">...</span></li>
 		</c:if>
-		<c:forEach begin="${pagedListHolder1.firstLinkedPage }"
-			end="${pagedListHolder1.lastLinkedPage }" var="i">
+		<c:forEach begin="${productAuctionPage.firstLinkedPage }"
+			end="${productAuctionPage.lastLinkedPage }" var="i">
 			<c:choose>
-				<c:when test="${pagedListHolder1.page ==i }">
+				<c:when test="${productAuctionPage.page ==i }">
 					<li class="active"><a href="#" class="paging-first">${i+1 }</a></li>
 				</c:when>
 				<c:otherwise>
@@ -36,17 +36,17 @@
 			</c:choose>
 		</c:forEach>
 		<c:if
-			test="${pagedListHolder1.lastLinkedPage < pagedListHolder1.pageCount - 2 }">
+			test="${productAuctionPage.lastLinkedPage < productAuctionPage.pageCount - 2 }">
 			<li><span class="pagingDots">...</span></li>
 		</c:if>
 		<c:if
-			test="${pagedListHolder1.lastLinkedPage < pagedListHolder1.pageCount - 1 }">
+			test="${productAuctionPage.lastLinkedPage < productAuctionPage.pageCount - 1 }">
 			<li><a class="paging-link-item"
-				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(pagedListHolder1.getPageCount() - 1))%>">${pagedListHolder1.pageCount }</a></li>
+				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(productAuctionPage.getPageCount() - 1))%>">${productAuctionPage.pageCount }</a></li>
 		</c:if>
-		<c:if test="${!pagedListHolder1.lastPage }">
+		<c:if test="${!productAuctionPage.lastPage }">
 			<li class="next"><a class="paging-link-item"
-				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(pagedListHolder1.getPage() + 1))%>" style="border-radius: 100px"><i class="glyphicon glyphicon-play"></i></a></li>
+				href="<%=StringUtils.replace(pagedLink1, "~", String.valueOf(productAuctionPage.getPage() + 1))%>" style="border-radius: 100px"><i class="glyphicon glyphicon-play"></i></a></li>
 		</c:if>
 	</ul>
 </c:if>

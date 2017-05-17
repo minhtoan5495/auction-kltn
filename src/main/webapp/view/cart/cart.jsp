@@ -81,12 +81,6 @@
                                                       </button>
                                                   </span>
                                                 </div>
-                                                    <%--<input type="hidden" name="${_csrf.parameterName}"--%>
-                                                    <%--value="${_csrf.token}"/>--%>
-                                                    <%--<button class="btn btn-success btn-update-cart"--%>
-                                                    <%--type="submit">--%>
-                                                    <%--<i class="fa fa-edit"></i>Cập nhật--%>
-                                                    <%--</button>--%>
                                             </td>
                                             <td class="cart-product-infor">
                                                 <p>

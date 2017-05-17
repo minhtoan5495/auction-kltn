@@ -41,11 +41,11 @@ public class ProductController {
     @RequestMapping(value = "/productByCategory/{categoryId}", method = RequestMethod.GET)
     public String findProductByCategory(@PathVariable String categoryId, Model model, HttpServletRequest request){
         List<Product> products = productService.findByCategory(categoryId);
-        PagedListHolder pagedListHolder = new PagedListHolder(products);
+        PagedListHolder productSalePage = new PagedListHolder(products);
         int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-        pagedListHolder.setPage(page);
-        pagedListHolder.setPageSize(4);
-        model.addAttribute("pagedListHolder", pagedListHolder);
+        productSalePage.setPage(page);
+        productSalePage.setPageSize(4);
+        model.addAttribute("productSalePage", productSalePage);
         model.addAttribute("products", products);
         return "resultSearch";
     }

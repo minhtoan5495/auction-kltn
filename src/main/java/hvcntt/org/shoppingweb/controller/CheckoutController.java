@@ -1,10 +1,7 @@
 package hvcntt.org.shoppingweb.controller;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
-import hvcntt.org.shoppingweb.dao.entity.InvoiceDetail;
-import hvcntt.org.shoppingweb.dao.entity.Parent;
-import hvcntt.org.shoppingweb.dao.entity.ShippingInfo;
-import hvcntt.org.shoppingweb.dao.entity.User;
+import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 
 import java.security.Principal;
@@ -40,6 +37,9 @@ public class CheckoutController {
 	@Autowired
 	ParentService parentService;
 
+	@Autowired
+	ProductService productService;
+
 	@ModelAttribute("parents")
 	public List<Parent> parent(){
 		return parentService.findAll();
@@ -67,6 +67,11 @@ public class CheckoutController {
 			throws UserNotFoundException, ParseException {
 		@SuppressWarnings("unchecked")
 		List<CartItem> cartItems = (List<CartItem>) session.getAttribute("carts");
+		for (CartItem cartItem : cartItems) {
+			Product product = productService.findOne(cartItem.getProduct().getProductId());
+			product.setStockQuantity(product.getStockQuantity() - cartItem.getQuantity());
+			productService.save(product);
+		}
 		invoiceService.checkOut(shippingInfo, cartItems);
 		model.addAttribute("invoice", shippingInfo.getInvoice());
 		model.addAttribute("addShip", shippingInfo);

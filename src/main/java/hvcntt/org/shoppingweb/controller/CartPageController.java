@@ -47,7 +47,11 @@ public class CartPageController {
                 cartItems.add(new CartItem(1, product, product.getImages().get(0)));
             } else {
                 int quantity = cartItems.get(index).getQuantity() + 1;
-                cartItems.get(index).setQuantity(quantity);
+                if(quantity < product.getStockQuantity()){
+                    cartItems.get(index).setQuantity(quantity);
+                }else{
+                    return "redirect:/viewCart?message=overLoad";
+                }
             }
             session.setAttribute("carts", cartItems);
         }

@@ -148,7 +148,7 @@
                 </div>
                 <div class="row">
                     <h4>${message}</h4>
-                    <c:forEach var="product" items="${pagedListHolder.pageList }">
+                    <c:forEach var="product" items="${productSalePage.pageList }">
                         <jsp:useBean id="currentDate" type="java.util.Date"
                                      scope="request"></jsp:useBean>
                         <fmt:formatDate var="now" value="${currentDate}"
@@ -236,21 +236,21 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <jsp:useBean id="pagedListHolder" scope="request"
+                    <jsp:useBean id="productSalePage" scope="request"
                                  type="org.springframework.beans.support.PagedListHolder">
                     </jsp:useBean>
                     <c:url value="/home" var="pagedLink">
                         <c:param name="p" value="~"></c:param>
                     </c:url>
                     <tg:paging pagedLink="${pagedLink }"
-                               pagedListHolder="${pagedListHolder }"></tg:paging>
+                               productSalePage="${productSalePage }"></tg:paging>
                 </div>
                 <div class="content-page-title">
                     <h2 class="content-paget-title-item">SẢN PHẨM ĐẤU GIÁ</h2>
                 </div>
                 <div class="row">
                     <h4>${message}</h4>
-                    <c:forEach var="product" items="${pagedListHolder1.pageList }">
+                    <c:forEach var="product" items="${productAuctionPage.pageList }">
                         <div class="col-sm-3 new-product-main">
                             <div class="new-product">
                                 <div class="single-product-item">
@@ -324,14 +324,14 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <jsp:useBean id="pagedListHolder1" scope="request"
+                    <jsp:useBean id="productAuctionPage" scope="request"
                                  type="org.springframework.beans.support.PagedListHolder">
                     </jsp:useBean>
                     <c:url value="/home" var="pagedLink1">
                         <c:param name="page" value="~"></c:param>
                     </c:url>
                     <tg:pagingAuction pagedLink1="${pagedLink1 }"
-                                      pagedListHolder1="${pagedListHolder1 }"></tg:pagingAuction>
+                                      productAuctionPage="${productAuctionPage }"></tg:pagingAuction>
                 </div>
 
                 <div class="row">

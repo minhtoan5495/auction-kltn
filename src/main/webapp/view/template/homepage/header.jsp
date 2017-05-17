@@ -203,12 +203,6 @@
                                                style="text-decoration: none">TIẾP TỤC MUA HÀNG</a>
                                         </div>
                                         <div class="col-sm-4" style="margin-top: 10px">
-                                            <button class="btn btn-primary"
-                                                    style="border-radius: 0; margin-left: -5px;">TIẾN
-                                                HÀNH ĐẶT HÀNG
-                                            </button>
-                                        </div>
-                                        <div class="col-sm-4" style="margin-top: 10px">
                                             <button type="button" class="btn btn-primary"
                                                     data-dismiss="modal" style="border-radius: 0">X
                                             </button>

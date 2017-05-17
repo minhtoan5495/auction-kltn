@@ -13,22 +13,24 @@ app.controller('CartController', function ($scope, $http) {
 
     // localStorage.setItem("carts", $scope.carts);
     $scope.add = function (cart) {
-        console.log(cart.product.imageUrl);
-        cart.quantity++;
-        var quantity = cart.quantity;
-        $http({
-            url: '/updateCart',
-            type: 'GET',
-            params: {
-                quantity: quantity,
-                productId : cart.product.productId
-            }
-        })
+        console.log(cart.product.stockQuantity);
+        if (cart.quantity < 10 && cart.quantity < cart.product.stockQuantity) {
+            cart.quantity++;
+            var quantity = cart.quantity;
+            $http({
+                url: '/updateCart',
+                type: 'GET',
+                params: {
+                    quantity: quantity,
+                    productId: cart.product.productId
+                }
+            })
+        }
     }
 
     // Fire event to remove
     $scope.remove = function (cart) {
-        if (cart.quantity > 0) {
+        if (cart.quantity > 1) {
             cart.quantity--;
             $http({
                 url: '/updateCart',

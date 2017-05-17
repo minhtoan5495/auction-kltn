@@ -61,7 +61,7 @@
 }
 
 .grid, .list {
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 	background: #fff;
 	border: #fff;
 }
