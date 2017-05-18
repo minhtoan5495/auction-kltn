@@ -30,7 +30,15 @@ public class ManageParentController {
     }
 
     @RequestMapping(value = "/admin/addParent", method = RequestMethod.GET)
-    public String addParent(Model model){
+    public String addParent(Model model, HttpSession session){
+        if("nullName".equals(session.getAttribute("message"))){
+            model.addAttribute("message","Parent name can't be null");
+            session.removeAttribute("message");
+        }
+        if("invalidName".equals(session.getAttribute("message"))){
+            model.addAttribute("message","Parent name is exist");
+            session.removeAttribute("message");
+        }
         model.addAttribute("parent", new Parent());
         return "addOrEditParent";
     }
@@ -46,7 +54,7 @@ public class ManageParentController {
             return "redirect:/admin/addParent";
         }
         parentService.saveParent(parent);
-        session.setAttribute("message", "nullName");
+        session.setAttribute("message", "saveSuccess");
         return "redirect:/admin/manageParent?parentId=" + parent.getParentId();
     }
 

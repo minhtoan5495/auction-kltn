@@ -186,7 +186,7 @@
                                 <div class="panel panel-default profile_item_content">
                                     <div class="panel-heading">Thông tin đấu giá</div>
                                     <div class="panel-body profile_body_item">
-                                        <c:forEach var="auction" items="${auctions}">
+                                        <c:forEach var="auction" items="${userAuction}">
                                             <div class="row"
                                                  style="border: 1px solid #fff; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
                                                 <c:choose>
@@ -196,9 +196,9 @@
                                                                  src="${pageContext.request.contextPath }/resource/images/product/${auction.product.imageUrl}">
                                                         </div>
                                                         <div class="col-sm-6">
-                                                            <strong> ${auction.auction.product.name} </strong><br> <label
+                                                            <strong> ${auction.product.name} </strong><br> <label
                                                                 class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                                value="${auction.auction.startTime}" pattern="dd-MM-yyyy"/>
+                                                                value="${auction.startTime}" pattern="dd-MM-yyyy"/>
                                                             <p style="color: #59b210; font-weight: 400">
                                                                 Ngày kết thúc
                                                                 <fmt:formatDate value="${auction.endTime}"
@@ -228,25 +228,25 @@
                                 <div class="panel panel-default profile_item_content">
                                     <div class="panel-heading">Thông tin phiên đấu giá thành công</div>
                                     <div class="panel-body profile_body_item">
-                                        <c:forEach var="auction" items="${auctions}">
+                                        <c:forEach var="userAuction" items="${userAuctions}">
                                             <div class="row"
                                                  style="border: 1px solid gray; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
                                                 <div class="col-sm-3">
                                                     <img alt=""
-                                                         src="${pageContext.request.contextPath }/resource/images/product/${auction.product.imageUrl}">
+                                                         src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <strong> ${auction.product.name} </strong><br> <label
+                                                    <strong> ${userAuction.auction.product.name} </strong><br> <label
                                                         class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                        value="${auction.startTime}" pattern="dd-MM-yyyy"/>
+                                                        value="${userAuction.auction.startTime}" pattern="dd-MM-yyyy"/>
                                                     <p style="color: #59b210; font-weight: 400">
                                                         Ngày kết thúc
-                                                        <fmt:formatDate value="${auction.endTime}"
+                                                        <fmt:formatDate value="${userAuction.auction.endTime}"
                                                                         pattern="dd-MM-yyyy"/>
                                                     </p>
                                                     <p style="color: #ff4f4f; font-weight: 400">
                                                         Giá tiền:
-                                                        <fmt:formatNumber value="${auction.product.price}"
+                                                        <fmt:formatNumber value="${userAuction.auction.product.price}"
                                                                           type="number"/>
                                                         đ
                                                     </p>
@@ -265,24 +265,24 @@
                                 <div class="panel panel-default profile_item_content">
                                     <div class="panel-heading">Thông tin đấu giá</div>
                                     <div class="panel-body profile_body_item">
-                                        <c:forEach var="auction" items="${auctions}">
+                                        <c:forEach var="userAuction" items="${userAuctions}">
                                             <div class="row"
                                                  style="border: 1px solid gray; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
                                                 <div class="col-sm-3">
                                                     <img alt=""
-                                                         src="${pageContext.request.contextPath }/resource/images/product/${auction.product.imageUrl}">
+                                                         src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <strong> ${auction.product.name}
+                                                    <strong> ${userAuction.auction.product.name}
                                                     </strong><br>
                                                     <label class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                            value="${auction.startTime}" pattern="dd-MM-yyyy"/>
+                                                            value="${userAuction.auction.startTime}" pattern="dd-MM-yyyy"/>
                                                         <p style="color: #59b210; font-weight: 400">Ngày kết thúc
                                                             <fmt:formatDate
-                                                                    value="${auction.endTime}" pattern="dd-MM-yyyy"/></p>
+                                                                    value="${userAuction.auction.endTime}" pattern="dd-MM-yyyy"/></p>
                                                         <p style="color: #ff4f4f; font-weight: 400">
                                                             Giá tiền:
-                                                            <fmt:formatNumber value="${auction.product.price}" type="number"/>
+                                                            <fmt:formatNumber value="${userAuction.auction.product.price}" type="number"/>
                                                             đ
                                                         </p>
 

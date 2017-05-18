@@ -26,7 +26,6 @@
                         </div>
                     </c:if>
                     <div id="messageDelete">
-                        ${message}
                     </div>
                     <table class="table table-striped table-hover table-bordered" id="manageAuctionTable">
                         <thead>

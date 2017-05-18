@@ -72,7 +72,7 @@ public class ProfileController {
         model.addAttribute("user", userService.findByUsername(username));
         model.addAttribute("invoices", invoiceService.getAll());
         model.addAttribute("ordered", invoiceService.findByUsername(username));
-        model.addAttribute("auctions", userAuctionService.findByUser(user));
+        model.addAttribute("userAuctions", userAuctionService.findByUser(user));
         Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         return "profile";
@@ -162,7 +162,7 @@ public class ProfileController {
         String username = auth.getName();
         User user = userService.findByUsername(username);
         String date = request.getParameter("date");
-        Date birthday = new SimpleDateFormat("yyyy-mm-dd").parse(date);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse(date);
         profileDto.setBirthday(birthday);
         String cityId = request.getParameter("cityId");
         String districtId = request.getParameter("districtId");

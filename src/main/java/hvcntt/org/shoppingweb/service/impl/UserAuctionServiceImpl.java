@@ -34,7 +34,6 @@ public class UserAuctionServiceImpl implements UserAuctionService {
 
 	@Override
 	public List<UserAuction> findByAuction(Auction auction) {
-		// TODO Auto-generated method stub
 		return userAuctionRepository.findByAuction(auction,new PageRequest(0, 1,Direction.DESC,"price")).getContent();
 	}
 

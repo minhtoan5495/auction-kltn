@@ -10,7 +10,7 @@ $(function() {
     // $("#successMessage").hide() function
     setTimeout(function() {
         $("#message").hide('blind', {}, 500)
-    }, 1000);
+    }, 5000);
 });
 
 $(function() {
@@ -19,5 +19,5 @@ $(function() {
     // $("#successMessage").hide() function
     setTimeout(function() {
         $("#error").hide('blind', {}, 500)
-    }, 1000);
+    }, 5000);
 });

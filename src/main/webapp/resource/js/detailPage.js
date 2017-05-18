@@ -33,6 +33,7 @@ function initializeClock(id, endtime) {
             document.getElementById("demo").innerHTML = "PHIÊN ĐẤU GIÁ ĐÃ KẾT THÚC !";
             $('#countDownAuction').remove();
             $('#buttonAuction').remove();
+
         }
     }
 
