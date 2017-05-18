@@ -123,7 +123,6 @@
                             <span class="cart_quantity">${carts.size() }</span>
                         </c:if>
                         </a>
-
                     </div>
                     <c:if test="${not empty carts }">
                         <c:set var="sum"
@@ -133,7 +132,6 @@
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
-
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <h4 style="margin-top: 0px">
