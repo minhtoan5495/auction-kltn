@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<html>
+<html ng-app="cart">
 <head>
     <title><tiles:getAsString name="title"/></title>
     <link rel="shortcut icon" href="resource/css/images/icon-title.png">
@@ -60,11 +60,10 @@
     <link href="${pageContext.request.contextPath }/resource/css/simplegallery.demo1.min.css"
           rel="stylesheet">
 </head>
-<body style="font-family:Oxygen,Helvetica,sans-serif;">
+<body style="font-family:Oxygen,Helvetica,sans-serif; " ng-controller="CartController" ng-init='init(${cartAngular})'>
 <header>
     <tiles:insertAttribute name="header"></tiles:insertAttribute>
 </header>
-<%-- <tiles:insertAttribute name="slide"></tiles:insertAttribute> --%>
 <tiles:insertAttribute name="body"></tiles:insertAttribute>
 <div class="scoll-item pull-right">
     <a href="#" class="back-to-top">
@@ -118,35 +117,22 @@
 <script src="${pageContext.request.contextPath }/resource/js/simplegallery.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/jquery.flexslider-min.js"></script>
 <script>
-    //    jQuery(document).ready(function () {
-    //        TableCart.init();
-    //    });
     document.write('<base href="' + document.location + '" />');
-</script>
-<script type="text/javascript">
     $(document).ready(function () {
         $('#slider-carousel').find('.item').first().addClass('active');
     });
-</script>
-<script type="text/javascript">
     $(document).ready(function () {
         $('#theCarousel').find('.item').first().addClass('active');
     });
-</script>
-<script>
     $('#imageContainer1').elevateZoom({
         zoomType: "inner",
         cursor: "crosshair",
         zoomWindowFadeIn: 500,
         zoomWindowFadeOut: 750
     });
-</script>
-<script type="text/javascript">
     $(document).ready(function () {
         $('#thumbs').find('.item').first().addClass('active');
     });
-</script>
-<script>
     jQuery(document).ready(function ($) {
         $('#example3').etalage({
             thumb_image_width: 250,
@@ -165,27 +151,22 @@
             zoom_easing: false
         });
     });
-</script>
-<script>$(window).on('load', function () {
+    $(window).on('load', function () {
+        $('.carousel').each(function () {
 
-    $('.carousel').each(function () {
-
-        $(this).flexslider({
-            animation: 'slide',
-            customDirectionNav: $(this).find('.nav-carousel a'),
-            controlNav: false,
-            animationLoop: false,
-            slideshow: false,
-            itemWidth: 250,
-            itemMargin: 25,
-            minItems: 1,
-            maxItems: 5
+            $(this).flexslider({
+                animation: 'slide',
+                customDirectionNav: $(this).find('.nav-carousel a'),
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 250,
+                itemMargin: 25,
+                minItems: 1,
+                maxItems: 5
+            });
         });
     });
-});
-//# sourceURL=pen.js
-</script>
-<script type="text/javascript">
     $('button').on('click', function (e) {
         if ($(this).hasClass('list')) {
             $('.container ul').removeClass('grid').addClass('list');

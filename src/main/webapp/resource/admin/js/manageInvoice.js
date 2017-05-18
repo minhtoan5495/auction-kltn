@@ -51,11 +51,13 @@ var TableInvoice = function () {
                     url: "/admin/deleteInvoice",
                     data: "invoiceId=" + invoiceId,
                     success : function (response) {
-                        $('#message').html(response);
-                        $('#message').show();
+                        $('#messageDelete').html(response.toString());
+                        $('#messageDelete').addClass("alert alert-success");
+                        $('#messageDelete').show();
                         setTimeout(function() {
-                            $("#message").hide('blind', {}, 500)
-                        }, 1000);
+                            $("#messageDelete").removeClass("alert alert-success"),
+                                $("#messageDelete").empty()
+                        }, 3000);
                     }
                 });
                 console.log(invoiceId);

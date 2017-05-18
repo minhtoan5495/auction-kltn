@@ -352,7 +352,7 @@
 									<div class="tab-descript">
 										<p>${product.description }</p>
 										<img
-											src="resource/images/product/${product.images.get(i).imageUrl }"
+											src="resource/images/product/${product.imageUrl }"
 											style="width: 100%">
 									</div>
 								</div>
@@ -526,7 +526,7 @@
 											<div class="single-product-image">
 												<a
 													href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}"><img
-													src="resource/images/product/${productRelate.images.get(i).imageUrl }"
+													src="resource/images/product/${productRelate.imageUrl }"
 													style="width: 253px; height: 300px;"></a>
 												<div class="overplay-content">
 													<ul>

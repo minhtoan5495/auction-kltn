@@ -25,6 +25,7 @@
         background: rgba(0, 0, 0, 0.15) !important;
         border-radius: 3px 0 0 3px !important;
     }
+
     .error_check {
         padding: 10px;
         border: 1px solid transparent;
@@ -35,66 +36,156 @@
         font-size: 12px;
     }
 </style>
-            <div class="panel panel-info" style="margin-top: 30px;">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-th"></span>
-                        Change password
-                    </h3>
-                </div>
-                <form action="${pageContext.request.contextPath }/changePassword" method="POST">
-                    <input type="hidden" name="${_csrf.parameterName}"
-                           value="${_csrf.token}"/>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"><br>
-                                <img alt="" class="img-thumbnail"
+<link
+        href="${pageContext.request.contextPath }/resource/css/bootstrap.min.css"
+        rel="stylesheet">
+<link
+        href="${pageContext.request.contextPath }/resource/css/font-awesome.min.css"
+        rel="stylesheet">
+<link
+        href="${pageContext.request.contextPath }/resource/css/owl.carousel.css"
+        rel="stylesheet">
+<link
+        href="${pageContext.request.contextPath }/resource/css/responsive.css"
+        rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resource/css/main12.css"
+      rel="stylesheet">
+<link
+        href="${pageContext.request.contextPath }/resource/css/profile.css"
+        rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resource/css/cart.css"
+      rel="stylesheet">
+<link
+        href="${pageContext.request.contextPath }/resource/css/submenu_v2.css"
+        rel="stylesheet">
+<div class="content-page"
+     style="background: rgba(238, 238, 238, 0.48);">
+    <div class="container">
+        <div class="row">
+            <div class="content-page-profile">
+                <div class="row">
+                    <aside class="col-sm-3">
+                        <div class="profile-avarta">
+                            <div class="profile-image">
+                                <img alt=""
                                      src="http://bootdey.com/img/Content/avatar/avatar1.png">
                             </div>
-                            <div style="margin-top:30px;" class="col-xs-6 col-sm-6 col-md-6 login-box">
-                                <c:if test="${not empty error }">
-                                    <div class="error_check">
-                                            ${error }
-                                    </div>
+                            <div class="profile-infor">
+                                <label>Thông tin cá nhân</label>
+                                <p>
+                                    <strong>Họ và tên</strong>: ${user.name}
+                                </p>
+                                <p>
+                                    <strong>Email</strong>: ${user.email }
+                                </p>
+                                <c:if test="${not empty user.address}">
+                                    <p>
+                                        <strong>Địa chỉ</strong>: ${user.address }
+                                    </p>
                                 </c:if>
-                                <c:if test="${not empty message }">
-                                    <div class="message_check">
-                                            ${message }
-                                    </div>
+                                <c:if test="${not empty user.district}">
+                                    <p>
+                                        <strong>Quận</strong>: ${user.district.districtName }
+                                    </p>
                                 </c:if>
-                                <div class="form-group" style="margin-top: 20px;">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
-                                        </div>
-                                        <input class="form-control" name="oldPassword" type="password" placeholder="Current Password">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
-                                        </div>
-                                        <input class="form-control" name="newPassword" type="password" placeholder="New Password">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
-                                        </div>
-                                        <input class="form-control" name="confirmPassword" type="password" placeholder="Confirm Password">
-                                    </div>
-                                </div>
+                                <c:if test="${not empty user.city}">
+                                    <p>
+                                        <strong>Thành phố</strong>: ${user.city.cityName }
+                                    </p>
+                                </c:if>
+                                <p>
+                                    <strong>Số điện thoại</strong>: ${user.phone }
+                                </p>
+                                <p>
+                                    <strong>Ngày sinh</strong>:
+                                    <fmt:formatDate value="${user.birthday }" pattern="dd-MM-yyyy" />
+                                </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6"></div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <button class="btn icon-btn-save btn-success" type="submit">
-                                    <span class="btn-save-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>save
-                                </button>
+                    </aside>
+                    <div class="col-sm-9" id="profile_scoll_item">
+                        <div>
+                            <ul id="profile-infor-detail" class="nav nav-tabs profile-tab">
+                                <li class="active"><a href="#home" data-toggle="tab">Tất
+                                    cả</a></li>
+                                <li><a data-toggle="tab" href="#product_item">Danh
+                                    sách đã mua</a></li>
+                                <li><a data-toggle="tab" href="#auction_item">Đang đấu
+                                    giá</a></li>
+                                <li><a data-toggle="tab" href="#auction_success">Đấu
+                                    giá thành công</a></li>
+                                <li><a data-toggle="tab" href="#order_item">Tình trạng
+                                    đơn hàng</a></li>
+                            </ul>
+                        </div>
+                        <div class="panel panel-info" style="margin-top: 30px;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                    Change password
+                                </h3>
                             </div>
+                            <form action="${pageContext.request.contextPath }/changePassword" method="POST">
+                                <input type="hidden" name="${_csrf.parameterName}"
+                                       value="${_csrf.token}"/>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"><br>
+                                            <img alt="" class="img-thumbnail"
+                                                 src="http://bootdey.com/img/Content/avatar/avatar1.png">
+                                        </div>
+                                        <div style="margin-top:30px;" class="col-xs-6 col-sm-6 col-md-6 login-box">
+                                            <c:if test="${not empty error }">
+                                                <div class="error_check">
+                                                        ${error }
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${not empty message }">
+                                                <div class="message_check">
+                                                        ${message }
+                                                </div>
+                                            </c:if>
+                                            <div class="form-group" style="margin-top: 20px;">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+                                                    </div>
+                                                    <input class="form-control" name="oldPassword" type="password"
+                                                           placeholder="Current Password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
+                                                    </div>
+                                                    <input class="form-control" name="newPassword" type="password" placeholder="New Password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
+                                                    </div>
+                                                    <input class="form-control" name="confirmPassword" type="password"
+                                                           placeholder="Confirm Password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6"></div>
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <button class="btn icon-btn-save btn-success" type="submit">
+                                                <span class="btn-save-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
+        </div>
+    </div>
+</div>

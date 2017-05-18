@@ -21,12 +21,6 @@ public class SendMailController {
 
     public static final String TO = "toannxm.itedu@gmail.com";
 
-//    @RequestMapping(value = "/sendMail", method = RequestMethod.GET)
-//    public String showForm(Model model) {
-//        model.addAttribute("mail", new EmailInfor());
-//        return "contact";
-//    }
-
     @RequestMapping(value = "/sendMail", method = RequestMethod.POST)
     public String sendMail(HttpServletRequest request) {
         String email = request.getParameter("email");

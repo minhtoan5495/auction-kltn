@@ -132,6 +132,7 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productDto.getName());
         List<MultipartFile> multipartFiles = getMultipartFiles(productDto);
         List<Image> images = getImageUrlFromMultiFile(multipartFiles, product);
+        product.setImageUrl(images.get(0).getImageUrl());
         product.setImages(images);
         productRepository.save(product);
         imageRepository.save(images);
@@ -159,11 +160,12 @@ public class ProductServiceImpl implements ProductService {
             if (!images.isEmpty()) {
                 List<Image> imagesByProduct = imageRepository.findByProduct(product);
                 if (!imagesByProduct.isEmpty()) {
-                    for (Image image : imagesByProduct){
+                    for (Image image : imagesByProduct) {
                         imageRepository.delete(image);
                     }
                 }
                 product.setImages(images);
+                product.setImageUrl(images.get(0).getImageUrl());
                 productRepository.save(product);
                 imageRepository.save(images);
             } else {
@@ -233,32 +235,32 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findByIds(List<String> productIds) {
         List<Product> products = new ArrayList<>();
-        for (String productId : productIds){
+        for (String productId : productIds) {
             Product product = productRepository.findOne(productId);
             products.add(product);
         }
         return products;
     }
 
-	@Override
-	public List<Product> findBySupplier(Supplier supplier) {
-		return productRepository.findBySupplier(supplier);
-	}
+    @Override
+    public List<Product> findBySupplier(Supplier supplier) {
+        return productRepository.findBySupplier(supplier);
+    }
 
-	@Override
-	public List<Product> findByTransactionType(TransactionType transactionType, Sort sort) {
-		return productRepository.findByTransactionType(transactionType, sort);
-	}
+    @Override
+    public List<Product> findByTransactionType(TransactionType transactionType, Sort sort) {
+        return productRepository.findByTransactionType(transactionType, sort);
+    }
 
-	@Override
-	public List<Product> findByTransactionType(List<Product> products, TransactionType transactionType, Sort sort) {
-		return productRepository.findByTransactionType(products, transactionType, sort);
-	}
+    @Override
+    public List<Product> findByTransactionType(List<Product> products, TransactionType transactionType, Sort sort) {
+        return productRepository.findByTransactionType(products, transactionType, sort);
+    }
 
-	@Override
-	public List<Product> getHighView() {
-		return productRepository.findAll(new PageRequest(0, 8,Direction.DESC,"viewNumber")).getContent();
-	}
+    @Override
+    public List<Product> getHighView() {
+        return productRepository.findAll(new PageRequest(0, 8, Direction.DESC, "viewNumber")).getContent();
+    }
 
     @Override
     public List<Product> findByCategory(String categoryId) {
@@ -266,19 +268,24 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByCategory(category);
     }
 
-	@Override
-	public List<Product> findByContainingnameAndDescPrice(String name) {
-		return productRepository.findByNameContainingOrderByPriceDesc(name);
-	}
+    @Override
+    public List<Product> findByContainingnameAndDescPrice(String name) {
+        return productRepository.findByNameContainingOrderByPriceDesc(name);
+    }
 
-	@Override
-	public List<Product> findByContainingnameAndAscPrice(String name) {
-		return productRepository.findByNameContainingOrderByPriceAsc(name);
-	}
+    @Override
+    public List<Product> findByContainingnameAndAscPrice(String name) {
+        return productRepository.findByNameContainingOrderByPriceAsc(name);
+    }
 
     @Override
     public void save(Product product) {
         productRepository.save(product);
+    }
+
+    @Override
+    public Product findByName(String name) {
+        return productRepository.findByName(name);
     }
 
 

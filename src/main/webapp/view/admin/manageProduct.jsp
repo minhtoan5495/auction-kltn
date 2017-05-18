@@ -22,6 +22,9 @@
                                 ${message}
                         </div>
                     </c:if>
+                    <div id="messageDelete">
+                        ${message}
+                    </div>
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageProductTable">
                         <thead>
                         <tr>
@@ -53,7 +56,7 @@
                             </c:if>
                             <tr class="gradeX">
                                 <td hidden="hidden">${product.productId}</td>
-                                <td><a href="${pageContext.request.contextPath}/detail?productId=${product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${product.images.get(i).imageUrl}" style="width:80px;height:80px"/></a></td>
+                                <td><a href="${pageContext.request.contextPath}/detail?productId=${product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${product.imageUrl}" style="width:80px;height:80px"/></a></td>
                                 <td>${product.name}</td>
                                 <td><fmt:formatNumber value="${product.price}" type="number"/> đ</td>
                                 <td>${product.createDate}</td>

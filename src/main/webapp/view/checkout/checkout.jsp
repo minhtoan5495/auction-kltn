@@ -149,7 +149,7 @@
 													<tbody>
 														<tr>
 															<td class="infor_order_title_product"><img
-																src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).getImageUrl()}"
+																src="${pageContext.request.contextPath }/resource/images/product/${cart.product.getImageUrl()}"
 																style="width: 100px; height: 100px">
 																<p style="margin-left: 5px">${cart.product.name }</p></td>
 															<td class="infor_order_title_quantity">${cart.quantity }
@@ -212,7 +212,7 @@
 											<div class="col-sm-3">
 												<div class="cart_modal_img">
 													<img alt=""
-														src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).imageUrl}">
+														src="${pageContext.request.contextPath }/resource/images/product/${cart.product.imageUrl}">
 												</div>
 											</div>
 											<div class="col-sm-9">

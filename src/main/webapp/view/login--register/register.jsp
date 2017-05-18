@@ -25,7 +25,7 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="custom" data-validation-length="3-30"
+                                    <form:input data-validation="length" data-validation-length="3-30"
                                                 data-validation-error-msg="Họ tên phải hơn 3 kí tự"
                                                 type="text" placeholder="Họ tên" class="input" id="name"
                                                 name="name"
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <div class='input-group'>
                                     <form:input data-validation="custom"
-                                                data-validation-regexp="^[a-zA-Z0-9.*]{3,}.@[a-z*]{3,}\.[a-z]{3,}$"
+                                                data-validation-regexp="^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
                                                 data-validation-error-msg="Vui lòng nhập đúng email"
                                                 class="input" type="text" placeholder="Email" id="email" name="email"
                                                 path="email"></form:input>
@@ -78,8 +78,8 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="required length" data-validation-length="6-20"
-                                                data-validation-error-msg="Mật khẩu phải lớn hơn 6 kí tự"
+                                    <form:input data-validation="length" data-validation-length="8-30"
+                                                data-validation-error-msg="Mật khẩu phải phải lớn hơn 8 kí tự"
                                                 class="input" type="password" placeholder="Mật khẩu" id="password"
                                                 name="password"
                                                 path="password"></form:input>

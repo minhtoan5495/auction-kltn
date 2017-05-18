@@ -3,17 +3,21 @@ package hvcntt.org.shoppingweb.controller;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.dto.ProfileDto;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.*;
+import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
@@ -58,14 +62,18 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/profile")
-    public String profile(Model model, Principal principal) throws UserNotFoundException {
+    public String profile(Model model, Principal principal, HttpSession session) throws UserNotFoundException {
+        if ("updateProfile".equals(session.getAttribute("message"))) {
+            model.addAttribute("message", "Cập nhật thông tin thành công");
+            session.removeAttribute("message");
+        }
         String username = principal.getName();
         User user = userService.findByUsername(username);
         model.addAttribute("user", userService.findByUsername(username));
         model.addAttribute("invoices", invoiceService.getAll());
         model.addAttribute("ordered", invoiceService.findByUsername(username));
         model.addAttribute("auctions", userAuctionService.findByUser(user));
-        Date currentDate=new Date();
+        Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         return "profile";
     }
@@ -91,42 +99,52 @@ public class ProfileController {
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
     public String resetPassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
                                 @RequestParam("confirmPassword") String confirmPassword,
-                                HttpServletRequest request, HttpServletResponse response,Model model) throws UserNotFoundException {
+                                HttpServletRequest request, HttpSession session, HttpServletResponse response, Model model) throws UserNotFoundException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
-        if(oldPassword.equals("") || newPassword.equals("")){
-            return "redirect:/changePassword?error=invalid";
+        if (oldPassword.equals("") || newPassword.equals("")) {
+            session.setAttribute("error", "invalid");
+            return "redirect:/changePassword";
         }
-        if(!bCryptPasswordEncoder.matches(oldPassword, user.getPassword())){
-            return "redirect:/changePassword?error=oldPasswordInvalid";
+        if (!bCryptPasswordEncoder.matches(oldPassword, user.getPassword())) {
+            session.setAttribute("error", "oldPasswordInvalid");
+            return "redirect:/changePassword";
         }
-        if(!confirmPassword.equals(newPassword)){
-            return "redirect:/changePassword?error=confirmInvalid";
+        if (!confirmPassword.equals(newPassword)) {
+            session.setAttribute("error", "confirmInvalid");
+            return "redirect:/changePassword";
         } else {
             new SecurityContextLogoutHandler().logout(request, response, auth);
             userService.changePassword(user, newPassword);
-            return "redirect:/login?message=changePassword";
+            session.setAttribute("message", "changePassword");
+            return "redirect:/login";
         }
     }
 
-    @RequestMapping(value="/changePassword", method = RequestMethod.GET)
-    public String changePassword(@RequestParam(value = "error", required = false) String error, Model model){
-        if(error != null){
-            if(error.equals("confirmInvalid")){
-                model.addAttribute("error", "Nhập lại mật khẩu không đúng !");
-            }
-            if(error.equals("invalid")){
-                model.addAttribute("error", "Vui lòng nhập đầy đủ thông tin !");
-            }
-            if(error.equals("oldPasswordInvalid")){
-                model.addAttribute("error", "Bạn nhập sai mật khẩu hiện tại !");
-            }
+    @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+    public String changePassword(HttpSession session, Model model) {
+        if (session.getAttribute("error").equals("confirmInvalid")) {
+            model.addAttribute("error", "Nhập lại mật khẩu không đúng !");
+            session.removeAttribute("error");
+            return "changePassword";
         }
-        return "changePassword";
+        if (session.getAttribute("error").equals("invalid")) {
+            model.addAttribute("error", "Vui lòng nhập đầy đủ thông tin !");
+            session.removeAttribute("error");
+            return "changePassword";
+        }
+        if (session.getAttribute("error").equals("oldPasswordInvalid")) {
+            model.addAttribute("error", "Bạn nhập sai mật khẩu hiện tại !");
+            session.removeAttribute("error");
+            return "changePassword";
+        }else{
+            return "changePassword";
+        }
     }
-    @RequestMapping(value="/updateProfile", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/updateProfile", method = RequestMethod.GET)
     public String updateProfile(Model model) throws UserNotFoundException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
@@ -138,18 +156,21 @@ public class ProfileController {
         return "updateProfile";
     }
 
-    @RequestMapping(value="/updateProfile", method = RequestMethod.POST)
-    public String saveProfile(@ModelAttribute ProfileDto profileDto, HttpServletRequest request) throws UserNotFoundException, ParseException {
+    @RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
+    public String saveProfile(@ModelAttribute ProfileDto profileDto, HttpServletRequest request, HttpSession session) throws UserNotFoundException, ParseException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User user = userService.findByUsername(username);
         String date = request.getParameter("date");
         Date birthday = new SimpleDateFormat("yyyy-mm-dd").parse(date);
         profileDto.setBirthday(birthday);
-        profileDto.setCityId(request.getParameter("cityId"));
-        profileDto.setDistrictId(request.getParameter("districtId"));
+        String cityId = request.getParameter("cityId");
+        String districtId = request.getParameter("districtId");
+        profileDto.setCityId(cityId);
+        profileDto.setDistrictId(districtId);
         setInfoFromProfileToUser(user, profileDto);
         userService.save(user);
+        session.setAttribute("message", "updateProfile");
         return "redirect:/profile";
     }
 
@@ -164,7 +185,7 @@ public class ProfileController {
 
     @RequestMapping(value = "/getDistrict", method = RequestMethod.GET)
     public @ResponseBody
-    List<District> getDistrict(@RequestParam(value = "cityId") String cityId){
+    List<District> getDistrict(@RequestParam(value = "cityId") String cityId) {
         City city = cityService.findById(cityId);
         return districtService.findByCity(city);
     }

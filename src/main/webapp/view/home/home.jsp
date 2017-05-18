@@ -169,7 +169,6 @@
 					<h2 class="content-paget-title-item">SẢN PHẨM BÁN</h2>
 				</div>
 				<div class="row">
-					<h4>${message}</h4>
 					<c:forEach var="product" items="${productSalePage.pageList }">
 						<div class="col-sm-3 new-product-main">
 							<div class="new-product">
@@ -178,7 +177,7 @@
 										<a
 											href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img
 											style="width: 253px; height: 300px;"
-											src="resource/images/product/${product.images.get(i).imageUrl }"></a>
+											src="resource/images/product/${product.imageUrl }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a
@@ -238,7 +237,7 @@
 											<input hidden value="${product.productId}" id="productId">
 											<a
 												href="${pageContext.request.contextPath }/addCart?productId=${product.productId}">
-												<button class="btn  btn-countdown">
+												<button class="btn btn-countdown">
 													<i class="fa fa-shopping-cart"></i> MUA NGAY
 												</button>
 											</a>
@@ -277,7 +276,7 @@
 											<a
 												href="${pageContext.request.contextPath }/detail?productId=${product.productId}">
 												<img style="width: 253px; height: 300px;"
-												src="${pageContext.request.contextPath}/resource/images/product/${product.images.get(i).imageUrl }">
+												src="${pageContext.request.contextPath}/resource/images/product/${product.imageUrl }">
 											</a>
 											<div class="overplay-content"></div>
 										</div>
@@ -368,7 +367,7 @@
 													<a
 														href="${pageContext.request.contextPath }/detail?productId=${productView.productId}"><img
 														style="width: 253px; height: 300px;"
-														src="resource/images/product/${productView.images.get(i).imageUrl }"></a>
+														src="resource/images/product/${productView.imageUrl }"></a>
 													<div class="overplay-content">
 														<ul>
 															<li><a

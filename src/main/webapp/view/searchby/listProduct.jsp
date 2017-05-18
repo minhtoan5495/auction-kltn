@@ -16,7 +16,7 @@
                             <div class="new-product">
                                 <div class="single-product-item">
                                     <div class="single-product-image">
-                                        <a href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img src="resource/images/banner/${product.images.get(i).imageUrl }"></a>
+                                        <a href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img src="resource/images/banner/${product.imageUrl }"></a>
                                         <div class="overplay-content">
                                             <ul>
                                                 <li>

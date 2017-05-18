@@ -14,6 +14,11 @@
                 Add Product
             </header>
             <div class="panel-body">
+                <c:if test="${not empty error }">
+                    <div class="alert alert-danger" id="message">
+                            ${error}
+                    </div>
+                </c:if>
                 <div class="form">
                     <form:form action="${pageContext.request.contextPath}/admin/saveProduct"
                                enctype="multipart/form-data" commandName="productDto"

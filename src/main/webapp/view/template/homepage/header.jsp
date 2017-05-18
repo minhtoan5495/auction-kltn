@@ -117,99 +117,87 @@
                 <div class="header_middle_item pull-right">
                     <div class="header_middle_cart" id="header_middle_cart">
                         <a href="#" class="cart_link" data-toggle="modal"
-                           data-target="#myCart"> <i
-                                class="fa fa-shopping-cart cart-icon"></i> <b>Giỏ hàng</b> <c:if
-                                test="${not empty carts }">
-                            <span class="cart_quantity">${carts.size() }</span>
-                        </c:if>
+                           data-target="#myCart">
+                            <i class="fa fa-shopping-cart cart-icon"></i> <b>Giỏ hàng</b>
+                            <span class="cart_quantity">{{length}}</span>
                         </a>
                     </div>
-                    <c:if test="${not empty carts }">
-                        <c:set var="sum"
-                               value="${sum +carts.get(i).product.price*carts.get(i).quantity}"></c:set>
-                        <div class="modal fade" id="myCart" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
+                    <div class="modal fade" id="myCart" role="dialog" ng-if="length > 0">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content" style="width: 100%;">
+                                <div class="modal-header">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4 style="margin-top: 0px">
+                                                Xem giỏ hàng ({{length}} sản phẩm)<a
+                                                    href="${pageContext.request.contextPath }/viewCart"><i
+                                                    class="fa fa-edit"
+                                                    style="margin-left: 10px; font-size: 20px; color: #11252f"></i></a>
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Tạm tính</label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <p>
+                                                        {{getTotal() | number}}
+                                                        đ
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row modal-body-cart-header" ng-repeat="cart in carts">
+                                    <div class="col-sm-3">
+                                        <div class="cart_modal_img">
+                                            <img alt=""
+                                                 ng-src="${pageContext.request.contextPath}/resource/images/product/{{cart.product.imageUrl}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <h4 style="margin-top: 0px">
-                                                    Xem giỏ hàng (${ carts.size()} sản phẩm)<a
-                                                        href="${pageContext.request.contextPath }/viewCart"><i
-                                                        class="fa fa-edit"
-                                                        style="margin-left: 10px; font-size: 20px; color: #11252f"></i></a>
-                                                </h4>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>Tạm tính</label>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <p>
-                                                            <fmt:formatNumber value="${sum}" type="number"/>
-                                                            đ
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row modal-body-cart-header">
-                                        <c:forEach var="cart" items="${carts }" varStatus="cartCount">
                                             <div class="col-sm-3">
-                                                <div class="cart_modal_img">
-                                                    <img alt=""
-                                                         src="${pageContext.request.contextPath }/resource/images/product/${cart.product.images.get(i).imageUrl}">
-                                                </div>
+                                                <label>Tên sản phẩm</label>
+                                                <p>{{cart.product.name}}</p>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <label>Tên sản phẩm</label>
-                                                        <p>${cart.product.name}</p>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <label>Số lượng</label>
-                                                        <p>${cart.quantity }cái</p>
+                                            <div class="col-sm-3">
+                                                <label>Số lượng</label>
+                                                <p>{{cart.quantity }} cái</p>
 
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <label>Giá</label>
-                                                        <p>
-                                                            <fmt:formatNumber value="${cart.product.price}"
-                                                                              type="number"/>
-                                                            đ
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <label>Thành tiền</label>
-                                                        <p>
-                                                            <fmt:formatNumber
-                                                                    value="${cart.product.price * cart.quantity}"
-                                                                    type="number"/>
-                                                            đ
-                                                        </p>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </c:forEach>
+                                            <div class="col-sm-3">
+                                                <label>Giá</label>
+                                                <p>
+                                                    {{cart.product.price | number}}
+                                                    đ
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label>Thành tiền</label>
+                                                <p>
+                                                    {{cart.product.price * cart.quantity | number}}
+                                                    đ
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="row modal-footer">
-                                        <div class="col-sm-4">
-                                            <a href="${pageContext.request.contextPath }/home"
-                                               style="text-decoration: none">TIẾP TỤC MUA HÀNG</a>
-                                        </div>
-                                        <div class="col-sm-4" style="margin-top: 10px">
-                                            <button type="button" class="btn btn-primary"
-                                                    data-dismiss="modal" style="border-radius: 0">X
-                                            </button>
-                                        </div>
+                                </div>
+                                <div class="row modal-footer">
+                                    <div class="col-sm-4">
+                                        <a href="${pageContext.request.contextPath }/home"
+                                           style="text-decoration: none">TIẾP TỤC MUA HÀNG</a>
+                                    </div>
+                                    <div class="col-sm-4" style="margin-top: 10px">
+                                        <button type="button" class="btn btn-primary"
+                                                data-dismiss="modal" style="border-radius: 0">X
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </c:if>
+                    </div>
                 </div>
             </div>
         </div>
@@ -234,7 +222,8 @@
                     <div class="sub_menu_bg hidden-xs">
                         <c:forEach var="category" items="${parent.categories}">
                             <div class="sub_menu_col">
-                                <a href="${pageContext.request.contextPath }/productByCategory/${category.categoryId}" class="sub_menu_col_item"><span>${category.categoryName}</span></a>
+                                <a href="${pageContext.request.contextPath }/productByCategory/${category.categoryId}"
+                                   class="sub_menu_col_item"><span>${category.categoryName}</span></a>
                             </div>
                         </c:forEach>
                     </div>

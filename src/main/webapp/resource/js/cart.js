@@ -5,15 +5,15 @@ app.config(['$qProvider', function ($qProvider) {
 }]);
 
 app.controller('CartController', function ($scope, $http) {
+
     $scope.carts = [];
+    $scope.length = 0;
     $scope.init = function (carts) {
         $scope.carts = carts;
-        console.log($scope.carts);
+        $scope.length = carts.length;
     }
 
-    // localStorage.setItem("carts", $scope.carts);
     $scope.add = function (cart) {
-        console.log(cart.product.stockQuantity);
         if (cart.quantity < 10 && cart.quantity < cart.product.stockQuantity) {
             cart.quantity++;
             var quantity = cart.quantity;
@@ -36,8 +36,8 @@ app.controller('CartController', function ($scope, $http) {
                 url: '/updateCart',
                 type: 'GET',
                 params: {
-                    quantity : cart.quantity,
-                    productId : cart.product.productId
+                    quantity: cart.quantity,
+                    productId: cart.product.productId
                 }
             })
         }
@@ -46,27 +46,22 @@ app.controller('CartController', function ($scope, $http) {
     // Fire event to remove
     $scope.delete = function (cart) {
         var index = -1;
-        var comArr = eval( $scope.carts );
-        for( var i = 0; i < comArr.length; i++ ) {
-            if( comArr[i].product === cart.product ) {
+        var comArr = eval($scope.carts);
+        for (var i = 0; i < comArr.length; i++) {
+            if (comArr[i].product === cart.product) {
                 index = i;
                 break;
             }
         }
-        $scope.carts.splice( index, 1 );
+        $scope.carts.splice(index, 1);
+        $scope.length--;
         $http({
             url: '/removeCart',
             type: 'GET',
             params: {
-                productId : cart.product.productId
+                productId: cart.product.productId
             }
         })
-        console.log(cart.product.productId);
-    }
-
-    $scope.getSrc = function (cart) {
-        var imageBase64 = $base64.encode(unescape(encodeURIComponent(cart.product.imageUrl)));
-        return imageBase64;
     }
 
     $scope.getTotal = function () {
@@ -77,6 +72,5 @@ app.controller('CartController', function ($scope, $http) {
             total += (product.price * quantity);
         }
         return total;
-        console.log(cart.product.imageUrl);
     }
 });

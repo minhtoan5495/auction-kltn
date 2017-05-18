@@ -11,6 +11,8 @@ import hvcntt.org.shoppingweb.dao.entity.Category;
 import hvcntt.org.shoppingweb.exception.CategoryNotFoundExeption;
 import hvcntt.org.shoppingweb.service.CategoryService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ManageCategoryController {
     @Autowired
@@ -20,24 +22,28 @@ public class ManageCategoryController {
     ParentService parentService;
 
     @RequestMapping(value = "/admin/manageCategory")
-    public String getAllCategory(Model model, @RequestParam(value = "message", required = false) String message) {
-        if("saveCategory".equals(message)){
+    public String getAllCategory(Model model, HttpSession session) {
+        if("saveCategory".equals(session.getAttribute("message"))){
             model.addAttribute("message", "Saved category successfully !!");
+            session.removeAttribute("message");
         }
         model.addAttribute("categories", categoryService.getAll());
         return "manageCategory";
     }
 
     @RequestMapping(value = "/admin/addCategory", method = RequestMethod.GET)
-    public String addCategory(Model model, @RequestParam(value = "message", required = false) String message) {
-        if("invalidName".equals(message)){
+    public String addCategory(Model model, HttpSession session) {
+        if("invalidName".equals(session.getAttribute("message"))){
             model.addAttribute("error", "Category name is exist !!");
+            session.removeAttribute("message");
         }
-        if("nullName".equals(message)){
+        if("nullName".equals(session.getAttribute("message"))){
             model.addAttribute("error", "Category name is null !!");
+            session.removeAttribute("message");
         }
-        if("nullParent".equals(message)){
+        if("nullParent".equals(session.getAttribute("message"))){
             model.addAttribute("error", "Please select parent for category than you want to create !!");
+            session.removeAttribute("message");
         }
         model.addAttribute("categoryDto", new CategoryDto());
         model.addAttribute("parents", parentService.findAll());
@@ -45,18 +51,22 @@ public class ManageCategoryController {
     }
 
     @RequestMapping(value = "/admin/saveCategory", method = RequestMethod.POST)
-    public String addCategory(@ModelAttribute("categoryDto") CategoryDto categoryDto) {
+    public String addCategory(@ModelAttribute("categoryDto") CategoryDto categoryDto, HttpSession session) {
         if(categoryDto.getCategoryName().isEmpty()){
-            return "redirect:/admin/addCategory?message=nullName";
+            session.setAttribute("message", "nullName");
+            return "redirect:/admin/addCategory";
         }
         if(categoryDto.getParentId().equals("")){
-            return "redirect:/admin/addCategory?message=nullParent";
+            session.setAttribute("message", "nullParent");
+            return "redirect:/admin/addCategory";
         }
         if(categoryService.findByCategoryName(categoryDto.getCategoryName()) != null){
-            return "redirect:/admin/addCategory?message=invalidName";
+            session.setAttribute("message", "invalidName");
+            return "redirect:/admin/addCategory";
         }
         categoryService.save(categoryDto);
-        return "redirect:/admin/manageCategory?message=saveCategory";
+        session.setAttribute("message", "saveCategory");
+        return "redirect:/admin/manageCategory";
     }
 
     @RequestMapping(value = "/admin/deleteCategory", method = RequestMethod.GET)

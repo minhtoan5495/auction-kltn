@@ -50,13 +50,14 @@ public class CartPageController {
                 if(quantity < product.getStockQuantity()){
                     cartItems.get(index).setQuantity(quantity);
                 }else{
-                    return "redirect:/viewCart?message=overLoad";
+                    return "redirect:/viewCart";
                 }
             }
             session.setAttribute("carts", cartItems);
         }
-        model.addAttribute("cartAngular", JsonUtil.convertObjectToJson(cartItems));
-        return "cart";
+        session.setAttribute("cartAngular", JsonUtil.convertObjectToJson(cartItems));
+        session.setAttribute("message","addCartSuccess");
+        return "redirect:/home";
     }
 
     private int isExist(String productId, HttpSession session) {
@@ -80,10 +81,14 @@ public class CartPageController {
     }
 
     @RequestMapping(value = "/viewCart")
-    public String viewCart(HttpSession session, Model model) {
+    public String viewCart(HttpSession session) {
         @SuppressWarnings({"unchecked", "unused"})
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("carts");
-        model.addAttribute("cartAngular", JsonUtil.convertObjectToJson(cartItems));
+        if(cartItems == null){
+            session.setAttribute("cartAngular", JsonUtil.convertObjectToJson(new ArrayList<>()));
+        }else{
+            session.setAttribute("cartAngular", JsonUtil.convertObjectToJson(cartItems));
+        }
         return "cart";
     }
 

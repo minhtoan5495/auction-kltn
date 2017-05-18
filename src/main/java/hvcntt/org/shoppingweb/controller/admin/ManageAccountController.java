@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,12 +49,14 @@ public class ManageAccountController {
 	}
 
 	@RequestMapping("/admin/manageAccount")
-	public String listAllAccount(Model model, @RequestParam(value = "message", required = false) String message){
-		if("saveSuccess".equals(message)){
+	public String listAllAccount(Model model, HttpSession session){
+		if("saveSuccess".equals(session.getAttribute("message"))){
 			model.addAttribute("message", "Saved user successfully !!");
+			session.removeAttribute("message");
 		}
-		if("deleteSuccess".equals(message)){
+		if("deleteSuccess".equals(session.getAttribute("message"))){
 			model.addAttribute("message", "Deleted user successfully !!");
+			session.removeAttribute("message");
 		}
 		List<User> users = userService.getAll();
 		model.addAttribute("users", users);
@@ -74,11 +77,12 @@ public class ManageAccountController {
 	}
 
 	@RequestMapping(value = "/admin/updateRole", method = RequestMethod.POST)
-	public String editAccount(HttpServletRequest request) throws ParseException, UserAlreadyExistsException, RoleNotFoundException, UserNotFoundException {
+	public String editAccount(HttpServletRequest request, HttpSession session) throws ParseException, UserAlreadyExistsException, RoleNotFoundException, UserNotFoundException {
 		User user = userService.findByUsername(request.getParameter("username"));
 		String[] roleIds = request.getParameterValues("roleId");
 		if(roleIds == null){
-			return  "redirect:/admin/editRole?username="+user.getUsername() + "&message=invalidInput";
+			session.setAttribute("message","invalidInput");
+			return  "redirect:/admin/editRole?username="+user.getUsername();
 		}
 		List<Role> roles = new ArrayList<>();
 		for (String roleId : roleIds){
@@ -86,13 +90,15 @@ public class ManageAccountController {
 		}
 		user.setRoles(roles);
 		userService.save(user);
-		return  "redirect:/admin/manageAccount?message=saveSuccess";
+		session.setAttribute("message","saveSuccess");
+		return  "redirect:/admin/manageAccount";
 	}
 
 	@RequestMapping(value = "/admin/editRole", method = RequestMethod.GET)
-	public String editRole(@RequestParam("username") String username, Model model, @RequestParam(value = "message", required = false) String message) throws UserNotFoundException {
-		if("invalidInput".equals(message)){
+	public String editRole(@RequestParam("username") String username, HttpSession session, Model model) throws UserNotFoundException {
+		if("invalidInput".equals(session.getAttribute("message"))){
 			model.addAttribute("error", "Please select one in roles !!");
+			session.removeAttribute("message");
 		}
 		model.addAttribute("user", userService.findByUsername(username));
 		model.addAttribute("roles", roleRepository.findAll());

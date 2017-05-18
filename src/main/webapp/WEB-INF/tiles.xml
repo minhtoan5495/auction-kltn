@@ -13,11 +13,6 @@
     <definition name="registration" template="/view/template/account/mainRegister.jsp">
         <put-attribute name="body" value=""></put-attribute>
     </definition>
-    <definition name="profilePage" template="/view/template/profilepage/mainProfile.jsp">
-        <put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
-        <put-attribute name="body" value=""></put-attribute>
-        <put-attribute name="footer" value="/view/template/homepage/footer.jsp"></put-attribute>
-    </definition>
     <definition name="home" extends="definition">
         <put-attribute name="title" value="Home Page"></put-attribute>
         <put-attribute name="body" value="/view/home/home.jsp"></put-attribute>
@@ -26,21 +21,19 @@
         <put-attribute name="title" value="Kết quả tìm thấy"></put-attribute>
         <put-attribute name="body" value="/view/searchby/resultSearch.jsp"></put-attribute>
     </definition>
-    <definition name="profile" extends="profilePage">
+    <definition name="profile" extends="definition">
         <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/profile.jsp"></put-attribute>
     </definition>
-    <definition name="changePassword" extends="profilePage">
-        <put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
+    <definition name="changePassword" extends="definition">
         <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/changePassword.jsp"></put-attribute>
     </definition>
-    <definition name="updateProfile" extends="profilePage">
-        <put-attribute name="header" value="/view/template/homepage/header.jsp"></put-attribute>
+    <definition name="updateProfile" template="/view/profile/updateProfile.jsp">
         <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/updateProfile.jsp"></put-attribute>
     </definition>
-    <definition name="orderDetail" extends="profilePage">
+    <definition name="orderDetail" extends="definition">
         <put-attribute name="title" value="Hóa đơn cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/orderDetail.jsp"></put-attribute>
     </definition>

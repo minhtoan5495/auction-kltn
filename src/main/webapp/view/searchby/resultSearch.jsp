@@ -112,7 +112,7 @@
 										<a
 											href="${pageContext.request.contextPath }/detail?productId=${product.productId}"><img
 											style="width: 253px; height: 330px;"
-											src="${pageContext.request.contextPath }/resource/images/product/${product.images.get(i).imageUrl }"></a>
+											src="${pageContext.request.contextPath }/resource/images/product/${product.imageUrl }"></a>
 										<div class="overplay-content">
 											<ul>
 												<li><a

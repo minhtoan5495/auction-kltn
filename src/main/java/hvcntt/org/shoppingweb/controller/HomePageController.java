@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import hvcntt.org.shoppingweb.dao.entity.Parent;
 import hvcntt.org.shoppingweb.service.*;
+import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -54,8 +56,10 @@ public class HomePageController {
         if("loginSuccess".equals(message)){
             model.addAttribute("message", "Đăng nhập thành công");
         }
-        @SuppressWarnings("unused")
-        List<CartItem> inFo = (List<CartItem>) session.getAttribute("cart");
+        if("addCartSuccess".equals(session.getAttribute("message"))){
+            model.addAttribute("message", "Đã thêm vào giỏ hàng 1 sản phẩm");
+            session.removeAttribute("message");
+        }
         model.addAttribute("parents", parentService.findAll());
         TransactionType transactionType = transactionService.findByName(SALE);
         PagedListHolder productSalePage = new PagedListHolder(productService.findByProductTransactionType(transactionType));

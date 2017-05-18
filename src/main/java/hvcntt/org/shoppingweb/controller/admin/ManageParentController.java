@@ -5,12 +5,10 @@ import hvcntt.org.shoppingweb.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by toannguyen on 28/04/2017.
@@ -22,10 +20,11 @@ public class ManageParentController {
     ParentService parentService;
 
     @RequestMapping(value = "/admin/manageParent")
-    public String getAllParen(@RequestParam(value = "message", required = false) String message, Model model, HttpServletRequest request){
+    public String getAllParen(HttpSession session, Model model, HttpServletRequest request){
         model.addAttribute("parents", parentService.findAll());
-        if("saveSuccess".equals(message)){
+        if("saveSuccess".equals(session.getAttribute("message"))){
             model.addAttribute("message","Saved parent successfully " + request.getParameter("parentId") + "!!");
+            session.removeAttribute("message");
         }
         return "manageParent";
     }
@@ -37,29 +36,33 @@ public class ManageParentController {
     }
 
     @RequestMapping(value = "/admin/saveParent", method = RequestMethod.POST)
-    public String saveParent(@ModelAttribute Parent parent){
+    public String saveParent(@ModelAttribute Parent parent, HttpSession session){
         if(parent.getParentName().isEmpty()){
-            return "redirect:/admin/addParent?message=nullName";
+            session.setAttribute("message", "nullName");
+            return "redirect:/admin/addParent";
         }
         if(parentService.findByParentName(parent.getParentName()) != null){
-            return "redirect:/admin/addParent?message=invalidName";
+            session.setAttribute("message", "invalidName");
+            return "redirect:/admin/addParent";
         }
         parentService.saveParent(parent);
-        return "redirect:/admin/manageParent?message=saveSuccess&&parentId=" + parent.getParentId();
+        session.setAttribute("message", "nullName");
+        return "redirect:/admin/manageParent?parentId=" + parent.getParentId();
     }
 
     @RequestMapping(value = "/admin/updateParent", method = RequestMethod.GET)
-    public String updateParent(@ModelAttribute Parent parent, Model model){
+    public String updateParent(@ModelAttribute Parent parent, HttpSession session){
         parentService.saveParent(parent);
-        model.addAttribute("message","Updated parent with id : " + parent.getParentId() + " !!");
-        return "redirect:/admin/manageParent?message=saveSuccess&&parentId=" + parent.getParentId();
+        session.setAttribute("message", "saveSuccess");
+        return "redirect:/admin/manageParent?parentId=" + parent.getParentId();
     }
 
     @RequestMapping(value = "/admin/deleteParent", method = RequestMethod.GET)
-    public void deleteParent(@RequestParam("parentId") String parentId, Model model){
+    public @ResponseBody String
+    deleteParent(@RequestParam("parentId") String parentId){
         Parent parent = parentService.findById(parentId);
         parentService.delete(parent);
-        model.addAttribute("message","Deleted parent with id : " + parentId + " !!");
+        return "Deleted parent with id : " + parentId + " !!";
     }
 
     @RequestMapping(value = "/admin/editParent", method = RequestMethod.GET)

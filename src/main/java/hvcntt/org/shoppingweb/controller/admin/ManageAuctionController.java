@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.utils.JsonUtil;
@@ -36,9 +37,10 @@ public class ManageAuctionController {
     TransactionTypeService transactionTypeService;
 
     @RequestMapping(value = "/admin/manageAuction")
-    public String getAllAuction(Model model, @RequestParam(value = "message", required = false) String message) {
-        if ("saveSuccess".equals(message)) {
+    public String getAllAuction(Model model, HttpSession session) {
+        if ("saveSuccess".equals(session.getAttribute("message"))) {
             model.addAttribute("message", "Saved auction successfully !!");
+            session.removeAttribute("message");
         }
         List<Auction> auctions = auctionService.getAll();
         model.addAttribute("auctions", auctions);
@@ -46,15 +48,19 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
-    public String addAuction(@RequestParam(value = "message", required = false) String message, Model model) {
-        if ("requiredAuction".equals(message)) {
+    public String addAuction(HttpSession session, Model model) {
+        if ("requiredAuction".equals(session.getAttribute("message"))) {
             model.addAttribute("message", "Let's create the auction for product that you're just created !!");
+            session.removeAttribute("message");
         }
-        if ("invalidForm".equals(message)) {
+        if ("invalidForm".equals(session.getAttribute("error"))) {
             model.addAttribute("error", "All field is required !!");
+            session.removeAttribute("error");
+
         }
-        if ("invalidDate".equals(message)) {
+        if ("invalidDate".equals(session.getAttribute("error"))) {
             model.addAttribute("error", "The start date can't less than today and the end date can't great than the start date !!");
+            session.removeAttribute("error");
         }
         TransactionType transactionType = transactionTypeService.findByName("Auction");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByTransactionType(transactionType)));
@@ -96,10 +102,11 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.POST)
-    public String updateAuction(HttpServletRequest request) throws ParseException {
+    public String updateAuction(HttpServletRequest request, HttpSession session) throws ParseException {
         String auctionStatus = request.getParameter("auctionStatus");
         String auctionId = request.getParameter("auctionId");
         auctionService.update(auctionId, auctionStatus);
-        return "redirect:/admin/manageAuction?message=updateAuction";
+        session.setAttribute("message","saveSuccess");
+        return "redirect:/admin/manageAuction";
     }
 }

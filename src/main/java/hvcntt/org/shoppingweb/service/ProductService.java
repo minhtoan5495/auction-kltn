@@ -60,4 +60,6 @@ public interface ProductService {
     List<Product> findByContainingnameAndAscPrice(String name);
 
     void save(Product product);
+
+    Product findByName(String name);
 }

@@ -18,6 +18,8 @@ import hvcntt.org.shoppingweb.dao.dto.DiscountDto;
 import hvcntt.org.shoppingweb.dao.entity.Discount;
 import hvcntt.org.shoppingweb.service.DiscountService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ManageDiscountController {
     @Autowired
@@ -30,8 +32,8 @@ public class ManageDiscountController {
     TransactionTypeService transactionTypeService;
 
     @RequestMapping(value = "/admin/manageDiscount")
-    public String getAllDiscount(Model model, @RequestParam(value = "message", required = false) String message) {
-        if ("saveSuccess".equals(message)) {
+    public String getAllDiscount(Model model, HttpSession session) {
+        if ("saveSuccess".equals(session.getAttribute("message"))) {
             model.addAttribute("message", "Saved auction successfully !!");
         }
         model.addAttribute("discounts", discountService.getAll());
@@ -39,11 +41,11 @@ public class ManageDiscountController {
     }
 
     @RequestMapping(value = "/admin/addDiscount", method = RequestMethod.GET)
-    public String addDiscount(@RequestParam(value = "message", required = false) String message, Model model) {
-        if ("invalidForm".equals(message)) {
+    public String addDiscount(HttpSession session, Model model) {
+        if ("invalidForm".equals(session.getAttribute("message"))) {
             model.addAttribute("error", "All field is required !!");
         }
-        if ("invalidDate".equals(message)) {
+        if ("invalidDate".equals(session.getAttribute("message"))) {
             model.addAttribute("error", "The start date can't less than today and the end date can't great than the start date !!");
         }
         TransactionType transactionType = transactionTypeService.findByName("Sale");

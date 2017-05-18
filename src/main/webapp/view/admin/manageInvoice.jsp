@@ -19,6 +19,9 @@
                                 ${message}
                         </div>
                     </c:if>
+                    <div id="messageDelete">
+                        ${message}
+                    </div>
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="manageInvoiceTable">
                         <thead>
                         <tr>

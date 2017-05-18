@@ -39,6 +39,8 @@ public class Product implements Serializable {
 	@Column(name="view_number")
 	private int viewNumber;
 
+	private String imageUrl;
+
 	@OneToMany(mappedBy="product",fetch=FetchType.EAGER)
 	private List<Auction> auctions;
 
@@ -202,6 +204,14 @@ public class Product implements Serializable {
 
 	public void setDiscounts(List<Discount> discounts) {
 		this.discounts = discounts;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
-import java.security.Principal;
 import java.text.ParseException;
 
 import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hvcntt.org.shoppingweb.dao.entity.Invoice;
-import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.InvoiceService;
 import hvcntt.org.shoppingweb.service.UserService;
@@ -21,6 +19,7 @@ import hvcntt.org.shoppingweb.service.UserService;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ManageInvoiceController {
@@ -34,9 +33,10 @@ public class ManageInvoiceController {
     InvoiceStatusService invoiceStatusService;
 
     @RequestMapping(value = "/admin/manageInvoice")
-    public String getAllInvoice(Model model, @RequestParam(value = "message", required = false) String message) {
-        if("updateInvoice".equals(message)){
+    public String getAllInvoice(Model model, HttpSession session) {
+        if("updateInvoice".equals(session.getAttribute("message"))){
             model.addAttribute("message", "Saved invoice successfully !!");
+            session.removeAttribute("message");
         }
         model.addAttribute("invoices", invoiceService.findByOrderByCreateDateDesc());
         return "manageInvoice";
@@ -66,10 +66,11 @@ public class ManageInvoiceController {
     }
 
     @RequestMapping(value = "/admin/updateInvoice", method = RequestMethod.POST)
-    public String updateInvoice(HttpServletRequest request) throws ParseException, InvoiceStatusNotFoundException {
+    public String updateInvoice(HttpServletRequest request, HttpSession session) throws ParseException, InvoiceStatusNotFoundException {
         String invoiceStatusId = request.getParameter("invoiceStatusId");
         String invoiceId = request.getParameter("invoiceId");
         invoiceService.save(invoiceId, invoiceStatusId);
-        return "redirect:/admin/manageInvoice?message=updateInvoice";
+        session.setAttribute("message", "updateInvoice");
+        return "redirect:/admin/manageInvoice";
     }
 }

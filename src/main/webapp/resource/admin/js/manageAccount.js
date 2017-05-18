@@ -48,11 +48,13 @@ var TableAccount = function () {
                     url: "/admin/deleteAccount",
                     data: "username=" + username,
                     success : function (response) {
-                        $('#message').html(response.toString());
-                        $('#message').show();
+                        $('#messageDelete').html(response.toString());
+                        $('#messageDelete').addClass("alert alert-success");
+                        $('#messageDelete').show();
                         setTimeout(function() {
-                            $("#message").hide('blind', {}, 500)
-                        }, 1000);
+                            $("#messageDelete").removeClass("alert alert-success"),
+                                $("#messageDelete").empty()
+                        }, 3000);
                     }
                 });
                 console.log(username);
