@@ -41,10 +41,9 @@ public class ManageAuctionController {
     UserAuctionService userAuctionService;
 
     @RequestMapping(value = "/admin/manageAuction")
-    public String getAllAuction(Model model, HttpSession session) {
-        if ("saveSuccess".equals(session.getAttribute("message"))) {
+    public String getAllAuction(Model model, HttpSession session, @RequestParam(value = "message") String message) {
+        if ("saveSuccess".equals(message)) {
             model.addAttribute("message", "Saved auction successfully !!");
-            session.removeAttribute("message");
         }
         List<Auction> auctions = auctionService.getAll();
         model.addAttribute("auctions", auctions);
@@ -52,7 +51,7 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
-    public String addAuction(HttpSession session, Model model) {
+    public String addAuction(HttpSession session, Model model, @RequestParam(value = "message") String message) {
         if ("requiredAuction".equals(session.getAttribute("message"))) {
             model.addAttribute("message", "Let's create the auction for product that you're just created !!");
             session.removeAttribute("message");
@@ -62,9 +61,8 @@ public class ManageAuctionController {
             session.removeAttribute("error");
 
         }
-        if ("invalidDate".equals(session.getAttribute("error"))) {
+        if ("invalidDate".equals(message)) {
             model.addAttribute("error", "The start date can't less than today and the end date can't great than the start date !!");
-            session.removeAttribute("error");
         }
         TransactionType transactionType = transactionTypeService.findByName("Auction");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByTransactionType(transactionType)));
