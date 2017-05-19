@@ -47,10 +47,13 @@ public class DetailPageController {
 
     @Autowired
     ParentService parentService;
+
     @Autowired
     AuctionService auctionService;
+
     @Autowired
     UserAuctionService userAuctionService;
+
     @ModelAttribute("parents")
     public List<Parent> parent() {
         return parentService.findAll();
@@ -60,19 +63,16 @@ public class DetailPageController {
     public String detailPage(Model model, @RequestParam("productId") String productId) {
         Product product = productService.findOne(productId);
         if ("Auction".equals(product.getTransactionType().getTransactionTypeName())) {
-            List<Auction> auctions = product.getAuctions();
-            for (Auction auction : auctions) {
-                if (auction.getStatus().equals("ĐANG ĐẤU GIÁ")) {
-                    if (existId(productId)) {
-                        productService.updateView(productId);
-                    }
-                    Set<UserAuction> userAuctions = new HashSet<>();
-                    userAuctions.addAll(auction.getUserAuctions());
-                    model.addAttribute("product", product);
-                    model.addAttribute("userAuctions", userAuctions);
-                    model.addAttribute("liUserAuctions", auction.getUserAuctions());
-                }
+            Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
+            if (existId(productId)) {
+                productService.updateView(productId);
             }
+            UserAuction userAuction = userAuctionService.findFirstByAuctionOrderByPriceDesc(auction);
+            Set<UserAuction> userAuctions = userAuctionService.findTop5ByAuction(auction);
+            model.addAttribute("product", product);
+            model.addAttribute("userAuction", userAuction);
+            model.addAttribute("userAuctions", userAuctions);
+            model.addAttribute("liUserAuctions", auction.getUserAuctions());
             Category category = categoryService.findOne(product.getCategory().getCategoryId());
             List<Product> relateProducts = productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice() - 10000), (product.getPrice() + 10000), product.getProductId());
             model.addAttribute("relateProducts", relateProducts);
@@ -85,7 +85,7 @@ public class DetailPageController {
             model.addAttribute("product", product);
             Date currentDate = new Date();
             model.addAttribute("currentDate", currentDate);
-        }else{
+        } else {
             if (existId(productId)) {
                 productService.updateView(productId);
             }
@@ -101,12 +101,8 @@ public class DetailPageController {
             model.addAttribute("ratingDto", new RatingDto());
             model.addAttribute("image", images);
             Set<UserAuction> userAuctions = new HashSet<>();
-            List<Auction> auctions = product.getAuctions();
-            for (Auction auction : auctions) {
-                if (auction.getStatus().equals("ĐANG ĐẤU GIÁ") && auction.getProduct().getProductId().equals(productId)) {
-                    userAuctions.addAll(auction.getUserAuctions());
-                }
-            }
+            Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
+            userAuctions.addAll(auction.getUserAuctions());
             model.addAttribute("userAuctions", userAuctions);
             model.addAttribute("product", product);
             model.addAttribute("ratings", ratingService.getByProduct(product));
@@ -125,7 +121,6 @@ public class DetailPageController {
                     ) {
                 ratingTotal += rating.getRating();
             }
-
             return ratingTotal / ratings.size();
         }
     }

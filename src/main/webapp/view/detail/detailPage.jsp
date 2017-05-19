@@ -45,7 +45,7 @@
                         value="${product.manufactureDate }" pattern="dd-MM-yyyy"/></a>
                 </p>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <jsp:useBean id="currentDate" type="java.util.Date" scope="request"></jsp:useBean>
                 <fmt:formatDate var="now" value="${currentDate}"
                                 pattern="yyyy-MM-dd"/>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6" style="width: 60%">
+                        <div class="col-sm-6" style="width: 60%;padding-left: 50px;">
                             <div class="detail-product-infor">
                                 <h2 class="detail-product-name"
                                     style="font-family: 'Bitter', serif">${product.name }</h2>
@@ -105,8 +105,7 @@
                                     </p>
                                 </div>
                                 <div class="product-detail-price">
-                                    <c:if
-                                            test="${not empty (product.discounts) and  product.discounts.get(i).endDate >= now }">
+                                    <c:if test="${not empty (product.discounts) and  product.discounts.get(i).endDate >= now }">
                                         <div class="detail-product-inforsale">Giảm giá
                                                 ${product.discounts.get(i).discountPercent }%
                                         </div>
@@ -128,10 +127,20 @@
                                                 </p>
                                             </c:when>
                                             <c:otherwise>
-                                                <h2>
-                                                    <fmt:formatNumber value="${product.price}" type="number"/>
-                                                    đ
-                                                </h2>
+                                                <c:if test="${'Auction' ne product.transactionType.transactionTypeName}">
+                                                    <h2>
+                                                        <fmt:formatNumber value="${product.price}" type="number"/>
+                                                        đ
+                                                    </h2>
+                                                </c:if>
+                                                <c:if test="${'Auction' eq product.transactionType.transactionTypeName}">
+                                                    <label style="color: #0e0e0e">Giá thấp nhất bạn có thể đấu:</label>
+                                                    <h2>
+                                                        <fmt:formatNumber value="${userAuction.price + 10000}" type="number"/>
+                                                    </h2>
+                                                    <input value="${userAuction.price + 10000}" hidden id="maxPrice">
+                                                    <span>VNĐ</span>
+                                                </c:if>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
@@ -140,7 +149,7 @@
                                     <p>${product.description }</p>
                                 </div>
                                 <div class="box-detail-information">
-                                    <form class="form-detail-information">
+                                    <form class="form-detail-information" nam="auction">
                                         <c:choose>
                                             <c:when
                                                     test="${product.transactionType.transactionTypeName eq 'Auction' and product.auctions.get(i).endTime >=now}">
@@ -185,8 +194,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-detail-quantity">
-                                                        <label>Giá đấu:</label> <input
-                                                            class="form-control input-field" type="text" id=""
+                                                        <label>Giá đấu:</label> <input required="true"
+                                                            class="form-control input-field" type="text" id="priceAuction"
                                                             name="price">
                                                     </div>
 
@@ -232,44 +241,44 @@
                                                         </c:when>
                                                         <c:otherwise>
                                                             <button class="btn btn-danger review_item"
-                                                                    data-toggle="modal"
-                                                                    data-target="#myAuction">ĐẤU GIÁ
+                                                                    onClick="return validPrice()"
+                                                                    >ĐẤU GIÁ
                                                             </button>
-                                                            <div class="modal fade" id="myAuction" role="dialog">
-                                                                <div class="modal-dialog">
-                                                                    <!-- Modal content-->
-                                                                    <div class="modal-content-review">
-                                                                        <div class="modal-header">
-                                                                            <div class="alert alert-success">
-                                                                                <strong>Thông báo!</strong> Cảm ơn bạn
-                                                                                đã quan tâm
-                                                                                đến sản phẩm và có hứng thú khi tham gia
-                                                                                đấu giá.Để
-                                                                                chắc chắn rằng bạn muốn đấu giá cho sản
-                                                                                phẩm này thì
-                                                                                xin bạn hãy xác nhận lại một lần
-                                                                                nữa..Cảm ơn bạn!!
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-body">
+                                                            <%--<div class="modal fade" id="myAuction" role="dialog">--%>
+                                                                <%--<div class="modal-dialog">--%>
+                                                                    <%--<!-- Modal content-->--%>
+                                                                    <%--<div class="modal-content-review">--%>
+                                                                        <%--<div class="modal-header">--%>
+                                                                            <%--<div class="alert alert-success">--%>
+                                                                                <%--<strong>Thông báo!</strong> Cảm ơn bạn--%>
+                                                                                <%--đã quan tâm--%>
+                                                                                <%--đến sản phẩm và có hứng thú khi tham gia--%>
+                                                                                <%--đấu giá.Để--%>
+                                                                                <%--chắc chắn rằng bạn muốn đấu giá cho sản--%>
+                                                                                <%--phẩm này thì--%>
+                                                                                <%--xin bạn hãy xác nhận lại một lần--%>
+                                                                                <%--nữa..Cảm ơn bạn!!--%>
+                                                                            <%--</div>--%>
+                                                                        <%--</div>--%>
+                                                                        <%--<div class="modal-body">--%>
 
-                                                                            <button type="submit"
-                                                                                    class="btn btn-danger btn-modal-comment">
-                                                                                Xác
-                                                                                nhận tại đây
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button"
-                                                                                    class="btn btn-primary"
-                                                                                    data-dismiss="modal"
-                                                                                    style="border-radius: 0">X
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
+                                                                            <%--<button type="submit"--%>
+                                                                                    <%--class="btn btn-danger btn-modal-comment">--%>
+                                                                                <%--Xác--%>
+                                                                                <%--nhận tại đây--%>
+                                                                            <%--</button>--%>
+                                                                        <%--</div>--%>
+                                                                        <%--<div class="modal-footer">--%>
+                                                                            <%--<button type="button"--%>
+                                                                                    <%--class="btn btn-primary"--%>
+                                                                                    <%--data-dismiss="modal"--%>
+                                                                                    <%--style="border-radius: 0">X--%>
+                                                                            <%--</button>--%>
+                                                                        <%--</div>--%>
+                                                                    <%--</div>--%>
 
-                                                                </div>
-                                                            </div>
+                                                                <%--</div>--%>
+                                                            <%--</div>--%>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -529,148 +538,148 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <c:if
-                            test="${not empty userAuctions and product.transactionType.transactionTypeName eq 'Auction' }">
-                        <div class="product-viewed">
-                            <div class="product-detail-viewed">
-                                <h2 class="content-paget-title-item">Danh sách người đấu</h2>
-                            </div>
-                            <div class="infor_user_auction">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr class="table_heading">
-                                        <th class="table_heading_item">Tên tài khoản</th>
-                                        <th class="table_heading_item">Thời gian đấu</th>
-                                        <th class="table_heading_item">Giá tiền</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="userAuction" items="${userAuctions }">
-                                        <tr>
-                                            <td>${userAuction.user.username }</td>
-                                            <td><fmt:formatDate value="${userAuction.bidtime }"
-                                                                pattern="HH:MM:ss"/></td>
-                                            <td><fmt:formatNumber value="${userAuction.price}"
-                                                                  type="number"/> đ
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+            <div class="col-sm-4">
+                <c:if
+                        test="${not empty userAuctions and product.transactionType.transactionTypeName eq 'Auction' }">
+                    <div class="product-viewed">
+                        <div class="product-detail-viewed">
+                            <h2 class="content-paget-title-item">Danh sách người đấu</h2>
                         </div>
-                    </c:if>
-                    <c:if test="${not empty relateProducts }">
-                        <div class="product-detail-relate">
-                            <div class="product-detail-relate-item-title">
-                                <h3>Sản phẩm liên quan</h3>
-                            </div>
-                            <div class="product-detail-relate-item-stack">
-                                <c:forEach var="productRelate" items="${relateProducts }">
-                                    <div class="new-product" style="margin-bottom: 5px">
-                                        <div class="single-product-item">
-                                            <div class="single-product-image">
-                                                <a
-                                                        href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}"><img
-                                                        src="resource/images/product/${productRelate.imageUrl }"
-                                                        style="width: 253px; height: 300px;"></a>
+                        <div class="infor_user_auction">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="table_heading">
+                                    <th class="table_heading_item">Tên tài khoản</th>
+                                    <th class="table_heading_item">Thời gian đấu</th>
+                                    <th class="table_heading_item">Giá tiền</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="userAuction" items="${userAuctions }">
+                                    <tr>
+                                        <td>${userAuction.user.username }</td>
+                                        <td><fmt:formatDate value="${userAuction.bidtime }"
+                                                            pattern="HH:mm"/></td>
+                                        <td><fmt:formatNumber value="${userAuction.price}"
+                                                              type="number"/> đ
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </c:if>
+                <c:if test="${not empty relateProducts }">
+                    <div class="product-detail-relate">
+                        <div class="product-detail-relate-item-title">
+                            <h3>Sản phẩm liên quan</h3>
+                        </div>
+                        <div class="product-detail-relate-item-stack">
+                            <c:forEach var="productRelate" items="${relateProducts }">
+                                <div class="new-product" style="margin-bottom: 5px">
+                                    <div class="single-product-item">
+                                        <div class="single-product-image">
+                                            <a
+                                                    href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}"><img
+                                                    src="resource/images/product/${productRelate.imageUrl }"
+                                                    style="width: 253px; height: 300px;"></a>
 
-                                                <div class="overplay-content">
-                                                    <ul>
-                                                        <li><a href=""><i class="fa fa-search"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                        </li>
-                                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                                                    </ul>
-                                                </div>
+                                            <div class="overplay-content">
+                                                <ul>
+                                                    <li><a href=""><i class="fa fa-search"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                                </ul>
                                             </div>
-                                            <div class="single-product-showinfor">
-                                                <div class="single-product-infor-name">
-                                                    <p class="single-product-infor-name-title">${productRelate.name }</p>
-                                                </div>
-                                                <c:if test="${not empty (productRelate.discounts) }">
-                                                    <c:if
-                                                            test="${productRelate.discounts.get(i).endDate >= now }">
-                                                        <div class="single-product-inforsale">Giảm giá
-                                                                ${productRelate.discounts.get(i).discountPercent }%
-                                                        </div>
-                                                    </c:if>
+                                        </div>
+                                        <div class="single-product-showinfor">
+                                            <div class="single-product-infor-name">
+                                                <p class="single-product-infor-name-title">${productRelate.name }</p>
+                                            </div>
+                                            <c:if test="${not empty (productRelate.discounts) }">
+                                                <c:if
+                                                        test="${productRelate.discounts.get(i).endDate >= now }">
+                                                    <div class="single-product-inforsale">Giảm giá
+                                                            ${productRelate.discounts.get(i).discountPercent }%
+                                                    </div>
                                                 </c:if>
-                                                <div class="single-product-infor-name">
-                                                    <p>
-                                                        <i class="glyphicon glyphicon-fire">
-                                                                ${productRelate.viewNumber }</i> lượt xem
-                                                    </p>
-                                                </div>
-                                                <div class="single-product-inforprice">
-                                                    <c:choose>
-                                                        <c:when
-                                                                test="${not empty(productRelate.discounts) and productRelate.discounts.get(i).endDate >= now }">
-                                                            <strike style="color: black"> <fmt:formatNumber
-                                                                    value="${productRelate.price}" type="number"/> đ
-                                                            </strike>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <p style="color: black">
-                                                                <fmt:formatNumber value="${productRelate.price}"
-                                                                                  type="number"/>
-                                                                đ
-                                                            </p>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </div>
-                                                <div class="single-product-inforprice">
-                                                    <c:if
-                                                            test="${not empty(productRelate.discounts) and productRelate.discounts.get(i).endDate >= now  }">
-                                                        <p>
-                                                            <fmt:formatNumber
-                                                                    value="${(productRelate.price)-((productRelate.price*productRelate.discounts.get(i).discountPercent)/100)}"
-                                                                    type="number"/>
-                                                            đ
-                                                        </p>
-                                                    </c:if>
-                                                </div>
-                                                <input hidden value="${productRelate.productId}"
-                                                       id="productId">
+                                            </c:if>
+                                            <div class="single-product-infor-name">
+                                                <p>
+                                                    <i class="glyphicon glyphicon-fire">
+                                                            ${productRelate.viewNumber }</i> lượt xem
+                                                </p>
+                                            </div>
+                                            <div class="single-product-inforprice">
                                                 <c:choose>
                                                     <c:when
-                                                            test="${productRelate.transactionType.transactionTypeName eq 'Sale' }">
-                                                        <div class="single-product-inforsale">
-                                                            <a
-                                                                    href="${pageContext.request.contextPath }/addCart?productId=${productRelate.productId}">
-                                                                <button class="btn btn-countdown">
-                                                                    <i class="fa fa-shopping-cart"></i> MUA NGAY
-                                                                </button>
-                                                            </a>
-                                                        </div>
+                                                            test="${not empty(productRelate.discounts) and productRelate.discounts.get(i).endDate >= now }">
+                                                        <strike style="color: black"> <fmt:formatNumber
+                                                                value="${productRelate.price}" type="number"/> đ
+                                                        </strike>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <div class="single-product-inforsale">
-                                                            <a
-                                                                    href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}">
-                                                                <button class="btn btn-countdown">
-                                                                    <i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
-                                                                </button>
-                                                            </a>
-                                                        </div>
+                                                        <p style="color: black">
+                                                            <fmt:formatNumber value="${productRelate.price}"
+                                                                              type="number"/>
+                                                            đ
+                                                        </p>
                                                     </c:otherwise>
                                                 </c:choose>
-                                                <div class="single-product-inforrating">
-                                                    <div class="rating-box">
+                                            </div>
+                                            <div class="single-product-inforprice">
+                                                <c:if
+                                                        test="${not empty(productRelate.discounts) and productRelate.discounts.get(i).endDate >= now  }">
+                                                    <p>
+                                                        <fmt:formatNumber
+                                                                value="${(productRelate.price)-((productRelate.price*productRelate.discounts.get(i).discountPercent)/100)}"
+                                                                type="number"/>
+                                                        đ
+                                                    </p>
+                                                </c:if>
+                                            </div>
+                                            <input hidden value="${productRelate.productId}"
+                                                   id="productId">
+                                            <c:choose>
+                                                <c:when
+                                                        test="${productRelate.transactionType.transactionTypeName eq 'Sale' }">
+                                                    <div class="single-product-inforsale">
+                                                        <a
+                                                                href="${pageContext.request.contextPath }/addCart?productId=${productRelate.productId}">
+                                                            <button class="btn btn-countdown">
+                                                                <i class="fa fa-shopping-cart"></i> MUA NGAY
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="single-product-inforsale">
+                                                        <a
+                                                                href="${pageContext.request.contextPath }/detail?productId=${productRelate.productId}">
+                                                            <button class="btn btn-countdown">
+                                                                <i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <div class="single-product-inforrating">
+                                                <div class="rating-box">
 														<span>(Có ${productRelate.ratings.size() } nhận
 															xét)</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </c:forEach>
-                            </div>
+                                </div>
+                            </c:forEach>
                         </div>
-                    </c:if>
-                </div>
+                    </div>
+                </c:if>
             </div>
+        </div>
+    </div>
 </section>

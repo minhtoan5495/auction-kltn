@@ -58,8 +58,8 @@
                                 <td><a href="${pageContext.request.contextPath}/detail?productId=${product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${product.imageUrl}" style="width:80px;height:80px"/></a></td>
                                 <td>${product.name}</td>
                                 <td><fmt:formatNumber value="${product.price}" type="number"/> đ</td>
-                                <td>${product.createDate}</td>
-                                <td>${product.manufactureDate}</td>
+                                <td><fmt:formatDate value="${product.createDate}" pattern="HH:mm yyyy-MM-dd"/></td>
+                                <td><fmt:formatDate value="${product.manufactureDate}" pattern="yyyy-MM-dd"/></td>
                                 <td>${product.category.categoryName}</td>
                                 <td>${product.supplier.supplierName}</td>
                                 <td>${product.transactionType.transactionTypeName}</td>

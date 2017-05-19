@@ -105,4 +105,9 @@ public class AutionServiceImpl implements AuctionService {
     public void save(Auction auction) {
         auctionRepository.save(auction);
     }
+
+    @Override
+    public Auction findByProductAndStatus(Product product, String status) {
+        return auctionRepository.findByProductAndStatus(product, status);
+    }
 }

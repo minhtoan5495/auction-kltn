@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.service.UserAuctionService;
 import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -35,6 +36,9 @@ public class ManageAuctionController {
 
     @Autowired
     TransactionTypeService transactionTypeService;
+
+    @Autowired
+    UserAuctionService userAuctionService;
 
     @RequestMapping(value = "/admin/manageAuction")
     public String getAllAuction(Model model, HttpSession session) {
@@ -108,5 +112,11 @@ public class ManageAuctionController {
         auctionService.update(auctionId, auctionStatus);
         session.setAttribute("message","saveSuccess");
         return "redirect:/admin/manageAuction";
+    }
+
+    @RequestMapping(value = "/admin/showAuctionDetail", method = RequestMethod.GET)
+    public String showAuctionDetail(@RequestParam(name = "auctionId") String auctionId, Model model){
+        model.addAttribute("userAuctions", userAuctionService.findByAuctionId(auctionId));
+        return "showAuctionDetail";
     }
 }

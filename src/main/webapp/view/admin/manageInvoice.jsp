@@ -39,13 +39,13 @@
                             <tr class="gradeX">
                            <td hidden="hidden">${invoice.invoiceId}</td>
                                 <td><fmt:formatDate value="${invoice.createDate }"
-                                                    pattern="dd-MM-yyyy"/></td>
+                                                    pattern="HH:mm yyyy-MM-dd"/></td>
                                 <td><fmt:formatDate value="${invoice.shipDate }"
-                                                    pattern="dd-MM-yyyy"/></td>
+                                                    pattern="yyyy-MM-dd"/></td>
                                 <td>${invoice.username}</td>
                                 <td>${invoice.invoiceStatus.invoiceStatusName}</td>
                                 <td><a class="" href="${pageContext.request.contextPath}/admin/showDetailInvoice?invoiceId=${invoice.invoiceId}">Show</a></td>
-                                <td><a class="" href="">Edit</a></td>
+                                <td><a class="" href="${pageContext.request.contextPath}/admin/editInvoiceStatus?invoiceId=${invoice.invoiceId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>

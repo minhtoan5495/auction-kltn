@@ -1,9 +1,11 @@
 package hvcntt.org.shoppingweb.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -50,10 +52,9 @@ public class AuctionController {
 		UserAuction userAuction = new UserAuction();
 		userAuction.setAuction(auction);
 		userAuction.setUser(user);
-		Calendar c = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-		String bidTime = sdf.format(c.getTime());
-		userAuction.setBidtime(sdf.parse(bidTime));
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		userAuction.setBidtime(dateFormat.parse(dateFormat.format(date)));
 		String price = request.getParameter("price");
 		userAuction.setPrice(Double.parseDouble(price));
 		userAuctionService.create(userAuction);

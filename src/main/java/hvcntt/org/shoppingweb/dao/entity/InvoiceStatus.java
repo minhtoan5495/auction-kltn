@@ -14,7 +14,7 @@ public class InvoiceStatus implements Serializable {
 
 	@Id
 	@Column(name="invoice_status_id")
-	private int invoiceStatusId;
+	private String invoiceStatusId;
 
 	@Column(name="invoice_status_name")
 	private String invoiceStatusName;
@@ -27,19 +27,13 @@ public class InvoiceStatus implements Serializable {
 	public InvoiceStatus() {
 	}
 
-
-
-	public int getInvoiceStatusId() {
+	public String getInvoiceStatusId() {
 		return invoiceStatusId;
 	}
 
-
-
-	public void setInvoiceStatusId(int invoiceStatusId) {
+	public void setInvoiceStatusId(String invoiceStatusId) {
 		this.invoiceStatusId = invoiceStatusId;
 	}
-
-
 
 	public String getInvoiceStatusName() {
 		return this.invoiceStatusName;
@@ -55,20 +49,6 @@ public class InvoiceStatus implements Serializable {
 
 	public void setInvoices(List<Invoice> invoices) {
 		this.invoices = invoices;
-	}
-
-	public Invoice addInvoice(Invoice invoice) {
-		getInvoices().add(invoice);
-		invoice.setInvoiceStatus(this);
-
-		return invoice;
-	}
-
-	public Invoice removeInvoice(Invoice invoice) {
-		getInvoices().remove(invoice);
-		invoice.setInvoiceStatus(null);
-
-		return invoice;
 	}
 
 }

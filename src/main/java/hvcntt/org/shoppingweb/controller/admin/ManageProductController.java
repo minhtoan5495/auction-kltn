@@ -41,12 +41,12 @@ public class ManageProductController {
     @RequestMapping(value = "/admin/manageProduct", method = RequestMethod.GET)
     public String getAllProduct(Model model, HttpSession session, HttpServletRequest request) {
         if ("saveProductSale".equals(session.getAttribute("message"))) {
+            session.removeAttribute("message");
             model.addAttribute("message", "Saved product successfully !!");
-            session.removeAttribute("message");
         }
-        if ("updateProduct".equals(session.getAttribute("message"))) {
-            model.addAttribute("message", "Updated product with id : " + request.getParameter("productId") + " !!");
+        if ("updateSuccess".equals(session.getAttribute("message"))) {
             session.removeAttribute("message");
+            model.addAttribute("message", "Updated product with id : " + request.getParameter("productId") + " !!");
         }
         model.addAttribute("products", productservice.getAll());
         return "manageProduct";
@@ -62,6 +62,7 @@ public class ManageProductController {
     @RequestMapping(value = "/admin/addProduct", method = RequestMethod.GET)
     public String addProduct(Model model, HttpSession session) {
         if("invalidName".equals(session.getAttribute("error"))){
+            session.removeAttribute("error");
             model.addAttribute("error","Name of product is exist !!");
         }
         model.addAttribute("productDto", new ProductDto());
@@ -110,7 +111,7 @@ public class ManageProductController {
         productDto.setDescription(description);
         productservice.update(productDto, productId);
         session.setAttribute("message", "updateSuccess");
-        return "redirect:/admin/manageProduct?productId=" + productDto.getName();
+        return "redirect:/admin/manageProduct?productId=" + productId;
     }
 
     @RequestMapping(value = "/admin/getCategoryByParent", method = RequestMethod.GET)

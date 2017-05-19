@@ -15,25 +15,25 @@
             </header>
             <div class="panel-body">
                 <div class="form">
-                    <form action="${pageContext.request.contextPath}/admin/updateAuction"
+                    <form action="${pageContext.request.contextPath}/admin/updateInvoice"
                           class="cmxform form-horizontal tasi-form" id="addAuction"
                           method="post">
                         <input type="hidden" name="${_csrf.parameterName}"
                                value="${_csrf.token}"/>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <input value="${invoice.invoiceId}" name="auctionId" id="auctionId" type="hidden">
+                                <input value="${invoice.invoiceId}" name="invoiceId" id="invoiceId" type="hidden">
                             </div>
                             <div class="form-group ">
                                 <label class="control-label col-lg-3">Status <span style="color: red">(*)</span></label>
                                 <div class="col-lg-7">
-                                    <select id="auctionStatus" name="auctionStatus" style="height: 34px;">
+                                    <select id="invoiceStatusId" name="invoiceStatusId" style="height: 34px;">
                                         <c:forEach var="invoiceStatus" items="${invoiceStatus}">
                                             <c:if test="${invoiceStatus.invoiceStatusName eq invoice.invoiceStatus.invoiceStatusName}">
-                                                <option value="${invoiceStatus.invoiceStatusId}" name="invoiceStatusId" selected>${invoiceStatus.invoiceStatusName}</option>
+                                                <option value="${invoiceStatus.invoiceStatusId}" selected>${invoiceStatus.invoiceStatusName}</option>
                                             </c:if>
                                             <c:if test="${invoiceStatus.invoiceStatusName ne invoice.invoiceStatus.invoiceStatusName}">
-                                                <option value="${invoiceStatus.invoiceStatusId}" name="invoiceStatusId">${invoiceStatus.invoiceStatusName}</option>
+                                                <option value="${invoiceStatus.invoiceStatusId}" >${invoiceStatus.invoiceStatusName}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>

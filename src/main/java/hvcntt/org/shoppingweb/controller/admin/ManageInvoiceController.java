@@ -59,7 +59,7 @@ public class ManageInvoiceController {
     }
 
     @RequestMapping(value = "/admin/editInvoiceStatus", method = RequestMethod.GET)
-    public String editInvoiceStatus(@RequestParam("invoiceId") String invoiceId, Model model, @RequestParam(value = "message", required = false) String message) throws UserNotFoundException {
+    public String editInvoiceStatus(@RequestParam("invoiceId") String invoiceId, Model model) throws UserNotFoundException {
         model.addAttribute("invoiceStatus", invoiceStatusService.getAll());
         model.addAttribute("invoice", invoiceService.findOne(invoiceId));
         return "editInvoice";

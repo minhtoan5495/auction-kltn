@@ -116,6 +116,7 @@
 <script src="${pageContext.request.contextPath }/resource/js/cart.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/simplegallery.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/jquery.flexslider-min.js"></script>
+<script src="${pageContext.request.contextPath }/resource/js/maskedinput.js"></script>
 <script>
     document.write('<base href="' + document.location + '" />');
     $(document).ready(function () {

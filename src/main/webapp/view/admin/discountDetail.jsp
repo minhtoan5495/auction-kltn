@@ -32,7 +32,7 @@
                                 <td hidden>${discount.discountId}</td>
                                 <td hidden>${product.productId}</td>
                                 <td>${product.name}</td>
-                                <td><a href="${pageContext.request.contextPath}/detail?productId=${product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${product.images.get(i).imageUrl}" style="width:80px;height:80px"/></a></td>
+                                <td><a href="${pageContext.request.contextPath}/detail?productId=${product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${product.imageUrl}" style="width:80px;height:80px"/></a></td>
                                 <td><fmt:formatNumber value="${product.price}"/></td>
                                 <td>${discount.discountPercent} %</td>
                                 <td><fmt:formatNumber value="${product.price * (100-discount.discountPercent)/100}"/></td>

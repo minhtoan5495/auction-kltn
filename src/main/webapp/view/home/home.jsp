@@ -265,7 +265,6 @@
 					<h2 class="content-paget-title-item">SẢN PHẨM ĐẤU GIÁ</h2>
 				</div>
 				<div class="row">
-					<h4>${message}</h4>
 					<c:forEach var="product" items="${productAuctionPage.pageList }">
 						<c:if
 							test="${ product.auctions.get(i).status eq 'ĐANG ĐẤU GIÁ' or product.auctions.get(i).endTime >=now }">
