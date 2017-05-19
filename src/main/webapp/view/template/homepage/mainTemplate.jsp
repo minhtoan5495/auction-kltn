@@ -8,7 +8,7 @@
 <html ng-app="cart">
 <head>
     <title><tiles:getAsString name="title"/></title>
-    <link rel="shortcut icon" href="resource/css/images/icon-title.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath }/resource/css/images/icon-title.png">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
