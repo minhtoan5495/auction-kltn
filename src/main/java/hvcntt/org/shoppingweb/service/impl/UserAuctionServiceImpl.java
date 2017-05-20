@@ -38,9 +38,6 @@ public class UserAuctionServiceImpl implements UserAuctionService {
     public List<UserAuction> findByUser(User user) {
         return userAuctionRepository.findByUser(user);
     }
-    public List<Auction> findMaxPriceByUser(User user) {
-        return userAuctionRepository.findTop2PriceByUser(user);
-    }
 
     @Override
     public List<UserAuction> findByAuction(Auction auction) {
@@ -60,18 +57,4 @@ public class UserAuctionServiceImpl implements UserAuctionService {
     public UserAuction findFirstByAuctionOrderByPriceDesc(Auction auction) {
         return userAuctionRepository.findFirstByAuctionOrderByPriceDesc(auction);
     }
-
-	@Override
-	public UserAuction findMaxPriceAndByAuction(Auction auction) {
-		// TODO Auto-generated method stub
-		return userAuctionRepository.findMaxPriceAndByAuction(auction);
-	}
-
-	@Override
-	public List<UserAuction> findTop5(Auction auction) {
-		// TODO Auto-generated method stub
-		return userAuctionRepository.findTop5(auction,new PageRequest(0, 5)).getContent();
-	}
-
-
 }

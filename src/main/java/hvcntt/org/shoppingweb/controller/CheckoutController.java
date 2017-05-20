@@ -66,7 +66,7 @@ public class CheckoutController {
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
 	public String checkoutSuccess(Model model, @ModelAttribute("shipping") ShippingInfo shippingInfo,
-								  HttpSession session,HttpServletRequest request)
+								  HttpSession session)
 			throws UserNotFoundException, ParseException {
 		@SuppressWarnings("unchecked")
 		List<CartItem> cartItems = (List<CartItem>) session.getAttribute("carts");
@@ -80,6 +80,5 @@ public class CheckoutController {
 		model.addAttribute("addShip", shippingInfo);
 		session.removeAttribute("carts");
 		return "checkoutSuccess";
-
 	}
 }

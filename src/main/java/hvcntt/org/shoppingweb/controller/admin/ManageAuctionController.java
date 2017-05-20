@@ -41,7 +41,7 @@ public class ManageAuctionController {
     UserAuctionService userAuctionService;
 
     @RequestMapping(value = "/admin/manageAuction")
-    public String getAllAuction(Model model, HttpSession session, @RequestParam(value = "message") String message) {
+    public String getAllAuction(Model model, HttpSession session, @RequestParam(value = "message", required = false) String message) {
         if ("saveSuccess".equals(message)) {
             model.addAttribute("message", "Saved auction successfully !!");
         }

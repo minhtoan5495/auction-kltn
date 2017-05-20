@@ -4,28 +4,23 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import hvcntt.org.shoppingweb.dao.dto.CartItem;
+import hvcntt.org.shoppingweb.dao.entity.*;
+import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hvcntt.org.shoppingweb.dao.entity.Auction;
-import hvcntt.org.shoppingweb.dao.entity.Product;
-import hvcntt.org.shoppingweb.dao.entity.TransactionType;
-import hvcntt.org.shoppingweb.dao.entity.User;
-import hvcntt.org.shoppingweb.dao.entity.UserAuction;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
-import hvcntt.org.shoppingweb.service.AuctionService;
-import hvcntt.org.shoppingweb.service.ProductService;
-import hvcntt.org.shoppingweb.service.TransactionTypeService;
-import hvcntt.org.shoppingweb.service.UserAuctionService;
-import hvcntt.org.shoppingweb.service.UserService;
 
 @Controller
 public class AuctionController {
@@ -40,6 +35,9 @@ public class AuctionController {
 
 	@Autowired
 	UserAuctionService userAuctionService;
+
+	@Autowired
+	InvoiceService invoiceService;
 
 	@RequestMapping(value = "/addAuction")
 	public String doAuction(Principal principal,
@@ -59,6 +57,12 @@ public class AuctionController {
 		userAuction.setPrice(Float.parseFloat(price));
 		userAuctionService.create(userAuction);
 		return "redirect:/detail?productId=" + productId;
+	}
 
+	@RequestMapping(value = "/updateAuction")
+	public void updateAuction(@RequestParam(value = "auctionId") String auctionId) throws ParseException {
+		Auction auction = auctionService.findOne(auctionId);
+		auctionService.update(auctionId, "KẾT THÚC ĐẤU GIÁ");
+		invoiceService.addProductForUserWinInAuction(auction);
 	}
 }

@@ -98,22 +98,23 @@
                                             <tbody>
                                             <c:forEach var="invoice" items="${ordered }">
                                                 <c:if test="${not empty invoice.invoiceDetails}">
-                                                    <tr>
-                                                            <%--  <td class="hidden">${invoice.invoiceId }</td> --%>
-                                                        <td><fmt:formatDate value="${invoice.createDate }"
-                                                                            pattern="yyyy-MM-dd"/></td>
-                                                        <td><fmt:formatNumber
-                                                                value="${invoice.invoiceDetails.get(i).product.price}"
-                                                                type="number"/> đ
-                                                        </td>
-                                                        <td>${invoice.invoiceStatus.invoiceStatusName }</td>
-                                                        <td class="btn_view_detail_order"><a
-                                                                href="${pageContext.request.contextPath }/orderDetail?invoiceId=${invoice.invoiceId}">
-                                                            <button class="btn btn-primary" style="border-radius: 0">
-                                                                <i class="fa fa-edit"></i>View
-                                                            </button>
-                                                        </a></td>
-                                                    </tr>
+                                                    <c:forEach var="invoiceDetail" items="${invoice.invoiceDetails }">
+                                                        <tr>
+                                                            <td><fmt:formatDate value="${invoice.createDate }"
+                                                                                pattern="yyyy-MM-dd"/></td>
+                                                            <td><fmt:formatNumber
+                                                                    value="${invoiceDetail.price}"
+                                                                    type="number"/> đ
+                                                            </td>
+                                                            <td>${invoice.invoiceStatus.invoiceStatusName }</td>
+                                                            <td class="btn_view_detail_order"><a
+                                                                    href="${pageContext.request.contextPath }/orderDetail?invoiceId=${invoice.invoiceId}">
+                                                                <button class="btn btn-primary" style="border-radius: 0">
+                                                                    <i class="fa fa-edit"></i>View
+                                                                </button>
+                                                            </a></td>
+                                                        </tr>
+                                                    </c:forEach>
                                                 </c:if>
                                             </c:forEach>
                                             </tbody>
