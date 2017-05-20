@@ -11,7 +11,8 @@
 <div class="header_top_bg">
     <div class="container no-padding">
         <div class="row">
-            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+            </div>
             <div class="col-sm-3"></div>
             <div class="col-sm-7 col-xs-4 header_account_reponsive">
                 <div class="header_top_account pull-right">

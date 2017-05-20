@@ -60,8 +60,6 @@
                                     sách đã mua</a></li>
                                 <li><a data-toggle="tab" href="#auction_item">Đang đấu
                                     giá</a></li>
-                                <li><a data-toggle="tab" href="#auction_success">Đấu
-                                    giá thành công</a></li>
                                 <li><a data-toggle="tab" href="#order_item">Tình trạng
                                     đơn hàng</a></li>
                             </ul>
@@ -186,30 +184,38 @@
                                 <div class="panel panel-default profile_item_content">
                                     <div class="panel-heading">Thông tin đấu giá</div>
                                     <div class="panel-body profile_body_item">
-                                        <c:forEach var="auction" items="${userAuction}">
+                                        <c:forEach var="userAuction" items="${userAuctions}">
                                             <div class="row"
                                                  style="border: 1px solid #fff; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
                                                 <c:choose>
-                                                    <c:when test="${auction.endTime >=now }">
+                                                    <c:when test="${userAuction.auction.endTime >=now }">
                                                         <div class="col-sm-3">
+                                                        <a href="${pageContext.request.contextPath }/detail?productId=${userAuction.auction.product.productId}">
                                                             <img alt=""
-                                                                 src="${pageContext.request.contextPath }/resource/images/product/${auction.product.imageUrl}">
+                                                                 src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
+                                                       </a>
                                                         </div>
                                                         <div class="col-sm-6">
-                                                            <strong> ${auction.product.name} </strong><br> <label
+                                                            <strong> ${userAuction.auction.product.name} </strong><br> <label
                                                                 class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                                value="${auction.startTime}" pattern="dd-MM-yyyy"/>
+                                                                value="${userAuction.auction.startTime}" pattern="dd-MM-yyyy"/>
                                                             <p style="color: #59b210; font-weight: 400">
                                                                 Ngày kết thúc
-                                                                <fmt:formatDate value="${auction.endTime}"
+                                                                <fmt:formatDate value="${userAuction.auction.endTime}"
                                                                                 pattern="dd-MM-yyyy"/>
                                                             </p>
                                                             <p style="color: #ff4f4f; font-weight: 400">
-                                                                Giá tiền:
-                                                                <fmt:formatNumber value="${auction.product.price}"
+                                                                Giá tiền sản phẩm:
+                                                                <fmt:formatNumber value="${userAuction.auction.product.price}"
                                                                                   type="number"/>
                                                                 đ
                                                             </p>
+                                                            <label style="color: black; font-weight: bold;">
+                                                                Giá đấu sản phẩm cao nhất:
+                                                                <fmt:formatNumber value="${userAuction.price}"
+                                                                                  type="number"/>
+                                                                đ
+                                                            </label>
 
                                                         </label>
                                                         </div>
@@ -220,11 +226,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="auction_success" class="tab-pane fade">
+                            <%-- <div id="auction_success" class="tab-pane fade">
                                 <div class="profile_item_title">
                                     <h3>Danh sách phiên đấu giá thành công</h3>
                                 </div>
-                                <%-- <c:if test="${not empty ordered}"> --%>
+                                <c:if test="${not empty ordered}">
                                 <div class="panel panel-default profile_item_content">
                                     <div class="panel-heading">Thông tin phiên đấu giá thành công</div>
                                     <div class="panel-body profile_body_item">
@@ -256,7 +262,7 @@
                                         </c:forEach>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --%>
                             <div id="auction_item" class="tab-pane fade">
                                 <div class="profile_item_title">
                                     <h3>Danh sách phiên đấu giá tham gia</h3>

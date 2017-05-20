@@ -243,8 +243,8 @@
 // $('#priceAuction').mask("#.##0", { reverse: true, maxlength: false });
 
 function validPrice() {
-    var priceAuction = parseInt($('#priceAuction').val());
-    var maxPrice = parseInt($('#maxPrice').val());
+    var priceAuction = parseFloat($('#priceAuction').val());
+    var maxPrice = (parseFloat($('#maxPrice').val())).toFixed(2);
     if(priceAuction < maxPrice) {
         alert("Bạn phải nhập giá lớn hơn giá cao nhất tại thời điểm này của phiên đấu giá !!");
         return false;

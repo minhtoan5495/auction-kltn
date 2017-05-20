@@ -6,6 +6,7 @@ import java.util.Set;
 import hvcntt.org.shoppingweb.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +38,14 @@ public class UserAuctionServiceImpl implements UserAuctionService {
     public List<UserAuction> findByUser(User user) {
         return userAuctionRepository.findByUser(user);
     }
+    public List<Auction> findMaxPriceByUser(User user) {
+        return userAuctionRepository.findTop2PriceByUser(user);
+    }
 
     @Override
     public List<UserAuction> findByAuction(Auction auction) {
         return userAuctionRepository.findByAuction(auction, new PageRequest(0, 1, Direction.DESC, "price")).getContent();
     }
-
     @Override
     public List<UserAuction> findByAuctionId(String auctionId) {
         return userAuctionRepository.findByAuction(auctionService.findOne(auctionId));
@@ -57,5 +60,18 @@ public class UserAuctionServiceImpl implements UserAuctionService {
     public UserAuction findFirstByAuctionOrderByPriceDesc(Auction auction) {
         return userAuctionRepository.findFirstByAuctionOrderByPriceDesc(auction);
     }
+
+	@Override
+	public UserAuction findMaxPriceAndByAuction(Auction auction) {
+		// TODO Auto-generated method stub
+		return userAuctionRepository.findMaxPriceAndByAuction(auction);
+	}
+
+	@Override
+	public List<UserAuction> findTop5(Auction auction) {
+		// TODO Auto-generated method stub
+		return userAuctionRepository.findTop5(auction,new PageRequest(0, 5)).getContent();
+	}
+
 
 }

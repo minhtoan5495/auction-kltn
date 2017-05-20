@@ -5,6 +5,8 @@ encoding//src/main/java/hvcntt/org/shoppingweb/controller/DetailPageController.j
 encoding//src/main/java/hvcntt/org/shoppingweb/controller/HomePageController.java=UTF-8
 encoding//src/main/java/hvcntt/org/shoppingweb/controller/ProfileController.java=UTF-8
 encoding//src/main/java/hvcntt/org/shoppingweb/controller/UserController.java=UTF-8
+encoding//src/main/java/hvcntt/org/shoppingweb/service/impl/AutionServiceImpl.java=UTF-8
+encoding//src/main/java/hvcntt/org/shoppingweb/service/impl/ProductServiceImpl.java=UTF-8
 encoding//src/main/java/hvcntt/org/shoppingweb/service/impl/ShippingInfoServiceImpl.java=UTF-8
 encoding//src/main/java/main/app/GetDate.java=UTF-8
 encoding//src/main/webapp/view/admin/navbar.jsp=UTF-8

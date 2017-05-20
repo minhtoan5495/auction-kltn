@@ -78,7 +78,7 @@ public class AutionServiceImpl implements AuctionService {
         Auction auction = auctionRepository.findOne(auctionId);
         Auction findAuctionByProductAndStatus = auctionRepository.findByProductAndStatus(productRepository.findOne(auction.getProduct().getProductId()), "ĐANG ĐẤU GIÁ");
         if(findAuctionByProductAndStatus != null){
-            findAuctionByProductAndStatus.setStatus("ĐÃ KẾT THÚC");
+            findAuctionByProductAndStatus.setStatus("KẾT THÚC ĐẤU GIÁ");
         }
         auction.setStatus(auctionStatus);
         auctionRepository.save(auction);
@@ -90,10 +90,10 @@ public class AutionServiceImpl implements AuctionService {
         for (String productId : productIds) {
             Auction findAuctionByProductAndStatus = auctionRepository.findByProductAndStatus(productRepository.findOne(productId), "ĐANG ĐẤU GIÁ");
             if(findAuctionByProductAndStatus != null){
-                findAuctionByProductAndStatus.setStatus("ĐÃ KẾT THÚC");
+                findAuctionByProductAndStatus.setStatus("KẾT THÚC ĐẤU GIÁ");
             }
             Auction auction = new Auction();
-            auction.setStatus("ĐANG ĐẤU GIÁ");
+            auction.setStatus("ĐANG ĐẤU GIÁ	");
             auction.setEndTime(formatStringToDate(endDate));
             auction.setStartTime(formatStringToDate(startDate));
             auction.setProduct(productRepository.getOne(productId));

@@ -65,21 +65,22 @@ public class HomePageController {
         PagedListHolder productSalePage = new PagedListHolder(productService.findByProductTransactionType(transactionType));
         int page = ServletRequestUtils.getIntParameter(request, "p", 0);
         productSalePage.setPage(page);
-        productSalePage.setPageSize(4);
+        productSalePage.setPageSize(8);
         model.addAttribute("productSalePage", productSalePage);
         TransactionType transactionType2 = transactionService.findByName(AUCTION);
         PagedListHolder productAuctionPage = new PagedListHolder(productService.findByProductTransactionType(transactionType2));
         int pageAuction = ServletRequestUtils.getIntParameter(request, "page", 0);
         productAuctionPage.setPage(pageAuction);
-        productAuctionPage.setPageSize(4);
+        productAuctionPage.setPageSize(8);
         model.addAttribute("productAuctionPage", productAuctionPage);
         model.addAttribute("listSupplier", supplierService.getAll());
-        model.addAttribute("listProductHighView", productService.getHighView());
+        model.addAttribute("listProductHighView", productService.getNewProduct());
         Calendar endTime = Calendar.getInstance();
+        Date timeNow=endTime.getTime();
         endTime.add(Calendar.DAY_OF_MONTH, -2);
         Date currentDate = endTime.getTime();
         model.addAttribute("currentDate", currentDate);
-        model.addAttribute("timeNow", new Date());
+        model.addAttribute("timeNow", timeNow);
         return "home";
     }
 

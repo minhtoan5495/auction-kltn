@@ -26,9 +26,9 @@
 </style>
 <div class="content-page">
 	<jsp:useBean id="currentDate" type="java.util.Date" scope="request"></jsp:useBean>
-	<fmt:formatDate var="now" value="${currentDate}" pattern="yyyy-MM-dd" />
+	<fmt:formatDate var="now" value="${currentDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 	<jsp:useBean id="timeNow" type="java.util.Date" scope="request"></jsp:useBean>
-	<fmt:formatDate var="timeNow" value="${timeNow}" pattern="yyyy-MM-dd" />
+	<fmt:formatDate var="timeNow" value="${timeNow}" pattern="yyyy-MM-dd HH:mm:ss" />
 	<div class="container">
 		<div class="row">
 			<div class="container slide-show">
@@ -161,9 +161,8 @@
 		<div class="row">
 			<div class="content-page">
 				<c:if test="${not empty message }">
-					<div class="alert alert-success" style="text-align: center;" id="message">
-							${message}
-					</div>
+					<div class="alert alert-success" style="text-align: center;"
+						id="message">${message}</div>
 				</c:if>
 				<div class="content-page-title">
 					<h2 class="content-paget-title-item">SẢN PHẨM BÁN</h2>
@@ -267,7 +266,7 @@
 				<div class="row">
 					<c:forEach var="product" items="${productAuctionPage.pageList }">
 						<c:if
-							test="${ product.auctions.get(i).status eq 'ĐANG ĐẤU GIÁ' or product.auctions.get(i).endTime >=now }">
+							test="${ product.auctions.get(i).endTime >=timeNow }">
 							<div class="col-sm-3 new-product-main">
 								<div class="new-product">
 									<div class="single-product-item">
@@ -286,26 +285,14 @@
 											<div class="single-product-info-timecountdown">
 												<input value="${product.auctions.get(i).endTime }"
 													id="endTime" type="hidden">
-												<c:choose>
-												<c:when test="${ product.auctions.get(i).endTime >=timeNow}">
-													<div class="single-product-info-timecountdown-title-notice">
-														<label>Ngày kết thúc</label>
-														<p>
-															<fmt:formatDate
-																value="${product.auctions.get(i).endTime }"
-																pattern="dd-MM-yyyy hh:mm" />
-													</div>
-												</c:when>
-												<c:otherwise>
-													<div class="single-product-info-timecountdown-title-notice">
-														<h4 style="color: #b0d136">Phiên đấu giá đã kết thúc</h4>
-													</div>
-													<div class="single-product-info-timecountdown-title-notice">
-														<label style="color: #eee">0</label>
-														<p></p>
-													</div>
-												</c:otherwise>
-												</c:choose>
+														<div
+															class="single-product-info-timecountdown-title-notice">
+															<label>Ngày kết thúc</label>
+															<p>
+																<fmt:formatDate
+																	value="${product.auctions.get(i).endTime }"
+																	pattern="dd-MM-yyyy hh:mm" />
+														</div>
 											</div>
 											<div class="single-product-infor-name">
 												<p>
@@ -343,7 +330,68 @@
 					<tg:pagingAuction pagedLink1="${pagedLink1 }"
 						productAuctionPage="${productAuctionPage }"></tg:pagingAuction>
 				</div>
-
+				<div class="content-page-title">
+					<h2 class="content-paget-title-item">SẢN PHẨM ĐÃ KẾT THÚC ĐẤU
+						GIÁ</h2>
+				</div>
+				<div class="row">
+					<c:forEach var="product" items="${productAuctionPage.pageList }">
+						<c:if
+							test="${ product.auctions.get(i).status eq 'KẾT THÚC ĐẤU GIÁ' and product.auctions.get(i).endTime >now }">
+							<div class="col-sm-3 new-product-main">
+								<div class="new-product">
+									<div class="single-product-item">
+										<div class="single-product-image">
+											<a
+												href="${pageContext.request.contextPath }/detail?productId=${product.productId}">
+												<img style="width: 253px; height: 300px;"
+												src="${pageContext.request.contextPath}/resource/images/product/${product.imageUrl }">
+											</a>
+											<div class="overplay-content"></div>
+										</div>
+										<div class="single-product-showinfor">
+											<div class="single-product-infor-name">
+												<p class="single-product-infor-name-title">${product.name }</p>
+											</div>
+											<div class="single-product-info-timecountdown">
+												<input value="${product.auctions.get(i).endTime }"
+													id="endTime" type="hidden">
+												<div class="single-product-info-timecountdown-title-notice">
+													<h4 style="color: #b0d136">Phiên đấu giá đã kết thúc</h4>
+												</div>
+												<div class="single-product-info-timecountdown-title-notice">
+													<label style="color: #eee">0</label>
+													<p></p>
+												</div>
+											</div>
+											<div class="single-product-infor-name">
+												<p>
+													<i class="glyphicon glyphicon-fire">
+														${product.viewNumber }</i> lượt xem
+												</p>
+											</div>
+											<div class="single-product-inforprice">
+												<p>
+													<fmt:formatNumber value="${product.price}" type="number" />
+													đ
+												</p>
+											</div>
+											<div class="single-product-btn" style="margin-top: -40px">
+												<a
+													href="${pageContext.request.contextPath }/detail?productId=${product.productId}">
+													<button class="btn btn-countdown">
+														<i class="fa fa-shopping-cart"></i> XEM CHI TIẾT
+													</button>
+												</a>
+											</div>
+											<div class="single-product-inforreview"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
 				<div class="row">
 					<div class="box-product-view">
 
@@ -354,7 +402,7 @@
 									<a href="#" class="btn flex-prev"><span>Prev</span></a> <a
 										href="#" class="btn flex-next"><span>Next</span></a>
 								</div>
-								<h3>Sản phẩm có lượt xem nhiều nhất</h3>
+								<h3>Sản phẩm mới nhất</h3>
 							</header>
 
 							<ul class="products slides">

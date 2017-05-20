@@ -1,3 +1,4 @@
+
 package hvcntt.org.shoppingweb.service.impl;
 
 import java.io.File;
@@ -326,11 +327,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getHighView() {
-        return productRepository.findAll(new PageRequest(0, 8, Direction.DESC, "viewNumber")).getContent();
-    }
-
-    @Override
     public List<Product> findByCategory(String categoryId) {
         Category category = categoryRepository.findOne(categoryId);
         return productRepository.findByCategory(category);
@@ -355,6 +351,12 @@ public class ProductServiceImpl implements ProductService {
     public Product findByName(String name) {
         return productRepository.findByName(name);
     }
+
+	@Override
+	public List<Product> getNewProduct() {
+		// TODO Auto-generated method stub
+		return productRepository.findAll(new PageRequest(0, 8, Direction.DESC, "createDate")).getContent();
+	}
 
 
 }

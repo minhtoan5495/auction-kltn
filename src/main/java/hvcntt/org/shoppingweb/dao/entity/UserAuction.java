@@ -21,7 +21,7 @@ public class UserAuction implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bidtime;
 
-	private double price;
+	private float price;
 
 	//bi-directional many-to-one association to Auction
 	@ManyToOne
@@ -55,11 +55,11 @@ public class UserAuction implements Serializable {
 		this.bidtime = bidtime;
 	}
 
-	public double getPrice() {
+	public float getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 

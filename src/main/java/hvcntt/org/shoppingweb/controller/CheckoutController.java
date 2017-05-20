@@ -1,18 +1,22 @@
 package hvcntt.org.shoppingweb.controller;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
+import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import hvcntt.org.shoppingweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,7 +43,6 @@ public class CheckoutController {
 
 	@Autowired
 	ProductService productService;
-
 	@ModelAttribute("parents")
 	public List<Parent> parent(){
 		return parentService.findAll();
@@ -63,7 +66,7 @@ public class CheckoutController {
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
 	public String checkoutSuccess(Model model, @ModelAttribute("shipping") ShippingInfo shippingInfo,
-								  HttpSession session)
+								  HttpSession session,HttpServletRequest request)
 			throws UserNotFoundException, ParseException {
 		@SuppressWarnings("unchecked")
 		List<CartItem> cartItems = (List<CartItem>) session.getAttribute("carts");

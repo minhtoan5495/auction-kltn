@@ -51,7 +51,7 @@ public interface ProductService {
 
     List<Product> findByIds(List<String> productIds);
 
-    List<Product> getHighView();
+    List<Product> getNewProduct();
 
     List<Product> findByCategory(String categoryId);
 

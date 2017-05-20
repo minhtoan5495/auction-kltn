@@ -56,7 +56,7 @@ public class AuctionController {
 		Date date = new Date();
 		userAuction.setBidtime(dateFormat.parse(dateFormat.format(date)));
 		String price = request.getParameter("price");
-		userAuction.setPrice(Double.parseDouble(price));
+		userAuction.setPrice(Float.parseFloat(price));
 		userAuctionService.create(userAuction);
 		return "redirect:/detail?productId=" + productId;
 

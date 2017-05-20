@@ -333,7 +333,19 @@ div.etalage_description.rtl {
 	float: left;
 	color: #fff;
 }
-
+.btn-userAuctions{
+	border-radius: 0;
+	text-align: center;
+	margin-left: 100px;
+	margin-top: 5px;
+	background: #eee;
+	color: black;
+	font-weight: 400;
+	border: #eee;
+}
+.product-detail-viewed .btn-userAuctions{
+	text-align: center;
+}
 @
 -webkit-keyframes color-change { 0% {
 	color: red;
