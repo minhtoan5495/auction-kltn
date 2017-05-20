@@ -72,7 +72,7 @@ public class ProfileController {
         model.addAttribute("user", userService.findByUsername(username));
         model.addAttribute("invoices", invoiceService.getAll());
         model.addAttribute("ordered", invoiceService.findByUsername(username));
-        model.addAttribute("userAuctions", userAuctionService.findMaxPriceByUser(user));
+        model.addAttribute("userAuctions", userAuctionService.findByUser(user));
         Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         return "profile";
@@ -125,17 +125,17 @@ public class ProfileController {
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
     public String changePassword(HttpSession session, Model model) {
-        if (session.getAttribute("error").equals("confirmInvalid")) {
+        if ("confirmInvalid".equals(session.getAttribute("error"))) {
             model.addAttribute("error", "Nhập lại mật khẩu không đúng !");
             session.removeAttribute("error");
             return "changePassword";
         }
-        if (session.getAttribute("error").equals("invalid")) {
+        if ("invalid".equals(session.getAttribute("error"))) {
             model.addAttribute("error", "Vui lòng nhập đầy đủ thông tin !");
             session.removeAttribute("error");
             return "changePassword";
         }
-        if (session.getAttribute("error").equals("oldPasswordInvalid")) {
+        if ("oldPasswordInvalid".equals(session.getAttribute("error"))) {
             model.addAttribute("error", "Bạn nhập sai mật khẩu hiện tại !");
             session.removeAttribute("error");
             return "changePassword";

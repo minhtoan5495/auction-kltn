@@ -1,6 +1,5 @@
 package hvcntt.org.shoppingweb.controller;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 //import java.security.Principal;
@@ -63,19 +62,16 @@ public class DetailPageController {
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detailPage(Model model, @RequestParam("productId") String productId) {
         Product product = productService.findOne(productId);
-        if (existId(productId)) {
-            productService.updateView(productId);
-        }
         if ("Auction".equals(product.getTransactionType().getTransactionTypeName())) {
             Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
             UserAuction userAuction = userAuctionService.findFirstByAuctionOrderByPriceDesc(auction);
-            Set<UserAuction> userAuctions = new HashSet<>(userAuctionService.findTop5(auction));
+            Set<UserAuction> userAuctions = userAuctionService.findTop5ByAuction(auction);
             model.addAttribute("product", product);
             model.addAttribute("userAuction", userAuction);
             model.addAttribute("userAuctions", userAuctions);
-            model.addAttribute("liUserAuctions", userAuctionService.findByAuction(auction));
-        } 
-        else {
+            model.addAttribute("liUserAuctions", auction.getUserAuctions());
+
+        } else {
 //            Auction auctionN = auctionService.findByProduct(product);
 //            List<UserAuction> liUserAuctions = userAuctionService.findByAuction(auctionN);
 //            model.addAttribute("liUserAuctions", liUserAuctions);
@@ -85,19 +81,20 @@ public class DetailPageController {
 //            model.addAttribute("userAuctions", userAuctions);
             model.addAttribute("product", product);
         }
+        if (existId(productId)) {
+            productService.updateView(productId);
+        }
         Category category = categoryService.findOne(product.getCategory().getCategoryId());
         List<Product> relateProducts = productService.findByCategoryAndPriceBetweenAndProductIdNotIn(category, (product.getPrice() - 10000), (product.getPrice() + 10000), product.getProductId());
         model.addAttribute("relateProducts", relateProducts);
         List<Image> images = imageservice.findByProduct(product);
         int rating = getAverage(product.getRatings());
         model.addAttribute("ratingNumber", rating);
-        model.addAttribute("ratingDto", new RatingDto( ));
+        model.addAttribute("ratingDto", new RatingDto());
         model.addAttribute("image", images);
         model.addAttribute("ratings", ratingService.getByProduct(product));
-        Calendar time = Calendar.getInstance();
-        Date timeNow=time.getTime();
-        model.addAttribute("currentDate", timeNow);
-        model.addAttribute("product", product);
+        Date currentDate = new Date();
+        model.addAttribute("currentDate", currentDate);
         return "detailPage";
     }
 

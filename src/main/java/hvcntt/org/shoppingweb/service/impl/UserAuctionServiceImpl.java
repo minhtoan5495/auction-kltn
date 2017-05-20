@@ -52,8 +52,8 @@ public class UserAuctionServiceImpl implements UserAuctionService {
     }
 
     @Override
-    public List<UserAuction> findTop5ByAuction(Auction auction) {
-        return userAuctionRepository.findDistinctTop5ByAuctionOrderByPriceDesc(auction);
+    public Set<UserAuction> findTop5ByAuction(Auction auction) {
+        return userAuctionRepository.findTop5(auction);
     }
 
     @Override
