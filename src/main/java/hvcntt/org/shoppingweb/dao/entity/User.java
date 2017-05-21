@@ -20,8 +20,6 @@ public class User implements Serializable {
 
     private String address;
 
-    private String passwordConfirm;
-
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
@@ -119,7 +117,7 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     public List<Rating> getRatings() {
         return this.ratings;
@@ -149,7 +147,7 @@ public class User implements Serializable {
         this.district = district;
     }
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     public List<UserAuction> getUserAuctions() {
         return this.userAuctions;
@@ -159,7 +157,7 @@ public class User implements Serializable {
         this.userAuctions = userAuctions;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public List<Role> getRoles() {
         return this.roles;
@@ -167,15 +165,6 @@ public class User implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
-
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
     public boolean isActive() {

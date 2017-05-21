@@ -25,7 +25,7 @@ public class City implements Serializable {
 	private List<ShippingInfo> shippingInfos;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="city",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="city")
 	@JsonBackReference
 	private List<User> users;
 

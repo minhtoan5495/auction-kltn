@@ -20,7 +20,7 @@ public class Supplier implements Serializable {
     @Column(name = "supplier_name")
     private String supplierName;
 
-    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Product> products;
 

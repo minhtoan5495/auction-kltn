@@ -51,7 +51,7 @@ public class UserController {
 
     private static final String USER_INVALID = "Tên tài khoản hoặc mật khẩu không đúng !";
 
-    private static final String USER_NON_ACTIVE = "Tài khoản chưa được kích hoạt !";
+    private static final String USER_NON_ACTIVE = "Tài khoản chưa được kích hoạt !" + "\n" + "Vui lòng kiểm tra email của bạn !";
 
     private static final String CONFIRM_PASSWORD_ERROR = "Nhập lại mật khẩu không đúng !";
 
@@ -63,7 +63,7 @@ public class UserController {
 
     private static final String VERIFY_MESSAGE = "Vui lòng kiểm tra email để kích hoạt tài khoản !";
 
-    private static final String EXPIRED = "Link đã hết hạn !";
+    private static final String EXPIRED = "expired";
 
     private static final String PROTOCOL = "http://";
 
@@ -83,6 +83,7 @@ public class UserController {
                                   @RequestParam(value = "message", required = false) String message,
                                   @RequestParam(value = "username", required = false) String username,
                                   HttpServletRequest request,
+                                  HttpSession session,
                                   Model model) {
         model.addAttribute("userModel", new UserDto());
         ModelAndView modelAndView = new ModelAndView();
@@ -103,12 +104,13 @@ public class UserController {
                 modelAndView.addObject("home", true);
             }
         }
+        if("updatePasswordSuccess".equals(session.getAttribute("message"))){
+            model.addAttribute("message","Thay đổi password thành công.\n Vui lòng đăng nhập lại !");
+            session.removeAttribute("message");
+        }
         if (message != null) {
             if (message.equals("active")) {
                 model.addAttribute("message", VERIFY_MESSAGE);
-            }
-            if (message.equals("changePassword")) {
-                model.addAttribute("message", "Thay đổi password thành công." + "\nVui lòng đăng nhập lại !");
             }
         }
         if (logout != null) {
@@ -122,13 +124,13 @@ public class UserController {
     public String login(@RequestParam("username") String username, @RequestParam("password") String password) throws UserNotFoundException {
         User user = userService.findByUsername(username);
         if (user == null) {
-            return "redirect:/login?error=" + "userInvalid";
+            return "redirect:/login?error=userInvalid";
         } else{
             if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
-                return "redirect:/login?error=" + "userInvalid";
+                return "redirect:/login?error=userInvalid";
             }
             if (!user.isActive()) {
-                return "redirect:/login?error=" + "userNonActive";
+                return "redirect:/login?error=userNonActive";
             }
         }
         securityService.autoLogin(username, password);
@@ -145,6 +147,10 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@Valid UserDto userDto, HttpServletRequest request, Model model, BindingResult binding) throws RoleNotFoundException, UserAlreadyExistsException, ParseException, UserNotFoundException {
         if (binding.hasErrors()) {
+            return "register";
+        }
+        if(userDto.getPassword().length() < 8){
+            model.addAttribute("error", "Mật khẩu quá ngắn ! (>8)");
             return "register";
         }
         if (!userDto.getConfirmPassword().equals(userDto.getPassword())) {
@@ -241,5 +247,54 @@ public class UserController {
         url.append(request.getServerPort());
         url.append(request.getContextPath());
         return url.toString();
+    }
+
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
+    public String resetPassword(Model model, HttpSession session){
+        if("invalidUsername".equals(session.getAttribute("error"))){
+            session.removeAttribute("error");
+            model.addAttribute("error","Tài khoản không tồn tại !");
+        }
+        if("invalidEmail".equals(session.getAttribute("error"))){
+            session.removeAttribute("error");
+            model.addAttribute("error","Email không trùng khớp với tài khoản !");
+        }
+        return "resetPassword";
+    }
+
+    @RequestMapping(value = "/verifyInfoUserForResetPassword", method = RequestMethod.POST)
+    public String verifyInfoUserForResetPassword( HttpServletRequest request, HttpSession session) throws UserNotFoundException {
+        String username = request.getParameter("username");
+        User user = userService.findByUsername(username);
+        if(user == null){
+            session.setAttribute("error","invalidUsername");
+            return "redirect:/resetPassword";
+        }else if(!request.getParameter("email").equals(user.getEmail())){
+            session.setAttribute("error","invalidEmail");
+            return "redirect:/resetPassword";
+        }
+        session.setAttribute("username",username);
+        return "updatePassword";
+    }
+
+    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    public String updatePassword(Model model, HttpServletRequest request, HttpSession session) throws UserNotFoundException {
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
+        if(password.length() < 8){
+            model.addAttribute("error", "Mật khẩu mới quá ngắn ! (>8)");
+            return "updatePassword";
+        }
+        if(!password.equals(confirmPassword)){
+            model.addAttribute("error", "Nhập lại mật khẩu không đúng !");
+            return "updatePassword";
+        }
+        String username = (String) session.getAttribute("username");
+        session.removeAttribute("username");
+        User user = userService.findByUsername(username);
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        userService.save(user);
+        session.setAttribute("message","updatePasswordSuccess");
+        return "redirect:/login";
     }
 }

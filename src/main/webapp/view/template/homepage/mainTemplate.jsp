@@ -87,9 +87,9 @@
         src="${pageContext.request.contextPath}/resource/admin/js/jquery.dcjqaccordion.2.7.js"></script>
 <script
         src="${pageContext.request.contextPath}/resource/admin/js/jquery.scrollTo.min.js"></script>
-<script
-        src="${pageContext.request.contextPath}/resource/admin/js/jquery.nicescroll.js"
-        type="text/javascript"></script>
+<%--<script--%>
+        <%--src="${pageContext.request.contextPath}/resource/admin/js/jquery.nicescroll.js"--%>
+        <%--type="text/javascript"></script>--%>
 <script
         src="${pageContext.request.contextPath}/resource/admin/js/respond.min.js"></script>
 <script type="text/javascript"
@@ -117,6 +117,7 @@
 <script src="${pageContext.request.contextPath }/resource/js/simplegallery.min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/jquery.flexslider-min.js"></script>
 <script src="${pageContext.request.contextPath }/resource/js/maskedinput.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
     document.write('<base href="' + document.location + '" />');
     $(document).ready(function () {

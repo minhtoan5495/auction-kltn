@@ -51,7 +51,7 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
-    public String addAuction(HttpSession session, Model model, @RequestParam(value = "message") String message) {
+    public String addAuction(HttpSession session, Model model, @RequestParam(value = "message", required = false) String message) {
         if ("requiredAuction".equals(session.getAttribute("message"))) {
             model.addAttribute("message", "Let's create the auction for product that you're just created !!");
             session.removeAttribute("message");

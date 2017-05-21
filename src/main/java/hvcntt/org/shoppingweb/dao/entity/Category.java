@@ -26,7 +26,7 @@ public class Category implements Serializable {
 	@JsonBackReference
 	private Parent parent;
 
-	@OneToMany(mappedBy="category", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="category", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<Product> products;
 

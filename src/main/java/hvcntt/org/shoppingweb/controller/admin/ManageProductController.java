@@ -87,7 +87,7 @@ public class ManageProductController {
     }
 
     @RequestMapping(value = "/admin/saveProduct", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto, HttpSession session) throws ParseException {
+    public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto, HttpSession session) throws Exception {
         if(productservice.findByName(productDto.getName()) != null){
             session.setAttribute("error","invalidName");
             return "redirect:/admin/addProduct";
@@ -105,7 +105,7 @@ public class ManageProductController {
     }
 
     @RequestMapping(value = "/admin/updateProduct", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto, HttpSession session, HttpServletRequest request) throws ParseException {
+    public String saveProduct(@ModelAttribute(value = "productDto") ProductDto productDto, HttpSession session, HttpServletRequest request) throws Exception {
         String productId = request.getParameter("productId");
         String description = request.getParameter("description");
         productDto.setDescription(description);

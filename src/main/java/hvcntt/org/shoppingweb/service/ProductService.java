@@ -37,9 +37,9 @@ public interface ProductService {
 
     void deleteProduct(String productId) throws ProductNotFoundException;
 
-    void save(ProductDto productDto) throws ParseException;
+    void save(ProductDto productDto) throws Exception;
 
-    void update(ProductDto productDto, String productId) throws ParseException;
+    void update(ProductDto productDto, String productId) throws Exception;
 
     List<Product> findByTransactionType(TransactionType transactionType);
 

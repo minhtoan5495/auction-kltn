@@ -4,17 +4,22 @@
 <link href="${pageContext.request.contextPath }/resource/css/login.css" rel="stylesheet">
 <!-- START CONTENT -->
 <div class="form-login">
-    <c:url value="/login" var="loginUrl"/>
     <div class="form-avatar">
         <img alt=""
              src="${pageContext.request.contextPath }/resource/images/avatar/icon-lg-register-blue1.png">
     </div>
     <c:if test="${not empty error }">
-        <div class="error_check" id="error">
-                ${error}
-        </div>
+        <c:if test="${error ne 'expired'}">
+            <div class="error_check" id="error">
+                    ${error}
+            </div>
+        </c:if>
         <c:if test="${error eq 'expired'}">
-            <a href="${pageContext.request.contextPath }/activeAccount?username=${username}" style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Kích hoạt ngay ..</a>
+            <div class="error_check" id="error">
+                Quý khách đã kích hoạt tài khoản quá lâu. Xin vui lòng kích hoạt lại !
+            </div>
+            <a class="btn btn-primary" style="margin-top: 15px; margin-left: 75px;" role="button" href="${pageContext.request.contextPath }/activeAccount?username=${username}"
+               >Kích hoạt ngay ..</a>
         </c:if>
     </c:if>
     <c:if test="${not empty message }">
@@ -23,10 +28,11 @@
         </div>
     </c:if>
     <section class="form_login">
-        <form action="${loginUrl}" method="post"
+        <form action="${pageContext.request.contextPath }/login" method="post"
               id="saveLogin">
             <input type="hidden" name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
+
             <div class="form_input">
                 <div class="form-group">
                     <div class='input-group'>
@@ -53,9 +59,12 @@
                     </div>
                 </div>
             </div>
-            <a href="${pageContext.request.contextPath }/changePassword" style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Đổi mật khẩu
+            <a href="${pageContext.request.contextPath }/resetPassword"
+               style="color: #fff; text-decoration: none; float: right; margin-bottom: 10px">Quên mật khẩu
             </a>
+
             <p class="error-msg" style="color: red; margin-top: 50px; display: none">Wrongcredentials</p>
+
             <div class="form_check">
                 <input type="checkbox"><span style="color: #fff">Ghi nhớ</span>
             </div>
@@ -67,6 +76,7 @@
                style="color: #fff; text-decoration: none; margin-left: 20px;" class="create_new"><label
                     style="color: #fff">Bạn
                 chưa có tài khoản?</label> Đăng ký ngay</a>
+
             <p></p>
             <a href="${pageContext.request.contextPath }/home"
                style="color: #fff; text-decoration: none; margin-left: 98px;"><label style="color: #fff">Về lại trang

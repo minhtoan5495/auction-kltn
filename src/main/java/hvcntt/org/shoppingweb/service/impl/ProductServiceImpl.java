@@ -3,9 +3,6 @@ package hvcntt.org.shoppingweb.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -152,7 +149,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
-    public void save(ProductDto productDto) throws ParseException {
+    public void save(ProductDto productDto) throws Exception {
         Product product = new Product();
         product.setCategory(categoryRepository.getOne(productDto.getCategoryId()));
         product.setDescription(productDto.getDescription());
@@ -173,7 +170,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
-    public void update(ProductDto productDto, String productId) throws ParseException {
+    public void update(ProductDto productDto, String productId) throws Exception {
         Product product = productRepository.findOne(productId);
         product.setCategory(categoryRepository.getOne(productDto.getCategoryId()));
         String description = productDto.getDescription();
@@ -223,7 +220,7 @@ public class ProductServiceImpl implements ProductService {
         return format.parse(date);
     }
 
-    private List<Image> getImageUrlFromMultiFile(List<MultipartFile> multipartFiles, Product product) {
+    private List<Image> getImageUrlFromMultiFile(List<MultipartFile> multipartFiles, Product product) throws Exception {
         List<Image> images = new ArrayList<>();
         if (null != multipartFiles && multipartFiles.size() > 0) {
             int i = 1;
@@ -250,7 +247,7 @@ public class ProductServiceImpl implements ProductService {
                     multipartFile.transferTo(destTarget);
                     multipartFile.transferTo(destSrc);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new Exception("Can't save product");
                 }
                 i++;
             }
@@ -354,7 +351,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getNewProduct() {
-		// TODO Auto-generated method stub
 		return productRepository.findAll(new PageRequest(0, 8, Direction.DESC, "createDate")).getContent();
 	}
 

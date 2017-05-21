@@ -33,6 +33,14 @@
         <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/updateProfile.jsp"></put-attribute>
     </definition>
+    <definition name="resetPassword" template="/view/login--register/resetPassword.jsp">
+        <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
+        <put-attribute name="body" value="/view/login--register/resetPassword.jsp"></put-attribute>
+    </definition>
+    <definition name="updatePassword" template="/view/login--register/updatePassword.jsp">
+        <put-attribute name="title" value="Thông tin cá nhân"></put-attribute>
+        <put-attribute name="body" value="/view/login--register/updatePassword.jsp"></put-attribute>
+    </definition>
     <definition name="orderDetail" extends="definition">
         <put-attribute name="title" value="Hóa đơn cá nhân"></put-attribute>
         <put-attribute name="body" value="/view/profile/orderDetail.jsp"></put-attribute>
@@ -64,10 +72,6 @@
     <definition name="aboutUs" extends="definition">
         <put-attribute name="title" value="Giới thiệu về chúng tôi"></put-attribute>
         <put-attribute name="body" value="/view/about/aboutUs.jsp"></put-attribute>
-    </definition>
-    <definition name="forgetPassword" extends="definition">
-        <put-attribute name="title" value="Forget Password"></put-attribute>
-        <put-attribute name="body" value="/view/login--register/forgetPassword.jsp"></put-attribute>
     </definition>
     <definition name="register" extends="registration">
         <put-attribute name="title" value="Đăng ký"></put-attribute>
@@ -176,7 +180,10 @@
         <put-attribute name="title" value="Show Auction"></put-attribute>
         <put-attribute name="body" value="/view/admin/auctionDetail.jsp"></put-attribute>
     </definition>
-    <definition name="deny" extends="templateAdmin">
+    <definition name="denyPage" template="/view/error/deny.jsp">
+        <put-attribute name="body" value=""></put-attribute>
+    </definition>
+    <definition name="deny" extends="denyPage">
         <put-attribute name="body" value="/view/error/deny.jsp"></put-attribute>
     </definition>
 </tiles-definitions>

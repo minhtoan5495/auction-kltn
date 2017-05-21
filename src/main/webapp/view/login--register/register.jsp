@@ -25,7 +25,7 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="length" data-validation-length="3-30"
+                                    <form:input data-validation="required length" data-validation-length="3-30"
                                                 data-validation-error-msg="Họ tên phải hơn 3 kí tự"
                                                 type="text" placeholder="Họ tên" class="input" id="name"
                                                 name="name"
@@ -78,7 +78,7 @@
                         <div class="form_input_register">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <form:input data-validation="length" data-validation-length="8-30"
+                                    <form:input data-validation="required length" data-validation-length="8-30"
                                                 data-validation-error-msg="Mật khẩu phải phải lớn hơn 8 kí tự"
                                                 class="input" type="password" placeholder="Mật khẩu" id="password"
                                                 name="password"

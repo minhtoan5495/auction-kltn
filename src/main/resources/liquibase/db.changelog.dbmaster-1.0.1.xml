@@ -1,8 +1,1812 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-	<changeSet id="1491881397859-89" author="Son (generated)" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-		<addColumn tableName="rating">
-			<column name="rating_title" type="VARCHAR(45)"></column>
-		</addColumn>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet author="PC (generated)" id="1495277117352-1">
+		<insert tableName="auction">
+			<column name="auction_id" value="0057c39c-b419-4cd1-a945-a84aeabe6be6"/>
+			<column name="start_time" valueDate="2017-05-20 14:30:00.0"/>
+			<column name="end_time" valueDate="2017-05-23 14:30:00.0"/>
+			<column name="status" value=""/>
+			<column name="product_id" value="bb46eddc-134b-46d5-9ba5-1865142befe4"/>
+		</insert>
+		<insert tableName="auction">
+			<column name="auction_id" value="1"/>
+			<column name="start_time" valueDate="2017-05-11 00:00:00.0"/>
+			<column name="end_time" valueDate="2017-05-18 23:00:00.0"/>
+			<column name="status" value=""/>
+			<column name="product_id" value="Beauty_1"/>
+		</insert>
+		<insert tableName="auction">
+			<column name="auction_id" value="2"/>
+			<column name="start_time" valueDate="2017-04-25 00:00:00.0"/>
+			<column name="end_time" valueDate="2017-05-17 21:00:00.0"/>
+			<column name="status" value=""/>
+			<column name="product_id" value="Beauty_2"/>
+		</insert>
+		<insert tableName="auction">
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+			<column name="start_time" valueDate="2017-05-22 00:00:00.0"/>
+			<column name="end_time" valueDate="2017-05-24 00:00:00.0"/>
+			<column name="status" value=""/>
+			<column name="product_id" value="5ca744c0-cc48-41ea-be31-0f7a19b9cbf1"/>
+		</insert>
+		<insert tableName="auction">
+			<column name="auction_id" value="7d138f3d-9498-45cc-8ac9-5e841116cda9"/>
+			<column name="start_time" valueDate="2017-05-20 14:00:00.0"/>
+			<column name="end_time" valueDate="2017-05-24 00:00:00.0"/>
+			<column name="status" value=""/>
+			<column name="product_id" value="e7f52a33-a8fc-463d-a644-a3e9dfb37074"/>
+		</insert>
+		<insert tableName="auction">
+			<column name="auction_id" value="cc5b7f3d-906a-4233-92b6-249162481f9e"/>
+			<column name="start_time" valueDate="2017-05-18 23:30:00.0"/>
+			<column name="end_time" valueDate="2017-05-20 23:30:00.0"/>
+			<column name="status" value=""/>
+			<column name="product_id" value="a679ac8c-2d85-4d7b-b987-6b6bf72d523b"/>
+		</insert>
+		<insert tableName="auction">
+			<column name="auction_id" value="de77ae98-0dde-4e15-8bbd-00d94f0bd804"/>
+			<column name="start_time" valueDate="2017-04-27 00:00:00.0"/>
+			<column name="end_time" valueDate="2017-05-16 23:00:00.0"/>
+			<column name="status" value=""/>
+			<column name="product_id" value="Jwely_2194"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-2">
+		<insert tableName="category">
+			<column name="category_id" value="1688e547-ab3b-4e75-af76-80b91b0f873c"/>
+			<column name="category_name" value="TRẺ EM"/>
+			<column name="parent_id" value="fc0e38b3-1747-4f61-9753-d395aaa8f8d6"/>
+		</insert>
+		<insert tableName="category">
+			<column name="category_id" value="2cd8f91d-7ff6-4f11-bff7-2e9119ae6539"/>
+			<column name="category_name" value="SẮC ĐẸP"/>
+			<column name="parent_id" value="daa61860-c372-40bd-b307-d727f2703062"/>
+		</insert>
+		<insert tableName="category">
+			<column name="category_id" value="6601bda5-3bad-4625-8549-05d480680b0a"/>
+			<column name="category_name" value="ĐỒNG HỒ"/>
+			<column name="parent_id" value="027cde87-241e-41f7-bfca-5d95dd2a2711"/>
+		</insert>
+		<insert tableName="category">
+			<column name="category_id" value="9b6a4b34-a1f3-46b2-b567-bbda32744262"/>
+			<column name="category_name" value="CÔNG NGHỆ"/>
+			<column name="parent_id" value="3e242ee3-412f-4462-b018-20c7e537182b"/>
+		</insert>
+		<insert tableName="category">
+			<column name="category_id" value="a82a1efe-9a8a-4ff5-9c53-e613ee852e8d"/>
+			<column name="category_name" value="GIÀY DÉP"/>
+			<column name="parent_id" value="8eff8778-7ce1-4a99-b967-70ead3667dec"/>
+		</insert>
+		<insert tableName="category">
+			<column name="category_id" value="e3d1a684-278e-4939-b01e-7f2b324a0910"/>
+			<column name="category_name" value="TRANG SỨC"/>
+			<column name="parent_id" value="bcb3313b-5da2-4cb6-b8cc-6146d8b96d6f"/>
+		</insert>
+		<insert tableName="category">
+			<column name="category_id" value="f4527e2f-41c3-4cb9-b4c2-11224d91370f"/>
+			<column name="category_name" value="THỜI TRANG"/>
+			<column name="parent_id" value="8eff8778-7ce1-4a99-b967-70ead3667dec"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-3">
+		<insert tableName="city">
+			<column name="city_id" value="1"/>
+			<column name="city_name" value="Đà Nẵng"/>
+		</insert>
+		<insert tableName="city">
+			<column name="city_id" value="2"/>
+			<column name="city_name" value="Sài Gòn"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-4">
+		<insert tableName="discount">
+			<column name="discount_id" value="1"/>
+			<column name="discount_title" value="Giảm giá đầu năm"/>
+			<column name="discount_content" value="Demo"/>
+			<column name="discount_percent" valueNumeric="15"/>
+			<column name="start_date" valueDate="2017-04-24 00:00:00.0"/>
+			<column name="end_date" valueDate="2017-04-27 00:00:00.0"/>
+		</insert>
+		<insert tableName="discount">
+			<column name="discount_id" value="f962361d-8f02-4ef3-a241-9a1eb3a43d06"/>
+			<column name="discount_title" value="d"/>
+			<column name="discount_content" value="d"/>
+			<column name="discount_percent" valueNumeric="1"/>
+			<column name="start_date" valueDate="2017-03-29 00:00:00.0"/>
+			<column name="end_date" valueDate="2017-05-17 00:00:00.0"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-5">
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Child_1"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Clothes_2"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Clothe_1"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="d6895687-344c-42fb-b807-b2988886f608"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Jwely_2194"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Pk_01"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Shoe_1"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Technology_1"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="1"/>
+			<column name="product_id" value="Technology_2"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="f962361d-8f02-4ef3-a241-9a1eb3a43d06"/>
+			<column name="product_id" value="Watch_21394"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="f962361d-8f02-4ef3-a241-9a1eb3a43d06"/>
+			<column name="product_id" value="Watch_21395"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="f962361d-8f02-4ef3-a241-9a1eb3a43d06"/>
+			<column name="product_id" value="Watch_21396"/>
+		</insert>
+		<insert tableName="discount_product">
+			<column name="discount_id" value="f962361d-8f02-4ef3-a241-9a1eb3a43d06"/>
+			<column name="product_id" value="Watch_21397"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-6">
+		<insert tableName="district">
+			<column name="district_id" value="1"/>
+			<column name="district_name" value="Thanh Khê"/>
+			<column name="city_id"/>
+		</insert>
+		<insert tableName="district">
+			<column name="district_id" value="2"/>
+			<column name="district_name" value="Hòa Vang"/>
+			<column name="city_id"/>
+		</insert>
+		<insert tableName="district">
+			<column name="district_id" value="3"/>
+			<column name="district_name" value="Cẩm Lệ"/>
+			<column name="city_id"/>
+		</insert>
+		<insert tableName="district">
+			<column name="district_id" value="4"/>
+			<column name="district_name" value="Quận 3"/>
+			<column name="city_id"/>
+		</insert>
+		<insert tableName="district">
+			<column name="district_id" value="5"/>
+			<column name="district_name" value="Hải Châu"/>
+			<column name="city_id"/>
+		</insert>
+		<insert tableName="district">
+			<column name="district_id" value="6"/>
+			<column name="district_name" value="Ngũ Hành Sơn"/>
+			<column name="city_id"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-7">
+		<insert tableName="image">
+			<column name="image_id" value="0d9f9be0-3761-4484-839e-08b35d2da182"/>
+			<column name="image_title" value="Tông đơ cắt tóc cho trẻ em KEMEI KM-730 (Đỏ phối đen) 1"/>
+			<column name="image_url" value="tongdo_1.jpg"/>
+			<column name="product_id" value="Beauty_1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="0e2c3bc4-8c3f-416b-bdbd-6681679f1674"/>
+			<column name="image_title" value="Marlboro Zippo Lighter &amp; Chrome &amp; Brass Ashtray- New Unused 1"/>
+			<column name="image_url" value="zippo_3.jpg"/>
+			<column name="product_id" value="a679ac8c-2d85-4d7b-b987-6b6bf72d523b"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="1"/>
+			<column name="image_title" value="ĐH"/>
+			<column name="image_url" value="13.jpg"/>
+			<column name="product_id" value="Watch_21394"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="10"/>
+			<column name="image_title" value="PK"/>
+			<column name="image_url" value="vongco.jpg"/>
+			<column name="product_id" value="Pk_01"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="11"/>
+			<column name="image_title" value="SHOE"/>
+			<column name="image_url" value="bititshunter.jpg"/>
+			<column name="product_id" value="Shoe_1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="12"/>
+			<column name="image_title" value="SHOE"/>
+			<column name="image_url" value="bititshunter1.jpg"/>
+			<column name="product_id" value="Shoe_2"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="13"/>
+			<column name="image_title" value="HP"/>
+			<column name="image_url" value="headphone.jpg"/>
+			<column name="product_id" value="Technology_1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="13925d04-6376-49f7-afaf-93c552d10fb7"/>
+			<column name="image_title" value="Lắc Tay Nữ Bạc Hiểu Minh Ltu277 Bạc Ý   1"/>
+			<column name="image_url" value="lactay_1.jpg"/>
+			<column name="product_id" value="e7f52a33-a8fc-463d-a644-a3e9dfb37074"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="14"/>
+			<column name="image_title" value="HP"/>
+			<column name="image_url" value="headphone1.jpg"/>
+			<column name="product_id" value="Technology_2"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="15"/>
+			<column name="image_title" value="Child"/>
+			<column name="image_url" value="child1.jpg"/>
+			<column name="product_id" value="Child_1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="16"/>
+			<column name="image_title" value="TS"/>
+			<column name="image_url" value="trangsuc.jpg"/>
+			<column name="product_id" value="Jwely_2194"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="1bba68f4-bbbc-43fc-b5e2-269bdb8f2259"/>
+			<column name="image_title" value="Máy ảnh Fujifilm X-A3 24.2MP Wifi với Lens kit XC16-50 F3.5-5.6 OIS II (Nâu)   1"/>
+			<column name="image_url" value="camera_1.jpg"/>
+			<column name="product_id" value="5ca744c0-cc48-41ea-be31-0f7a19b9cbf1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="1d28557f-4b4e-46d0-a0d7-1004052a1c58"/>
+			<column name="image_title" value="Giày tây nam SLEDGERS IGOR (SM62LA02L) (Đen) 1"/>
+			<column name="image_url" value="giay_nam_3.jpg"/>
+			<column name="product_id" value="bb46eddc-134b-46d5-9ba5-1865142befe4"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="2"/>
+			<column name="image_title" value="DDH"/>
+			<column name="image_url" value="14.jpg"/>
+			<column name="product_id" value="Watch_21395"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="23c18aba-2c42-410d-b98e-591d0f482744"/>
+			<column name="image_title" value="Kính mát Ray-Ban RB3532 001 5350 (Vàng)   1"/>
+			<column name="image_url" value="matkinh_1.jpg"/>
+			<column name="product_id" value="576b9d9d-ca72-4ee8-bd42-a7b513e6acef"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="2b9d00c0-69ad-498c-8b3c-9b3cb7c57d5b"/>
+			<column name="image_title" value="Lắc Tay Nữ Bạc Hiểu Minh Ltu277 Bạc Ý   1"/>
+			<column name="image_url" value="lactay_2.jpg"/>
+			<column name="product_id" value="e7f52a33-a8fc-463d-a644-a3e9dfb37074"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="3"/>
+			<column name="image_title" value="CL"/>
+			<column name="image_url" value="aothunnam.jpg"/>
+			<column name="product_id" value="Clothe_1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="33d07c40-d0c1-4087-ad47-fee625baf676"/>
+			<column name="image_title" value="Nước Hoa Nữ Urban Flowers Paris.30ml 1"/>
+			<column name="image_url" value="nuochoa2.jpg"/>
+			<column name="product_id" value="Beauty_2"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="3677fd50-e0fd-4d05-b400-6d8070576c2a"/>
+			<column name="image_title" value="Giày tây nam SLEDGERS IGOR (SM62LA02L) (Đen) 1"/>
+			<column name="image_url" value="giay_nam_2.jpg"/>
+			<column name="product_id" value="bb46eddc-134b-46d5-9ba5-1865142befe4"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="384041ce-527e-4867-93e8-b2a9c04a6fda"/>
+			<column name="image_title" value="Máy ảnh Fujifilm X-A3 24.2MP Wifi với Lens kit XC16-50 F3.5-5.6 OIS II (Nâu)   1"/>
+			<column name="image_url" value="camera_3.jpg"/>
+			<column name="product_id" value="5ca744c0-cc48-41ea-be31-0f7a19b9cbf1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="3b944ad3-14cb-4b15-b7a8-b9de3dcfaca6"/>
+			<column name="image_title" value="Nước Hoa Nữ Urban Flowers Paris.30ml 1"/>
+			<column name="image_url" value="nuochoa.jpg"/>
+			<column name="product_id" value="Beauty_2"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="40ef894e-3fe6-4aaa-a721-55a1510e62e0"/>
+			<column name="image_title" value="Giày tây nam SLEDGERS IGOR (SM62LA02L) (Đen) 1"/>
+			<column name="image_url" value="giay_nam_1.jpg"/>
+			<column name="product_id" value="bb46eddc-134b-46d5-9ba5-1865142befe4"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="469a1ae3-16eb-492f-883a-7a1c42d1f68a"/>
+			<column name="image_title" value="Tông đơ cắt tóc cho trẻ em KEMEI KM-730 (Đỏ phối đen) 1"/>
+			<column name="image_url" value="tongdo_2.jpg"/>
+			<column name="product_id" value="Beauty_1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="4d697132-6b84-42e4-98c9-9441fb27b847"/>
+			<column name="image_title" value=" Nhẫn nam bạc rồng ôm long châu NB0875   1"/>
+			<column name="image_url" value="nhan_3.jpg"/>
+			<column name="product_id" value="2d3985f9-fe62-42fc-ae9d-f673b0c9154a"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="521ee00d-733a-460c-987c-64c3c9ce6d37"/>
+			<column name="image_title" value="Nước Hoa Nữ Urban Flowers Paris.30ml 1"/>
+			<column name="image_url" value="nuochoa1.jpg"/>
+			<column name="product_id" value="Beauty_2"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="6"/>
+			<column name="image_title" value="CL"/>
+			<column name="image_url" value="aothunnamtrang.jpg"/>
+			<column name="product_id" value="Clothes_2"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="61dc9223-0b76-4250-8566-57c6c467b466"/>
+			<column name="image_title" value="Kính mát Ray-Ban RB3532 001 5350 (Vàng)   1"/>
+			<column name="image_url" value="matkinh_1.jpg"/>
+			<column name="product_id" value="576b9d9d-ca72-4ee8-bd42-a7b513e6acef"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="7"/>
+			<column name="image_title" value="DDH"/>
+			<column name="image_url" value="donghonam.jpg"/>
+			<column name="product_id" value="Watch_21396"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="75d3605a-f064-46de-86d2-eb2f6e7403f7"/>
+			<column name="image_title" value="Tông đơ cắt tóc cho trẻ em KEMEI KM-730 (Đỏ phối đen) 1"/>
+			<column name="image_url" value="tongdo_3.jpg"/>
+			<column name="product_id" value="Beauty_1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="8"/>
+			<column name="image_title" value="DDH"/>
+			<column name="image_url" value="donghonam1.jpg"/>
+			<column name="product_id" value="Watch_21397"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="9"/>
+			<column name="image_title" value="DDH"/>
+			<column name="image_url" value="donghonam2.jpg"/>
+			<column name="product_id" value="Watch_21398"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="ab7e5af7-98df-4591-b3aa-1fe310cbb87f"/>
+			<column name="image_title" value="Marlboro Zippo Lighter &amp; Chrome &amp; Brass Ashtray- New Unused 1"/>
+			<column name="image_url" value="zippo_2.jpg"/>
+			<column name="product_id" value="a679ac8c-2d85-4d7b-b987-6b6bf72d523b"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="acbf2592-3a4d-4322-8f34-21d7a6ecbee3"/>
+			<column name="image_title" value="Marlboro Zippo Lighter &amp; Chrome &amp; Brass Ashtray- New Unused 1"/>
+			<column name="image_url" value="zippo_1.jpg"/>
+			<column name="product_id" value="a679ac8c-2d85-4d7b-b987-6b6bf72d523b"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="dd33a7db-b8dc-462b-8d70-5624d52cfd65"/>
+			<column name="image_title" value="Lắc Tay Nữ Bạc Hiểu Minh Ltu277 Bạc Ý   1"/>
+			<column name="image_url" value="lactay_4.jpg"/>
+			<column name="product_id" value="e7f52a33-a8fc-463d-a644-a3e9dfb37074"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="df4a81fc-46de-42c8-ba9c-4639882b53aa"/>
+			<column name="image_title" value=" Nhẫn nam bạc rồng ôm long châu NB0875   1"/>
+			<column name="image_url" value="nhan_2.jpg"/>
+			<column name="product_id" value="2d3985f9-fe62-42fc-ae9d-f673b0c9154a"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="e1fe64fb-5601-4630-980a-d362c7e6e70f"/>
+			<column name="image_title" value="Kính mát Ray-Ban RB3532 001 5350 (Vàng)   1"/>
+			<column name="image_url" value="matkinh_2.jpg"/>
+			<column name="product_id" value="576b9d9d-ca72-4ee8-bd42-a7b513e6acef"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="ed114f19-7277-4bed-8918-cbd5de54c6b7"/>
+			<column name="image_title" value="Máy ảnh Fujifilm X-A3 24.2MP Wifi với Lens kit XC16-50 F3.5-5.6 OIS II (Nâu)   1"/>
+			<column name="image_url" value="camera_2.jpg"/>
+			<column name="product_id" value="5ca744c0-cc48-41ea-be31-0f7a19b9cbf1"/>
+		</insert>
+		<insert tableName="image">
+			<column name="image_id" value="fc9e96a0-8761-47aa-905e-5b6cb21a0439"/>
+			<column name="image_title" value=" Nhẫn nam bạc rồng ôm long châu NB0875   1"/>
+			<column name="image_url" value="nhan_1.jpg"/>
+			<column name="product_id" value="2d3985f9-fe62-42fc-ae9d-f673b0c9154a"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-8">
+		<insert tableName="invoice">
+			<column name="invoice_id" value="08a6cc27-d976-464e-8e24-4e27f5aa2f09"/>
+			<column name="create_date" valueDate="2017-04-21 21:09:19.955"/>
+			<column name="ship_date" valueDate="2017-04-28 00:00:00.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="4"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="0e9aa911-cf31-421c-af32-01a5e4fcafa3"/>
+			<column name="create_date" valueDate="2017-04-21 21:21:11.488"/>
+			<column name="ship_date" valueDate="2017-04-28 00:00:00.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="0ff021c3-a829-477c-a10a-af2a983f59c4"/>
+			<column name="create_date" valueDate="2017-05-19 13:17:48.364"/>
+			<column name="ship_date" valueDate="2017-05-26 13:17:48.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="1f4ac9c4-1580-4fcd-ae33-ec6ffaf799ca"/>
+			<column name="create_date" valueDate="2017-04-22 13:22:56.558"/>
+			<column name="ship_date" valueDate="2017-04-29 00:00:00.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="22c44dff-a5e5-4265-b44f-5268f7dae94b"/>
+			<column name="create_date" valueDate="2017-05-19 23:05:40.359"/>
+			<column name="ship_date" valueDate="2017-05-26 23:05:41.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="348b7706-9402-449d-8281-54ab3d44c2d3"/>
+			<column name="create_date" valueDate="2017-05-13 11:12:54.165"/>
+			<column name="ship_date" valueDate="2017-05-20 11:12:54.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="3783f00f-ef08-47ae-80d6-a096953103fe"/>
+			<column name="create_date" valueDate="2017-05-16 11:40:22.29"/>
+			<column name="ship_date" valueDate="2017-05-23 11:40:22.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="4ab378d2-c333-4552-bb6c-3087aa078f4e"/>
+			<column name="create_date" valueDate="2017-04-18 20:48:22.628"/>
+			<column name="ship_date" valueDate="2017-04-25 00:00:00.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="4"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="956b9dc6-394b-41bd-997f-3f3c9def437d"/>
+			<column name="create_date" valueDate="2017-05-16 19:10:09.475"/>
+			<column name="ship_date" valueDate="2017-05-23 19:10:10.0"/>
+			<column name="username" value="cristiano"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="9b32bf99-696b-4b74-9208-eba98b1820e4"/>
+			<column name="create_date" valueDate="2017-04-21 21:11:36.626"/>
+			<column name="ship_date" valueDate="2017-04-28 00:00:00.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="invoice_status_id" valueNumeric="4"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="ce65443b-34df-43ed-9ba9-b71dc733388a"/>
+			<column name="create_date" valueDate="2017-05-16 22:26:26.999"/>
+			<column name="ship_date" valueDate="2017-05-23 22:26:27.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="e09e3b99-0f28-4a50-9d5a-8bf449b5cf1d"/>
+			<column name="create_date" valueDate="2017-05-17 08:45:38.252"/>
+			<column name="ship_date" valueDate="2017-05-24 08:45:38.0"/>
+			<column name="username" value="cristiano"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="invoice">
+			<column name="invoice_id" value="f7a889c7-0e8f-40d7-ad9f-cef2cddafd82"/>
+			<column name="create_date" valueDate="2017-05-16 19:03:11.102"/>
+			<column name="ship_date" valueDate="2017-05-23 19:03:11.0"/>
+			<column name="username" value="cristiano"/>
+			<column name="invoice_status_id" valueNumeric="1"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-9">
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="10f65019-e9b2-4243-90d4-205754c39368"/>
+			<column name="price" valueNumeric="49000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Clothe_1"/>
+			<column name="invoice_id" value="4ab378d2-c333-4552-bb6c-3087aa078f4e"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="1139cb91-adee-40f8-b400-0bf5f5c797ed"/>
+			<column name="price" valueNumeric="360000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Watch_21395"/>
+			<column name="invoice_id" value="f7a889c7-0e8f-40d7-ad9f-cef2cddafd82"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="17efa0cf-c881-44bf-842e-400e98bee199"/>
+			<column name="price" valueNumeric="660000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Shoe_2"/>
+			<column name="invoice_id" value="9b32bf99-696b-4b74-9208-eba98b1820e4"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="3499dc3d-b60e-4f37-beda-158316681f6a"/>
+			<column name="price" valueNumeric="490000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Technology_1"/>
+			<column name="invoice_id" value="08a6cc27-d976-464e-8e24-4e27f5aa2f09"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="8196efd7-0e5f-4bd7-9435-f51ce4e7bb12"/>
+			<column name="price" valueNumeric="360000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Watch_21395"/>
+			<column name="invoice_id" value="e09e3b99-0f28-4a50-9d5a-8bf449b5cf1d"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="82d7128e-099d-473e-9f0c-4849055eb16a"/>
+			<column name="price" valueNumeric="360000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Watch_21395"/>
+			<column name="invoice_id" value="956b9dc6-394b-41bd-997f-3f3c9def437d"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="83b75b90-b51f-4aee-9de1-b68cfbd47ceb"/>
+			<column name="price" valueNumeric="52000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Child_1"/>
+			<column name="invoice_id" value="ce65443b-34df-43ed-9ba9-b71dc733388a"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="92fd13a8-d355-4e35-9154-c9ac120e2b82"/>
+			<column name="price" valueNumeric="5200000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="576b9d9d-ca72-4ee8-bd42-a7b513e6acef"/>
+			<column name="invoice_id" value="22c44dff-a5e5-4265-b44f-5268f7dae94b"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="9b932991-e42b-4cce-a355-126ed03e0292"/>
+			<column name="price" valueNumeric="5200000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="576b9d9d-ca72-4ee8-bd42-a7b513e6acef"/>
+			<column name="invoice_id" value="0ff021c3-a829-477c-a10a-af2a983f59c4"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="a9908bf5-b77c-453f-b045-61c97498c004"/>
+			<column name="price" valueNumeric="180000.0"/>
+			<column name="quantity" valueNumeric="3"/>
+			<column name="product_id" value="Clothe_1"/>
+			<column name="invoice_id" value="348b7706-9402-449d-8281-54ab3d44c2d3"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="c37047e0-0d98-4c30-a2af-453e3b5d5596"/>
+			<column name="price" valueNumeric="200000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Watch_21397"/>
+			<column name="invoice_id" value="3783f00f-ef08-47ae-80d6-a096953103fe"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="d94fbc59-1fd2-42b9-bf82-ecc49b9662cf"/>
+			<column name="price" valueNumeric="660000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Shoe_2"/>
+			<column name="invoice_id" value="0e9aa911-cf31-421c-af32-01a5e4fcafa3"/>
+		</insert>
+		<insert tableName="invoice_detail">
+			<column name="invoice_detail_id" value="e7ab32e1-921a-4809-bc72-553dff76845b"/>
+			<column name="price" valueNumeric="650000.0"/>
+			<column name="quantity" valueNumeric="1"/>
+			<column name="product_id" value="Shoe_1"/>
+			<column name="invoice_id" value="1f4ac9c4-1580-4fcd-ae33-ec6ffaf799ca"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-10">
+		<insert tableName="invoice_status">
+			<column name="invoice_status_id" valueNumeric="1"/>
+			<column name="invoice_status_name" value="PENDING"/>
+		</insert>
+		<insert tableName="invoice_status">
+			<column name="invoice_status_id" valueNumeric="2"/>
+			<column name="invoice_status_name" value="Đang giao hàng"/>
+		</insert>
+		<insert tableName="invoice_status">
+			<column name="invoice_status_id" valueNumeric="3"/>
+			<column name="invoice_status_name" value="Đã giao hàng"/>
+		</insert>
+		<insert tableName="invoice_status">
+			<column name="invoice_status_id" valueNumeric="4"/>
+			<column name="invoice_status_name" value="Đã hủy đơn hàng"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-11">
+		<insert tableName="parent">
+			<column name="parent_id" value="027cde87-241e-41f7-bfca-5d95dd2a2711"/>
+			<column name="parent_name" value="Đồng hồ thời trang"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="17599781-7a3c-4414-a3d8-5ac7441defa6"/>
+			<column name="parent_name" value="Thời trang nữ"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="3e242ee3-412f-4462-b018-20c7e537182b"/>
+			<column name="parent_name" value="Điện tử"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="78e33ad6-a8fb-4070-bbd0-4ea229564207"/>
+			<column name="parent_name" value="Thời trang nam"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="8eff8778-7ce1-4a99-b967-70ead3667dec"/>
+			<column name="parent_name" value="Giày thời trang"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="bcb3313b-5da2-4cb6-b8cc-6146d8b96d6f"/>
+			<column name="parent_name" value="Phụ kiện"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="daa61860-c372-40bd-b307-d727f2703062"/>
+			<column name="parent_name" value="Sắc đẹp"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="dd4928b1-eb8d-45a2-8396-be3e4bde0421"/>
+			<column name="parent_name" value="Máy Ảnh"/>
+		</insert>
+		<insert tableName="parent">
+			<column name="parent_id" value="fc0e38b3-1747-4f61-9753-d395aaa8f8d6"/>
+			<column name="parent_name" value="Thời trang trẻ em"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-12">
+		<insert tableName="product">
+			<column name="product_id" value="2d3985f9-fe62-42fc-ae9d-f673b0c9154a"/>
+			<column name="name" value=" Nhẫn nam bạc rồng ôm long châu NB0875  "/>
+			<column name="description" value="&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Thiết kế sang trọng, nam tính, bản lỉnh quý ông.&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Đường kính mặt nhẫn: 14mm x 14mm x 4mm.&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Loại đá: Đá chính topaz nhân tạo 5mm,đá phụ Cubic zirconia (CZ).&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Trọng lượng: 2 đến 3.5 chỉ.&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Xi mạ: Sản phẩm mặc định được xi mạ vàng vàng trắng(Rhodium).&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Quý khách có thể yêu cầu xi mạ vàng trắng (Rhodium) hoặc vàng 18k tùy nhu cầu.&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Kích thước size nhẫn: Làm theo size tay của bạn cung cấp.&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;- Đối với các sản phẩm như nhẫn, vòng tay ,lắc tay , Quý Khách vui lòng tham khảo hướng dẫn cách đo size bên dưới.&lt;/p&gt;&#13;&#10;"/>
+			<column name="price" valueNumeric="550000.0"/>
+			<column name="stock_quantity" valueNumeric="2"/>
+			<column name="create_date" valueDate="2017-05-19 12:02:00.611"/>
+			<column name="manufacture_date" valueDate="1989-05-02 00:00:00.0"/>
+			<column name="view_number" valueNumeric="0"/>
+			<column name="imageUrl" value="nhan_1.jpg"/>
+			<column name="category_id" value="e3d1a684-278e-4939-b01e-7f2b324a0910"/>
+			<column name="supplier_id" value="5"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="576b9d9d-ca72-4ee8-bd42-a7b513e6acef"/>
+			<column name="name" value="Kính mát Ray-Ban RB3532 001 5350 (Vàng)  "/>
+			<column name="description" value="&lt;span style=&quot;color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Mẫu kính chính hãng mới nhất hiện nay.&lt;/span&gt;&lt;br style=&quot;margin: 0px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot; /&gt;&#13;&#10;&lt;span style=&quot;color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Bảo về đôi mắt toàn diện.&lt;/span&gt;&lt;br style=&quot;margin: 0px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot; /&gt;&#13;&#10;&lt;span style=&quot;color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Thiết kế dành riêng cho thị trường Việt Nam, đầy sự cá tính, cùng với sự phù hợp xu hướng thời trang hiện nay.&lt;/span&gt;&lt;br style=&quot;margin: 0px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot; /&gt;&#13;&#10;&lt;span style=&quot;color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Khi lựa chọn là một chiếc kính chính hãng, quý khách sẽ không bao giờ thất vọng về chiếc kính chính hãng này. Bởi chỉ những chiếc kính chính hãng mới mang đến cho bạn sự hài lòng và thoải mái khi chọn lựa:&lt;/span&gt;"/>
+			<column name="price" valueNumeric="5200000.0"/>
+			<column name="stock_quantity" valueNumeric="1"/>
+			<column name="create_date" valueDate="2017-05-19 12:49:27.421"/>
+			<column name="manufacture_date" valueDate="2010-01-01 00:00:00.0"/>
+			<column name="view_number" valueNumeric="1"/>
+			<column name="imageUrl" value="matkinh_2.jpg"/>
+			<column name="category_id" value="e3d1a684-278e-4939-b01e-7f2b324a0910"/>
+			<column name="supplier_id" value="4"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="5ca744c0-cc48-41ea-be31-0f7a19b9cbf1"/>
+			<column name="name" value=" Nikon D3400 lens kit AF-P DX Nikkor 18-55mm f/3.5-5.6GVR(Đen)"/>
+			<column name="description" value="Là phiên bản kế nhiệm chiếc Nikon D3300, D3400 có thiết kế ngoại hình gần như không thay đổi, chỉ có kích thước và trọng lượng được giảm đi đôi chút, phù hợp với người dùng là giới trẻ và mới làm quen đến máy ảnh. Ngoài ra, các cổng kết nối phía bên hông D3400 đã được thay đổi, khi chỉ có duy nhất 2 cổng kết nối là Mini USB và HDMI."/>
+			<column name="price" valueNumeric="1.325E7"/>
+			<column name="stock_quantity" valueNumeric="2"/>
+			<column name="create_date" valueDate="2017-05-19 12:35:44.56"/>
+			<column name="manufacture_date" valueDate="2010-06-13 00:00:00.0"/>
+			<column name="view_number" valueNumeric="161"/>
+			<column name="imageUrl" value="camera_1.jpg"/>
+			<column name="category_id" value="9b6a4b34-a1f3-46b2-b567-bbda32744262"/>
+			<column name="supplier_id" value="5fa9f9ab-5cca-4707-af3c-125e475b566e"/>
+			<column name="transaction_type_id" value="1"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="a679ac8c-2d85-4d7b-b987-6b6bf72d523b"/>
+			<column name="name" value="Marlboro Zippo Lighter &amp; Chrome &amp; Brass Ashtray- New Unused"/>
+			<column name="description" value=" Chiếc bật lửa có một tấm patina bằng đồng thau làm cho kiểu cổ điển này trở nên cổ điển hơn. Hàng còn mới và ít được sử dụng&#13;&#10;"/>
+			<column name="price" valueNumeric="699000.0"/>
+			<column name="stock_quantity" valueNumeric="1"/>
+			<column name="create_date" valueDate="2017-05-18 23:24:03.401"/>
+			<column name="manufacture_date" valueDate="1975-04-01 00:00:00.0"/>
+			<column name="view_number" valueNumeric="100"/>
+			<column name="imageUrl" value="zippo_3.jpg"/>
+			<column name="category_id" value="e3d1a684-278e-4939-b01e-7f2b324a0910"/>
+			<column name="supplier_id" value="4"/>
+			<column name="transaction_type_id" value="1"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="bb46eddc-134b-46d5-9ba5-1865142befe4"/>
+			<column name="name" value="Giày tây nam SLEDGERS IGOR (SM62LA02L) (Đen)"/>
+			<column name="description" value="&lt;span style=&quot;color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Gi&amp;agrave;y&amp;nbsp;Sledgers sử dụng c&amp;ocirc;ng nghệ ti&amp;ecirc;n tiến mang lại&amp;nbsp;cảm gi&amp;aacute;c tự do, thoải m&amp;aacute;i tối đa cho đ&amp;ocirc;i ch&amp;acirc;n của bạn khi di chuyển&lt;/span&gt;&lt;br style=&quot;margin: 0px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot; /&gt;&#13;&#10;&lt;span style=&quot;color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Được l&amp;agrave;m từ chất liệu cao cấp được nhập khẩu trực tiếp từ &amp;Yacute;, v&amp;igrave; vậy gi&amp;uacute;p cho đ&amp;ocirc;i gi&amp;agrave;y trở n&amp;ecirc;n nhẹ hơn rất nhiều&lt;/span&gt;&lt;br style=&quot;margin: 0px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot; /&gt;&#13;&#10;&lt;span style=&quot;color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Thiết kế thời trang, sang trọng&lt;/span&gt;"/>
+			<column name="price" valueNumeric="1907000.0"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="create_date" valueDate="2017-05-19 14:36:43.37"/>
+			<column name="manufacture_date" valueDate="2010-02-09 00:00:00.0"/>
+			<column name="view_number" valueNumeric="22"/>
+			<column name="imageUrl" value="giay_nam_1.jpg"/>
+			<column name="category_id" value="a82a1efe-9a8a-4ff5-9c53-e613ee852e8d"/>
+			<column name="supplier_id" value="6"/>
+			<column name="transaction_type_id" value="1"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Beauty_1"/>
+			<column name="name" value="Tông đơ cắt tóc cho trẻ em KEMEI KM-730 (Đỏ phối đen)"/>
+			<column name="description" value="Sản phẩm có tay cầm và nút điều khiển thuận tiện cho cả 2 tay, dễ dàng cắt tóc cho bé.Tông đơ cắt tóc Kemei 730 được thiết kế nhỏ gọn, dễ sử dụng và thao tác đơn giản, giúp bạn cắt tóc cho bé nhanh chóng và an toàn."/>
+			<column name="price" valueNumeric="90000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-05-18 17:23:53.012"/>
+			<column name="manufacture_date" valueDate="2014-12-05 00:00:00.0"/>
+			<column name="view_number" valueNumeric="221"/>
+			<column name="imageUrl" value="tongdo_3.jpg"/>
+			<column name="category_id" value="2cd8f91d-7ff6-4f11-bff7-2e9119ae6539"/>
+			<column name="supplier_id" value="3"/>
+			<column name="transaction_type_id" value="1"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Beauty_2"/>
+			<column name="name" value="Nước Hoa Nữ Urban Flowers Paris.30ml"/>
+			<column name="description" value="Độ lưu hương:Tạm ổn 4giờ đến 8 giờ Độ toả hương:Rất gần Thoang thoảng trên làn da Thời điểm khuyên dùng:Ngày, Xuân, Hạ Hương giữa:Hoa trà (Camelia),Hoa trinh nữ,Lá hoa tím."/>
+			<column name="price" valueNumeric="100000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-05-18 23:59:19.684"/>
+			<column name="manufacture_date" valueDate="2014-12-05 00:00:00.0"/>
+			<column name="view_number" valueNumeric="278"/>
+			<column name="imageUrl" value="nuochoa2.jpg"/>
+			<column name="category_id" value="2cd8f91d-7ff6-4f11-bff7-2e9119ae6539"/>
+			<column name="supplier_id" value="4"/>
+			<column name="transaction_type_id" value="1"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Child_1"/>
+			<column name="name" value="&#9;Xe ô tô biến hình thành Robot cho bé(Vàng)"/>
+			<column name="description" value="Giải trí sau những giờ học căng thẳng Làm từ chất liệu cao cấp an toàn cho trẻ em Giúp trẻ sáng tạo và tư duy cao"/>
+			<column name="price" valueNumeric="52000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-21 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2013-05-04 00:00:00.0"/>
+			<column name="view_number" valueNumeric="33"/>
+			<column name="imageUrl" value="child1.jpg"/>
+			<column name="category_id" value="1688e547-ab3b-4e75-af76-80b91b0f873c"/>
+			<column name="supplier_id" value="6"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Clothes_2"/>
+			<column name="name" value="&#9;Áo Thun Nam Trơn Co Giãn Cổ Tròn ATT015 ( Trắng)"/>
+			<column name="description" value="Chất liệu: vải thun co giãn 4  Mềm mịn, mặc mát Màu sắc: nhiều màu lựa chọn"/>
+			<column name="price" valueNumeric="70000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-19 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2012-05-05 00:00:00.0"/>
+			<column name="view_number" valueNumeric="53"/>
+			<column name="imageUrl" value="aothunnamtrang.jpg"/>
+			<column name="category_id" value="f4527e2f-41c3-4cb9-b4c2-11224d91370f"/>
+			<column name="supplier_id" value="2"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Clothe_1"/>
+			<column name="name" value="&#9;Áo Thun Nam Trơn Co Giãn Cổ Tròn L&amp;A Fashion ( Xanh Rêu )"/>
+			<column name="description" value="L&amp;A fashion dẫn đầu trong việc đáp ứng nhanh chóng những trào lưu xu hướng thời trang mới nhất châu Á. L&amp;A fashion luôn mang đến làn gió mới với xu hướng thời trang năng động, hiện đại và cá tính. chúng tôi liên tục đổi mới chính mình để theo kịp những xu hướng thời trang mới, chúng tôi cam kết luôn cập nhật những mẫu mới nhất để đáp ứng nhu cầu khách hàng."/>
+			<column name="price" valueNumeric="60000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-16 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2016-12-05 00:00:00.0"/>
+			<column name="view_number" valueNumeric="88"/>
+			<column name="imageUrl" value="aothunnam.jpg"/>
+			<column name="category_id" value="f4527e2f-41c3-4cb9-b4c2-11224d91370f"/>
+			<column name="supplier_id" value="2"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="e7f52a33-a8fc-463d-a644-a3e9dfb37074"/>
+			<column name="name" value="Lắc Tay Nữ Bạc Hiểu Minh Ltu277-2017  Bạc Ý  "/>
+			<column name="description" value="&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Lắc đeo tay l&amp;agrave; một trong những m&amp;oacute;n đồ trang sức được hầu hết c&amp;aacute;c bạn g&amp;aacute;i ưa chuộng. Bởi n&amp;oacute; dễ phối với nhiều loại trang phục, c&amp;oacute; thể đeo thường ng&amp;agrave;y hoặc trong dịp đặc biệt. Đặc biệt, lắc tay chất liệu bạc lấp l&amp;aacute;nh sẽ gi&amp;uacute;p cho đ&amp;ocirc;i tay bạn g&amp;aacute;i th&amp;ecirc;m nổi bật.&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p style=&quot;margin: 0px 0px 10px; padding: 0px; color: rgb(64, 64, 64); font-family: Helvetica, Arial, sans-serif; font-size: 12px;&quot;&gt;Sản phẩm với chiều d&amp;agrave;i 18 (cm) n&amp;ecirc;n ph&amp;ugrave; hợp với hầu hết mọi người. Kiểu d&amp;aacute;ng tinh tế trang nh&amp;atilde; với những quả cầu h&amp;igrave;nh tr&amp;ograve;n được thiết kế bắt mắt chắc chắn sẽ khiến bạn th&amp;iacute;ch th&amp;uacute; khi nh&amp;igrave;n thấy. Khi sở hữu v&amp;ograve;ng đeo tay n&amp;agrave;y, c&amp;aacute;c bạn g&amp;aacute;i sẽ to&amp;aacute;t l&amp;ecirc;n phong c&amp;aacute;ch trẻ trung nhưng kh&amp;ocirc;ng k&amp;eacute;m phần nữ t&amp;iacute;nh.&lt;/p&gt;&#13;&#10;"/>
+			<column name="price" valueNumeric="255000.0"/>
+			<column name="stock_quantity" valueNumeric="1"/>
+			<column name="create_date" valueDate="2017-05-19 12:06:24.272"/>
+			<column name="manufacture_date" valueDate="1979-02-01 00:00:00.0"/>
+			<column name="view_number" valueNumeric="36"/>
+			<column name="imageUrl" value="lactay_2.jpg"/>
+			<column name="category_id" value="e3d1a684-278e-4939-b01e-7f2b324a0910"/>
+			<column name="supplier_id" value="5"/>
+			<column name="transaction_type_id" value="1"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Jwely_2194"/>
+			<column name="name" value="DOUBLET OPAL VINTAGE STYLE 925 STERLING SILVER RING SIZE 8 US"/>
+			<column name="description" value="DOUBLET OPAL VINTAGE STYLE 925 STERLING SILVER DESIGNER RING JEWELRY SIZE IS 8 US HEAD SIZE 0.75&quot; X 0.25&quot;"/>
+			<column name="price" valueNumeric="400000.0"/>
+			<column name="stock_quantity" valueNumeric="1"/>
+			<column name="create_date" valueDate="2017-04-27 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="1982-05-12 00:00:00.0"/>
+			<column name="view_number" valueNumeric="214"/>
+			<column name="imageUrl" value="trangsuc.jpg"/>
+			<column name="category_id" value="e3d1a684-278e-4939-b01e-7f2b324a0910"/>
+			<column name="supplier_id" value="2"/>
+			<column name="transaction_type_id" value="1"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Pk_01"/>
+			<column name="name" value="Vòng Cổ Choker Chữ Nhật D2289 (Vàng)"/>
+			<column name="description" value="Vòng cổ này là sự sáng tạo của những nhà thiết kế hàng đầu và là một trong những chiếc vòng cổ đang hot nhất hiện nay. Ngay khi được sản xuất chiếc vòng này lập tức trở thành xu hướng mới của các fashionista nhờ sự trẻ trung, năng động và hết sức tinh tế của mình."/>
+			<column name="price" valueNumeric="110000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-13 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2015-08-12 00:00:00.0"/>
+			<column name="view_number" valueNumeric="20"/>
+			<column name="imageUrl" value="vongco.jpg"/>
+			<column name="category_id" value="e3d1a684-278e-4939-b01e-7f2b324a0910"/>
+			<column name="supplier_id" value="2"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Shoe_1"/>
+			<column name="name" value="Giày thể thao nam Biti's Hunter Liteknit II DS1252 (Đen)"/>
+			<column name="description" value="Công nghệ quai dệt Litekit Ở phiên bản mới của Hunter, Biti's đã thay thế chất liệu Air Mesh cũ bằng công nghệ mới có tên gọi Liteknit. Đây là công nghệ dệt để tạo nên phần thân của giày với nhiều lỗ thoáng khí, tăng sự thoải mái và dễ chịu cho người mang. Ngoài ra, cải tiến này còn giúp cho việc vệ sinh đôi giày trở nên dễ dàng và thuận tiện hơn."/>
+			<column name="price" valueNumeric="650000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-13 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2012-05-05 00:00:00.0"/>
+			<column name="view_number" valueNumeric="8"/>
+			<column name="imageUrl" value="bititshunter.jpg"/>
+			<column name="category_id" value="a82a1efe-9a8a-4ff5-9c53-e613ee852e8d"/>
+			<column name="supplier_id" value="6"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Shoe_2"/>
+			<column name="name" value="Giày thể thao Biti's HUNTER  DS01255 (Xanh)"/>
+			<column name="description" value="Ở phiên bản mới của Hunter, Biti's đã thay thế chất liệu Air Mesh cũ bằng công nghệ mới có tên gọi Liteknit. Đây là công nghệ dệt để tạo nên phần thân của giày với nhiều lỗ thoáng khí, tăng sự thoải mái và dễ chịu cho người mang. Ngoài ra, cải tiến này còn giúp cho việc vệ sinh đôi giày trở nên dễ dàng và thuận tiện hơn"/>
+			<column name="price" valueNumeric="660000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-13 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2012-05-05 00:00:00.0"/>
+			<column name="view_number" valueNumeric="76"/>
+			<column name="imageUrl" value="bititshunter1.jpg"/>
+			<column name="category_id" value="a82a1efe-9a8a-4ff5-9c53-e613ee852e8d"/>
+			<column name="supplier_id" value="1"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Technology_1"/>
+			<column name="name" value="EARPHONE BLUETOOTH HEADSET PISEN VN002"/>
+			<column name="description" value="Tai nghe Bluetooth PisenVN002 hoàn toàn có thể đáp ứng được nhu cầu sử dụng tai nghe Bluetooth chất lượng, đầy đủ tính năng với giá thành hợp lý của người tiêu dùng Việt."/>
+			<column name="price" valueNumeric="490000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-19 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2015-08-12 00:00:00.0"/>
+			<column name="view_number" valueNumeric="17"/>
+			<column name="imageUrl" value="headphone.jpg"/>
+			<column name="category_id" value="9b6a4b34-a1f3-46b2-b567-bbda32744262"/>
+			<column name="supplier_id" value="5"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Technology_2"/>
+			<column name="name" value="EARPHONE BLUETOOTH STEREO HEADSET PISEN LE101"/>
+			<column name="description" value=" Sản phẩm tai nghe không dây dành cho điện thoại di động của Pisen Bạn cũng có thể sử dụng tai nghe để nghe các phương tiện khác như đài trên web, nhạc và âm thanh khác"/>
+			<column name="price" valueNumeric="500000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-19 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2015-08-12 00:00:00.0"/>
+			<column name="view_number" valueNumeric="6"/>
+			<column name="imageUrl" value="headphone1.jpg"/>
+			<column name="category_id" value="9b6a4b34-a1f3-46b2-b567-bbda32744262"/>
+			<column name="supplier_id" value="5"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Watch_21394"/>
+			<column name="name" value="Đồng hồ nam dây thép không rỉ ORIANDO (Trắng)"/>
+			<column name="description" value="Mặt đồng hồ được làm bằng chất liệu kính khoáng cao cấp nhập khẩu từ Đức có độ cứng cao, chịu ma sát, kháng áp lực, chống chầy xước giúp bảo vệ đồng hồ một cách hoàn hảo nhất. Đồng hồ sở hữu độ chống nước 5 ATM chống nước cực tốt nên bạn có thể tha hồ bơi lội cũng không lo bị thấm nước vào động cơ làm hỏng đồng hồ. Hơn nữa, toàn bộ đồng hồ được làm bằng thép không gỉ luôn sáng bóng, chống ăn mòn và bảo vệ da tay của bạn. Ngoài ra, chiếc đồng hồ này thuộc loại đồng hồ Quartz sử dụng bộ máy Citizen OS10 cao cấp, chạy pin lithium được nhập khẩu từ Nhật Bản với công nghệ cao đem lại sự chuẩn xác đến từng giây cho chiếc đồng hồ."/>
+			<column name="price" valueNumeric="350000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-12 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="1992-08-02 00:00:00.0"/>
+			<column name="view_number" valueNumeric="39"/>
+			<column name="imageUrl" value="13.jpg"/>
+			<column name="category_id" value="6601bda5-3bad-4625-8549-05d480680b0a"/>
+			<column name="supplier_id" value="1"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Watch_21395"/>
+			<column name="name" value="Đồng hồ nam dây cao su SKMEI 0990 (Đen)  "/>
+			<column name="description" value=" Chất liệu cao cấp, bền đẹp.Thiết kế tinh tế, hợp thời trang. Sản xuất và chế tạo bằng công nghệ tiên tiến của Nhật Bản"/>
+			<column name="price" valueNumeric="360000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-13 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="1991-08-05 00:00:00.0"/>
+			<column name="view_number" valueNumeric="103"/>
+			<column name="imageUrl" value="14.jpg"/>
+			<column name="category_id" value="6601bda5-3bad-4625-8549-05d480680b0a"/>
+			<column name="supplier_id" value="1"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Watch_21396"/>
+			<column name="name" value="Đồng hồ nam dây da Protab kính 3D SI015 DH25 (Đen)"/>
+			<column name="description" value="Một chiếc đồ hoàn hảo là món phụ kiện lý tưởng giúp bạn hoàn thiện phong cách của chính mình. Sở hữu thiết kế tính tế, chiếc Đồng hồ nam dây da Lkính 3D SI015 DH25 (Đen) là lựa chọn hoàn hảo của những quý ông lịch lãm. Mặt tròn cổ điển kết hợp với dây da tổng hợp, được chế tác đến từng chi tiết tác tạo cảm giác thoải mái và êm ái dành cho người đeo. Với chiếc đồng hồ này, bạn có thể thỏa sức phối cùng nhiều trang phục để làm nổi bật phong cách của chính mình."/>
+			<column name="price" valueNumeric="340000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-13 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2015-08-12 00:00:00.0"/>
+			<column name="view_number" valueNumeric="4"/>
+			<column name="imageUrl" value="donghonam.jpg"/>
+			<column name="category_id" value="6601bda5-3bad-4625-8549-05d480680b0a"/>
+			<column name="supplier_id" value="1"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Watch_21397"/>
+			<column name="name" value="&#9;Đồng hồ nam dây thép không gỉ Skmei 90KCN69 (Vàng) "/>
+			<column name="description" value="Thiết kế độc đáo, thời trang"/>
+			<column name="price" valueNumeric="200000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-13 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2015-08-12 00:00:00.0"/>
+			<column name="view_number" valueNumeric="5"/>
+			<column name="imageUrl" value="donghonam2.jpg"/>
+			<column name="category_id" value="6601bda5-3bad-4625-8549-05d480680b0a"/>
+			<column name="supplier_id" value="1"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+		<insert tableName="product">
+			<column name="product_id" value="Watch_21398"/>
+			<column name="name" value="&#9;Đồng hồ nam dây thép không gỉ Curren 8083 (Đen)"/>
+			<column name="description" value="Đồng hồ nam Curren 8083 không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng "/>
+			<column name="price" valueNumeric="210000.0"/>
+			<column name="stock_quantity" valueNumeric="10"/>
+			<column name="create_date" valueDate="2017-04-13 00:00:00.0"/>
+			<column name="manufacture_date" valueDate="2015-08-12 00:00:00.0"/>
+			<column name="view_number" valueNumeric="2"/>
+			<column name="imageUrl" value="donghonam1.jpg"/>
+			<column name="category_id" value="6601bda5-3bad-4625-8549-05d480680b0a"/>
+			<column name="supplier_id" value="1"/>
+			<column name="transaction_type_id" value="2"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-13">
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Beauty_detail_1"/>
+			<column name="size" value="350 ml"/>
+			<column name="color" value="Xanh nhạt"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Beauty_2"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Beauty_detail_3"/>
+			<column name="size" value="Lớn"/>
+			<column name="color" value="Đỏ"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Beauty_1"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Child_detail_1"/>
+			<column name="size" value="Mô hình nhỏ"/>
+			<column name="color" value="Vàng"/>
+			<column name="stock_quantity" valueNumeric="3"/>
+			<column name="product_id" value="Child_1"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Clothe_detail_1"/>
+			<column name="size" value="L"/>
+			<column name="color" value="Xám"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Clothe_1"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Clothe_detail_2"/>
+			<column name="size" value="M"/>
+			<column name="color" value="Trắng"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Clothes_2"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Jwely_detail_2194"/>
+			<column name="size" value="30"/>
+			<column name="color" value="Vàng"/>
+			<column name="stock_quantity" valueNumeric="1"/>
+			<column name="product_id" value="Jwely_2194"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Pk_detail_1"/>
+			<column name="size" value="Vòng nho"/>
+			<column name="color" value="Trắng vàng"/>
+			<column name="stock_quantity" valueNumeric="2"/>
+			<column name="product_id" value="Pk_01"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Shoe_detail_1"/>
+			<column name="size" value="32"/>
+			<column name="color" value="Vàng"/>
+			<column name="stock_quantity" valueNumeric="3"/>
+			<column name="product_id" value="Shoe_1"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Shoe_detail_2"/>
+			<column name="size" value="43"/>
+			<column name="color" value="Đen"/>
+			<column name="stock_quantity" valueNumeric="1"/>
+			<column name="product_id" value="Shoe_2"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Technology_detail_1"/>
+			<column name="size" value="Nhỏ"/>
+			<column name="color" value="Đen"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Technology_1"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Technology_detail_2"/>
+			<column name="size" value="Nhỏ "/>
+			<column name="color" value="Đen"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Technology_2"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Watch_Detail_1"/>
+			<column name="size" value="35"/>
+			<column name="color" value="Black"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Watch_21395"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Watch_Detail_2"/>
+			<column name="size" value="32"/>
+			<column name="color" value="Trắng"/>
+			<column name="stock_quantity" valueNumeric="5"/>
+			<column name="product_id" value="Watch_21394"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Watch_detail_21394"/>
+			<column name="size" value="30"/>
+			<column name="color" value="Đen"/>
+			<column name="stock_quantity" valueNumeric="3"/>
+			<column name="product_id" value="Watch_21396"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Watch_detail_21395"/>
+			<column name="size" value="35"/>
+			<column name="color" value="Đen"/>
+			<column name="stock_quantity" valueNumeric="1"/>
+			<column name="product_id" value="Watch_21398"/>
+		</insert>
+		<insert tableName="product_detail">
+			<column name="product_detail_id" value="Watch_detail_21398"/>
+			<column name="size" value="35"/>
+			<column name="color" value="Đen"/>
+			<column name="stock_quantity" valueNumeric="3"/>
+			<column name="product_id" value="Watch_21397"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-14">
+		<insert tableName="rating">
+			<column name="rating_id" value="09445d4a-1afd-4776-858c-f945a9b17c33"/>
+			<column name="rating" valueNumeric="5"/>
+			<column name="rating_content" value="Giá rẻ mà chất lượng&#13;&#10;Mua về cho thèn cu ở nhà thích quá chừng..Hihi&#13;&#10;Thank shop nha"/>
+			<column name="product_id" value="Child_1"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="rating_title" value="Hàng tốt"/>
+			<column name="create_date" valueDate="2017-05-16 22:23:38.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="2a3e8840-3df2-4b72-aaa8-962df0849be8"/>
+			<column name="rating" valueNumeric="5"/>
+			<column name="rating_content" value="Hang chat luong cao"/>
+			<column name="product_id" value="Beauty_2"/>
+			<column name="username" value="cristiano"/>
+			<column name="rating_title" value="Good"/>
+			<column name="create_date" valueDate="2017-05-12 00:00:00.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="392341b3-7429-4a9f-aa37-4eeee520fd3e"/>
+			<column name="rating" valueNumeric="0"/>
+			<column name="rating_content" value="Sản phấm đúng với mô tả, đeo chắc tay. đẹp&#13;&#10;Giao Hàng đúng ngày tuy nhiên phí ship hơi đắt. &#13;&#10;Rất hài lòng"/>
+			<column name="product_id" value="Watch_21395"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title" value="Tốt"/>
+			<column name="create_date" valueDate="2017-05-03 12:30:11.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="431332cb-56d1-46c8-b2e9-b2abbdd6c010"/>
+			<column name="rating" valueNumeric="5"/>
+			<column name="rating_content" value="Mẫu mã đẹp&#13;&#10;Hàng cổ có khác..Chất lượng rất ổn"/>
+			<column name="product_id" value="Jwely_2194"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title" value="Hàng ok"/>
+			<column name="create_date" valueDate="2017-05-14 21:47:45.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="4a799fb2-e13f-4174-948c-ed2495ea72b6"/>
+			<column name="rating" valueNumeric="4"/>
+			<column name="rating_content" value="Vừa nhận được hàng đặt hôm big sale 12-12 chắc do đông lắm nên tới 19-12 mới nhận được. Bình thường thì 1 ngày là có. Giày thì khỏi phải bàn so với mức giá thì quá ổn đẹp nhẹ đi êm. Đây là đôi giày đi bộ thể thao đâu tiên trong đời @@ Mình chân 25.5cm mua size 42 mang vừa khít ai mua sau thì đo chân để ước lượng nhé. Chúc bitis sẽ trở lại thành công làm ra những đôi giày đẹp nữa"/>
+			<column name="product_id" value="Shoe_2"/>
+			<column name="username" value="cristiano"/>
+			<column name="rating_title" value="Rất tốt"/>
+			<column name="create_date" valueDate="2017-04-28 00:32:31.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="5ea320a9-9497-43a5-a2fc-9ae3b71e8292"/>
+			<column name="rating" valueNumeric="5"/>
+			<column name="rating_content" value="Mình hôm qua nhận được hàng sau khi đổi Size 43, Các bạn đi Size chuẩn 41 thì Lấy 43 là Ok.&#13; Mình cho 5 sao vì dịch vụ tốt bên hệ thống và Sản phẩm đẹp Biti&quot;s."/>
+			<column name="product_id" value="Shoe_2"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title" value="Khá tốt"/>
+			<column name="create_date" valueDate="2017-04-27 23:45:57.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="64b30ac1-f16f-46f5-b689-5c38a52ce398"/>
+			<column name="rating" valueNumeric="0"/>
+			<column name="rating_content" value="test"/>
+			<column name="product_id" value="Technology_2"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title" value="test"/>
+			<column name="create_date" valueDate="2017-05-12 00:00:00.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="72fb39e7-c49d-42ce-9a19-04a72a69bf97"/>
+			<column name="rating" valueNumeric="0"/>
+			<column name="rating_content" value="Hàng đúng với mô tả"/>
+			<column name="product_id" value="Clothe_1"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title"/>
+			<column name="create_date" valueDate="2017-05-12 00:00:00.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="8471a0e6-83fe-4cb9-94f2-23274df63ab1"/>
+			<column name="rating" valueNumeric="2"/>
+			<column name="rating_content" value="Hang dung mo ta"/>
+			<column name="product_id" value="Technology_2"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title" value="Son"/>
+			<column name="create_date" valueDate="2017-05-12 00:00:00.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="947901db-5abf-4581-9bc7-a5d6fd01d3d7"/>
+			<column name="rating" valueNumeric="0"/>
+			<column name="rating_content" value="Hàng đúng với mô tả"/>
+			<column name="product_id" value="Shoe_2"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="rating_title" value="Tốt"/>
+			<column name="create_date" valueDate="2017-05-12 00:00:00.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="965e9e76-d90b-45ed-aa46-68b28396ddce"/>
+			<column name="rating" valueNumeric="5"/>
+			<column name="rating_content" value="Hàng đúng với mô tả"/>
+			<column name="product_id" value="Technology_2"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title" value=""/>
+			<column name="create_date" valueDate="2017-05-12 00:00:00.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="d93d7bc1-8d24-4908-9530-26333e19b5a0"/>
+			<column name="rating" valueNumeric="5"/>
+			<column name="rating_content" value="San pham dung voi mo ta"/>
+			<column name="product_id" value="Clothe_1"/>
+			<column name="username" value="maivanson"/>
+			<column name="rating_title" value="Kha tot"/>
+			<column name="create_date" valueDate="2017-05-12 00:00:00.0"/>
+		</insert>
+		<insert tableName="rating">
+			<column name="rating_id" value="f998b2b1-7a9f-4188-8387-c0d56d232644"/>
+			<column name="rating" valueNumeric="4"/>
+			<column name="rating_content" value="Đúng tuyệt vời lun"/>
+			<column name="product_id" value="Shoe_2"/>
+			<column name="username" value="cristiano"/>
+			<column name="rating_title" value="Tuyệt vời nè"/>
+			<column name="create_date" valueDate="2017-04-28 14:14:12.0"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-15">
+		<insert tableName="role">
+			<column name="role_id" value="1"/>
+			<column name="role_name" value="ROLE_ADMIN"/>
+		</insert>
+		<insert tableName="role">
+			<column name="role_id" value="2"/>
+			<column name="role_name" value="ROLE_USER"/>
+		</insert>
+		<insert tableName="role">
+			<column name="role_id" value="3"/>
+			<column name="role_name" value="ROLE_EMPLOYEE"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-16">
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="1b205c35-b4a8-471f-83c3-dcf1f1bba251"/>
+			<column name="address" value="128 Phan Thanh Đà Nẵng"/>
+			<column name="invoice_id" value="4ab378d2-c333-4552-bb6c-3087aa078f4e"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="1cc2b5da-3e09-496e-a423-e1fc287d1685"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="348b7706-9402-449d-8281-54ab3d44c2d3"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="3ae38e57-d18d-4c6f-ae26-866862993ca5"/>
+			<column name="address" value="121 Lê Thanh Nghị Đà Nẵng"/>
+			<column name="invoice_id" value="9b32bf99-696b-4b74-9208-eba98b1820e4"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="5fc4cfec-77ec-4acb-b727-b4eb9299a57d"/>
+			<column name="address" value="46 Hoàn Kiếm Hà Nội"/>
+			<column name="invoice_id" value="08a6cc27-d976-464e-8e24-4e27f5aa2f09"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="2"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="67d1ad55-d125-43b3-8d4e-2e5b133321c2"/>
+			<column name="address" value="115 Bùi Thị Xuân Sài Gòn"/>
+			<column name="invoice_id" value="0e9aa911-cf31-421c-af32-01a5e4fcafa3"/>
+			<column name="district_id" value="2"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="7b03c0f0-b6e6-4390-81ac-5395f1c76236"/>
+			<column name="address" value="157 Tản Đà Đà Nẵng"/>
+			<column name="invoice_id" value="1f4ac9c4-1580-4fcd-ae33-ec6ffaf799ca"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="7c29540f-3095-4a60-9e23-d4e56c01bd90"/>
+			<column name="address" value="112 Phạm Văn Nghị Huế"/>
+			<column name="invoice_id" value="962d4724-8e25-446f-a963-8e3af92f4d1c"/>
+			<column name="district_id" value="2"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="81c43ff9-3c5a-479f-9590-c084247f189d"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="ce65443b-34df-43ed-9ba9-b71dc733388a"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="985dd7d1-3a14-46ad-bf9c-24f3a8086201"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="f7a889c7-0e8f-40d7-ad9f-cef2cddafd82"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="a1c56547-bb9e-448d-a3f0-9f212ba6cd5f"/>
+			<column name="address" value="168 Phan Thanh Da Nang"/>
+			<column name="invoice_id" value="e09e3b99-0f28-4a50-9d5a-8bf449b5cf1d"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="a2dda8f7-3011-44d6-9334-e7d9d7968e48"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="3783f00f-ef08-47ae-80d6-a096953103fe"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="a2e24990-aceb-44f2-a0e9-2f97c111d8c4"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="956b9dc6-394b-41bd-997f-3f3c9def437d"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="c419a685-e663-47c6-b962-031d91df9105"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="6243e9b2-f833-4cc3-9893-f5e8373fa58c"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="c7231c4f-7a08-4fb6-9f6a-ad235c1dd7f9"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="22c44dff-a5e5-4265-b44f-5268f7dae94b"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="db8cffaf-27d5-4d84-bb68-6974bfe3f3d7"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="0ff021c3-a829-477c-a10a-af2a983f59c4"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="e30cae95-622f-4ea9-ae73-455199b1d702"/>
+			<column name="address" value=""/>
+			<column name="invoice_id" value="8073ff8d-c548-499c-ac32-2a8a3d3cf3d1"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+		<insert tableName="shipping_info">
+			<column name="shipping_info_id" value="fb5bf162-b8cc-4656-8a10-1a7a8730d55b"/>
+			<column name="address" value="128 Phan Thanh Đà Nẵng"/>
+			<column name="invoice_id" value="811dc0cd-8c39-4c21-8f6e-e1138ac655c7"/>
+			<column name="district_id" value="1"/>
+			<column name="city_id" value="1"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-17">
+		<insert tableName="supplier">
+			<column name="supplier_id" value="1"/>
+			<column name="supplier_name" value="ROLEX"/>
+			<column name="logo" value="rolex.png"/>
+		</insert>
+		<insert tableName="supplier">
+			<column name="supplier_id" value="2"/>
+			<column name="supplier_name" value="F-Men"/>
+			<column name="logo" value="fmen.png"/>
+		</insert>
+		<insert tableName="supplier">
+			<column name="supplier_id" value="3"/>
+			<column name="supplier_name" value="Kemei"/>
+			<column name="logo" value="kemei.png"/>
+		</insert>
+		<insert tableName="supplier">
+			<column name="supplier_id" value="3f57b969-f4c8-4cb2-84de-4aa1e5c75f42"/>
+			<column name="supplier_name" value="Vũ Gia"/>
+			<column name="logo"/>
+		</insert>
+		<insert tableName="supplier">
+			<column name="supplier_id" value="4"/>
+			<column name="supplier_name" value="Urban"/>
+			<column name="logo" value="urban.png"/>
+		</insert>
+		<insert tableName="supplier">
+			<column name="supplier_id" value="5"/>
+			<column name="supplier_name" value="Pisen"/>
+			<column name="logo" value="pisen.png"/>
+		</insert>
+		<insert tableName="supplier">
+			<column name="supplier_id" value="5fa9f9ab-5cca-4707-af3c-125e475b566e"/>
+			<column name="supplier_name" value="Canon"/>
+			<column name="logo"/>
+		</insert>
+		<insert tableName="supplier">
+			<column name="supplier_id" value="6"/>
+			<column name="supplier_name" value="Bitis"/>
+			<column name="logo" value="bitis.png"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-18">
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="0374c9ed-d4ad-47b5-94a9-b22e10f4ee15"/>
+			<column name="token" value="6bb84551-b94f-498c-bfc6-1b85f4550c89"/>
+			<column name="expiry_date" valueDate="2017-05-21"/>
+			<column name="username" value="maradona"/>
+		</insert>
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="086d9e77-5c07-410a-90e5-eaa8260f5a07"/>
+			<column name="token" value="861ffeb2-5824-4204-8cbb-2a5b64372f3d"/>
+			<column name="expiry_date" valueDate="2017-05-19"/>
+			<column name="username" value="quantrivien"/>
+		</insert>
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="19aab49d-1e53-4d0c-8efc-e7bca524c91f"/>
+			<column name="token" value="4a8b8f36-7731-4524-89c5-af158beb89a4"/>
+			<column name="expiry_date" valueDate="2017-05-20"/>
+			<column name="username" value="quantrivien"/>
+		</insert>
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="2d08e46a-7318-4621-a405-bac414af7a90"/>
+			<column name="token" value="71dbe76c-e877-4fb7-955d-762b924e2d89"/>
+			<column name="expiry_date" valueDate="2017-05-19"/>
+			<column name="username" value="quantrivien"/>
+		</insert>
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="4240429f-38f4-412a-bd1e-146ae0141cb2"/>
+			<column name="token" value="790a218a-ae2e-4cfe-b2a4-8ec48de8eee2"/>
+			<column name="expiry_date" valueDate="2017-05-20"/>
+			<column name="username" value="maivanson"/>
+		</insert>
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="62cf7377-d83b-42e7-a970-520e828be497"/>
+			<column name="token" value="5a754ffd-8d1a-406f-8b27-fc0976f70568"/>
+			<column name="expiry_date" valueDate="2017-05-20"/>
+			<column name="username" value="quantrivien"/>
+		</insert>
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="a94721e0-efcf-4105-b551-db902cb30b2b"/>
+			<column name="token" value="302f0bd4-11c7-4259-b69f-690b20f2e822"/>
+			<column name="expiry_date" valueDate="2017-05-20"/>
+			<column name="username" value="quantrivien"/>
+		</insert>
+		<insert tableName="token_to_verify_email">
+			<column name="token_id" value="c68b5ba1-be91-478c-bba3-1981c8cb75e9"/>
+			<column name="token" value="3eb1c2d5-a443-4c58-979d-56d392a44ad7"/>
+			<column name="expiry_date" valueDate="2017-05-20"/>
+			<column name="username" value="maivanson"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-19">
+		<insert tableName="transaction_type">
+			<column name="transaction_type_id" value="1"/>
+			<column name="transaction_type_name" value="Auction"/>
+		</insert>
+		<insert tableName="transaction_type">
+			<column name="transaction_type_id" value="2"/>
+			<column name="transaction_type_name" value="Sale"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-20">
+		<insert tableName="user">
+			<column name="username" value="cristiano"/>
+			<column name="password" value="$2a$11$7GFCb.0f9OKBIGtfumayFOxameVBhCd432ytPIKtnNtUzwNtE07eS"/>
+			<column name="email" value="sonmv.itedu@gmail.com"/>
+			<column name="name" value="ronaldo"/>
+			<column name="phone" value="01665102293"/>
+			<column name="birthday" valueDate="2017-01-02"/>
+			<column name="address" value="112 Le Thanh Nghi"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id" valueNumeric="4"/>
+			<column name="city_id" valueNumeric="1"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+		<insert tableName="user">
+			<column name="username" value="lienkiet123"/>
+			<column name="password" value="$2a$11$z1Rdv8MAvBNxnkozgasKvu4Mxqsb1Cd0H4B3WdUAey108iQxXo31K"/>
+			<column name="email" value="lienkiet123@gmail.com"/>
+			<column name="name" value="Lý Liên Kiệt"/>
+			<column name="phone" value="0122856232"/>
+			<column name="birthday" valueDate="2017-01-12"/>
+			<column name="address" value="112 Lê Thanh Nghị Đà Nẵng"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id" valueNumeric="1"/>
+			<column name="city_id" valueNumeric="1"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+		<insert tableName="user">
+			<column name="username" value="maivanson"/>
+			<column name="password" value="$2a$11$Xp6lLdq7e.caO7AEhZsus.wONsLtUfh4tyuFwmC6EDbQWgqqEN7bq"/>
+			<column name="email" value="aloneguy13194@gmail.com"/>
+			<column name="name" value="Mai Văn Sơn"/>
+			<column name="phone" value="01665102292"/>
+			<column name="birthday" valueDate="1994-01-02"/>
+			<column name="address" value="H17/A 181 Phan Thanh- Đà Nẵng"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id" valueNumeric="2"/>
+			<column name="city_id" valueNumeric="1"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+		<insert tableName="user">
+			<column name="username" value="maradona"/>
+			<column name="password" value="$2a$11$IHUaepD3EWRbMv0SjwgtduEiwg.NSJ5pQWncXwlRUjjnft/Mtxw0S"/>
+			<column name="email" value="shinmu2194@gmail.com"/>
+			<column name="name" value="diegomar"/>
+			<column name="phone" value="0168758210"/>
+			<column name="birthday"/>
+			<column name="address"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id"/>
+			<column name="city_id"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+		<insert tableName="user">
+			<column name="username" value="mesutozil"/>
+			<column name="password" value="$2a$11$AJmdzSxDSaVwIS.tuR21Fe7ia3MaqHajx7.kAap1giE3wnoZVumcO"/>
+			<column name="email" value="crms13194@gmail.com"/>
+			<column name="name" value="Mesut ozil"/>
+			<column name="phone" value="01223458523"/>
+			<column name="birthday" valueDate="1994-01-02"/>
+			<column name="address" value="H17/A 181 Phan Thanh- Đà Nẵng"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id" valueNumeric="2"/>
+			<column name="city_id" valueNumeric="1"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+		<insert tableName="user">
+			<column name="username" value="neymar"/>
+			<column name="password" value="$2a$11$AJmdzSxDSaVwIS.tuR21Fe7ia3MaqHajx7.kAap1giE3wnoZVumcO"/>
+			<column name="email" value="neymar@gmail.com"/>
+			<column name="name" value="Neymar"/>
+			<column name="phone" value="01625821258"/>
+			<column name="birthday" valueDate="1994-01-02"/>
+			<column name="address" value="H17/A 181 Phan Thanh- Đà Nẵng"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id" valueNumeric="1"/>
+			<column name="city_id" valueNumeric="2"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+		<insert tableName="user">
+			<column name="username" value="quantrivien"/>
+			<column name="password" value="$2a$11$AJmdzSxDSaVwIS.tuR21Fe7ia3MaqHajx7.kAap1giE3wnoZVumcO"/>
+			<column name="email" value="shinmu21945@gmail.com"/>
+			<column name="name" value="Quản Trị Viên"/>
+			<column name="phone" value="01686714022"/>
+			<column name="birthday" valueDate="1994-01-02"/>
+			<column name="address" value="H17/A 181 Phan Thanh- Đà Nẵng"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id" valueNumeric="2"/>
+			<column name="city_id" valueNumeric="1"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+		<insert tableName="user">
+			<column name="username" value="ronaldo"/>
+			<column name="password" value="$2a$11$AJmdzSxDSaVwIS.tuR21Fe7ia3MaqHajx7.kAap1giE3wnoZVumcO"/>
+			<column name="email" value="ronaldo7@gmail.com"/>
+			<column name="name" value="Ronaldo"/>
+			<column name="phone" value="01235812203"/>
+			<column name="birthday" valueDate="1994-01-02"/>
+			<column name="address" value="H17/A 181 Phan Thanh- Đà Nẵng"/>
+			<column name="accountNonLocked" valueNumeric="1"/>
+			<column name="district_id" valueNumeric="1"/>
+			<column name="city_id" valueNumeric="2"/>
+			<column name="active" valueBoolean="true"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-21">
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="005ae8e9-5112-49a3-9b16-1bb9eb3311ae"/>
+			<column name="bidtime" valueDate="2017-05-20 15:04:36.0"/>
+			<column name="price" valueNumeric="111.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="06bdda76-0ecd-4fe3-8071-8d30d00dfcf6"/>
+			<column name="bidtime" valueDate="2017-05-20 14:59:54.0"/>
+			<column name="price" valueNumeric="1.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="152ea9f7-2d55-4534-9f83-f94805582842"/>
+			<column name="bidtime" valueDate="2017-05-20 00:46:24.0"/>
+			<column name="price" valueNumeric="1.401E7"/>
+			<column name="username" value="mesutozil"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="30974353-ca71-498f-9676-a1ff2bfc9c48"/>
+			<column name="bidtime" valueDate="2017-05-19 16:37:20.0"/>
+			<column name="price" valueNumeric="10000.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="auction_id" value="0057c39c-b419-4cd1-a945-a84aeabe6be6"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="3153a1b9-0ba6-4f27-a77b-bc378610ee68"/>
+			<column name="bidtime" valueDate="2017-05-20 00:03:58.0"/>
+			<column name="price" valueNumeric="1.31E7"/>
+			<column name="username" value="ronaldo"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="3687d99f-536d-4f6e-a8ec-41aee78234d9"/>
+			<column name="bidtime" valueDate="2017-05-20 16:48:40.0"/>
+			<column name="price" valueNumeric="1.332E7"/>
+			<column name="username" value="maradona"/>
+			<column name="auction_id" value="0057c39c-b419-4cd1-a945-a84aeabe6be6"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="3eff9d06-309c-48e2-8f3a-b8f35ca723cc"/>
+			<column name="bidtime" valueDate="2017-05-19 23:43:56.0"/>
+			<column name="price" valueNumeric="1.326E7"/>
+			<column name="username" value="maivanson"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="49468c21-973c-4877-a604-c4e808e80357"/>
+			<column name="bidtime" valueDate="2017-05-19 23:53:11.0"/>
+			<column name="price" valueNumeric="1.328E7"/>
+			<column name="username" value="mesutozil"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="49724a04-9b7c-404e-8df7-7c19941d7c6a"/>
+			<column name="bidtime" valueDate="2017-05-20 00:46:43.0"/>
+			<column name="price" valueNumeric="1.402E7"/>
+			<column name="username" value="mesutozil"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="49a7ac7c-6442-4406-bfd3-e224a542b115"/>
+			<column name="bidtime" valueDate="2017-05-19 23:41:31.0"/>
+			<column name="price" valueNumeric="1.3E7"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="4e534b72-90b2-4e17-9d3c-3f32825f614b"/>
+			<column name="bidtime" valueDate="2017-05-20 00:15:12.0"/>
+			<column name="price" valueNumeric="1.4E7"/>
+			<column name="username" value="quantrivien"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="5bfac3b3-3e0b-4d99-9847-aefd3dc4ac12"/>
+			<column name="bidtime" valueDate="2017-05-20 00:05:08.0"/>
+			<column name="price" valueNumeric="1.332E7"/>
+			<column name="username" value="ronaldo"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="5f1c2795-a8be-4d51-a2c5-52c4e09b131e"/>
+			<column name="bidtime" valueDate="2017-05-20 15:01:31.0"/>
+			<column name="price" valueNumeric="111.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="79051951-dff4-4900-ae7d-10bdc7d74a15"/>
+			<column name="bidtime" valueDate="2017-05-20 00:05:58.0"/>
+			<column name="price" valueNumeric="1.334E7"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="7a5983a3-08e7-446f-ad75-5f0bc15bc9b9"/>
+			<column name="bidtime" valueDate="2017-05-20 00:52:01.0"/>
+			<column name="price" valueNumeric="1300000.0"/>
+			<column name="username" value="mesutozil"/>
+			<column name="auction_id" value="0057c39c-b419-4cd1-a945-a84aeabe6be6"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="7e4b269d-3c40-41ba-84dc-51f0d29e25eb"/>
+			<column name="bidtime" valueDate="2017-05-20 00:52:15.0"/>
+			<column name="price" valueNumeric="1320000.0"/>
+			<column name="username" value="mesutozil"/>
+			<column name="auction_id" value="0057c39c-b419-4cd1-a945-a84aeabe6be6"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="7e6d2378-4be8-4f0d-bb2d-21e36b511c97"/>
+			<column name="bidtime" valueDate="2017-05-20 15:29:29.0"/>
+			<column name="price" valueNumeric="1.403E7"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="84e8cb4e-f3c0-410f-947f-781d5149862a"/>
+			<column name="bidtime" valueDate="2017-05-20 14:53:10.0"/>
+			<column name="price" valueNumeric="1.4E7"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="868dc397-a4d1-4a01-b9ff-4c5ab5fc423b"/>
+			<column name="bidtime" valueDate="2017-05-19 16:37:28.0"/>
+			<column name="price" valueNumeric="20000.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="auction_id" value="0057c39c-b419-4cd1-a945-a84aeabe6be6"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="9101ac92-ec26-4046-9594-05eb8e1ee3d9"/>
+			<column name="bidtime" valueDate="2017-05-19 23:53:40.0"/>
+			<column name="price" valueNumeric="1.33E7"/>
+			<column name="username" value="ronaldo"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="b63d34a0-45c6-4315-80fe-ed3befd6aa78"/>
+			<column name="bidtime" valueDate="1970-01-01 15:20:14.0"/>
+			<column name="price" valueNumeric="410000.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="de77ae98-0dde-4e15-8bbd-00d94f0bd804"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="b9b653ed-b2c1-4d71-9e3c-1c5a96a73786"/>
+			<column name="bidtime" valueDate="1970-01-01 18:54:26.0"/>
+			<column name="price" valueNumeric="100000.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="auction_id" value="2"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="d3e7e9c4-948d-44d8-9a01-438fe449a804"/>
+			<column name="bidtime" valueDate="2017-05-20 15:00:31.0"/>
+			<column name="price" valueNumeric="1.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="d56f0fe3-2108-4dbe-a9c3-37b355db87dc"/>
+			<column name="bidtime" valueDate="2017-05-19 23:42:17.0"/>
+			<column name="price" valueNumeric="1.325E7"/>
+			<column name="username" value="cristiano"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="d59b38ea-a4ab-4cc6-a53e-324a2977b84a"/>
+			<column name="bidtime" valueDate="2017-05-20 15:03:12.0"/>
+			<column name="price" valueNumeric="1111.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="e4c3cd3b-6715-47e8-b211-92b1f704e878"/>
+			<column name="bidtime" valueDate="1970-01-01 18:57:10.0"/>
+			<column name="price" valueNumeric="500000.0"/>
+			<column name="username" value="maivanson"/>
+			<column name="auction_id" value="de77ae98-0dde-4e15-8bbd-00d94f0bd804"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="e6f18b8f-faa0-4631-9afe-7c3eb83d5926"/>
+			<column name="bidtime" valueDate="2017-05-19 23:49:12.0"/>
+			<column name="price" valueNumeric="1.26E7"/>
+			<column name="username" value="quantrivien"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="ec7071fe-ae31-497c-ad1a-61994cab1811"/>
+			<column name="bidtime" valueDate="2017-05-20 14:58:05.0"/>
+			<column name="price" valueNumeric="1.402E7"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="ee18f77b-d95b-498a-9f01-ca9561c232ed"/>
+			<column name="bidtime" valueDate="2017-05-20 00:08:10.0"/>
+			<column name="price" valueNumeric="1.336E7"/>
+			<column name="username" value="neymar"/>
+			<column name="auction_id" value="3dc659c3-e403-49e0-bd14-b6b0acbdaf3f"/>
+		</insert>
+		<insert tableName="user_auction">
+			<column name="user_auction_id" value="f40d8bad-888b-4cb0-b383-1a5c6109910c"/>
+			<column name="bidtime" valueDate="1970-01-01 18:55:19.0"/>
+			<column name="price" valueNumeric="120000.0"/>
+			<column name="username" value="lienkiet123"/>
+			<column name="auction_id" value="2"/>
+		</insert>
+	</changeSet>
+	<changeSet author="PC (generated)" id="1495277117352-22">
+		<insert tableName="user_roles">
+			<column name="role_id" value="1"/>
+			<column name="username" value="maivanson"/>
+		</insert>
+		<insert tableName="user_roles">
+			<column name="role_id" value="2"/>
+			<column name="username" value="cristiano"/>
+		</insert>
+		<insert tableName="user_roles">
+			<column name="role_id" value="2"/>
+			<column name="username" value="lienkiet123"/>
+		</insert>
+		<insert tableName="user_roles">
+			<column name="role_id" value="2"/>
+			<column name="username" value="maradona"/>
+		</insert>
+		<insert tableName="user_roles">
+			<column name="role_id" value="2"/>
+			<column name="username" value="mesutozil"/>
+		</insert>
+		<insert tableName="user_roles">
+			<column name="role_id" value="2"/>
+			<column name="username" value="neymar"/>
+		</insert>
+		<insert tableName="user_roles">
+			<column name="role_id" value="2"/>
+			<column name="username" value="quantrivien"/>
+		</insert>
+		<insert tableName="user_roles">
+			<column name="role_id" value="2"/>
+			<column name="username" value="ronaldo"/>
+		</insert>
 	</changeSet>
 </databaseChangeLog>

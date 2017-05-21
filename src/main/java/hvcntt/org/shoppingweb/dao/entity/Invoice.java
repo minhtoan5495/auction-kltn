@@ -42,7 +42,7 @@ public class Invoice implements Serializable {
 	private List<InvoiceDetail> invoiceDetails;
 
 	//bi-directional many-to-one association to ShippingInfo
-	@OneToMany(mappedBy="invoice",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="invoice",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<ShippingInfo> shippingInfos;
 

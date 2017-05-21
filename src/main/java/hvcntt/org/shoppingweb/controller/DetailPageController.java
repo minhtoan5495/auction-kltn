@@ -69,8 +69,6 @@ public class DetailPageController {
             model.addAttribute("product", product);
             model.addAttribute("userAuction", userAuction);
             model.addAttribute("userAuctions", userAuctions);
-            model.addAttribute("liUserAuctions", auction.getUserAuctions());
-
         } else {
 //            Auction auctionN = auctionService.findByProduct(product);
 //            List<UserAuction> liUserAuctions = userAuctionService.findByAuction(auctionN);

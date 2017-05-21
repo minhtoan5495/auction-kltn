@@ -281,7 +281,7 @@
                                                     </div>
                                                 </c:if>
                                                 <c:if
-                                                        test="${ product.transactionType.transactionTypeName eq 'Auction' and product.auctions.get(i).endTime <=now and not empty liUserAuctions}">
+                                                        test="${ product.transactionType.transactionTypeName eq 'Auction' and product.auctions.get(i).endTime <=now and not empty userAuctions}">
                                                     <div class="row">
                                                         <div class="col-sm-3"></div>
                                                         <div class="col-sm-5">
@@ -289,8 +289,6 @@
                                                                 <h3 class="detail-win-title">Chúc mừng</h3>
                                                                 <img alt=""
                                                                      src="${pageContext.request.contextPath }/resource/images/banner/winner.png">
-                                                                    <%-- <c:forEach var="userAuctionWin"
-                                                                               items="${liUserAuctions }"> --%>
                                                                 <h4 class="detail-user-win">${userAuction.user.username}</h4>
                                                                 <h5>Giá đấu cao nhất</h5>
                                                                 <h4 class="detail-user-win"
@@ -311,8 +309,7 @@
                                                         </div>
                                                     </div>
                                                 </c:if>
-                                                <c:if
-                                                        test="${empty liUserAuctions and product.transactionType.transactionTypeName eq 'Auction'}">
+                                                <c:if test="${empty userAuctions and product.transactionType.transactionTypeName eq 'Auction'}">
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <div class="detail-win-item">

@@ -41,14 +41,14 @@ public class Product implements Serializable {
 
 	private String imageUrl;
 
-	@OneToMany(mappedBy="product",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="product",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Auction> auctions;
 
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonManagedReference
 	private List<Image> images;
 
-	@OneToMany(mappedBy="product", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="product", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<InvoiceDetail> invoiceDetails;
 
@@ -67,11 +67,11 @@ public class Product implements Serializable {
 	@JsonBackReference
 	private TransactionType transactionType;
 
-	@OneToMany(mappedBy="product",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="product",fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JsonManagedReference
 	private List<Rating> ratings;
 
-	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="products",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Discount> discounts;
 
 	public Product() {

@@ -37,7 +37,7 @@ public class Auction implements Serializable {
 	private Product product;
 
 	//bi-directional many-to-one association to UserAuction
-	@OneToMany(mappedBy="auction",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="auction",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<UserAuction> userAuctions;
 

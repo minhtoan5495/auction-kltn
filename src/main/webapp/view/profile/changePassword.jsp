@@ -72,9 +72,11 @@
                             </div>
                             <div class="profile-infor">
                                 <label>Thông tin cá nhân</label>
+
                                 <p>
                                     <strong>Họ và tên</strong>: ${user.name}
                                 </p>
+
                                 <p>
                                     <strong>Email</strong>: ${user.email }
                                 </p>
@@ -96,9 +98,10 @@
                                 <p>
                                     <strong>Số điện thoại</strong>: ${user.phone }
                                 </p>
+
                                 <p>
                                     <strong>Ngày sinh</strong>:
-                                    <fmt:formatDate value="${user.birthday }" pattern="dd-MM-yyyy" />
+                                    <fmt:formatDate value="${user.birthday }" pattern="dd-MM-yyyy"/>
                                 </p>
                             </div>
                         </div>
@@ -128,6 +131,7 @@
                             <form action="${pageContext.request.contextPath }/changePassword" method="POST">
                                 <input type="hidden" name="${_csrf.parameterName}"
                                        value="${_csrf.token}"/>
+
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"><br>
@@ -147,25 +151,30 @@
                                             </c:if>
                                             <div class="form-group" style="margin-top: 20px;">
                                                 <div class="input-group">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+                                                    <div class="input-group-addon"><span
+                                                            class="glyphicon glyphicon-lock"></span>
                                                     </div>
-                                                    <input class="form-control" name="oldPassword" type="password"
-                                                           placeholder="Current Password">
+                                                    <input required class="form-control" name="oldPassword" type="password"
+                                                           placeholder="Nhập mật khẩu hiện tại">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
+                                                    <div class="input-group-addon"><span
+                                                            class="glyphicon glyphicon-log-in"></span>
                                                     </div>
-                                                    <input class="form-control" name="newPassword" type="password" placeholder="New Password">
+                                                    <input data-validation="required length" data-validation-length="8-30"
+                                                           data-validation-error-msg="Mật khẩu phải phải lớn hơn 8 kí tự" class="form-control" name="newPassword" type="password"
+                                                           placeholder="Nhập mật khẩu mới">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
+                                                    <div class="input-group-addon"><span
+                                                            class="glyphicon glyphicon-log-in"></span>
                                                     </div>
                                                     <input class="form-control" name="confirmPassword" type="password"
-                                                           placeholder="Confirm Password">
+                                                           placeholder="Xác nhận lại mật khẩu mới">
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +185,8 @@
                                         <div class="col-xs-6 col-sm-6 col-md-6"></div>
                                         <div class="col-xs-6 col-sm-6 col-md-6">
                                             <button class="btn icon-btn-save btn-success" type="submit">
-                                                <span class="btn-save-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>save
+                                                <span class="btn-save-label"><i
+                                                        class="glyphicon glyphicon-floppy-disk"></i></span>save
                                             </button>
                                         </div>
                                     </div>

@@ -37,7 +37,6 @@
                             <th>Product</th>
                             <th>Image</th>
                             <th>Show</th>
-                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
@@ -51,7 +50,6 @@
                                 <td>${auction.product.name}</td>
                                 <td><a href="${pageContext.request.contextPath}/detail?productId=${auction.product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${auction.product.imageUrl}" style="width:80px;height:80px"/></a></td>
                                 <td><a class="" href="${pageContext.request.contextPath}/admin/showAuctionDetail?auctionId=${auction.auctionId}">Show</a></td>
-                                <td><a class="" href="${pageContext.request.contextPath }/admin/updateAuction?auctionId=${auction.auctionId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                         </c:forEach>

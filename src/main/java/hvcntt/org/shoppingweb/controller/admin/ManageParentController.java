@@ -34,10 +34,12 @@ public class ManageParentController {
         if("nullName".equals(session.getAttribute("message"))){
             model.addAttribute("message","Parent name can't be null");
             session.removeAttribute("message");
+            return "addOrEditParent";
         }
         if("invalidName".equals(session.getAttribute("message"))){
             model.addAttribute("message","Parent name is exist");
             session.removeAttribute("message");
+            return "addOrEditParent";
         }
         model.addAttribute("parent", new Parent());
         return "addOrEditParent";

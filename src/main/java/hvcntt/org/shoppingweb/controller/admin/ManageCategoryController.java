@@ -60,10 +60,6 @@ public class ManageCategoryController {
             session.setAttribute("message", "nullParent");
             return "redirect:/admin/addCategory";
         }
-        if(categoryService.findByCategoryName(categoryDto.getCategoryName()) != null){
-            session.setAttribute("message", "invalidName");
-            return "redirect:/admin/addCategory";
-        }
         categoryService.save(categoryDto);
         session.setAttribute("message", "saveCategory");
         return "redirect:/admin/manageCategory";

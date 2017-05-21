@@ -67,6 +67,10 @@ public class ProfileController {
             model.addAttribute("message", "Cập nhật thông tin thành công");
             session.removeAttribute("message");
         }
+        if ("changePassword".equals(session.getAttribute("message"))) {
+            model.addAttribute("message", "Cập nhật thông tin thành công");
+            session.removeAttribute("message");
+        }
         String username = principal.getName();
         User user = userService.findByUsername(username);
         model.addAttribute("user", userService.findByUsername(username));
@@ -97,7 +101,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-    public String resetPassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
+    public String changePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
                                 @RequestParam("confirmPassword") String confirmPassword,
                                 HttpServletRequest request, HttpSession session, HttpServletResponse response, Model model) throws UserNotFoundException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -106,6 +110,10 @@ public class ProfileController {
         model.addAttribute("user", user);
         if (oldPassword.equals("") || newPassword.equals("")) {
             session.setAttribute("error", "invalid");
+            return "redirect:/changePassword";
+        }
+        if(newPassword.length() < 8){
+            model.addAttribute("error", "errorLengthPassword");
             return "redirect:/changePassword";
         }
         if (!bCryptPasswordEncoder.matches(oldPassword, user.getPassword())) {
@@ -118,8 +126,8 @@ public class ProfileController {
         } else {
             new SecurityContextLogoutHandler().logout(request, response, auth);
             userService.changePassword(user, newPassword);
-            session.setAttribute("message", "changePassword");
-            return "redirect:/login";
+            session.setAttribute("message", "updatePasswordSuccess");
+            return "login";
         }
     }
 
@@ -139,9 +147,13 @@ public class ProfileController {
             model.addAttribute("error", "Bạn nhập sai mật khẩu hiện tại !");
             session.removeAttribute("error");
             return "changePassword";
-        }else{
+        }
+        if ("errorLengthPassword".equals(session.getAttribute("error"))) {
+            model.addAttribute("error", "Mật khẩu mới quá ngắn ! (>8)");
+            session.removeAttribute("error");
             return "changePassword";
         }
+        return "changePassword";
     }
 
     @RequestMapping(value = "/updateProfile", method = RequestMethod.GET)

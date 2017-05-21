@@ -23,7 +23,7 @@ public class Parent implements Serializable {
     @Column(name="parent_name")
     private String parentName;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Category> categories;
 
