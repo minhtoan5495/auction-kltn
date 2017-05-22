@@ -38,6 +38,9 @@ public class ManageProductController {
     @Autowired
     ParentService parentService;
 
+    @Autowired
+    RatingService ratingService;
+
     @RequestMapping(value = "/admin/manageProduct", method = RequestMethod.GET)
     public String getAllProduct(Model model, HttpSession session, HttpServletRequest request) {
         if ("saveProductSale".equals(session.getAttribute("message"))) {
@@ -120,5 +123,20 @@ public class ManageProductController {
         Parent parent = parentService.findById(parentId);
         List<Category> categories = categoryService.findByParent(parent);
         return categories;
+    }
+
+    @RequestMapping(value = "/admin/showComment", method = RequestMethod.GET)
+    public String showComment(@RequestParam(value = "productId") String productId, Model model){
+        Product product = productservice.findOne(productId);
+        model.addAttribute("product",product);
+        model.addAttribute("ratings",ratingService.getByProduct(product));
+        return "showComment";
+    }
+
+    @RequestMapping(value = "/admin/deleteRating", method = RequestMethod.GET)
+    public @ResponseBody
+    String deleteRating(@RequestParam(value = "ratingId") String ratingId) throws ProductNotFoundException {
+        ratingService.deleteRating(ratingId);
+        return "Deleted rating with id : " + ratingId + " !!";
     }
 }

@@ -180,6 +180,10 @@
         <put-attribute name="title" value="Show Auction"></put-attribute>
         <put-attribute name="body" value="/view/admin/auctionDetail.jsp"></put-attribute>
     </definition>
+    <definition name="showComment" extends="templateAdmin">
+        <put-attribute name="title" value="Show Comment"></put-attribute>
+        <put-attribute name="body" value="/view/admin/showComment.jsp"></put-attribute>
+    </definition>
     <definition name="denyPage" template="/view/error/deny.jsp">
         <put-attribute name="body" value=""></put-attribute>
     </definition>

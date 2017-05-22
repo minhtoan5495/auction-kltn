@@ -111,7 +111,6 @@ public class HomePageController {
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("name", name);
         model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
-        ;
         return "resultSearch";
     }
 

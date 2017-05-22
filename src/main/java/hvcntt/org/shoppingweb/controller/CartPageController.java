@@ -77,6 +77,7 @@ public class CartPageController {
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("carts");
         int index = isExist(productId, session);
         cartItems.remove(index);
+        session.setAttribute("cartAngular", JsonUtil.convertObjectToJson(cartItems));
         return new BaseResponse<>(null);
     }
 

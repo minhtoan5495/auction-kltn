@@ -79,6 +79,7 @@ public class CheckoutController {
 		model.addAttribute("invoice", shippingInfo.getInvoice());
 		model.addAttribute("addShip", shippingInfo);
 		session.removeAttribute("carts");
+		session.removeAttribute("cartAngular");
 		return "checkoutSuccess";
 	}
 }

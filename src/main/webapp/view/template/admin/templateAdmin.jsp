@@ -92,6 +92,7 @@
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageCategory.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageAuction.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/manageParent.js"></script>
+<script src="${pageContext.request.contextPath}/resource/admin/js/manageRating.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/discountDetail.js"></script>
 <script src="${pageContext.request.contextPath}/resource/admin/js/form-validation-script.js"></script>
 <script>
@@ -118,6 +119,9 @@
     });
     jQuery(document).ready(function () {
         TableDiscount.init();
+    });
+    jQuery(document).ready(function () {
+        TableRating.init();
     });
 </script>
 </html>

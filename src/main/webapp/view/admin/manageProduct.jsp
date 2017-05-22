@@ -40,6 +40,7 @@
                             <th hidden="hidden"></th>
                             <th hidden="hidden"></th>
                             <th hidden="hidden"></th>
+                            <th>Show Rating</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -67,6 +68,7 @@
                                 <td hidden="hidden">${product.stockQuantity}</td>
                                 <td hidden="hidden">${product.viewNumber}</td>
                                 <td hidden="hidden">${ratingNumber}</td>
+                                <th><a class="edit" href="${pageContext.request.contextPath}/admin/showComment?productId=${product.productId}">Show Rating</a></th>
                                 <td><a class="edit" href="${pageContext.request.contextPath}/admin/editProduct?productId=${product.productId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>

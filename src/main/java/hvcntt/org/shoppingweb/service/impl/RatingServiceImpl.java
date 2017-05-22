@@ -38,6 +38,11 @@ public class RatingServiceImpl implements RatingService {
         return ratingRepository.findByProduct(product);
     }
 
+    @Override
+    public void deleteRating(String ratingId) {
+        ratingRepository.delete(ratingId);
+    }
+
     private Rating convertDtoToEntity(RatingDto ratingDto, Product product, User user) {
         Rating rating = new Rating();
         rating.setCreateDate(new Date());
