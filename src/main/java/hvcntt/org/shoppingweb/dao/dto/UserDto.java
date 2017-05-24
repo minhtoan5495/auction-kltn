@@ -23,7 +23,7 @@ public class UserDto implements Serializable {
 
     private String confirmPassword;
 
-    @Email
+//    @Email
     private String email;
 
     @Size(max = 20, min = 6)

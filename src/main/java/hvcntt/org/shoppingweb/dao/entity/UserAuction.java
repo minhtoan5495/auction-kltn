@@ -24,7 +24,7 @@ public class UserAuction implements Serializable {
 	private float price;
 
 	//bi-directional many-to-one association to Auction
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="auction_id")
 	@JsonBackReference
 	private Auction auction;

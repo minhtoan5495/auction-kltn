@@ -74,7 +74,7 @@ public class ManageAuctionController {
     public @ResponseBody
     String saveAuction(@RequestParam("startDate") String startDate,
                        @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
-        if (formatStringToDate(startDate).before(new Date()) || formatStringToDate(endDate).before(formatStringToDate(startDate))){
+        if (formatStringToDate(endDate).getTime() < (new Date().getTime()) || formatStringToDate(endDate).getTime() < (formatStringToDate(startDate).getTime())){
             return "invalidDate";
         }
         auctionService.save(startDate, endDate, productIds);

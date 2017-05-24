@@ -66,6 +66,7 @@ public class DetailPageController {
             Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
             UserAuction userAuction = userAuctionService.findFirstByAuctionOrderByPriceDesc(auction);
             Set<UserAuction> userAuctions = userAuctionService.findTop5ByAuction(auction);
+            model.addAttribute("auction",auction);
             model.addAttribute("product", product);
             model.addAttribute("userAuction", userAuction);
             model.addAttribute("userAuctions", userAuctions);

@@ -33,7 +33,6 @@
                             <th>Phone</th>
                             <th>Role</th>
                             <th>Edit</th>
-                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -54,7 +53,6 @@
                                 <td><a class=""
                                        href="${pageContext.request.contextPath }/admin/editRole?username=${user.username}">Edit</a>
                                 </td>
-                                <td><a class="delete" href="javascript:;">Delete</a></td>
                             </tr>
                             <c:set var="i" value="${i+1}"/>
                         </c:forEach>

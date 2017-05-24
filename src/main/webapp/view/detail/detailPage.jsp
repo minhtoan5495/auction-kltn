@@ -39,6 +39,7 @@
             <div class="content-detail-title">
                 <p>
                     Được sản xuất bởi: <a>${product.supplier. supplierName}</a>
+
                 <p>
                     Ngày sản xuất:<a><fmt:formatDate
                         value="${product.manufactureDate }" pattern="dd-MM-yyyy"/></a>
@@ -146,7 +147,8 @@
                                                         <input value="${userAuction.price + 10000}"
                                                                type="number" hidden="hidden"
                                                                id="maxPrice">
-                                                        <input hidden id="auctionId" value="${userAuction.auction.auctionId}">
+                                                        <input hidden id="auctionId"
+                                                               value="${userAuction.auction.auctionId}">
                                                         <span>VNĐ</span>
                                                     </c:if>
                                                     <c:if test="${empty userAuction}">
@@ -178,14 +180,16 @@
                                                 <div id="countDownAuction">
                                                     <div class="form-detail-size">
                                                         <label style="color: #f37021">Kết thúc vào ngày</label>
-
-                                                        <p style="font-size: 30px">
-                                                            <fmt:formatDate
-                                                                    value="${product.auctions.get(i).endTime}"
-                                                                    pattern="dd-MM-yyyy"/>
-                                                        </p>
-                                                        <input value="${product.auctions.get(i).endTime }"
-                                                               id="endTime" type="hidden"> <label>Thời
+                                                            <c:if test="${auction.status eq 'ĐANG ĐẤU GIÁ'}">
+                                                                <p style="font-size: 30px">
+                                                                    <fmt:formatDate
+                                                                            value="${auction.endTime}"
+                                                                            pattern="dd-MM-yyyy"/>
+                                                                </p>
+                                                                <input value="${auction.endTime }"
+                                                                       id="endTime" type="hidden">
+                                                            </c:if>
+                                                        <label>Thời
                                                         gian còn lại</label>
 
                                                         <div class="form-detail-timecountdown">
@@ -438,6 +442,7 @@
                                                     <form:form commandName="ratingDto" method="post"
                                                                action="${pageContext.request.contextPath }/rating/${product.productId}">
                                                         <p>
+
                                                         <div id="ratingStars">
                                                             <form:input class="form-control title-comments"
                                                                         id="ratingInput" type="hidden"

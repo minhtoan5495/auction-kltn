@@ -44,7 +44,7 @@ public class AuctionController {
 			HttpServletRequest request) throws UserNotFoundException, ParseException {
 		String productId = request.getParameter("productId");
 		Product product = productService.findOne(productId);
-		Auction auction = auctionService.findByProduct(product);
+		Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
 		String username = principal.getName();
 		User user = userService.findByUsername(username);
 		UserAuction userAuction = new UserAuction();

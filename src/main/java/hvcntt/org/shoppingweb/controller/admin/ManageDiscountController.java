@@ -41,11 +41,11 @@ public class ManageDiscountController {
     }
 
     @RequestMapping(value = "/admin/addDiscount", method = RequestMethod.GET)
-    public String addDiscount(HttpSession session, Model model) {
-        if ("invalidForm".equals(session.getAttribute("message"))) {
+    public String addDiscount(@RequestParam(value = "message", required = false) String message, Model model) {
+        if ("invalidForm".equals(message)) {
             model.addAttribute("error", "All field is required !!");
         }
-        if ("invalidDate".equals(session.getAttribute("message"))) {
+        if ("invalidDate".equals(message)) {
             model.addAttribute("error", "The start date can't less than today and the end date can't great than the start date !!");
         }
         TransactionType transactionType = transactionTypeService.findByName("Sale");
@@ -56,9 +56,9 @@ public class ManageDiscountController {
 
     @RequestMapping(value = "/admin/saveDiscount", method = RequestMethod.GET)
     public @ResponseBody String saveDiscount(@RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
-                             @RequestParam("discountPercent") int discountPercent, @RequestParam("startDate") String startDate,
+                             @RequestParam("discountPercent") int discountPercent, HttpSession session, @RequestParam("startDate") String startDate,
                              @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
-        if (formatStringToDate(startDate).before(new Date()) || formatStringToDate(endDate).before(formatStringToDate(startDate))){
+        if (formatStringToDate(endDate).before(new Date()) || formatStringToDate(endDate).before(formatStringToDate(startDate))){
             return "invalidDate";
         }
         discountService.create(discountTitle, discountContent, discountPercent, startDate, endDate, productIds);

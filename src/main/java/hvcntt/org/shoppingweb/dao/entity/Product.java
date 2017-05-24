@@ -48,7 +48,7 @@ public class Product implements Serializable {
 	@JsonManagedReference
 	private List<Image> images;
 
-	@OneToMany(mappedBy="product", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="product", fetch=FetchType.EAGER)
 	@JsonManagedReference
 	private List<InvoiceDetail> invoiceDetails;
 

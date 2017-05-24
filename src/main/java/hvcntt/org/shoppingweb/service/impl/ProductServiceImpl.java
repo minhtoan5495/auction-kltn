@@ -140,8 +140,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
     public void deleteProduct(String productId) throws ProductNotFoundException {
-        if (productRepository.getOne(productId) != null) {
-            productRepository.delete(productId);
+        Product product = productRepository.getOne(productId);
+        if (product != null) {
+            productRepository.delete(product);
         } else {
             throw new ProductNotFoundException("Product not found with Id : " + productId);
         }
@@ -190,7 +191,7 @@ public class ProductServiceImpl implements ProductService {
             if (!images.isEmpty()) {
                 List<Image> imagesByProduct = imageRepository.findByProduct(product);
                 if (!imagesByProduct.isEmpty()) {
-                    for (Image image : imagesByProduct) {
+                    for (Image image : imagesByProduct){
                         imageRepository.delete(image);
                     }
                 }
@@ -209,9 +210,15 @@ public class ProductServiceImpl implements ProductService {
 
     private List<MultipartFile> getMultipartFiles(ProductDto productDto) {
         List<MultipartFile> multipartFiles = new ArrayList<>();
-        multipartFiles.add(productDto.getImage1());
-        multipartFiles.add(productDto.getImage2());
-        multipartFiles.add(productDto.getImage3());
+        if(!productDto.getImage1().getOriginalFilename().equals("")){
+            multipartFiles.add(productDto.getImage1());
+        }
+        if(!productDto.getImage2().getOriginalFilename().equals("")){
+            multipartFiles.add(productDto.getImage2());
+        }
+        if(!productDto.getImage3().getOriginalFilename().equals("")){
+            multipartFiles.add(productDto.getImage3());
+        }
         return multipartFiles;
     }
 

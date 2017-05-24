@@ -17,7 +17,7 @@
                 </div>
             </c:if>
             <section class="form_register">
-                <form:form action="${pageContext.request.contextPath }/register" method="post"
+                <form:form action="register" method="post"
                            commandName="userDto" id="saveRegister">
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>

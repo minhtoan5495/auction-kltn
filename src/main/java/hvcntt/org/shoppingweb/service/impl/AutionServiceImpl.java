@@ -93,7 +93,7 @@ public class AutionServiceImpl implements AuctionService {
                 findAuctionByProductAndStatus.setStatus("KẾT THÚC ĐẤU GIÁ");
             }
             Auction auction = new Auction();
-            auction.setStatus("ĐANG ĐẤU GIÁ	");
+            auction.setStatus("ĐANG ĐẤU GIÁ");
             auction.setEndTime(formatStringToDate(endDate));
             auction.setStartTime(formatStringToDate(startDate));
             auction.setProduct(productRepository.getOne(productId));

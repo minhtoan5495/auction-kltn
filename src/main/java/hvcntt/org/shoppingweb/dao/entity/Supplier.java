@@ -20,7 +20,7 @@ public class Supplier implements Serializable {
     @Column(name = "supplier_name")
     private String supplierName;
 
-    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Product> products;
 
@@ -55,20 +55,6 @@ public class Supplier implements Serializable {
         this.products = products;
     }
 
-    public Product addProduct(Product product) {
-        getProducts().add(product);
-        product.setSupplier(this);
-
-        return product;
-    }
-
-    public Product removeProduct(Product product) {
-        getProducts().remove(product);
-        product.setSupplier(null);
-
-        return product;
-    }
-
     public String getLogo() {
         return logo;
     }
@@ -76,5 +62,4 @@ public class Supplier implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-
 }
