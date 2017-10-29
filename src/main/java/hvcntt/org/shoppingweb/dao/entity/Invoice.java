@@ -1,7 +1,7 @@
 package hvcntt.org.shoppingweb.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import hvcntt.org.shoppingweb.dao.dto.InvoiceStatus;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -30,10 +30,8 @@ public class Invoice implements Serializable {
 
 	private String username;
 
-	//bi-directional many-to-one association to InvoiceStatus
-	@ManyToOne
-	@JoinColumn(name="invoice_status_id")
-	@JsonBackReference
+	@Column(name="invoice_status")
+	@Enumerated(EnumType.STRING)
 	private InvoiceStatus invoiceStatus;
 
 	//bi-directional many-to-one association to InvoiceDetail
@@ -96,20 +94,6 @@ public class Invoice implements Serializable {
 		this.invoiceDetails = invoiceDetails;
 	}
 
-	public InvoiceDetail addInvoiceDetail(InvoiceDetail invoiceDetail) {
-		getInvoiceDetails().add(invoiceDetail);
-		invoiceDetail.setInvoice(this);
-
-		return invoiceDetail;
-	}
-
-	public InvoiceDetail removeInvoiceDetail(InvoiceDetail invoiceDetail) {
-		getInvoiceDetails().remove(invoiceDetail);
-		invoiceDetail.setInvoice(null);
-
-		return invoiceDetail;
-	}
-
 	public List<ShippingInfo> getShippingInfos() {
 		return this.shippingInfos;
 	}
@@ -118,18 +102,4 @@ public class Invoice implements Serializable {
 		this.shippingInfos = shippingInfos;
 	}
 
-	public ShippingInfo addShippingInfo(ShippingInfo shippingInfo) {
-		getShippingInfos().add(shippingInfo);
-		shippingInfo.setInvoice(this);
-
-		return shippingInfo;
-	}
-
-	public ShippingInfo removeShippingInfo(ShippingInfo shippingInfo) {
-		getShippingInfos().remove(shippingInfo);
-		shippingInfo.setInvoice(null);
-
-		return shippingInfo;
-	}
-	
 }

@@ -1,6 +1,3 @@
-/**
- * Created by toannguyen on 28/04/2017.
- */
 var TableParent = function () {
 
     return {

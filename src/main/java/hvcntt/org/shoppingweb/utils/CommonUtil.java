@@ -1,9 +1,5 @@
 package hvcntt.org.shoppingweb.utils;
 
-/**
- * Created by toannguyen on 19/05/2017.
- */
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;

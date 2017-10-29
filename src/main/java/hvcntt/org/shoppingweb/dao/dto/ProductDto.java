@@ -2,9 +2,6 @@ package hvcntt.org.shoppingweb.dao.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- * Created by toannguyen on 25/04/2017.
- */
 public class ProductDto {
 
     private String description;

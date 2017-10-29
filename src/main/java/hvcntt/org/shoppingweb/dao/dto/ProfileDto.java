@@ -8,9 +8,6 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by toannguyen on 11/05/2017.
- */
 public class ProfileDto implements Serializable{
 
     private static final long serialVersionUID = -2327723362419116278L;

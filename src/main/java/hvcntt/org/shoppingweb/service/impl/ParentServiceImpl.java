@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by toannguyen on 28/04/2017.
- */
 @Service
 public class ParentServiceImpl implements ParentService {
 

@@ -51,7 +51,12 @@ $(function () {
     });
 });
 $(document).ready(function () {
-    $("#review_item_toggle").click(function () {
+    $("#review_item_toggle1").click(function () {
+        $("#review_item_show").stop(true, false, true).slideToggle();
+    })
+})
+$(document).ready(function () {
+    $("#review_item_toggle2").click(function () {
         $("#review_item_show").stop(true, false, true).slideToggle();
     })
 })

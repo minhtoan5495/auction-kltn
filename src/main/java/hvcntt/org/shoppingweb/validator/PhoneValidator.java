@@ -3,9 +3,6 @@ package hvcntt.org.shoppingweb.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-/**
- * Created by toannguyen on 06/04/17.
- */
 public class PhoneValidator implements ConstraintValidator<Phone,String>{
     @Override
     public void initialize(Phone paramA) {

@@ -34,7 +34,7 @@ public class CartPageController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/addCart", method = RequestMethod.GET)
-    public String cartPage(@RequestParam("productId") String productId, HttpSession session, Model model) {
+    public String cartPage(@RequestParam("productId") String productId, HttpSession session) {
         Product product = productservice.findOne(productId);
         List<CartItem> cartItems = new ArrayList<>();
         if (session.getAttribute("carts") == null) {

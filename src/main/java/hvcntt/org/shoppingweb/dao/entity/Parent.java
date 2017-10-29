@@ -7,9 +7,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by toannguyen on 28/04/2017.
- */
 @Entity
 @Table(name="parent")
 @NamedQuery(name="Parent.findAll", query="SELECT p FROM Parent p")

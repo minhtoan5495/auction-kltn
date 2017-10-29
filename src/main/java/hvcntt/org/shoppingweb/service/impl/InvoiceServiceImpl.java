@@ -1,6 +1,7 @@
 package hvcntt.org.shoppingweb.service.impl;
 
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
+import hvcntt.org.shoppingweb.dao.dto.InvoiceStatus;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.dao.repository.InvoiceRepository;
 import hvcntt.org.shoppingweb.dao.repository.UserRepository;
@@ -38,9 +39,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    InvoiceStatusService invoiceStatusService;
 
     @Autowired
     UserAuctionService userAuctionService;
@@ -86,7 +84,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         User user = userRepository.findByUsername(username);
         Invoice invoice = new Invoice();
         invoice.setCreateDate(new Date());
-        setStatusForInvoice(invoice);
+        invoice.setInvoiceStatus(InvoiceStatus.PENDING);
         Calendar shipDate = Calendar.getInstance();
         shipDate.add(Calendar.DAY_OF_MONTH, 7);
         Date date = shipDate.getTime();
@@ -109,29 +107,17 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public void save(String invoiceId, String invoiceStatusId) throws InvoiceStatusNotFoundException {
+    public void save(String invoiceId, InvoiceStatus invoiceStatus) throws InvoiceStatusNotFoundException {
         Invoice invoice = invoiceRepository.findOne(invoiceId);
-        InvoiceStatus invoiceStatusModel = invoiceStatusService.findByInvoiceStatusId(invoiceStatusId);
-        invoice.setInvoiceStatus(invoiceStatusModel);
+        invoice.setInvoiceStatus(invoiceStatus);
         invoiceRepository.save(invoice);
-    }
-
-    private void setStatusForInvoice(Invoice invoice){
-        try {
-            InvoiceStatus invoiceStatus = invoiceStatusService.findByName("PENDING");
-            invoice.setInvoiceStatus(invoiceStatus);
-        } catch (InvoiceStatusNotFoundException e) {
-            LOG.error(e.getMessage(), e);
-            String error = MessageUtil.getMessage("Can't get invoice status");
-            throw new InvoiceException(error);
-        }
     }
 
     @Override
     public void addProductForUserWinInAuction(Auction auction) {
         Invoice invoice = new Invoice();
         invoice.setCreateDate(new Date());
-        setStatusForInvoice(invoice);
+        invoice.setInvoiceStatus(InvoiceStatus.PENDING);
         UserAuction userAuction = userAuctionService.findFirstByAuctionOrderByPriceDesc(auction);
         ShippingInfo shippingInfo = createShippingInfoByUser(userAuction.getUser());
         Calendar shipDate = Calendar.getInstance();

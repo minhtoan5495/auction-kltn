@@ -9,8 +9,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import hvcntt.org.shoppingweb.dao.dto.AuctionStatus;
+import hvcntt.org.shoppingweb.dao.dto.Constant;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.service.UserAuctionService;
+import hvcntt.org.shoppingweb.utils.Helper;
 import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -28,6 +31,7 @@ import hvcntt.org.shoppingweb.service.TransactionTypeService;
 
 @Controller
 public class ManageAuctionController {
+
     @Autowired
     AuctionService auctionService;
 
@@ -41,9 +45,9 @@ public class ManageAuctionController {
     UserAuctionService userAuctionService;
 
     @RequestMapping(value = "/admin/manageAuction")
-    public String getAllAuction(Model model, HttpSession session, @RequestParam(value = "message", required = false) String message) {
+    public String getAllAuction(Model model, @RequestParam(value = "message", required = false) String message) {
         if ("saveSuccess".equals(message)) {
-            model.addAttribute("message", "Saved auction successfully !!");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
         }
         List<Auction> auctions = auctionService.getAll();
         model.addAttribute("auctions", auctions);
@@ -53,16 +57,16 @@ public class ManageAuctionController {
     @RequestMapping(value = "/admin/addAuction", method = RequestMethod.GET)
     public String addAuction(HttpSession session, Model model, @RequestParam(value = "message", required = false) String message) {
         if ("requiredAuction".equals(session.getAttribute("message"))) {
-            model.addAttribute("message", "Let's create the auction for product that you're just created !!");
+            model.addAttribute("message", Constant.MUST_CREATE_AUCTION);
             session.removeAttribute("message");
         }
         if ("invalidForm".equals(session.getAttribute("error"))) {
-            model.addAttribute("error", "All field is required !!");
+            model.addAttribute("error", Constant.ERROR_FORM);
             session.removeAttribute("error");
 
         }
         if ("invalidDate".equals(message)) {
-            model.addAttribute("error", "The start date can't less than today and the end date can't great than the start date !!");
+            model.addAttribute("error", Constant.INVALID_DATE);
         }
         TransactionType transactionType = transactionTypeService.findByName("Auction");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByTransactionType(transactionType)));
@@ -71,10 +75,11 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/saveAuction", method = RequestMethod.GET)
-    public @ResponseBody
+    public
+    @ResponseBody
     String saveAuction(@RequestParam("startDate") String startDate,
                        @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
-        if (formatStringToDate(endDate).getTime() < (new Date().getTime()) || formatStringToDate(endDate).getTime() < (formatStringToDate(startDate).getTime())){
+        if (formatStringToDate(endDate).getTime() < (new Date().getTime()) || formatStringToDate(endDate).getTime() < (formatStringToDate(startDate).getTime())) {
             return "invalidDate";
         }
         auctionService.save(startDate, endDate, productIds);
@@ -87,7 +92,8 @@ public class ManageAuctionController {
     }
 
     @RequestMapping(value = "/admin/deleteAuction", method = RequestMethod.GET)
-    public @ResponseBody
+    public
+    @ResponseBody
     String deleteAuction(@RequestParam("auctionId") String auctionId) {
         auctionService.delete(auctionId);
         return "Deleted auction with id " + auctionId + " success !!";
@@ -105,15 +111,15 @@ public class ManageAuctionController {
 
     @RequestMapping(value = "/admin/updateAuction", method = RequestMethod.POST)
     public String updateAuction(HttpServletRequest request, HttpSession session) throws ParseException {
-        String auctionStatus = request.getParameter("auctionStatus");
+        AuctionStatus auctionStatus = Helper.getAuctionStatus(request.getParameter("auctionStatus"));
         String auctionId = request.getParameter("auctionId");
         auctionService.update(auctionId, auctionStatus);
-        session.setAttribute("message","saveSuccess");
+        session.setAttribute("message", "saveSuccess");
         return "redirect:/admin/manageAuction";
     }
 
     @RequestMapping(value = "/admin/showAuctionDetail", method = RequestMethod.GET)
-    public String showAuctionDetail(@RequestParam(name = "auctionId") String auctionId, Model model){
+    public String showAuctionDetail(@RequestParam(name = "auctionId") String auctionId, Model model) {
         model.addAttribute("userAuctions", userAuctionService.findByAuctionId(auctionId));
         return "showAuctionDetail";
     }

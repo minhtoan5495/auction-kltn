@@ -1,8 +1,5 @@
 package hvcntt.org.shoppingweb.dao.dto;
 
-/**
- * Created by toannguyen on 18/04/2017.
- */
 public class RatingDto {
 
     private int rating;

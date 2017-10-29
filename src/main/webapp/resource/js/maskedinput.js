@@ -1,6 +1,3 @@
-/**
- * Created by toannguyen on 19/05/2017.
- */
 (function (e) {
     if (typeof define === "function" && define.amd) {
         define(["jquery"], e)

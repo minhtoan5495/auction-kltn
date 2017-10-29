@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import hvcntt.org.shoppingweb.dao.dto.AuctionStatus;
 import hvcntt.org.shoppingweb.dao.dto.CartItem;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.service.*;
@@ -24,17 +25,9 @@ import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 
 @Controller
 public class AuctionController {
-	@Autowired
-	ProductService productService;
 
 	@Autowired
 	AuctionService auctionService;
-
-	@Autowired
-	UserService userService;
-
-	@Autowired
-	UserAuctionService userAuctionService;
 
 	@Autowired
 	InvoiceService invoiceService;
@@ -42,27 +35,14 @@ public class AuctionController {
 	@RequestMapping(value = "/addAuction")
 	public String doAuction(Principal principal,
 			HttpServletRequest request) throws UserNotFoundException, ParseException {
-		String productId = request.getParameter("productId");
-		Product product = productService.findOne(productId);
-		Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
-		String username = principal.getName();
-		User user = userService.findByUsername(username);
-		UserAuction userAuction = new UserAuction();
-		userAuction.setAuction(auction);
-		userAuction.setUser(user);
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		userAuction.setBidtime(dateFormat.parse(dateFormat.format(date)));
-		String price = request.getParameter("price");
-		userAuction.setPrice(Float.parseFloat(price));
-		userAuctionService.create(userAuction);
-		return "redirect:/detail?productId=" + productId;
+		auctionService.addAuction(request, principal);
+		return "redirect:/detail?productId=" + request.getParameter("productId");
 	}
 
 	@RequestMapping(value = "/updateAuction")
 	public void updateAuction(@RequestParam(value = "auctionId") String auctionId) throws ParseException {
 		Auction auction = auctionService.findOne(auctionId);
-		auctionService.update(auctionId, "KẾT THÚC ĐẤU GIÁ");
+		auctionService.update(auctionId, AuctionStatus.ENDED);
 		invoiceService.addProductForUserWinInAuction(auction);
 	}
 }

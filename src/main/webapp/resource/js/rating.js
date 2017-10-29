@@ -1,9 +1,3 @@
-/**
- * Created by toannguyen on 18/04/2017.
- */
-/**
- * Demo in action!
- */
 (function () {
     var ratingShow = document.querySelector('#ratingShow');
     // DUMMY DATA

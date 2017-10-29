@@ -1,6 +1,5 @@
 package hvcntt.org.shoppingweb.service.impl;
 
-import hvcntt.org.shoppingweb.dao.dto.UserDto;
 import hvcntt.org.shoppingweb.dao.entity.TokenToVerifyEmail;
 import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.dao.repository.TokenToVerifyEmailRepository;
@@ -15,9 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 
-/**
- * Created by toannguyen on 10/05/2017.
- */
 @Service
 public class TokenToVerifyEmailServiceImpl implements TokenToVerifyEmailService {
 

@@ -3,6 +3,7 @@ package hvcntt.org.shoppingweb.service.impl;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import hvcntt.org.shoppingweb.dao.dto.ProfileDto;
 import hvcntt.org.shoppingweb.dao.dto.UserDto;
@@ -10,8 +11,11 @@ import hvcntt.org.shoppingweb.dao.entity.Role;
 import hvcntt.org.shoppingweb.dao.entity.User;
 import hvcntt.org.shoppingweb.exception.RoleNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
+import hvcntt.org.shoppingweb.service.TokenToVerifyEmailService;
 import hvcntt.org.shoppingweb.service.UserService;
+import hvcntt.org.shoppingweb.utils.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,8 @@ import hvcntt.org.shoppingweb.dao.repository.UserRepository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,6 +38,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    TokenToVerifyEmailService tokenToVerifyEmailService;
+
+    @Autowired
+    JavaMailSender mailSender;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
@@ -97,5 +109,12 @@ public class UserServiceImpl implements UserService {
     public void changePassword(User user, String newPassword) {
         user.setPassword(bCryptPasswordEncoder.encode(newPassword));
         userRepository.save(user);
+    }
+
+    @Override
+    public void prepareToActiveUSer(HttpServletRequest request, UserDto userDto) throws UserNotFoundException {
+        final String token = UUID.randomUUID().toString();
+        tokenToVerifyEmailService.createTokenForUser(userDto.getUsername(), token);
+        mailSender.send(Helper.constructResetTokenEmail(request, token, userDto));
     }
 }

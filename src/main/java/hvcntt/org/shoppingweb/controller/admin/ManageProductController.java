@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
+import hvcntt.org.shoppingweb.dao.dto.Constant;
 import hvcntt.org.shoppingweb.dao.dto.ProductDto;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.exception.ProductNotFoundException;
@@ -17,9 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by toannguyen on 25/04/2017.
- */
 @Controller
 public class ManageProductController {
 
@@ -45,11 +43,11 @@ public class ManageProductController {
     public String getAllProduct(Model model, HttpSession session, HttpServletRequest request) {
         if ("saveProductSale".equals(session.getAttribute("message"))) {
             session.removeAttribute("message");
-            model.addAttribute("message", "Saved product successfully !!");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
         }
         if ("updateSuccess".equals(session.getAttribute("message"))) {
             session.removeAttribute("message");
-            model.addAttribute("message", "Updated product with id : " + request.getParameter("productId") + " !!");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
         }
         model.addAttribute("products", productservice.getAll());
         return "manageProduct";
@@ -66,7 +64,7 @@ public class ManageProductController {
     public String addProduct(Model model, HttpSession session) {
         if("invalidName".equals(session.getAttribute("error"))){
             session.removeAttribute("error");
-            model.addAttribute("error","Name of product is exist !!");
+            model.addAttribute("error", Constant.ERROR_EXITS);
         }
         model.addAttribute("productDto", new ProductDto());
         model.addAttribute("transactionTypes", transactionTypeService.getAll());
@@ -121,8 +119,7 @@ public class ManageProductController {
     public @ResponseBody
     List<Category> getCategoryByParent(@RequestParam(value = "parentId") String parentId) {
         Parent parent = parentService.findById(parentId);
-        List<Category> categories = categoryService.findByParent(parent);
-        return categories;
+        return categoryService.findByParent(parent);
     }
 
     @RequestMapping(value = "/admin/showComment", method = RequestMethod.GET)

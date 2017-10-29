@@ -2,8 +2,10 @@ package hvcntt.org.shoppingweb.controller.admin;
 
 import java.text.ParseException;
 
+import hvcntt.org.shoppingweb.dao.dto.Constant;
+import hvcntt.org.shoppingweb.dao.dto.InvoiceStatus;
 import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
-import hvcntt.org.shoppingweb.service.InvoiceStatusService;
+import hvcntt.org.shoppingweb.utils.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,19 +25,17 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ManageInvoiceController {
+
     @Autowired
     InvoiceService invoiceService;
 
     @Autowired
     UserService userService;
 
-    @Autowired
-    InvoiceStatusService invoiceStatusService;
-
     @RequestMapping(value = "/admin/manageInvoice")
     public String getAllInvoice(Model model, HttpSession session) {
-        if("updateInvoice".equals(session.getAttribute("message"))){
-            model.addAttribute("message", "Saved invoice successfully !!");
+        if ("updateInvoice".equals(session.getAttribute("message"))) {
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
             session.removeAttribute("message");
         }
         model.addAttribute("invoices", invoiceService.findByOrderByCreateDateDesc());
@@ -51,7 +51,8 @@ public class ManageInvoiceController {
     }
 
     @RequestMapping(value = "/admin/deleteInvoice")
-    public @ResponseBody
+    public
+    @ResponseBody
     String
     deleteInvoice(@RequestParam("invoiceId") String invoiceId) {
         invoiceService.delete(invoiceId);
@@ -60,16 +61,16 @@ public class ManageInvoiceController {
 
     @RequestMapping(value = "/admin/editInvoiceStatus", method = RequestMethod.GET)
     public String editInvoiceStatus(@RequestParam("invoiceId") String invoiceId, Model model) throws UserNotFoundException {
-        model.addAttribute("invoiceStatus", invoiceStatusService.getAll());
+        model.addAttribute("invoiceStatus", "");
         model.addAttribute("invoice", invoiceService.findOne(invoiceId));
         return "editInvoice";
     }
 
     @RequestMapping(value = "/admin/updateInvoice", method = RequestMethod.POST)
     public String updateInvoice(HttpServletRequest request, HttpSession session) throws ParseException, InvoiceStatusNotFoundException {
-        String invoiceStatusId = request.getParameter("invoiceStatusId");
+        InvoiceStatus invoiceStatus = Helper.getInvoiceStatus(request.getParameter("invoiceStatus"));
         String invoiceId = request.getParameter("invoiceId");
-        invoiceService.save(invoiceId, invoiceStatusId);
+        invoiceService.save(invoiceId, invoiceStatus);
         session.setAttribute("message", "updateInvoice");
         return "redirect:/admin/manageInvoice";
     }

@@ -266,7 +266,7 @@
 				<div class="row">
 					<c:forEach var="product" items="${productAuctionPage.pageList }">
 						<c:if
-							test="${ product.auctions.get(i).endTime >=timeNow }">
+							test="${ product.auctions.get(i).endTime >= timeNow }">
 							<div class="col-sm-3 new-product-main">
 								<div class="new-product">
 									<div class="single-product-item">
@@ -337,7 +337,7 @@
 				<div class="row">
 					<c:forEach var="product" items="${productAuctionPage.pageList }">
 						<c:if
-							test="${ product.auctions.get(i).status eq 'KẾT THÚC ĐẤU GIÁ' and product.auctions.get(i).endTime >now }">
+							test="${ product.auctions.get(i).auctionStatus.toString() eq 'KẾT THÚC ĐẤU GIÁ' and product.auctions.get(i).endTime >now }">
 							<div class="col-sm-3 new-product-main">
 								<div class="new-product">
 									<div class="single-product-item">
@@ -394,9 +394,7 @@
 				</div>
 				<div class="row">
 					<div class="box-product-view">
-
 						<div class="carousel">
-
 							<header class="hgroup">
 								<div class="nav-carousel">
 									<a href="#" class="btn flex-prev"><span>Prev</span></a> <a

@@ -20,22 +20,28 @@
                           method="post">
                         <input type="hidden" name="${_csrf.parameterName}"
                                value="${_csrf.token}"/>
+
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <input value="${invoice.invoiceId}" name="invoiceId" id="invoiceId" type="hidden">
                             </div>
                             <div class="form-group ">
                                 <label class="control-label col-lg-3">Status <span style="color: red">(*)</span></label>
+
                                 <div class="col-lg-7">
-                                    <select id="invoiceStatusId" name="invoiceStatusId" style="height: 34px;">
-                                        <c:forEach var="invoiceStatus" items="${invoiceStatus}">
-                                            <c:if test="${invoiceStatus.invoiceStatusName eq invoice.invoiceStatus.invoiceStatusName}">
-                                                <option value="${invoiceStatus.invoiceStatusId}" selected>${invoiceStatus.invoiceStatusName}</option>
-                                            </c:if>
-                                            <c:if test="${invoiceStatus.invoiceStatusName ne invoice.invoiceStatus.invoiceStatusName}">
-                                                <option value="${invoiceStatus.invoiceStatusId}" >${invoiceStatus.invoiceStatusName}</option>
-                                            </c:if>
-                                        </c:forEach>
+                                    <select name="invoiceStatus" style="height: 34px;">
+                                        <option value="PENDING"
+                                                selected>PENDING
+                                        </option>
+                                        <option value="SHIPPING"
+                                                >SHIPPING
+                                        </option>
+                                        <option value="DONE"
+                                                >DONE
+                                        </option>
+                                        <option value="CANCELED"
+                                                >CANCELED
+                                        </option>
                                     </select>
                                 </div>
                             </div>

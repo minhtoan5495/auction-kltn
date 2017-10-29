@@ -132,6 +132,12 @@
         zoomWindowFadeIn: 500,
         zoomWindowFadeOut: 750
     });
+    $('#imageContainer2').elevateZoom({
+        zoomType: "inner",
+        cursor: "crosshair",
+        zoomWindowFadeIn: 500,
+        zoomWindowFadeOut: 750
+    });
     $(document).ready(function () {
         $('#thumbs').find('.item').first().addClass('active');
     });

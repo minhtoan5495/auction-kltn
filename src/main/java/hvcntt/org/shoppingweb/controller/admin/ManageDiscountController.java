@@ -3,7 +3,9 @@ package hvcntt.org.shoppingweb.controller.admin;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
+import hvcntt.org.shoppingweb.dao.dto.Constant;
 import hvcntt.org.shoppingweb.dao.entity.Product;
 import hvcntt.org.shoppingweb.dao.entity.TransactionType;
 import hvcntt.org.shoppingweb.service.ProductService;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ManageDiscountController {
+
     @Autowired
     DiscountService discountService;
 
@@ -34,7 +37,7 @@ public class ManageDiscountController {
     @RequestMapping(value = "/admin/manageDiscount")
     public String getAllDiscount(Model model, HttpSession session) {
         if ("saveSuccess".equals(session.getAttribute("message"))) {
-            model.addAttribute("message", "Saved auction successfully !!");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
         }
         model.addAttribute("discounts", discountService.getAll());
         return "manageDiscount";
@@ -43,10 +46,10 @@ public class ManageDiscountController {
     @RequestMapping(value = "/admin/addDiscount", method = RequestMethod.GET)
     public String addDiscount(@RequestParam(value = "message", required = false) String message, Model model) {
         if ("invalidForm".equals(message)) {
-            model.addAttribute("error", "All field is required !!");
+            model.addAttribute("error", Constant.ERROR_FORM);
         }
         if ("invalidDate".equals(message)) {
-            model.addAttribute("error", "The start date can't less than today and the end date can't great than the start date !!");
+            model.addAttribute("error", Constant.INVALID_DATE);
         }
         TransactionType transactionType = transactionTypeService.findByName("Sale");
         model.addAttribute("products", JsonUtil.convertObjectToJson(productService.findByProductTransactionType(transactionType)));
@@ -55,10 +58,12 @@ public class ManageDiscountController {
     }
 
     @RequestMapping(value = "/admin/saveDiscount", method = RequestMethod.GET)
-    public @ResponseBody String saveDiscount(@RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
-                             @RequestParam("discountPercent") int discountPercent, HttpSession session, @RequestParam("startDate") String startDate,
-                             @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
-        if (formatStringToDate(endDate).before(new Date()) || formatStringToDate(endDate).before(formatStringToDate(startDate))){
+    public
+    @ResponseBody
+    String saveDiscount(@RequestParam("discountTitle") String discountTitle, @RequestParam("discountContent") String discountContent,
+                        @RequestParam("discountPercent") int discountPercent, HttpSession session, @RequestParam("startDate") String startDate,
+                        @RequestParam("endDate") String endDate, @RequestParam("productIds") List<String> productIds) throws ParseException {
+        if (formatStringToDate(endDate).before(new Date()) || formatStringToDate(endDate).before(formatStringToDate(startDate))) {
             return "invalidDate";
         }
         discountService.create(discountTitle, discountContent, discountPercent, startDate, endDate, productIds);
@@ -75,39 +80,32 @@ public class ManageDiscountController {
         return "multiselect";
     }
 
-    @RequestMapping(value="/admin/deleteDiscount", method = RequestMethod.GET)
-    public @ResponseBody String deleteDiscount(@RequestParam("discountId") String discountId){
+    @RequestMapping(value = "/admin/deleteDiscount", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String deleteDiscount(@RequestParam("discountId") String discountId) {
         discountService.deleteDiscount(discountId);
         return "Deleted discount with id " + discountId + " success !!";
     }
 
     @RequestMapping(value = "/admin/discountDetail", method = RequestMethod.GET)
-    public String discountDetail(@RequestParam(value = "discountId") String discountId, Model model){
+    public String discountDetail(@RequestParam(value = "discountId") String discountId, Model model) {
         Discount discount = discountService.findByDiscountId(discountId);
         model.addAttribute("discount", discount);
-        Set<String> productIdsSet = new HashSet<>();
-        for(Product product : discount.getProducts()){
-            productIdsSet.add(product.getProductId());
-        }
-        List<Product> products = new ArrayList<>();
-        for(String productId : productIdsSet){
-            products.add(productService.findOne(productId));
-        }
+        Set<String> productIdsSet = discount.getProducts().stream().map(Product::getProductId).collect(Collectors.toSet());
+        List<Product> products = productIdsSet.stream().map(productService::findOne).collect(Collectors.toList());
         model.addAttribute("products", products);
         return "discountDetail";
     }
 
     @RequestMapping(value = "/admin/deleteProductInDiscount", method = RequestMethod.GET)
-    public @ResponseBody String deleteProductInDiscount(@RequestParam(value = "productId") String productId, @RequestParam(value = "discountId") String discountId, Model model){
+    public
+    @ResponseBody
+    String deleteProductInDiscount(@RequestParam(value = "productId") String productId, @RequestParam(value = "discountId") String discountId, Model model) {
         Discount discount = discountService.findByDiscountId(discountId);
         Set<Product> productSet = new HashSet<>();
         productSet.addAll(discount.getProducts());
-        List<Product> products = new ArrayList<>();
-        for(Product product : productSet){
-            if(!productId.equals(product.getProductId())){
-                products.add(product);
-            }
-        }
+        List<Product> products = productSet.stream().filter(product -> !productId.equals(product.getProductId())).collect(Collectors.toList());
         discount.setProducts(products);
         discountService.save(discount);
         return "success";

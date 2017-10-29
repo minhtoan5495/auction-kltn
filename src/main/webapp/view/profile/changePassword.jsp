@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <style>
     .separator {
@@ -107,20 +108,6 @@
                         </div>
                     </aside>
                     <div class="col-sm-9" id="profile_scoll_item">
-                        <div>
-                            <ul id="profile-infor-detail" class="nav nav-tabs profile-tab">
-                                <li class="active"><a href="#home" data-toggle="tab">Tất
-                                    cả</a></li>
-                                <li><a data-toggle="tab" href="#product_item">Danh
-                                    sách đã mua</a></li>
-                                <li><a data-toggle="tab" href="#auction_item">Đang đấu
-                                    giá</a></li>
-                                <li><a data-toggle="tab" href="#auction_success">Đấu
-                                    giá thành công</a></li>
-                                <li><a data-toggle="tab" href="#order_item">Tình trạng
-                                    đơn hàng</a></li>
-                            </ul>
-                        </div>
                         <div class="panel panel-info" style="margin-top: 30px;">
                             <div class="panel-heading">
                                 <h3 class="panel-title">

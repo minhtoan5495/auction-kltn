@@ -14,34 +14,37 @@
                                      src="http://bootdey.com/img/Content/avatar/avatar1.png">
                             </div>
                             <div class="profile-infor">
-                                <label>Thông tin cá nhân</label>
+                                <label>Profile</label>
+
                                 <p>
-                                    <strong>Họ và tên</strong>: ${user.name}
+                                    <strong>Full Name</strong>: ${user.name}
                                 </p>
+
                                 <p>
                                     <strong>Email</strong>: ${user.email }
                                 </p>
                                 <c:if test="${not empty user.address}">
                                     <p>
-                                        <strong>Địa chỉ</strong>: ${user.address }
+                                        <strong>Address</strong>: ${user.address }
                                     </p>
                                 </c:if>
                                 <c:if test="${not empty user.district}">
                                     <p>
-                                        <strong>Quận</strong>: ${user.district.districtName }
+                                        <strong>District</strong>: ${user.district.districtName }
                                     </p>
                                 </c:if>
                                 <c:if test="${not empty user.city}">
                                     <p>
-                                        <strong>Thành phố</strong>: ${user.city.cityName }
+                                        <strong>City</strong>: ${user.city.cityName }
                                     </p>
                                 </c:if>
                                 <p>
-                                    <strong>Số điện thoại</strong>: ${user.phone }
+                                    <strong>Phone Number</strong>: ${user.phone }
                                 </p>
+
                                 <p>
-                                    <strong>Ngày sinh</strong>:
-                                    <fmt:formatDate value="${user.birthday }" pattern="dd-MM-yyyy" />
+                                    <strong>Birthday</strong>:
+                                    <fmt:formatDate value="${user.birthday }" pattern="dd-MM-yyyy"/>
                                 </p>
                             </div>
                         </div>
@@ -54,14 +57,11 @@
                         </c:if>
                         <div>
                             <ul id="profile-infor-detail" class="nav nav-tabs profile-tab">
-                                <li class="active"><a href="#home" data-toggle="tab">Tất
-                                    cả</a></li>
-                                <li><a data-toggle="tab" href="#product_item">Danh
-                                    sách đã mua</a></li>
-                                <li><a data-toggle="tab" href="#auction_item">Đang đấu
-                                    giá</a></li>
-                                <li><a data-toggle="tab" href="#order_item">Tình trạng
-                                    đơn hàng</a></li>
+                                <li class="active"><a href="#home" data-toggle="tab">Summary</a></li>
+                                <li><a data-toggle="tab" href="#product_item">Ordered</a></li>
+                                <li><a data-toggle="tab" href="#auction_item">Auctioning</a></li>
+                                <%--<li><a data-toggle="tab" href="#auction_success">Auction Success</a></li>--%>
+                                <li><a data-toggle="tab" href="#order_item">Invoice Status</a></li>
                             </ul>
                         </div>
                         <div class="tab-content main_content_profile">
@@ -72,27 +72,29 @@
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-4">
                                         <div class="profile_info_item">
-                                            <h4>Thông tin cá nhân</h4>
-                                            <a href="${pageContext.request.contextPath }/changePassword">Thay
-                                                đổi mật khẩu</a><br> <a href="#">Thay đổi Email</a>
+                                            <h4>Profile</h4>
+                                            <a href="${pageContext.request.contextPath }/changePassword">
+                                                Change Password
+                                            </a><br>
+                                            <a href="#">Change Email</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="profile_info_item">
                                             <a href="${pageContext.request.contextPath }/updateProfile"
                                                type="submit" class="btn btn-danger btn-edit-profile"> <i
-                                                    class="fa fa-edit"></i> Cập nhật thông tin
+                                                    class="fa fa-edit"></i> Change Info
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 profile_item_order_home">
-                                        <h4>Thông tin đơn hàng gần đây</h4>
+                                        <h4>Order nearly</h4>
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>Ngày đặt hàng</th>
-                                                <th>Thành tiền</th>
-                                                <th>Trạng thái</th>
+                                                <th>Order date</th>
+                                                <th>Price</th>
+                                                <th>Status</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -109,7 +111,8 @@
                                                             <td>${invoice.invoiceStatus.invoiceStatusName }</td>
                                                             <td class="btn_view_detail_order"><a
                                                                     href="${pageContext.request.contextPath }/orderDetail?invoiceId=${invoice.invoiceId}">
-                                                                <button class="btn btn-primary" style="border-radius: 0">
+                                                                <button class="btn btn-primary"
+                                                                        style="border-radius: 0">
                                                                     <i class="fa fa-edit"></i>View
                                                                 </button>
                                                             </a></td>
@@ -124,20 +127,21 @@
                             </div>
                             <div id="product_item" class="tab-pane fade">
                                 <div class="profile_item_title">
-                                    <h3>Danh sách sản phẩm</h3>
+                                    <h3>List Product</h3>
                                 </div>
                                 <c:if test="${not empty ordered}">
                                     <div class="panel panel-default profile_item_content">
-                                        <div class="panel-heading">Thông tin sản phẩm</div>
+                                        <div class="panel-heading">Product Info</div>
                                         <div class="panel-body profile_body_item">
                                             <div class="row" style="margin-left: 5px; margin-right: 5px;">
                                                 <div class="col-sm-12 profile_feedback_product">
-                                                    <label>Thông tin phản hồi</label>
-                                                    <p>Nếu sản phẩm gặp lỗi về kỹ thuật hoặc sản phẩm không đúng
-                                                        mô tả quý khách có thể phản hồi hoặc gửi trả sản phẩm trong vòng
-                                                        48h kể từ khi nhận hàng. Nếu qua thời gian đó sản phẩm có gặp
-                                                        bất kỳ vấn đề gì chúng tôi sẽ không giải quyết. Mong quý khách
-                                                        thông cảm!!</p>
+                                                    <label>Feedback</label>
+
+                                                    <p>If our product has any problems make you don't satisfied, you
+                                                        should be call for our to
+                                                        your problem solved asap within 48h.
+                                                        After 48h, we will not take any responsibility for your product.
+                                                    </p>
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-phone"></i> Contact Us
                                                     </button>
@@ -149,7 +153,8 @@
                                                         <div class="row"
                                                              style="border: 1px solid gray; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
                                                             <c:if test="${not empty orderDetail.product.images}">
-                                                                <c:set var="images" value="${orderDetail.product.images}"/>
+                                                                <c:set var="images"
+                                                                       value="${orderDetail.product.images}"/>
                                                                 <div class="col-sm-3">
                                                                     <img alt=""
                                                                          src="${pageContext.request.contextPath }/resource/images/product/${images.get(i).imageUrl}">
@@ -157,14 +162,18 @@
                                                             </c:if>
                                                             <div class="col-sm-6">
                                                                 <label class="profile_body_item_name">${orderDetail.product.name}
-                                                                    <p style="color: #59b210; font-weight: 400">Số lượng:
+                                                                    <p style="color: #59b210; font-weight: 400">
+                                                                        Quantity :
                                                                             ${orderDetail.quantity}</p>
+
                                                                     <p style="color: #ff4f4f; font-weight: 400">
-                                                                        Giá tiền:
-                                                                        <fmt:formatNumber value="${orderDetail.price}" type="number"/>
+                                                                        Price :
+                                                                        <fmt:formatNumber value="${orderDetail.price}"
+                                                                                          type="number"/>
                                                                         đ
-                                                                    </p> <strong>Ngày mua <fmt:formatDate
-                                                                            value="${order.createDate}" pattern="dd-MM-yyyy"/>
+                                                                    </p> <strong>Order Date <fmt:formatDate
+                                                                            value="${order.createDate}"
+                                                                            pattern="dd-MM-yyyy"/>
                                                                     </strong>
 
                                                                 </label>
@@ -179,11 +188,11 @@
                             </div>
                             <div id="auction_item" class="tab-pane fade">
                                 <div class="profile_item_title">
-                                    <h3>Danh sách phiên đấu giá tham gia</h3>
+                                    <h3>Your auction</h3>
                                 </div>
                                 <%-- <c:if test="${not empty ordered}"> --%>
                                 <div class="panel panel-default profile_item_content">
-                                    <div class="panel-heading">Thông tin đấu giá</div>
+                                    <div class="panel-heading">Auction info</div>
                                     <div class="panel-body profile_body_item">
                                         <c:forEach var="userAuction" items="${userAuctions}">
                                             <div class="row"
@@ -191,34 +200,40 @@
                                                 <c:choose>
                                                     <c:when test="${userAuction.auction.endTime >=now }">
                                                         <div class="col-sm-3">
-                                                        <a href="${pageContext.request.contextPath }/detail?productId=${userAuction.auction.product.productId}">
-                                                            <img alt=""
-                                                                 src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
-                                                       </a>
+                                                            <a href="${pageContext.request.contextPath }/detail?productId=${userAuction.auction.product.productId}">
+                                                                <img alt=""
+                                                                     src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
+                                                            </a>
                                                         </div>
                                                         <div class="col-sm-6">
-                                                            <strong> ${userAuction.auction.product.name} </strong><br> <label
-                                                                class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                                value="${userAuction.auction.startTime}" pattern="dd-MM-yyyy"/>
-                                                            <p style="color: #59b210; font-weight: 400">
-                                                                Ngày kết thúc
-                                                                <fmt:formatDate value="${userAuction.auction.endTime}"
-                                                                                pattern="dd-MM-yyyy"/>
-                                                            </p>
-                                                            <p style="color: #ff4f4f; font-weight: 400">
-                                                                Giá tiền sản phẩm:
-                                                                <fmt:formatNumber value="${userAuction.auction.product.price}"
-                                                                                  type="number"/>
-                                                                đ
-                                                            </p>
-                                                            <label style="color: black; font-weight: bold;">
-                                                                Giá đấu sản phẩm cao nhất:
-                                                                <fmt:formatNumber value="${userAuction.price}"
-                                                                                  type="number"/>
-                                                                đ
-                                                            </label>
+                                                            <strong> ${userAuction.auction.product.name} </strong><br>
+                                                            <label
+                                                                    class="profile_body_item_name">Start date
+                                                                <fmt:formatDate
+                                                                        value="${userAuction.auction.startTime}"
+                                                                        pattern="dd-MM-yyyy"/>
+                                                                <p style="color: #59b210; font-weight: 400">
+                                                                    End date
+                                                                    <fmt:formatDate
+                                                                            value="${userAuction.auction.endTime}"
+                                                                            pattern="dd-MM-yyyy"/>
+                                                                </p>
 
-                                                        </label>
+                                                                <p style="color: #ff4f4f; font-weight: 400">
+                                                                    Product price:
+                                                                    <fmt:formatNumber
+                                                                            value="${userAuction.auction.product.price}"
+                                                                            type="number"/>
+                                                                    đ
+                                                                </p>
+                                                                <label style="color: black; font-weight: bold;">
+                                                                    Current price :
+                                                                    <fmt:formatNumber value="${userAuction.price}"
+                                                                                      type="number"/>
+                                                                    đ
+                                                                </label>
+
+                                                            </label>
                                                         </div>
                                                     </c:when>
                                                 </c:choose>
@@ -227,91 +242,62 @@
                                     </div>
                                 </div>
                             </div>
-                            <%-- <div id="auction_success" class="tab-pane fade">
+                            <div id="auction_success" class="tab-pane fade">
                                 <div class="profile_item_title">
-                                    <h3>Danh sách phiên đấu giá thành công</h3>
+                                    <h3>Product that you bought success</h3>
                                 </div>
                                 <c:if test="${not empty ordered}">
-                                <div class="panel panel-default profile_item_content">
-                                    <div class="panel-heading">Thông tin phiên đấu giá thành công</div>
-                                    <div class="panel-body profile_body_item">
-                                        <c:forEach var="userAuction" items="${userAuctions}">
-                                            <div class="row"
-                                                 style="border: 1px solid gray; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
-                                                <div class="col-sm-3">
-                                                    <img alt=""
-                                                         src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <strong> ${userAuction.auction.product.name} </strong><br> <label
-                                                        class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                        value="${userAuction.auction.startTime}" pattern="dd-MM-yyyy"/>
-                                                    <p style="color: #59b210; font-weight: 400">
-                                                        Ngày kết thúc
-                                                        <fmt:formatDate value="${userAuction.auction.endTime}"
-                                                                        pattern="dd-MM-yyyy"/>
-                                                    </p>
-                                                    <p style="color: #ff4f4f; font-weight: 400">
-                                                        Giá tiền:
-                                                        <fmt:formatNumber value="${userAuction.auction.product.price}"
-                                                                          type="number"/>
-                                                        đ
-                                                    </p>
-                                                </label>
-                                                </div>
-                                            </div>
-                                        </c:forEach>
-                                    </div>
-                                </div>
-                            </div> --%>
-                            <div id="auction_item" class="tab-pane fade">
-                                <div class="profile_item_title">
-                                    <h3>Danh sách phiên đấu giá tham gia</h3>
-                                </div>
-                                <%-- <c:if test="${not empty ordered}"> --%>
-                                <div class="panel panel-default profile_item_content">
-                                    <div class="panel-heading">Thông tin đấu giá</div>
-                                    <div class="panel-body profile_body_item">
-                                        <c:forEach var="userAuction" items="${userAuctions}">
-                                            <div class="row"
-                                                 style="border: 1px solid gray; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
-                                                <div class="col-sm-3">
-                                                    <img alt=""
-                                                         src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <strong> ${userAuction.auction.product.name}
-                                                    </strong><br>
-                                                    <label class="profile_body_item_name">Ngày bắt đầu <fmt:formatDate
-                                                            value="${userAuction.auction.startTime}" pattern="dd-MM-yyyy"/>
-                                                        <p style="color: #59b210; font-weight: 400">Ngày kết thúc
+                                    <div class="panel panel-default profile_item_content">
+                                        <div class="panel-heading">Info</div>
+                                        <div class="panel-body profile_body_item">
+                                            <c:forEach var="userAuction" items="${userAuctions}">
+                                                <div class="row"
+                                                     style="border: 1px solid gray; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;">
+                                                    <div class="col-sm-3">
+                                                        <img alt=""
+                                                             src="${pageContext.request.contextPath }/resource/images/product/${userAuction.auction.product.imageUrl}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <strong> ${userAuction.auction.product.name} </strong><br>
+                                                        <label
+                                                                class="profile_body_item_name">Start date :
                                                             <fmt:formatDate
-                                                                    value="${userAuction.auction.endTime}" pattern="dd-MM-yyyy"/></p>
-                                                        <p style="color: #ff4f4f; font-weight: 400">
-                                                            Giá tiền:
-                                                            <fmt:formatNumber value="${userAuction.auction.product.price}" type="number"/>
-                                                            đ
-                                                        </p>
+                                                                    value="${userAuction.auction.startTime}"
+                                                                    pattern="dd-MM-yyyy"/>
+                                                            <p style="color: #59b210; font-weight: 400">
+                                                                End date :
+                                                                <fmt:formatDate value="${userAuction.auction.endTime}"
+                                                                                pattern="dd-MM-yyyy"/>
+                                                            </p>
 
-                                                    </label>
+                                                            <p style="color: #ff4f4f; font-weight: 400">
+                                                                Price :
+                                                                <fmt:formatNumber
+                                                                        value="${userAuction.auction.product.price}"
+                                                                        type="number"/>
+                                                                đ
+                                                            </p>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </c:forEach>
+                                            </c:forEach>
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>
                             </div>
                             <div class="tab-pane fade" id="order_item">
                                 <div class="profile_item_title">
-                                    <h3>Danh sách đơn hàng</h3>
+                                    <h3>Your Invoices</h3>
                                 </div>
                                 <c:forEach var="invoice" items="${ordered}">
                                     <div class="panel panel-default profile_body_item_order">
                                         <div class="panel-heading profile_heading_main_item">
                                             <c:if test="${not empty invoice.invoiceDetails}">
                                                 <div class="profile_heading_date">
-                                                    <p>Đơn hàng ${invoice.invoiceDetails.get(i).invoiceDetailId }</p>
+                                                    <p>Invoice : ${invoice.invoiceDetails.get(i).invoiceDetailId }</p>
+
                                                     <p>
-                                                        Đặt hàng ngày
+                                                        Order date :
                                                         <fmt:formatDate value="${invoice.createDate }"
                                                                         pattern="dd-MM-yyyy"/>
                                                     </p>
@@ -321,7 +307,7 @@
                                                 <a
                                                         href="${pageContext.request.contextPath }/orderDetail?invoiceId=${invoice.invoiceId}">
                                                     <button class="btn_profile_heading_manager">
-                                                        <i class="fa fa-edit"></i>Quản lý đơn hàng
+                                                        <i class="fa fa-edit"></i>Manage your invoice
                                                     </button>
                                                 </a>
                                             </div>

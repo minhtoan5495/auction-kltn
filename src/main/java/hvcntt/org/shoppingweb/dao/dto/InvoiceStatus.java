@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.dao.dto;/** * Created by Nguyen on 09/04/2017. */public enum InvoiceStatus {    CANCELED, NOT_YET, DONE}
+package hvcntt.org.shoppingweb.dao.dto;public enum InvoiceStatus {    PENDING, SHIPPING, DONE, CANCELED,}

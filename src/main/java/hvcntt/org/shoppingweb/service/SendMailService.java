@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.service;/** * Created by Nguyen on 09/05/2017. */public interface SendMailService {    void sendMail(String to, String message);}
+package hvcntt.org.shoppingweb.service;public interface SendMailService {    void sendMail(String to, String message);}

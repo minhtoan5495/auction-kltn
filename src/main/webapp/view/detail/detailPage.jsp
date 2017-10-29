@@ -38,7 +38,7 @@
         <div class="row">
             <div class="content-detail-title">
                 <p>
-                    Được sản xuất bởi: <a>${product.supplier. supplierName}</a>
+                    Được sản xuất bởi: <a>${product.supplier.supplierName}</a>
 
                 <p>
                     Ngày sản xuất:<a><fmt:formatDate
@@ -57,9 +57,9 @@
                         <div class="col-sm-6" style="width: 40%">
                             <div class="detail-product-item">
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="imageContainer">
+                                    <div class="tab-pane active" id="imageContainer1">
                                         <div id="examples">
-                                            <ul id="example3" class="etalage">
+                                            <ul class="example" class="etalage">
                                                 <c:forEach var="image" items="${image }">
                                                     <li><img class="etalage_thumb_image"
                                                              src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
@@ -180,17 +180,17 @@
                                                 <div id="countDownAuction">
                                                     <div class="form-detail-size">
                                                         <label style="color: #f37021">Kết thúc vào ngày</label>
-                                                            <c:if test="${auction.status eq 'ĐANG ĐẤU GIÁ'}">
-                                                                <p style="font-size: 30px">
-                                                                    <fmt:formatDate
-                                                                            value="${auction.endTime}"
-                                                                            pattern="dd-MM-yyyy"/>
-                                                                </p>
-                                                                <input value="${auction.endTime }"
-                                                                       id="endTime" type="hidden">
-                                                            </c:if>
+                                                        <c:if test="${auction.auctionStatus eq 'AUCTIONING'}">
+                                                            <p style="font-size: 30px">
+                                                                <fmt:formatDate
+                                                                        value="${auction.endTime}"
+                                                                        pattern="dd-MM-yyyy"/>
+                                                            </p>
+                                                            <input value="${auction.endTime }"
+                                                                   id="endTime" type="hidden">
+                                                        </c:if>
                                                         <label>Thời
-                                                        gian còn lại</label>
+                                                            gian còn lại</label>
 
                                                         <div class="form-detail-timecountdown">
                                                             <div id="clockdiv">
@@ -228,7 +228,7 @@
                                                         <c:when test="${pageContext.request.userPrincipal==null }">
                                                             <div class="submit-button">
                                                                 <button class="btn btn-danger review_item"
-                                                                        id="review_item_toggle" data-toggle="modal"
+                                                                        id="review_item_toggle1" data-toggle="modal"
                                                                         data-target="#myModal">ĐẤU GIÁ
                                                                 </button>
                                                             </div>
@@ -345,9 +345,9 @@
                         <div class="col-sm-6" style="width: 40%">
                             <div class="detail-product-item">
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="imageContainer">
-                                        <div id="examples">
-                                            <ul id="example3" class="etalage">
+                                    <div class="tab-pane active" id="imageContainer2">
+                                        <div>
+                                            <ul class="example" class="etalage">
                                                 <c:forEach var="image" items="${image }">
                                                     <li><img class="etalage_thumb_image"
                                                              src="${pageContext.request.contextPath }/resource/images/product/${image.imageUrl}">
@@ -396,7 +396,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <button class="btn btn-danger review_item"
-                                                id="review_item_toggle" data-toggle="modal"
+                                                id="review_item_toggle2" data-toggle="modal"
                                                 data-target="#myModal">Đánh giá và nhận xét
                                         </button>
                                     </div>
@@ -533,28 +533,6 @@
                                     ${userAuctions.size() } lượt đấu
                             </button>
                         </div>
-                            <%-- <div class="infor_user_auction">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="table_heading">
-                                            <th class="table_heading_item">Tên tài khoản</th>
-                                            <th class="table_heading_item">Thời gian đấu</th>
-                                            <th class="table_heading_item">Giá tiền</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="userAuction" items="${userAuctions }">
-                                            <tr>
-                                                <td>${userAuction.user.username }</td>
-                                                <td><fmt:formatDate value="${userAuction.bidtime }"
-                                                        pattern="HH:mm" /></td>
-                                                <td><fmt:formatNumber value="${userAuction.price}"
-                                                        type="number" /> đ</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div> --%>
                         <div class="modal fade" id="userAuction" role="dialog">
                             <div class="modal-dialog">
 

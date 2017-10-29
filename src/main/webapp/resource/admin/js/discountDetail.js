@@ -1,6 +1,3 @@
-/**
- * Created by toannguyen on 16/05/2017.
- */
 var TableDiscountDetail = function () {
     return {
         //main function to initiate the module

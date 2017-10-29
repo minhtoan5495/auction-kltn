@@ -11,13 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import hvcntt.org.shoppingweb.dao.dto.CartItem;
-import hvcntt.org.shoppingweb.dao.dto.ProfileDto;
+import hvcntt.org.shoppingweb.dao.dto.*;
+import hvcntt.org.shoppingweb.dao.dto.InvoiceStatus;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.exception.InvoiceStatusNotFoundException;
 import hvcntt.org.shoppingweb.exception.UserNotFoundException;
 import hvcntt.org.shoppingweb.service.*;
-import hvcntt.org.shoppingweb.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
@@ -31,14 +30,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProfileController {
+
     @Autowired
     InvoiceService invoiceService;
 
     @Autowired
     UserService userService;
-
-    @Autowired
-    InvoiceStatusService invoiceStatusService;
 
     @Autowired
     UserAuctionService userAuctionService;
@@ -64,11 +61,11 @@ public class ProfileController {
     @RequestMapping(value = "/profile")
     public String profile(Model model, Principal principal, HttpSession session) throws UserNotFoundException {
         if ("updateProfile".equals(session.getAttribute("message"))) {
-            model.addAttribute("message", "Cập nhật thông tin thành công");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
             session.removeAttribute("message");
         }
         if ("changePassword".equals(session.getAttribute("message"))) {
-            model.addAttribute("message", "Cập nhật thông tin thành công");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
             session.removeAttribute("message");
         }
         String username = principal.getName();
@@ -92,10 +89,10 @@ public class ProfileController {
         return "orderDetail";
     }
 
-    @RequestMapping("/cancelOrder")
+    @RequestMapping("/updateInvoiceStatus")
     public String cancelOrder(@RequestParam("invoiceId") String invoiceId) throws InvoiceStatusNotFoundException {
         Invoice invoice = invoiceService.findOne(invoiceId);
-        invoice.setInvoiceStatus(invoiceStatusService.findByName("CANCELED"));
+        invoice.setInvoiceStatus(InvoiceStatus.CANCELED);
         invoiceService.save(invoice);
         return "redirect:/orderDetail?invoiceId=" + invoiceId;
     }
@@ -132,24 +129,28 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
-    public String changePassword(HttpSession session, Model model) {
+    public String changePassword(HttpSession session, Model model) throws UserNotFoundException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
         if ("confirmInvalid".equals(session.getAttribute("error"))) {
-            model.addAttribute("error", "Nhập lại mật khẩu không đúng !");
+            model.addAttribute("error", Constant.INVALID_CONFIRM_PASSWORD);
             session.removeAttribute("error");
             return "changePassword";
         }
         if ("invalid".equals(session.getAttribute("error"))) {
-            model.addAttribute("error", "Vui lòng nhập đầy đủ thông tin !");
+            model.addAttribute("error", Constant.ERROR_FORM);
             session.removeAttribute("error");
             return "changePassword";
         }
         if ("oldPasswordInvalid".equals(session.getAttribute("error"))) {
-            model.addAttribute("error", "Bạn nhập sai mật khẩu hiện tại !");
+            model.addAttribute("error", Constant.INVALID_CURRENT_PASSWORD);
             session.removeAttribute("error");
             return "changePassword";
         }
         if ("errorLengthPassword".equals(session.getAttribute("error"))) {
-            model.addAttribute("error", "Mật khẩu mới quá ngắn ! (>8)");
+            model.addAttribute("error", Constant.INVALID_NEW_PASSWORD);
             session.removeAttribute("error");
             return "changePassword";
         }

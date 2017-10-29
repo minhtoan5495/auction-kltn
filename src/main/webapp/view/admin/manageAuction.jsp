@@ -46,7 +46,7 @@
                                 <td hidden="hidden">${auction.auctionId}</td>
                                 <td><fmt:formatDate value="${auction.startTime}" pattern="hh:mm yyyy-MM-dd"/> </td>
                                 <td><fmt:formatDate value="${auction.endTime}" pattern="hh:mm yyyy-MM-dd"/></td>
-                                <td>${auction.status}</td>
+                                <td>${auction.auctionStatus}</td>
                                 <td>${auction.product.name}</td>
                                 <td><a href="${pageContext.request.contextPath}/detail?productId=${auction.product.productId}"><img src="${pageContext.request.contextPath}/resource/images/product/${auction.product.imageUrl}" style="width:80px;height:80px"/></a></td>
                                 <td><a class="" href="${pageContext.request.contextPath}/admin/showAuctionDetail?auctionId=${auction.auctionId}">Show</a></td>

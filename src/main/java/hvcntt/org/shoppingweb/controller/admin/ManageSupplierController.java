@@ -1,5 +1,6 @@
 package hvcntt.org.shoppingweb.controller.admin;
 
+import hvcntt.org.shoppingweb.dao.dto.Constant;
 import hvcntt.org.shoppingweb.exception.SupplierNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,17 +15,18 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ManageSupplierController {
+
     @Autowired
     SupplierService supplierService;
 
     @RequestMapping(value = "/admin/manageSupplier")
     public String getAllSupplier(Model model, HttpSession session, HttpServletRequest request) {
         if("saveSupplier".equals(session.getAttribute("message"))){
-            model.addAttribute("message", "Saved supplier with id : " + request.getParameter("supplierId") + " !!");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
             session.removeAttribute("message");
         }
         if("updateSupplier".equals(session.getAttribute("message"))){
-            model.addAttribute("message", "Updated supplier with id : " + request.getParameter("supplierId") + " !!");
+            model.addAttribute("message", Constant.SAVE_SUCCESSFULLY);
             session.removeAttribute("message");
         }
         model.addAttribute("supplies", supplierService.getAll());
@@ -34,11 +36,11 @@ public class ManageSupplierController {
     @RequestMapping(value = "/admin/addSupplier", method = RequestMethod.GET)
     public String addSupplier(Model model, HttpSession session) {
         if("invalidName".equals(session.getAttribute("message"))){
-            model.addAttribute("error", "Supplier name is exist !!");
+            model.addAttribute("error", Constant.ERROR_EXITS);
             session.removeAttribute("message");
         }
         if("nullName".equals(session.getAttribute("message"))){
-            model.addAttribute("error", "Supplier name is null !!");
+            model.addAttribute("error", Constant.ERROR_NULL);
             session.removeAttribute("message");
         }
         model.addAttribute("supplier", new Supplier());

@@ -85,17 +85,16 @@
 				<i class="glyphicon glyphicon-th-list"
 					style="color: rgba(0, 159, 255, 0.59); font-size: 20px;"></i>
 			</button>
-			<%--<div class="resul-filter-item">--%>
-				<%--<form action="searchNameBySort">--%>
-					<%--<select name="sortby" class="sort-field-item">--%>
-						<%--<option value="NONE">--- Lọc theo mẫu ---</option>--%>
-						<%--<option value="desc">Giá cao đến thấp</option>--%>
-						<%--<option value="asc">Giá thấp đến cao</option>--%>
-						<%--<option value="discount">Giảm giá</option>--%>
-					<%--</select> <input type="hidden" name="name" value="${name}" /> <input--%>
-						<%--type="submit" value="Lọc">--%>
-				<%--</form>--%>
-			<%--</div>--%>
+			<div class="result-filter-item">
+				<form action="searchNameBySort">
+					<select name="sortBy" class="sort-field-item">
+						<option value="NONE">--- Sort ---</option>
+						<option value="desc">Desc</option>
+						<option value="asc">Asc</option>
+					</select> <input type="hidden" name="name" value="${name}" /> <input
+						type="submit" value="Lọc">
+				</form>
+			</div>
 		</div>
 		<div class="content-page">
 			<div class="row">

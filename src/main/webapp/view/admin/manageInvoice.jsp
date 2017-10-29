@@ -43,7 +43,7 @@
                                 <td><fmt:formatDate value="${invoice.shipDate }"
                                                     pattern="yyyy-MM-dd"/></td>
                                 <td>${invoice.username}</td>
-                                <td>${invoice.invoiceStatus.invoiceStatusName}</td>
+                                <td>${invoice.invoiceStatus}</td>
                                 <td><a class="" href="${pageContext.request.contextPath}/admin/showDetailInvoice?invoiceId=${invoice.invoiceId}">Show</a></td>
                                 <td><a class="" href="${pageContext.request.contextPath}/admin/editInvoiceStatus?invoiceId=${invoice.invoiceId}">Edit</a></td>
                                 <td><a class="delete" href="javascript:;">Delete</a></td>

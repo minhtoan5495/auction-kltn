@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import hvcntt.org.shoppingweb.dao.dto.AuctionStatus;
 
 import java.util.Date;
 import java.util.List;
@@ -16,35 +17,24 @@ import java.util.UUID;
 public class Auction implements Serializable {
 	private static final long serialVersionUID = -1134178269384478834L;
 
-	@Id
-	@Column(name="auction_id")
 	private String auctionId;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="end_time")
 	private Date endTime;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="start_time")
 	private Date startTime;
 
-	private String status;
+	private AuctionStatus auctionStatus;
 
-	//bi-directional many-to-one association to Product
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="product_id")
-	@JsonBackReference
 	private Product product;
 
-	//bi-directional many-to-one association to UserAuction
-	@OneToMany(mappedBy="auction",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonManagedReference
 	private List<UserAuction> userAuctions;
 
 	public Auction() {
 		setAuctionId(UUID.randomUUID().toString());
 	}
 
+	@Id
+	@Column(name="auction_id")
 	public String getAuctionId() {
 		return this.auctionId;
 	}
@@ -53,6 +43,8 @@ public class Auction implements Serializable {
 		this.auctionId = auctionId;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="end_time")
 	public Date getEndTime() {
 		return this.endTime;
 	}
@@ -61,6 +53,8 @@ public class Auction implements Serializable {
 		this.endTime = endTime;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="start_time")
 	public Date getStartTime() {
 		return this.startTime;
 	}
@@ -69,14 +63,19 @@ public class Auction implements Serializable {
 		this.startTime = startTime;
 	}
 
-	public String getStatus() {
-		return this.status;
+	@Column(name="auction_status")
+	@Enumerated(EnumType.STRING)
+	public AuctionStatus getAuctionStatus() {
+		return auctionStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setAuctionStatus(AuctionStatus auctionStatus) {
+		this.auctionStatus = auctionStatus;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="product_id")
+	@JsonBackReference
 	public Product getProduct() {
 		return this.product;
 	}
@@ -85,6 +84,8 @@ public class Auction implements Serializable {
 		this.product = product;
 	}
 
+	@OneToMany(mappedBy="auction",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	public List<UserAuction> getUserAuctions() {
 		return this.userAuctions;
 	}

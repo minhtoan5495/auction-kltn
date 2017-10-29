@@ -1,1 +1,1 @@
-package hvcntt.org.shoppingweb.dao.dto;/** * Created by Nguyen on 09/04/2017. */public enum ProductSize {    S, M, L, XL, XXL}
+package hvcntt.org.shoppingweb.dao.dto;public enum ProductSize {    S, M, L, XL, XXL}

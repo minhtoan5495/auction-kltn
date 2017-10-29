@@ -8,6 +8,7 @@ import java.util.Set;
 
 //import javax.servlet.http.HttpServletRequest;
 
+import hvcntt.org.shoppingweb.dao.dto.AuctionStatus;
 import hvcntt.org.shoppingweb.dao.dto.RatingDto;
 import hvcntt.org.shoppingweb.dao.entity.*;
 import hvcntt.org.shoppingweb.service.*;
@@ -63,7 +64,7 @@ public class DetailPageController {
     public String detailPage(Model model, @RequestParam("productId") String productId) {
         Product product = productService.findOne(productId);
         if ("Auction".equals(product.getTransactionType().getTransactionTypeName())) {
-            Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
+            Auction auction = auctionService.findByProductAndStatus(product, AuctionStatus.AUCTIONING);
             UserAuction userAuction = userAuctionService.findFirstByAuctionOrderByPriceDesc(auction);
             Set<UserAuction> userAuctions = userAuctionService.findTop5ByAuction(auction);
             model.addAttribute("auction",auction);
@@ -71,13 +72,6 @@ public class DetailPageController {
             model.addAttribute("userAuction", userAuction);
             model.addAttribute("userAuctions", userAuctions);
         } else {
-//            Auction auctionN = auctionService.findByProduct(product);
-//            List<UserAuction> liUserAuctions = userAuctionService.findByAuction(auctionN);
-//            model.addAttribute("liUserAuctions", liUserAuctions);
-//            Set<UserAuction> userAuctions = new HashSet<>();
-//            Auction auction = auctionService.findByProductAndStatus(product, "ĐANG ĐẤU GIÁ");
-//            userAuctions.addAll(auction.getUserAuctions());
-//            model.addAttribute("userAuctions", userAuctions);
             model.addAttribute("product", product);
         }
         if (existId(productId)) {
@@ -111,9 +105,9 @@ public class DetailPageController {
     }
 
     private boolean existId(String productId) {
-        List<Product> listP = productService.getAll();
-        for (int i = 0; i < listP.size(); i++) {
-            if (listP.get(i).getProductId().equals(productId)) {
+        List<Product> products = productService.getAll();
+        for (Product product : products) {
+            if (product.getProductId().equals(productId)) {
                 return true;
             }
         }

@@ -1,16 +1,14 @@
 package hvcntt.org.shoppingweb.controller;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import hvcntt.org.shoppingweb.dao.dto.Constant;
 import hvcntt.org.shoppingweb.dao.entity.Parent;
-import hvcntt.org.shoppingweb.service.*;
-import hvcntt.org.shoppingweb.utils.JsonUtil;
+import hvcntt.org.shoppingweb.dao.entity.Product;
+import hvcntt.org.shoppingweb.dao.entity.Supplier;
+import hvcntt.org.shoppingweb.dao.entity.TransactionType;
+import hvcntt.org.shoppingweb.service.ParentService;
+import hvcntt.org.shoppingweb.service.ProductService;
+import hvcntt.org.shoppingweb.service.SupplierService;
+import hvcntt.org.shoppingweb.service.TransactionTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -19,10 +17,12 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import hvcntt.org.shoppingweb.dao.dto.CartItem;
-import hvcntt.org.shoppingweb.dao.entity.Product;
-import hvcntt.org.shoppingweb.dao.entity.Supplier;
-import hvcntt.org.shoppingweb.dao.entity.TransactionType;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomePageController {
@@ -43,8 +43,6 @@ public class HomePageController {
 
     public static final String AUCTION = "Auction";
 
-    public static final String MESSAGE_RESULT = " sản phẩm được tìm thấy";
-
     @ModelAttribute("parents")
     public List<Parent> parent() {
         return parentService.findAll();
@@ -54,10 +52,10 @@ public class HomePageController {
     @RequestMapping(value = "/home")
     public String homePage(Model model, HttpSession session, HttpServletRequest request, @RequestParam(value = "message", required = false) String message) {
         if("loginSuccess".equals(message)){
-            model.addAttribute("message", "Đăng nhập thành công");
+            model.addAttribute("message", Constant.LOGIN_SUCCESS);
         }
         if("addCartSuccess".equals(session.getAttribute("message"))){
-            model.addAttribute("message", "Đã thêm vào giỏ hàng 1 sản phẩm");
+            model.addAttribute("message", Constant.ADD_TO_CART);
             session.removeAttribute("message");
         }
         model.addAttribute("parents", parentService.findAll());
@@ -89,7 +87,7 @@ public class HomePageController {
         String name = request.getParameter("name");
         List<Product> listProductByName = productService.findByNameContaining(name);
         model.addAttribute("resultList", listProductByName);
-        model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
+        model.addAttribute("message", "Search result : " + productService.findByNameContaining(name).size());
         Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("name", name);
@@ -98,7 +96,7 @@ public class HomePageController {
 
     @RequestMapping(value = "/searchNameBySort")
     public String searchPageSort(Model model, @RequestParam("name") String name
-            , @RequestParam("sortby") String sortBy) {
+            , @RequestParam("sortBy") String sortBy) {
         if (sortBy.equals("desc")) {
             List<Product> listProductPriceDesc = productService.findByContainingnameAndDescPrice(name);
             model.addAttribute("resultList", listProductPriceDesc);
@@ -110,16 +108,16 @@ public class HomePageController {
         Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("name", name);
-        model.addAttribute("message", "có " + productService.findByNameContaining(name).size() + MESSAGE_RESULT);
+        model.addAttribute("message", "Search result : " + productService.findByNameContaining(name).size());
         return "resultSearch";
     }
 
     @RequestMapping(value = "/supplier")
-    public String getSupplier(Model model, @RequestParam("supplierId") String supplierId, HttpServletRequest request) {
+    public String getSupplier(Model model, @RequestParam("supplierId") String supplierId) {
         Supplier supplier = supplierService.findOne(supplierId);
         List<Product> listProductSuppliers = productService.findBySupplier(supplier);
         model.addAttribute("resultList", listProductSuppliers);
-        model.addAttribute("message", "Có " + productService.findBySupplier(supplier).size() + MESSAGE_RESULT);
+        model.addAttribute("message", "Search result : " + productService.findBySupplier(supplier).size());
         Date currentDate = new Date();
         model.addAttribute("currentDate", currentDate);
         return "resultSearch";
